@@ -1,4 +1,4 @@
-26 апреля на сайте Компании 
+23 апреля на сайте Компании WellIncure
 	( WellIncure .. Номер лицензии .. hightstreetpharma.org .. )
 	( ползьуясь правом )
 я произвел заказ из своего ЛК на сайте ( hightstreetpharma.org )
