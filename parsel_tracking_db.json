@@ -1,3 +1,11 @@
+Выписка из информационной системы таможенных процедур над посылкой CM145086239IN
+где указан отправитель WellIncure и прочее
+
+https://www.pochta.ru/tracking?barcode=CM145086239IN
+
+обратите внимание на свойство "customsDenied": true - запрет
+API на расшифровку : https://otpravka.pochta.ru/specification#/main ( в левой меню Описание Свойств)
+
 {
     "id": 1056877317,
     "user": {
@@ -674,7 +682,7 @@
                 "state": "NONE",
                 "PostId": "CM145086239IN"
             },
-            "attorneyServiceIsEnabled": true, (argh)
+            "attorneyServiceIsEnabled": true,
             "deliveryAvailable": false,
             "timeSlotInfo": null,
             "delayInsuranceInfo": {
