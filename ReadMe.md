@@ -173,7 +173,9 @@ SH     Модафинил ( India ) :  30049099
 Исключено
 
     Список Запрещённых к ввозу ( Модафинила нет )
+    Исключён 321 2930 90 950 
     
+    https://www.consultant.ru/document/cons_doc_LAW_397990/b252b9c4f89dcb0cbe04c936c7f7065a01adf49f/#dst100166
     https://www.consultant.ru/document/cons_doc_LAW_178556/54fafcbeddc55eeaff4625ae17f022b6584ba2f0/
 
     Группа 29 ru.29_2022_24.05.2024
