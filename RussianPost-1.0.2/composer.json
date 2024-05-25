@@ -1,0 +1,28 @@
+{
+  "name": "lapaygroup/russianpost",
+  "description": "SDK для работы с API Почты России (pochta.ru)",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/lapaygroup/russianpost/issues",
+    "source": "https://github.com/lapaygroup/russianpost"
+  },
+  "authors": [
+    {
+      "name": "Nikolay Lapay",
+      "email": "nl@wildtuna.pro"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "^6.3 || ^7.0",
+    "psr/log": "^1.1 || ^2.0 || ^3.0",
+    "ext-soap": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "LapayGroup\\RussianPost\\": "src/"
+    }
+  }
+}
