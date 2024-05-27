@@ -28,7 +28,7 @@
 
 **Требуется Доказать**
 
-  WellIncure India ( все есть )
+  WellIncure India
       
       установленное лицо
   
@@ -134,8 +134,3 @@
     присутствует 
         в файле Определения.re
         либо в Законе на который ссылаеться
-
-
-Ссылка на движение Дела в Суде
-    https://aviastroitelny--tat.sudrf.ru/modules.php?name=sud_delo&srv_num=1&name_op=case&case_id=307975007&case_uid=b79640c9-415b-436f-9c80-0d1ec5d1eb8e&delo_id=1540006#
-
