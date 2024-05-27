@@ -615,17 +615,17 @@
 УПК 52.3. Отказ от Защ. с послед. Ходр. о Допуске
 
 
+$ pip install fs-pochta-api
 
-
-barcode = 'CM145086239IN'
-my_login = 'sSHhNjzKPeArPC'
-my_password = 'cVdEmzhojLu7'
-
-import pochta
-
-from pochta import SingleTracker
-
-track = SingleTracker('sSHhNjzKPeArPC', 'cVdEmzhojLu7')
-
-history = track.get_history('CM145086239IN')
-print(history)
+	barcode = 'CM145086239IN'
+	my_login = 'sSHhNjzKPeArPC'
+	my_password = 'cVdEmzhojLu7'
+	
+	import pochta
+	
+	from pochta import SingleTracker
+	
+	track = SingleTracker('sSHhNjzKPeArPC', 'cVdEmzhojLu7')
+	
+	history = track.get_history('CM145086239IN')
+	print(history)
