@@ -12,10 +12,9 @@ https://www.knowyourgst.com/gst-number-search/wellincure-india-27CSNPK5359M3ZU/
 A17 9768775555 Subhojit Kar Wellincure India 
 niketagarwal3003@yahoo.co.in Maharashtra
 
-What is HSN Code? HSN code stands for “Harmonized System of Nomenclature”.
+HSN code stands for “Harmonized System of Nomenclature”.
 
-Дейсвтия Расследования
-	1. Подать заявку в Роспотребнадзор о нарушении highstreetpharma.com
+
 
 https://www.pochta.ru/support/no-mail-exchange
 
