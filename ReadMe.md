@@ -610,6 +610,9 @@
     https://www.pochta.ru/tracking?barcode=CM145086239IN#
 
 
+а это для Братьев, которые Реально Спасут Мою Жизнь
+Я отплачу
+
 $ pip install fs-pochta-api 
 
     ( https://fogstream.github.io/fs-pochta-api/html/installation.html )
