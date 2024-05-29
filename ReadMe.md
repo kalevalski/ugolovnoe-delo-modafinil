@@ -609,25 +609,3 @@
 
     https://www.pochta.ru/tracking?barcode=CM145086239IN#
 
-
-а это для Братьев, которые Реально Спасут Мою Жизнь
-Я отплачу
-
-$ pip install fs-pochta-api 
-
-    ( https://fogstream.github.io/fs-pochta-api/html/installation.html )
-
-	barcode = 'CM145086239IN'
-	my_login = 'sSHhNjzKPeArPC'
-	my_password = 'cVdEmzhojLu7'
-	Токен авторизации: 'zt4F4heS6mD1eYsMkXhChdiNZ5DgBOOl'
-	ключ авторизации: 'a2FsZXZhbHNraUBnbWFpbC5jb206ZHZhY2hmaWdhY2g='
- 
-	import pochta
-	
-	from pochta import SingleTracker
-	
-	track = SingleTracker('sSHhNjzKPeArPC', 'cVdEmzhojLu7')
-	
-	history = track.get_history('CM145086239IN')
-	print(history)
