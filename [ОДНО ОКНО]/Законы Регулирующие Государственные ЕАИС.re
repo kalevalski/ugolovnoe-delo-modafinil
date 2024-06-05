@@ -1,4 +1,6 @@
 https://minjust.gov.ru/ru/activity/govservices/infosystems/33/
+https://digital.gov.ru/ru/appeals/faq/398/
+
 
 − Федеральный закон от 15.05.1995 № 82-ФЗ «Об общественных объединениях»;
 
