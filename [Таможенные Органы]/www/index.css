@@ -1,0 +1,77 @@
+﻿
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+@keyframes bgColor {
+    0% {
+        background-color: #000000;
+    }
+
+    100% {
+        background-color: #0f7a65;
+    }
+}
+
+body {
+    font-family: Arial;
+    font-size: 14px;
+    background-color: #000000;
+    color: #f4f7fb;
+    transition: background-color 2s ease-in-out;
+    animation: bgColor 5s 1;
+    animation-fill-mode: forwards;
+}
+
+.layout:before {
+    z-index: -1;
+    width: 100%;
+    background-image: url(bgGerb.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    height: 100%;
+    content: ""
+}
+
+.asyncStatus {
+    /*background-image: url(loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;*/
+    /*color: transparent;*/
+}
+
+#appVersion {
+    margin-bottom: 10px;
+    font-size: 10px;
+    color: lightgray;
+}
+
+#secretInfo {
+    display: none;
+    margin-top: 10px;
+}
+
+#loaderSelect {
+    margin-top: 10px;
+}
+
+#currentVersion {
+    margin-top: 10px;
+    font-size: 8px;
+}
+
+#loaderSelect a {
+    padding: 5px 8px;
+    border: solid 1px gray;
+    background-color: lightgray;
+    display: inline-block;
+}
+
+#loaderUrl {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

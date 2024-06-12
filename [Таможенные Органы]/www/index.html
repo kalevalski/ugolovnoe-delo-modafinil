@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <!--https://content-security-policy.com/-->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; child-src *">-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src *; connect-src *, font-src *; object-src *; frame-src *; child-src *">
+    <!--<meta http-equiv="content-type" content="text/html; charset=UTF-8" />-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">-->
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, target-densitydpi=low-dpi">
+    <meta name="color-scheme" content="light dark">
+
+    <title>ФТС Личный кабинет</title>
+    <link href="https://edata.customs.ru/FtsPersonalCabinetWeb2017/Content/Images/Favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!--<link href="https://web3.edata.customs.ru/Test/FtsPersonalCabinetWeb2017/Content/Images/Favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
+    <!--<link href="https://web3.edata.customs.ru/Test/FtsPersonalCabinetWeb2017/Content/cssMobile?v=ZBpALqpdBGM6OOJCFJm0V5Ffwvtc8lfD1AnxilZKHxY1" rel="stylesheet" />-->
+    
+    <style type="text/css">
+        boby {
+            background-color: #000000;
+            color: #f4f7fb;
+        }
+    </style>
+
+    <link rel="stylesheet" href="index.css">
+    
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+
+</head>
+<body ng-controller="personalCabinetController">
+
+    <div class="layout" id="layout">
+
+        <div ng-if="false">
+            <!--<div class="progress" style="margin-left: 10%; width: 80%; margin-top: 25%;">
+                <div ng-show="false" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+
+                </div>
+            </div>-->
+            <div style="margin-left:10%; width: 80%;">
+                <div id="initLabel" class="asyncStatus" style="opacity: 0;">
+                    Инициализация...
+                </div>
+                <div id="appVersion" style="opacity: 0;">
+                    
+                </div>
+                <div id="secretInfo">
+                    <div id="loaderUrl">
+                        Выбери версию
+                    </div>
+                    <div id="currentVersion">
+                        Redirect Web2 - По умолчанию
+                    </div>
+                    <div id="loaderSelect">
+                        <!--<a href="#" onclick="loadLoader(window.version)">Load Current</a>
+                        <a href="#" onclick="loadLoader(web1Version)">Load Web1</a>
+                        <a href="#" onclick="loadLoader(web2Version)">Load Web2</a>
+                        <a href="#" onclick="loadLoader(web2vpnVersion)">Load Web2 Vpn</a>
+                        <a href="#" onclick="loadLoader(web3testVersion)">Load Web3 Test</a>
+                        <a href="#" onclick="loadLoader(localhostVersion)">Load Localhost</a>
+                        <a href="#" onclick="loadLoader(badVersion)">Load Bad</a>-->
+                        <a href="#" onclick="clearStorage()">Clear Storage</a>
+                        <a href="#" onclick="downloadTest()">Download Test</a>
+                        <a href="#" onclick="loadUrl(web1UrlApp)">Redirect Web1</a>
+                        <a href="#" onclick="loadUrl(web2UrlApp)">Redirect Web2</a>
+                        <a href="#" onclick="loadUrl(web3testUrlApp)">Redirect Web3 Test</a>
+                        <a href="#" onclick="loadUrl(web4UrlApp)">Redirect Web4</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!configView.data || !identityView.data" class="ng-cloak">
+            <div class="progress" style="margin-left: 10%; width: 80%; margin-top: 25%; color: black;">
+                <div ng-show="false" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{loadingProgress.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{loadingProgress.value}}%;">
+
+                </div>
+                <div ng-show="!configView.data" class="ng-cloak progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{loadingProgress.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{loadingProgress.value}}%;">
+
+                </div>
+                <div ng-show="configView.data && !identityView.data" class="ng-cloak progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{loadingProgress.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{loadingProgress.value}}%;">
+
+                </div>
+            </div>
+            <div style="margin-left:10%; width: 80%;">
+                <div class="asyncStatus">
+                    <div ng-show="false">
+                        Загрузка...
+                    </div>
+                    <div ng-show="!configView.data">
+                        <span ng-if="configView.error">Сервер временно недоступен</span>
+                        <span ng-if="!configView.error">{{configView.status}}</span>
+                    </div>
+                    <div ng-show="configView.data && !identityView.data">
+                        <span ng-if="identityView.error">Сервер временно недоступен</span>
+                        <span ng-if="!identityView.error">{{identityView.status}}</span>
+                    </div>
+                </div>
+                <div ng-show="configView.error" class="asyncError">
+                    <span>Попробуйте обновить страницу позже</span>
+                    <button class="btn btn-link" ng-click="configView.reload()">Обновить</button>
+                    <button class="btn btn-link" ng-click="configView.showError=!configView.showError">Подробнее...</button>
+                    <div ng-if="configView.showError">
+                        ConfigView Error: {{configView.error}}
+                    </div>
+                </div>
+                <div ng-show="configView.data && identityView.error" class="asyncError">
+                    <span>Попробуйте обновить страницу позже</span>
+                    <button class="btn btn-link" ng-click="identityView.reload()">Обновить</button>
+                    <button class="btn btn-link" ng-click="identityView.showError=!identityView.showError">Подробнее...</button>
+                    <div ng-if="identityView.showError">
+                        IdentityView Error: {{identityView.error}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ng-cloak" ng-if="configView.data && identityView.data" ng-init="isView('Home')">
+
+            <ng-view src="'Root'"></ng-view>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="index.js"></script>
+
+</body>
+</html>
