@@ -1,0 +1,151 @@
+/*<style type="text/css">*/
+
+/*<!---=-=-=-=-=-=-=-=-=- Общие стили (мем: все размеры шрифтов увеличила на 1, чтобы было крупнее при разрешении 1280х1024
+<!-- добавила стиль tk жирный курсив
+
+.Images {Width="801" Height="1119"} 
+
+-->*/
+.ImagesMem {Width="501"; Height="801"}
+
+div.ImagesMem {Width="501"; Height="801"}
+
+img.ImagesMem {Width="501"; Height="801"}
+
+.smallest {font-size: 10px}
+
+.small {font-size: 12px;}
+
+.big {font-size: 14px}
+
+.bullet {margin-left: 11px;}
+
+.content {font-size: 12px; font-family: Verdana;}
+
+.sub-content {font-size: 10px; font-family: Verdana;}
+
+.t0r {color:red;}
+
+.t1 {font-weight:bold;}
+
+.tk {font-weight:bold; font-style:italic;}
+.tk {font-weight:bold; color:Maroon; font-style:italic;}
+
+
+.z3 {font-weight:bold;}
+
+body {margin: 13px;}
+
+input {}
+
+select {}
+
+textarea {}
+
+div {}
+
+th {vertical-align: top; font-size: 15px; font-family: Arial; font-weight: Normal;}
+td {vertical-align: top; font-size: 12px; font-family: Verdana;}
+td.bottom {vertical-align: bottom; font-size: 12px; font-family: Verdana;}
+
+td.gray {vertical-align: top; font-size: 11px; font-family: arial; color: gray;}
+
+td.bg {background-position: top left;}
+
+table {width:100%;}  /*вставила для проверки будут ли таблицы отображаться корректно по всей ширине окна*/
+
+table.bg {background-repeat: no-repeat; background-position: top left;}
+table.t2 {width:100%;}
+td.bgright {background-repeat: no-repeat; background-position: top right; font-size: 11px; font-weight: bold; font-family: Tahoma; color: #808080; background-color: #f0f0f0;}
+
+table.bgright {background-repeat: no-repeat; background-position: top right;}
+
+
+
+
+
+br.br6 {font-size: 6px;}
+
+
+
+li.leftmenu{margin: 0px;}
+
+div.leftmenu{margin: 10 1 1 15px;}
+
+
+h1{font-family: Times; font-size: 22px; font-weight: normal;}
+
+h2{font-family: Times; font-size: 20px; font-weight: normal;}
+
+h3{font-family: Times; font-size: 16px; font-weight: bold;}
+
+h4{font-family: Times; font-size: 14px; font-weight: bold;}
+
+font.h1 {font-family: Times; font-size: 22px; font-weight: normal;}
+font.h2 {font-family: Times; font-size: 18px; font-weight: normal;}
+font.sub-h1 {font-family: Tahoma; font-size: 11px; font-weight: normal;}
+font.gtk {font-family: Arial; font-size: 13px; font-style: normal; color: #808080;}
+
+a.path {font-family: Tahoma; color: #808080; text-decoration : none}
+
+font.history {font-family: Tahoma; font-size: 16px; color: #c0c0c0; font-style: normal;}
+
+    .black {color: #000000;}
+
+    .white {color: #ffffff;}
+
+    .blue {color: #0000ff;}
+
+    .green {color: #00ff00;}
+
+    .red {color: #ff0000;}
+
+
+
+	#white {color: #ffffff;}
+
+	#black {color: #000000;}
+
+	#red {color: #cc3300;}
+
+	#blue {color: #3388cc;}
+
+	#yellow {color: #ffbb00;}
+
+	#green {color: #339900;}
+
+	#gray {color: #e7e7e7;}
+
+	#dgray {color: #999999;}
+
+	#lgray {color: #cccccc;}
+
+
+
+	#bg-white {background-color: #ffffff;}
+
+	#bg-black {background-color: #000000;}
+
+	#bg-red {background-color: #cc3300;}
+
+	#bg-blue {background-color: #3388cc;}
+
+	#bg-yellow {background-color: #ffbb00;}
+
+	#bg-green {background-color: #339900;}
+
+	#bg-gray {background-color: #e7e7e7;}
+
+	#bg-dgray {background-color: #999999;}
+
+	#bg-lgray {background-color: #cccccc;}
+
+/*-=-=-=-=-=-=-=-=-=- Врезки*/
+
+
+br.caption {vertical-align: center font-size: 14px; font-family: Verdana; color: #f0f0f0;}
+
+
+/*-->*/
+
+/*</style>*/
