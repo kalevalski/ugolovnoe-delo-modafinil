@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AnsResolutionCustoms:5.22.0" version="5.22.0.0" xmlns:arc="urn:customs.ru:Information:CustomsDocuments:AnsResolutionCustoms:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Ответ декларанта на решение таможенного органа по таможенной стоимости</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AnsResolutionCustoms" type="arc:AnsResolutionCustomsType" />
+  <xs:complexType name="AnsResolutionCustomsType">
+    <xs:annotation>
+      <xs:documentation>Ответ декларанта на решение таможенного органа по таможенной стоимости</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RefinedStructure" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак согласия уточнить структуру заявленной таможенной стоимости в рамках выбранного метода</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DesignateTS" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак согласия определить таможенную стоимость другим методом</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Reason" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>При несогласии сообщить причины.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consultation" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак необходимости проведения консультации по выбору метода определения таможенной стоимости</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ExpectedConsultationDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Предполагаемая дата консультации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AnsDeclarantSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись декларанта.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AnsDeclarant" type="arc:AnsDeclarantType">
+            <xs:annotation>
+              <xs:documentation>Декларант</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GTDID" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер таможенного документа. </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1006040E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AnsDeclarantType">
+    <xs:annotation>
+      <xs:documentation>Декларант</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdentityCard" type="RUScat_ru:RUIdentityCardType">
+        <xs:annotation>
+          <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InfoAnsDeclarant" type="cat_ru:OrganizationType">
+        <xs:annotation>
+          <xs:documentation>Сведения о декларанте</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

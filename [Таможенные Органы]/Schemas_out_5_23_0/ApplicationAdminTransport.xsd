@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ApplicationAdminTransport:5.22.0" version="5.22.0.0" xmlns:apat="urn:customs.ru:Information:CustomsDocuments:ApplicationAdminTransport:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявка от администрации транспортного средства </xs:documentation>
+  </xs:annotation>
+  <xs:element name="ApplicationAdminTransport" type="apat:ApplicationAdminTransportType" />
+  <xs:complexType name="ApplicationAdminTransportType">
+    <xs:annotation>
+      <xs:documentation>Заявка от администрации транспортного средства </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Aim" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Цель прибытия на таможенную территорию Российской Федерации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Volume" type="clt_ru:QuantityBasisType">
+            <xs:annotation>
+              <xs:documentation>Объем (в основных единицах измерения) технологических конструктивных емкостей и площади специально выделенных штатных мест, предназначенных для хранения припасов на транспортном средстве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MeasureUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType">
+            <xs:annotation>
+              <xs:documentation>Наименование единицы измерения объема</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="QuantityStore" type="clt_ru:QuantityBasisType">
+            <xs:annotation>
+              <xs:documentation>Количество припасов, находящихся на борту транспортного средства на момент подачи заявления;</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Route" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Предполагаемого маршрута следования транспортного средства после убытия с таможенной территории Российской Федерации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="QuantityOperation" type="clt_ru:QuantityBasisType">
+            <xs:annotation>
+              <xs:documentation>Количество припасов, необходимых для обеспечения эксплуатации транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FilingDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата подачи заявки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MeasureUnitOperation" type="clt_ru:MeasureUnitQualifierNameType">
+            <xs:annotation>
+              <xs:documentation>Наименование единицы измерения количества припасов, необходимых для обеспечения эксплуатации транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="MeasureUnitStore" type="clt_ru:MeasureUnitQualifierNameType">
+            <xs:annotation>
+              <xs:documentation>Наименование единицы измерения количество припасов, находящихся на борту транспортного средства на момент подачи заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdminTransport" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения об администрации транспорта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportMeans" type="cat_ru:TransportMeansBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о транспортном средстве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ForeignCustomer" type="cat_ru:OrganizationBaseType">
+            <xs:annotation>
+              <xs:documentation>Лицо, номинированное иностранным заказчиком на поставку припасов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Translator" type="cat_ru:OrganizationBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, осуществившем перевод заявки на русский язык в случае, если она представлена на иностранном языке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1006109E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

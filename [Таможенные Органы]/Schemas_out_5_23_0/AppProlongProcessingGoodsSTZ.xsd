@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ Министерства финансов Российской Федерации от 22 декабря 2020 N 317н "Об утверждении форм документов, предусмотренных частями 7, 10 и 12 статьи 20 Федерального закона от 13 июля 2020 г. N 193-Ф3 "О государственной поддержке предпринимательской деятельности в Арктической зоне Российской Федерации"
+-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:appg_stz="urn:customs.ru:Information:CustomsDocuments:AppProlongProcessingGoodsSTZ:5.23.0" xmlns:catProc_ru="urn:customs.ru:Information:ProcessingDocuments:ProcessingCommonAggregateTypes:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AppProlongProcessingGoodsSTZ:5.23.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ProcessingDocuments:ProcessingCommonAggregateTypes:5.23.0" schemaLocation="ProcessingCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление о продлении срока вывоза товаров,  помещенных под таможенную процедуру СТЗ, на остальную часть таможенной территории ЕАЭС для совершения операций по переработке</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppProlongProcessingGoodsSTZ" type="appg_stz:AppProlongProcessingGoodsSTZType">
+    <xs:annotation>
+      <xs:documentation>Заявление на продление срока вывоза товаров,  помещенных под таможенную процедуру СТЗ, на остальную часть таможенной территории ЕАЭС для совершения операций по переработке</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppProlongProcessingGoodsSTZType">
+    <xs:annotation>
+      <xs:documentation>Заявление на продление срока вывоза товаров,  помещенных под таможенную процедуру СТЗ, на остальную часть таможенной территории ЕАЭС для совершения операций по переработке</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о таможенном органе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Resident" type="appg_stz:ResidentType">
+            <xs:annotation>
+              <xs:documentation>Сведения о резиденте СТЗ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppRegNumber" type="appg_stz:AppRegNumType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер Заявления на вывоз товаров на переработку</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Reason" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Причины продления срока переработки товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConfirmDoc" type="catProc_ru:DocExtendedType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, подтверждающие основания для продления срока </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RequestPeriod" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Запрашиваемый срок продления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PresentedDoc" type="appg_stz:PresentedDocType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Опись представленных документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ResidentSignature" type="cat_ru:PersonSignatureType" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Подпись представителя резидента</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006304E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AppRegNumType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер заявления</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+        <xs:annotation>
+          <xs:documentation>Код таможенного органа, зарегистрировавшего Заявление</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации Заявления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Number" type="clt_ru:CodeVariable10Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер Заявления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddNumber" type="clt_ru:Code3Type">
+        <xs:annotation>
+          <xs:documentation>4-ая часть номера "ЗВП"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResidentCertificateType">
+    <xs:annotation>
+      <xs:documentation>Сведения о включении в реестр резидентов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CertificateNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateValidity" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Срок действия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateAgency" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование органа, выдавшего свидетельство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResidentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о резиденте</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:SubjectDetailsType">
+        <xs:sequence>
+          <xs:element name="ResidentCertificate" type="appg_stz:ResidentCertificateType">
+            <xs:annotation>
+              <xs:documentation>Cвидетельство о включении в реестр резидентов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PresentedDocType">
+    <xs:annotation>
+      <xs:documentation>Сведения о представленных документах</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catProc_ru:DocExtendedType">
+        <xs:sequence>
+          <xs:element name="Position" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер позиции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SheetsNumber" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

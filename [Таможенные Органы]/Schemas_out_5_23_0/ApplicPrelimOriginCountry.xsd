@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--При EPGUIndicator=0 Приложение №1 Приказ ФТС России от 05.02.2019 № 181-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:RUSclt_ru="urn:customs.ru:RUSCommonLeafTypes:5.21.0" xmlns:apoc="urn:customs.ru:ApplicPrelimOriginCountry:5.22.0" targetNamespace="urn:customs.ru:ApplicPrelimOriginCountry:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonLeafTypes:5.21.0" schemaLocation="RUSCommonLeafTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление на оказание услуги «Принятие предварительных решений о стране происхождения товара»/заявление о принятии предварительного решения о происхождении товара</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ApplicPrelimOriginCountry" type="apoc:ApplicPrelimOriginCountryType">
+    <xs:annotation>
+      <xs:documentation>Заявление на оказание услуги «Принятие предварительных решений о стране происхождения товара»/заявление о принятии предварительного решения о происхождении товара</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ApplicPrelimOriginCountryType">
+    <xs:annotation>
+      <xs:documentation>Заявление на оказание услуги «Принятие предварительных решений о стране происхождения товара»/заявление о принятии предварительного решения о происхождении товара</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Description" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Примечание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationInfo" type="apoc:ApplicationInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="apoc:ApplicantType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppliedDocument" type="apoc:AppliedDocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о предоставляемых документах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicantSignature" type="cat_ru:PersonSignatureType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Подпись заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="DecisionCountryOrigin" type="apoc:DecisionCountryOriginType">
+              <xs:annotation>
+                <xs:documentation>Заявление на  выдачу решения</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Alteration" type="apoc:AlterationType">
+              <xs:annotation>
+                <xs:documentation>Заявление на  внесение изменений</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Duplicate" type="apoc:DuplicateType">
+              <xs:annotation>
+                <xs:documentation>Заявление на  выдачу дубликата</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentIDType" use="required" fixed="1006249E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные  типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AlterationType">
+    <xs:annotation>
+      <xs:documentation>Внесение изменений</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PreliminaryDecision" type="apoc:PreliminaryDecisionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ранее выданное предварительное решение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Change" type="apoc:ChangeType">
+        <xs:annotation>
+          <xs:documentation>Изменяемые сведения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicantType">
+    <xs:annotation>
+      <xs:documentation>Сведения о заявителе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:SubjectDetailsType">
+        <xs:sequence>
+          <xs:element name="ApplicantID" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Идентификатор заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicantClass" type="clt_ru:CodeVariable2Type">
+            <xs:annotation>
+              <xs:documentation>Тип заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicantType" type="clt_ru:Text40Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Заявитель является</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherApplicantType" type="clt_ru:Text40Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Укажите, кем является заявитель в случае выбора значения «Иное»</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GeneralNotes" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Примечание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BirthDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата рождения.  Указывается для  ФЛ/ИП/ИГ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BirthPlace" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место рождения.Указывается для  ФЛ/ИП/ИГ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PostalAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Почтовый адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Citizenship" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Гражданство заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="LegalInfo" type="apoc:LegalInfoType">
+              <xs:annotation>
+                <xs:documentation>Сведения о юридическом  лице</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ForeignLegalInfo" type="apoc:ForeignLegalInfoType">
+              <xs:annotation>
+                <xs:documentation>Сведения о иностранном юридическом  лице</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ApplicationInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о заявке</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="EPGUIndicator" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак подачи на ЕПГУ: 0 - Нет; 1 - Да </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationSourceSystemID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор заявления на ЕПГУ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор заявки в АПС "Электронные Госуслуги"</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DepartmentCode" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Код подразделения, в которое предоставляется заявка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AppliedDocumentType">
+    <xs:annotation>
+      <xs:documentation>Вложение</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocumentModeCode" type="clt_ru:CustomsDocumentCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Name" type="clt_ru:Text50Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Имя файла документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Number" type="clt_ru:Quantity5Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер файла документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Expansion" type="clt_ru:CodeVariable4Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Расширение файла</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Base" type="RUSclt_ru:Text10MB" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Файл в формате base64</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Description" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Комментарий</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ChangeType">
+    <xs:annotation>
+      <xs:documentation>Изменяемые сведения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Cause" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Причина</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Changes" type="clt_ru:Text3MB">
+        <xs:annotation>
+          <xs:documentation>Изменяемые сведения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Notes" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryType">
+    <xs:annotation>
+      <xs:documentation>Сведения о  стране</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CountryName" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование  страны</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType">
+        <xs:annotation>
+          <xs:documentation>Код  страны</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DecisionCountryOriginType">
+    <xs:annotation>
+      <xs:documentation>Принятие предварительного решения о стране происхождения товара</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Goods" type="apoc:GoodsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о товаре</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PreliminaryDecision" type="apoc:PreliminaryDecisionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ранее выданное предварительное решение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DuplicateType">
+    <xs:annotation>
+      <xs:documentation>Основание для выдачи дубликата</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Cause" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="8">
+        <xs:annotation>
+          <xs:documentation>Причина</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Notes" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsName" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PreliminaryDecision" type="apoc:PreliminaryDecisionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ранее выданное предварительное решение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ForeignLegalInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения  о  заявителе - иностранном юридическом лице</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FullNameLat" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Полное наименование на  иностранном языке (в  латинской транскрипции)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShortNameForeign" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Сокращенное наименование на иностранном языке (в латинской транскрипции)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OPFLat" type="clt_ru:Text40Type">
+        <xs:annotation>
+          <xs:documentation>Организационно-правовая форма (в латинской транскрипции)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlaceReg" type="clt_ru:Text40Type">
+        <xs:annotation>
+          <xs:documentation>Место регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FullAddressLat" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Полный адрес организации (на иностранном языке)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsName" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsFirmName" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фирменное наименование товара (товарный знак)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Purpose" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Назначение товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Kind" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сорт товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Mark" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Марка товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Model" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Модель товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Article" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Артикул товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherInformation" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Другие сведения о товаре, позволяющие его идентифицировать</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PackageDescription" type="clt_ru:FreeText500Type" maxOccurs="8">
+        <xs:annotation>
+          <xs:documentation>Описание упаковки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CommercialPurpose" type="clt_ru:FreeText500Type" maxOccurs="8">
+        <xs:annotation>
+          <xs:documentation>Коммерческое назначение и другая дополнительная информация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MakingProcessDescription" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="8">
+        <xs:annotation>
+          <xs:documentation>Описание технологического процесса изготовления товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Amount" type="RUScat_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExternalEconomicDeal" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="8">
+        <xs:annotation>
+          <xs:documentation>Сведения о внешнеэкономической сделке (если имеются)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsNotes" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryDeclared" type="apoc:CountryType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Заявляемая страна происхождения товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PPR" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Реквизиты решения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Materials" type="apoc:MaterialType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о материалах, из которых изготовлен товар</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LegalInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения  о  заявителе - юридическом лице</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OPF" type="clt_ru:Text40Type">
+        <xs:annotation>
+          <xs:documentation>Организационно-правовая форма</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumber" type="clt_ru:Text40Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер государственной регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата государственной регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OrganizationHead" type="cat_ru:PersonBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о руководителе организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OrganizationDeputyHead" type="cat_ru:PersonBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о зам.руководителе организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MaterialType">
+    <xs:annotation>
+      <xs:documentation>Сведения о материалах, из которых изготовлен товар</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Наименование материала</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Price" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Country" type="apoc:CountryType">
+        <xs:annotation>
+          <xs:documentation>Страна происхождения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PreliminaryDecisionType">
+    <xs:annotation>
+      <xs:documentation>Ранее выданное предварительное решение</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="OrderNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер письма ФТС России о  выдаче предварительного решения (при наличии)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrderDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата письма ФТС России (при наличии)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Description" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="8">
+            <xs:annotation>
+              <xs:documentation>Описание товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

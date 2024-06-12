@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--  Приложение № 2 к Порядку заполнения форм, порядка, сроков и способов представления отчетности УЭО  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:AEO_rf2="urn:customs.ru:Information:AEO_ReportF2:5.23.0" targetNamespace="urn:customs.ru:Information:AEO_ReportF2:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отчет уполномоченного экономического оператора по форме № 2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AEO_ReportF2" type="AEO_rf2:AEO_ReportF2Type">
+    <xs:annotation>
+      <xs:documentation>Отчет уполномоченного экономического оператора по форме № 2</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AEO_ReportF2Type">
+    <xs:annotation>
+      <xs:documentation>Отчет уполномоченного экономического оператора по форме № 2</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegNumberReport" type="AEO_rf2:RegNumberReportType">
+            <xs:annotation>
+              <xs:documentation>Исходящие регистрационные данные отчета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthoriziedOperatorDetails" type="AEO_rf2:AuthoriziedOperatorDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения об уполномоченном экономическом операторе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="YearReport" type="clt_ru:DateYearCustType">
+            <xs:annotation>
+              <xs:documentation>Год, за который представляется отчетность </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ResultIndicator" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Cоблюдение/несоблюдение  требований к финансовой устойчивости, установленных 
+ТК ЕАЭС(значение поля: true или 1 - да; false или 0 - нет)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TableF2_1" type="AEO_rf2:TableF2_1Type">
+            <xs:annotation>
+              <xs:documentation>Таблица отчета по форме №2 часть 1. Исходные данные  </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TableF2_2" type="AEO_rf2:TableF2_2Type">
+            <xs:annotation>
+              <xs:documentation>Таблица отчета по форме №2 часть 2. Расчет показателей финансовой устойчивости  </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Signatures" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись руководителя организации (или им уполномоченное должностное лицо)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006905E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AuthoriziedOperatorDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об уполномоченном экономическом операторе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUDECLcat:AEODeclarantDetailsType">
+        <xs:sequence>
+          <xs:element name="DateIssued" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи свидетельства о включении в реестр УЭО</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegNumberReportType">
+    <xs:annotation>
+      <xs:documentation>Исходящие регистрационные данные отчета</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegNumberDoc" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Исходящий номер регистрации документов в соответствии с системой (регламентом) учета исходящих документов УЭО </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExecutionDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата исходящего документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF2_1ColType">
+    <xs:annotation>
+      <xs:documentation> Колонка таблицы формы №2 часть 1</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Year" type="clt_ru:DateYearCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Год</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceBasicTools" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Основные средства (1150) строка 1</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceWorkingCapital" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Оборотные активы (1200) строка 2</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceShareCapital" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Уставный капитал (складочный капитал, уставный фонд, вклады товарищей) (1310) строка 3</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceCapitalReserves" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Капитал и резервы (1300) строка 4</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceObligation" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Долгосрочные обязательства (1400) строка 5</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BalanceShortTerm" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Краткосрочные обязательства (1500) строка 6</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Balance" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Баланс (1700) строка 7</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetProfit" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Чистая прибыль (убыток) (2400) строка 8</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetAssets" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Чистые активы (2400) строка 9</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF2_1Type">
+    <xs:annotation>
+      <xs:documentation>Таблица отчета по форме №2 часть 1. Исходные данные.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReportingYear" type="AEO_rf2:TableF2_1ColType">
+        <xs:annotation>
+          <xs:documentation>Отчетный год  (колонка 4)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PreviousYears" type="AEO_rf2:TableF2_1ColType" maxOccurs="3">
+        <xs:annotation>
+          <xs:documentation>Предшествующие годы (колонки 5,6,7)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF2_2Col3Type">
+    <xs:annotation>
+      <xs:documentation> Колонка  показателей таблицы формы №2 часть 2</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element name="ReportingYear" type="clt_ru:DateYearCustType">
+          <xs:annotation>
+            <xs:documentation>Отчетный год</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PreviousYears" type="clt_ru:DateYearCustType" maxOccurs="3">
+          <xs:annotation>
+            <xs:documentation>Годы, за которые высчитываются средние значения</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="NetAssets" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер чистых активов, руб (строка 1)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShareCapital" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер уставного капитала, руб (строка 2)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasicToolsRest" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Остаточная стоимость основных средств (строка 3)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorAutonomy" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент автономии (строка 4)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorLiquidity" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент общей (текущей) ликвидности (строка 5)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorProfitability" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рентабельность собственного капитала (строка 6)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorFinancialStability" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент финансовой устойчивости (строка 7)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorUseOwnWorkCapital" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент обеспеченности текущей деятельности собственными оборотными средствами (строка 8)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorsManeuverability" type="AEO_rf2:SignedQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент маневренности собственного капитала (строка 9)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF2_2Col5Type">
+    <xs:annotation>
+      <xs:documentation>Колонка  значимости показателей таблицы формы №2 часть 2</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ValueNetAssets" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер чистых активов, руб (строка 1). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueShareCapital" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер уставного капитала, руб (строка 2). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueBasicToolsRest" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Остаточная стоимость основных средств (строка 3). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorAutonomy" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент автономии (строка 4). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorLiquidity" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент общей (текущей) ликвидности (строка 5). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorProfitability" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рентабельность собственного капитала (строка 6). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorFinancialStability" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент финансовой устойчивости (строка 7). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorUseOwnWorkCapital" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент обеспеченности текущей деятельности собственными оборотными средствами (строка 8). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValueIndicatorsManeuverability" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент маневренности собственного капитала (строка 9). Значимость в баллах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorsAggregate" type="clt_ru:Text150Type">
+        <xs:annotation>
+          <xs:documentation>Совокупный показатель УЭО - в баллах (строка 10)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF2_2Type">
+    <xs:annotation>
+      <xs:documentation>Таблица отчета по форме №2 часть 2. Показатели финансовой устойчивости УЭО</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ColumnIndicators" type="AEO_rf2:TableF2_2Col3Type">
+        <xs:annotation>
+          <xs:documentation>Колонка показателей  за отчетный год/три отчетных года (колонка 3)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinColumnIndicators" type="AEO_rf2:TableF2_2Col3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Колонка минимальных показателей  (колонка 4)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinValueIndicators" type="AEO_rf2:TableF2_2Col5Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Значимость минимальных показателей в баллах (колонка 5)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualValueIndicators" type="AEO_rf2:TableF2_2Col5Type">
+        <xs:annotation>
+          <xs:documentation>Фактическая значимость показателя в баллах (колонка 6)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SignedQuantityType">
+    <xs:annotation>
+      <xs:documentation>Числовое значение. Допускает отрицательные значения. Всего до 19 цифр. 6 знаков после запятой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:NumericCategoriesCust">
+      <xs:fractionDigits value="6" />
+      <xs:totalDigits value="19" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

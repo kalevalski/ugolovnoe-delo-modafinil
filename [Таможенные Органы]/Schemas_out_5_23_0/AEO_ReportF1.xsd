@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--  Приложение № 1 к Порядку заполнения форм, порядка, сроков и способов представления отчетности УЭО  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:AEO_rf1="urn:customs.ru:Information:AEO_ReportF1:5.23.0" targetNamespace="urn:customs.ru:Information:AEO_ReportF1:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отчет уполномоченного экономического оператора по форме № 1</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AEO_ReportF1" type="AEO_rf1:AEO_ReportF1Type">
+    <xs:annotation>
+      <xs:documentation>Отчет уполномоченного экономического оператора по форме № 1</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AEO_ReportF1Type">
+    <xs:annotation>
+      <xs:documentation>Отчет уполномоченного экономического оператора по форме № 1</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegNumberReport" type="AEO_rf1:RegNumberReportType">
+            <xs:annotation>
+              <xs:documentation>Исходящие регистрационные данные отчета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthoriziedOperatorDetails" type="AEO_rf1:AuthoriziedOperatorDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения об уполномоченном экономическом операторе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DODate" type="AEO_rf1:ReportingPeriodType">
+            <xs:annotation>
+              <xs:documentation>Период, за который представляется отчетность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TableF1" type="AEO_rf1:TableF1Type">
+            <xs:annotation>
+              <xs:documentation>Таблица отчета формы №1</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Signatures" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись руководителя организации (или им уполномоченное должностное лицо)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportPartNum" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер отчета за период</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportPartsAmount" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Общее количество отчетов за период</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Notes" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006904E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AuthoriziedOperatorDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об уполномоченном экономическом операторе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUDECLcat:AEODeclarantDetailsType">
+        <xs:sequence>
+          <xs:element name="DateIssued" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи свидетельства о включении в реестр УЭО</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DTInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о ДТ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="GoodsNumeric" type="clt_ru:Count5Type">
+            <xs:annotation>
+              <xs:documentation>Номер товара в ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ExpensePartType">
+    <xs:annotation>
+      <xs:documentation>Расход по бухгалтерскому учету</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Данные документа (гр.21,22,23)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС (гр.24)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование товара (гр.25)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество товара в единице измерения по бухгалтерскому учету (гр.26,27)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Цена (тариф) за единицу измерения (гр.28)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код валюты в соответствии с Классификатором валют (гр.29)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость товара (гр.30)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateExit" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата первой выдачи товара (гр.31)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PostingPartType">
+    <xs:annotation>
+      <xs:documentation>Приход по бухгалтерскому учету</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Данные документа (гр.10,11,12)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС (гр.13)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование товара (гр.14)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество товара в единице измерения по бухгалтерскому учету (гр.15,16)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Цена (тариф) за единицу измерения (гр.17)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код валюты в соответствии с Классификатором валют (гр.18)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость товара (гр.19)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateInp" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата помещения товара на временное хранение (гр.20)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegNumberReportType">
+    <xs:annotation>
+      <xs:documentation>Исходящие регистрационные данные отчета</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegNumberDoc" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Исходящий номер регистрации документов в соответствии с системой (регламентом) учета исходящих документов УЭО </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExecutionDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата исходящего документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReportingPeriodType">
+    <xs:annotation>
+      <xs:documentation>Отчётный период</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StartDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата начала отчётного периода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата окончания отчётного периода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RestGoodType">
+    <xs:annotation>
+      <xs:documentation>Сведения об остатке товара</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество товара в единице измерения по бухгалтерскому учету(гр.32,33)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Цена (тариф) за единицу измерения (гр.34)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код валюты в соответствии с Классификатором валют (гр.35)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость товара (гр.36)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpecialSimplifiedType">
+    <xs:annotation>
+      <xs:documentation>Специальные упрощения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SpecialSimplifiedCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код вида специальных упрощений в соответствии с классификатором видов специальных упрощений</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpecialSimplifiedName" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование вида специальных упрощений в соответствии с классификатором видов специальных упрощений</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KodeksArticle" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ссылка на ТК ЕАЭС в части применяемых специальных упрощений (например: пп. 4 п. 2 ст. 437 ТК ЕАЭС, пп. 1,9 п. 3 ст. 437 ТК ЕАЭС)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatementNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер заявления о выпуске товаров до подачи декларации на товары</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="AddNumberPart" type="clt_ru:CodeVariable2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Буквенное обозначение – при наличии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TableF1RowType">
+    <xs:annotation>
+      <xs:documentation>Строка таблицы формы №1</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SpecialSimplified" type="AEO_rf1:SpecialSimplifiedType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код вида специальных упрощений в соответствии с классификатором видов специальных упрощений (гр.2)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CU_Car" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о транспортном (перевозочном) документе (гр.3,4,5)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsLocationAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес места фактического местонахождения товаров (гр.6)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AppReleaseGoodsBeforeDTNumber" type="AEO_rf1:StatementNumberType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер заявления о выпуске товаров до подачи декларации на товары (гр.7)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTInfo" type="AEO_rf1:DTInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация о ДТ (гр.8,9)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PostingPart" type="AEO_rf1:PostingPartType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Приход по бухгалтерскому учету  (гр.10-20)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExpensePart" type="AEO_rf1:ExpensePartType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Расход по бухгалтерскому учету  (гр.21-31)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RestGood" type="AEO_rf1:RestGoodType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения об остатке товара (гр.32-36)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableF1Type">
+    <xs:annotation>
+      <xs:documentation>Таблица отчета формы №1</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TableF1Row" type="AEO_rf1:TableF1RowType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Строка таблицы </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

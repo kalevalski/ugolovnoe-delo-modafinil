@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:aes="urn:customs.ru:Information:CustomsDocuments:ApplicationForExciseStamps:5.23.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ApplicationForExciseStamps:5.23.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заявление о приобретении акцизных марок для маркировки табачной продукции</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ApplicationForExciseStamps" type="aes:ApplicationForExciseStampsType">
+		<xs:annotation>
+			<xs:documentation>Заявление о приобретении акцизных марок для маркировки табачной продукции</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ApplicationForExciseStampsType">
+		<xs:annotation>
+			<xs:documentation>Заявление о приобретении акцизных марок для маркировки табачной продукции</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="SysNum" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Реквизиты заявления о выдаче акцизных марок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicationForExciseStampsCode" type="aes:ApplicationForExciseStampsCodeType">
+						<xs:annotation>
+							<xs:documentation>Вид заявления на приобретение акцизных марок. Русские "A" (алгоголь) или "T" (табачная продукция)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuthorizedCustomsAuthority" type="cat_ru:CustomsType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, в который направлено заявление</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Importer" type="cat_ru:OrganizationWBankType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация об импортёре</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ImporterAgent" type="aes:ApplicationForExciseStampsImporterAgentType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Представители импортёра в таможенном органе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HeadOfTheOrganization" type="aes:ApplicationForExciseStampsPersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Руководитель организации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChiefAccountant" type="aes:ApplicationForExciseStampsPersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Главный бухгалтер</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ForeignOrganization" type="cat_ru:OrganizationType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация об иностранной организации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ForeignTradeAgreement" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о внешнеторговом договоре</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TradeMarkUsageContract" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о договоре на право использования товарного знака</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AlcoholSellingLicence" type="aes:AlcoholSellingLicenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о лицензии на закупку, хранение и поставки алкогольной и спиртосодержащей продукции</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MeanConformityCertificate" type="aes:MeanConformityCertificateType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о сертификате соответствия технических средств</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PaymentDocument" type="aes:ApplicationForExciseStampsPaymentDocumentType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Документы о внесении денежных средств на покупку акцизных марок</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ExciseStampKind" type="aes:ExciseStampKindType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Виды подакцизной продукции, указываемой в заявлении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AttachedDocuments" type="aes:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень прилагаемых документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1004118E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApplicationForExciseStampsImporterAgentType">
+		<xs:annotation>
+			<xs:documentation>Информация о представителе импортёра в таможенном органе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PersonInfo" type="cat_ru:PersonBaseType">
+				<xs:annotation>
+					<xs:documentation>Сведения о лице, заполнившем заявление</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Warrant" type="cat_ru:AuthoritesDocumentType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Доверенность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IDPaper" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AFESAlcoholConcentrationType">
+		<xs:annotation>
+			<xs:documentation>Содержание этилового спирта в алкогольной продукции</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Min" type="clt_ru:ProcentNumericType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Минимальное содержание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Max" type="clt_ru:ProcentNumericType">
+				<xs:annotation>
+					<xs:documentation>Максимальное содержание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExcisableGoodType">
+		<xs:annotation>
+			<xs:documentation>Информация о подакцизном товаре</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код страны происхождения товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryName" type="clt_ru:CountryNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Название страны происхождения товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TradeMark" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Товарный (торговый) знак продукции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование продукции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+				<xs:annotation>
+					<xs:documentation>Код ТН ВЭД ЕАЭС продукции (10 знаков)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsTNVEDName" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Наименование товара согласно ТН ВЭД ЕАЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPOID" type="clt_ru:Text50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор IPOID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GTIN" type="aes:GTINIdentifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификационный номер товара (GTIN)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="clt_ru:Quantity8Type">
+				<xs:annotation>
+					<xs:documentation>Количество единичных маркируемых упаковочных ёмкостей (бутылок, потребительской тары)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContainerCapacity" type="cat_ru:SupplementaryQuantityType">
+				<xs:annotation>
+					<xs:documentation>Объём продукции в маркируемой ёмкости (литров для алкоголя, штук или кг для табака)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="Concentration" type="aes:AFESAlcoholConcentrationType">
+					<xs:annotation>
+						<xs:documentation>% содержания этилового спирта</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="TotalProduct" type="clt_ru:QuantityBasisType">
+					<xs:annotation>
+						<xs:documentation>Общее количество табачной продукции (шт/кг)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExciseStampKindType">
+		<xs:annotation>
+			<xs:documentation>Информация о виде подакцизных товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExciseStampKindName" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование вида акцизных марок</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExciseStampKindSpecification" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Спецификация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExciseStampKindCode" type="aes:ExciseStampKindCodeType">
+				<xs:annotation>
+					<xs:documentation>Код вида акцизных марок по классификатору ЕГАИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Price" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="clt_ru:Quantity8Type">
+				<xs:annotation>
+					<xs:documentation>Количество приобретаемых акцизных марок этого вида</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExcisableGood" type="aes:ExcisableGoodType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о подакцизном товаре, для маркировки которого приобретаются акцизные марки этого вида</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AlcoholSellingLicenceType">
+		<xs:annotation>
+			<xs:documentation>Информация о лицензии на закупку, хранение и поставку алкогольной продукции</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OrganizationName" type="clt_ru:NameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сертификационная (лицензирующая) организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentSeriesLetter" type="clt_ru:CodeVariable2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Буквенный код серии (2 символа)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentSeries" type="clt_ru:Code6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Серия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentNumber" type="clt_ru:DocumentNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExpirationDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Окончание срока действия лицензии</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeanConformityCertificateType">
+		<xs:annotation>
+			<xs:documentation>Информация о сертификате соответствия технических средств</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PrDocumentNumber" type="clt_ru:DocumentNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер сертификата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentFormNumber" type="clt_ru:Code10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Учетный номер бланка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата выдачи сертификата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExpirationDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Срок действия сертификата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganizationName" type="clt_ru:NameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сертификационная (лицензирующая) организация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApplicationForExciseStampsPaymentDocumentType">
+		<xs:annotation>
+			<xs:documentation>Информация о платёжном документе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="AmountDeposited" type="clt_ru:AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сумма, внесённая на счёт Федерального Казначейства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AttachedDocumentsType">
+		<xs:annotation>
+			<xs:documentation>Перечень прилагаемых документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="EDocCode" type="clt_ru:CodeVariable10Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код вида электронного документа (сведений)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocArchIdDetails" type="catESAD_cu:RFBasePresentedDocIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификаторы, присвоенные документу (сведениям) при размещении в хранилище электронных документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ApplicationForExciseStampsPersonSignatureType">
+		<xs:annotation>
+			<xs:documentation>Информация о лице, подписавшем документ (возможно, по доверенности)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:PersonSignatureType">
+				<xs:sequence>
+					<xs:element name="Warrant" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Доверенность</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные простые прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="ApplicationForExciseStampsCodeType">
+		<xs:annotation>
+			<xs:documentation>Код типа заявления. Русская "А" (алкоголь) или русская "Т" (табак)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:enumeration value="А"/>
+			<xs:enumeration value="Т"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExciseSeriesType">
+		<xs:annotation>
+			<xs:documentation>Серия акцизных марок. От 3 до 12 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExciseStampKindCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида акцизной марки по классификатору ЕГАИС или внутреннему классифкатору Марка-К. От 2 до 6 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ExciseStampNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер акцизной марки. До 8 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="clt_ru:Quantity8Type"/>
+	</xs:simpleType>
+	<xs:simpleType name="GTINIdentifierType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор Global Trade Item Number (GTIN)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="clt_ru:Code14Type">
+			<xs:pattern value="[0-9]{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnedStampStateType">
+		<xs:annotation>
+			<xs:documentation>Состояние возвращённой акцизной марки. Русская "П" (повреждена) или русская "Н" (неповреждена)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:enumeration value="Н"/>
+			<xs:enumeration value="П"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

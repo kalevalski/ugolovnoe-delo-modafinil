@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ Министерства финансов Российской Федерации от 23 октября 2020 г. N 245н "Об установлении случая, при котором товары, помещенные под таможенную процедуру свободного склада, могут размещаться и находиться на территориях нескольких свободных складов, владельцем которых является юридическое лицо, являющееся декларантом товаров, помещенных под таможенную процедуру свободного склада, перемещения таких товаров и товаров, изготовленных (полученных) из товаров, помещенных под таможенную процедуру свободного склада, между такими складами, а также об установлении особенностей совершения таможенных операций и проведения таможенного контроля в отношении таких товаров"
+Приложение N 1 Заявление о перемещении товаров, помещенных под таможенную процедуру свободного склада, и товаров, изготовленных (полученных) из товаров, помещенных под таможенную процедуру свободного склада, между двумя или более свободными складами-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:amfwhg="urn:customs.ru:Information:CustomsDocuments:AppMoveFreeWHGoods:5.23.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:catProc_ru="urn:customs.ru:Information:ProcessingDocuments:ProcessingCommonAggregateTypes:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AppMoveFreeWHGoods:5.23.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ProcessingDocuments:ProcessingCommonAggregateTypes:5.23.0" schemaLocation="ProcessingCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление 
+о перемещении товаров, помещенных под таможенную процедуру свободного склада, и товаров, изготовленных (полученных) из товаров, помещенных под таможенную процедуру свободного склада, между двумя или более свободными складами 
+</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppMoveFreeWHGoods" type="amfwhg:AppMoveFreeWHGoodsType">
+    <xs:annotation>
+      <xs:documentation>Заявление о перемещении товаров, помещенных под таможенную процедуру свободного склада, и товаров, изготовленных (полученных) из товаров, помещенных под таможенную процедуру свободного склада, между двумя или более свободными складами 
+</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppMoveFreeWHGoodsType">
+    <xs:annotation>
+      <xs:documentation>Заявление 
+о перемещении товаров, помещенных под таможенную процедуру свободного склада, и товаров, изготовленных (полученных) из товаров, помещенных под таможенную процедуру свободного склада, между двумя или более свободными складами 
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Customs" type="cat_ru:CustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="RUScat_ru:SubjectDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о Заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FreeWH" type="amfwhg:FreeWHType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о свободных складах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsInfo" type="amfwhg:GoodsInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Товары, планируемые к перемещению между свободными складами</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MovementReason" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Обоснование необходимости перемещения товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RouteInfo" type="amfwhg:TransportInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о транспортном средстве и маршруте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OblifationTerm" type="amfwhg:OblifationTermType">
+            <xs:annotation>
+              <xs:documentation>Обязательство о размещении перемещаемых товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountSystemSign" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Наличие единой автоматизированной информационной системы учета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountSystemInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о единой автоматизированной информационной системе учета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PresentedDocs" type="amfwhg:PresentedDocType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о представленных документах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApproverPerson" type="cat_ru:PersonSignatureType" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Подпись уполномоченного лица заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006316E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа. Код документа в Альбоме форматов</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="FreeWHType">
+    <xs:annotation>
+      <xs:documentation>Сведения о свободных складах, между которыми предполагается перемещение товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CertifFreeWH" type="amfwhg:CertifFreeWHType">
+        <xs:annotation>
+          <xs:documentation>Свидетельство о включении в реестр владельцев  свободных складов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FreeWHAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес свободного склада</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FreeWHName" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование свободного склада</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CertifFreeWHType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о включении в реестр владельцев свободных складов </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AddNumber" type="clt_ru:Code4Type">
+        <xs:annotation>
+          <xs:documentation>1-ая часть номера "СВСС"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertiDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertiNumber" type="clt_ru:Code3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер Свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OwnerID" type="clt_ru:Code10Type">
+        <xs:annotation>
+          <xs:documentation>Идентификационный номер владельца</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SerialNumber" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер экземпляра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertifChangeYear" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Год внесения изменений в Свидетельство (последние 2 цифры)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProducedGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах, изготовленных (полученные) с использованием товаров, помещенных под таможенную процедуру свободного склада </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Номер товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsStatus" type="clt_ru:CodeVariable4Type">
+        <xs:annotation>
+          <xs:documentation>Статус товара ("ИТ"\"ЕАЭС")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UsedGoods" type="amfwhg:UsedGoodsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товары, использованные для изготовления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UsedGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах, использованных при изготовлении (получении) товаров </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PlacedGoods" type="amfwhg:PlacedGoodsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товары, помещенные под таможенную процедуру свободного склада</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EEUGoods" type="amfwhg:EEUGoodsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товары ЕАЭС, не помещенные под таможенную процедуру свободного склада</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlacedGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах, помещенных под таможенную процедуру свободного склада, использованных для производства готовой продукции</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsStatus" type="clt_ru:CodeVariable4Type">
+        <xs:annotation>
+          <xs:documentation>Статус товара ("ИТ"\"ЕАЭС")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EEUGoodsType">
+    <xs:annotation>
+      <xs:documentation>Товары ЕАЭС, не помещенные под таможенную процедуру свободного склада, использованные при производстве готовой продукции</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsStatus" type="clt_ru:CodeVariable4Type">
+        <xs:annotation>
+          <xs:documentation>Статус товара ("ЕАЭС")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах, планирумых к перемещению</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CategoryGoods" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Категории товаров, планируемых к перемещению </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProducedGoods" type="amfwhg:ProducedGoodsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товары, изготовленные из помещенных под таможенную процедуру свободного склада</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransportInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о виде транспортного средства и маршруте следования</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransporKind" type="clt_ru:TransportModeCodeType" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Код вида транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportName" type="clt_ru:TransportNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование вида транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportNumber" type="clt_ru:TransportMeansIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер транспортного средства, название судна, номер авиарейса, номер вагона.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportMeansNationalityCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код страны принадлежности транспортного средства по общероссийскому классификатору стран мира.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Route" type="amfwhg:RouteInfoType" minOccurs="2" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Маршрут</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObligationGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об обязательстве о размещении перемещаемых Товаров на территории свободного склада</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ObligationSign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак принятия обязательства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ObligationDoc" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения об Обязательствое</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RouteInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о маршруте</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransitPointNumber" type="clt_ru:Count2Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер точки транзита</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransitRoutePlace" type="clt_ru:PlaceNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование точки маршрута</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangeTermType">
+    <xs:annotation>
+      <xs:documentation>Сведения об изменениии срока</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DiffTerm" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Иной срок</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reason" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Обоснование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PresentedDocType">
+    <xs:annotation>
+      <xs:documentation>Сведения о представленных документах</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catProc_ru:DocExtendedType">
+        <xs:sequence>
+          <xs:element name="Position" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер позиции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SheetsNumber" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OblifationTermType">
+    <xs:annotation>
+      <xs:documentation>Сведения об оязательстве размещения товара</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="ObligationGoods" type="amfwhg:ObligationGoodsType">
+        <xs:annotation>
+          <xs:documentation>Обязательство о размещении на территории свободного склада в срок, не превышающий 60 календарных дней</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChangeTerm" type="amfwhg:ChangeTermType">
+        <xs:annotation>
+          <xs:documentation>Изменение срока размещения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>

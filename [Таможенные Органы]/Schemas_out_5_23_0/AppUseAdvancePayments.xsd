@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--с версии 5.15.0 "Проект приказа ФТС России "О внесении изменений в приказ ФТС России от 16 января 2019 г. № 33"-->
+<!--до версии 5.14.5 (включительно) Приказ ФТС России от 16.01.2019 № 33 "Об утверждении формы заявления об использовании авансовых платежей в связи с получением уведомления (уточнения к уведомлению) о не уплаченных 
+в установленный срок суммах таможенных платежей, специальных, антидемпинговых, компенсационных пошлин, процентов и пеней и порядка представления его лицом, внесшим авансовые платежи"-->
+<xs:schema xmlns:auap="urn:customs.ru:Information:CommercialFinanceDocuments:AppUseAdvancePayments:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:els_agr="urn:customs.ru:Information:ELSDocuments:ELSAggregateTypes:5.22.0" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:AppUseAdvancePayments:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ELSDocuments:ELSAggregateTypes:5.22.0" schemaLocation="ELSAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление лица, внесшего авансовые платежи, об использовании авансовых платежей в связи с получением уведомления (уточнения к уведомлению) о не уплаченных в установленный срок суммах таможенных платежей, специальных, антидемпинговых, компенсационных пошлин, процентов и пеней </xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppUseAdvancePayments" type="auap:AppUseAdvancePaymentsType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, внесшего авансовые платежи, об использовании авансовых платежей в связи с получением уведомления (уточнения к уведомлению) о не уплаченных в установленный срок суммах таможенных платежей, специальных, антидемпинговых, компенсационных пошлин, процентов и пеней </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppUseAdvancePaymentsType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, внесшего авансовые платежи, об использовании авансовых платежей в связи с получением уведомления (уточнения к уведомлению) о не уплаченных в установленный срок суммах таможенных платежей, специальных, антидемпинговых, компенсационных пошлин, процентов и пеней</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган - получатель заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер и дата заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicantInfo" type="els_agr:DeclarantInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NotifNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер и дата уведомления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KDTorCPCID" type="auap:KDTorCPCIDType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты корректировки декларации на товары / расчета таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин/корректировки ТПО / иного таможенного документа, определенного Евразийской экономической комиссией в соответствии с пунктом 24 статьи 266 ТК ЕАЭС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdvancePayment" type="auap:AmountCashType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об использовании авансовых платежей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Amount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма авансовых платежей, рубли</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicantSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002041E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AmountCashType">
+    <xs:annotation>
+      <xs:documentation>Сведения об использовании авансовых платежей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CUCustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа в соответствии с Классификатором  видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Amount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма, рубли</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KDTorCPCIDType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты корректировки декларации на товары / расчета таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин/корректировки ТПО / иного таможенного документа, определенного Евразийской экономической комиссией в соответствии с пунктом 24 статьи 266 ТК ЕАЭС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="KDTID" type="RUDECLcat:CustomDocIDType">
+          <xs:annotation>
+            <xs:documentation>Регистрационный номер КДТ</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CPCID" type="RUDECLcat:CustomDocIDType">
+          <xs:annotation>
+            <xs:documentation>Регистрационный номер РТП</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CPCFID" type="RUDECLcat:CustomDocIDType">
+          <xs:annotation>
+            <xs:documentation>Регистрационный номер РТП-Ф</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="KTPOID" type="auap:KTPORegNumberType">
+          <xs:annotation>
+            <xs:documentation>Регистрационный номер  ТПО</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="OtherCustDocInfoID" type="auap:OtherCustDocInfoType">
+          <xs:annotation>
+            <xs:documentation>Реквизиты иного таможенного документа, определенного Евразийской экономической комиссией в соответствии с пунктом 24 статьи 266 ТК ЕАЭС</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KTPORegNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер корректировки таможенного приходного ордера</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="auap:TPORegNumberType">
+        <xs:sequence>
+          <xs:element name="Code" type="clt_ru:CodeVariable2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер (идентификатор) вносимых изменений и (или) дополнений</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OtherCustDocInfoType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты иного таможенного документа, определенного Евразийской экономической комиссией в соответствии с пунктом 24 статьи 266 ТК ЕАЭС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="TPOID" type="auap:TPORegNumberType">
+          <xs:annotation>
+            <xs:documentation>Реквизиты таможенного приходного ордера</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="OtherCustDoc" type="cat_ru:DocumentBaseType">
+          <xs:annotation>
+            <xs:documentation>Реквизиты документа об уплате таможенных пошлин, налогов в отношении товаров для личного пользования, таможенное декларирование которых осуществляется с использованием пассажирской таможенной декларации для экспресс-грузов</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TPORegNumberType">
+    <xs:annotation>
+      <xs:documentation>Справочный номер ТПО</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+        <xs:annotation>
+          <xs:documentation>Код таможенного органа, зарегистрировавшего документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocNumber" type="clt_ru:Code10Type">
+        <xs:annotation>
+          <xs:documentation>Номер документа по журналу регистрации/типографский номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

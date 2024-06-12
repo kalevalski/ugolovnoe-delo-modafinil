@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:acdp="urn:customs.ru:Information:CustomsDocuments:AppCashDepositToPrepayt:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AppCashDepositToPrepayt:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заявление о зачете денежного залога в счет авансовых платежей/заявление о прекращении использования генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, внесенного в виде денежного залога/заявление о предоставлении отчета об использовании генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин  </xs:documentation>
+	</xs:annotation>
+	<xs:element name="AppCashDepositToPrepayt" type="acdp:AppCashDepositToPrepaytType">
+		<xs:annotation>
+			<xs:documentation>Заявление о зачете денежного залога в счет авансовых платежей/заявление о прекращении использования генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, внесенного в виде денежного залога/заявление о предоставлении отчета об использовании генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин  </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AppCashDepositToPrepaytType">
+		<xs:annotation>
+			<xs:documentation>Заявление о зачете денежного залога в счет авансовых платежей/заявление о прекращении использования генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, внесенного в виде денежного залога/заявление о предоставлении отчета об использовании генерального обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин  </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="DocSign" type="clt_ru:Numeric1Type">
+						<xs:annotation>
+							<xs:documentation>Тип документа. 0 - заявление о зачете денежного залога в счет авансовых платежей; 1- заявление о прекращении использования генерального обеспечения; 2 - заявление о предоставлении отчета об использовании генерального обеспечения; 3 - заявление об отказе бенефициара от прав по БГ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AppInfo" type="acdp:AppInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о заявителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegistrationNumber" type="acdp:RegistrationNumberType">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер ТР</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006260E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="RegistrationNumberType">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер ТР</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации документа.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="clt_ru:CodeVariable10Type">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер ТР</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о заявителе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:SubjectDetailsType">
+				<xs:sequence>
+					<xs:element name="OrgSign" type="clt_ru:Numeric1Type">
+						<xs:annotation>
+							<xs:documentation>Признак: 1 - российское физ. лицо (не ИП); 2 - иностранное физ. лицо (не ИП); 3 - ИП; 4 -  российское юр. лицо; 5 - иностранное юр. лицо; 6 - лицо без гражданства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

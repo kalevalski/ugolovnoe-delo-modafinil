@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Приказ Приказ ФТС России от 28.02.2019 № 342.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:adicd="urn:customs.ru:Information:CommercialFinanceDocuments:AppDeferralImpCustomsDuty:5.22.0" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:AppDeferralImpCustomsDuty:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление о предоставлении отсрочки или рассрочки уплаты ввозных таможенных пошлин, налогов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppDeferralImpCustomsDuty" type="adicd:AppDeferralImpCustomsDutyType">
+    <xs:annotation>
+      <xs:documentation>Заявление о предоставлении отсрочки или рассрочки уплаты ввозных таможенных пошлин, налогов</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppDeferralImpCustomsDutyType">
+    <xs:annotation>
+      <xs:documentation>Заявление о предоставлении отсрочки или рассрочки уплаты ввозных таможенных пошлин, налогов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NumberApplication" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Исходящий номер заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateApplication" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о таможенном органе, в которое подаётся заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="RUScat_ru:SubjectDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeferralOrDeferredSign" type="clt_ru:LetterIndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Вид отсрочки или рассрочки: 
+1 - отсрочка уплаты таможенной пошлины на 1 месяц с уплатой %; 
+2 - отсрочка уплаты ввозной таможенной пошлины на 6 месяцев без уплаты %; 
+3 - рассрочка уплаты ввозной таможенной пошлины на 6 месяцев без уплаты %; 
+4 - отсрочка уплаты ввозной таможенной пошлины на 6 месяцев с уплатой %; 
+5 - рассрочка уплаты ввозной таможенной пошлины на 6 месяцев с уплатой  %; 
+6 - отсрочка по уплате ввозной таможенной пошлины, налогов на 6 месяцев с уплатой %; 
+7 -  рассрочка по уплате ввозной таможенной пошлины, налогов на 6 месяцев с уплатой %; 
+8 -  отсрочка уплаты налогов на 6 месяцев с уплатой %; 
+9 -  рассрочка уплаты налогов на 6 месяцев с уплатой  %.
+							</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BasisGrantingDeferralKind" type="clt_ru:LetterIndicatorType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Основание предоставления отсрочки (рассрочки): 1 - причинение организации ущерба в результате обстоятельств непреодолимой силы; 2 - задержка организации финансирования из федерального бюджета или оплаты выполненного организацией государственного заказа; 3 - осуществление поставок по международному договору РФ; 
+4 - ввоз сельскохозяйственных товаров для организации, осуществляющей сельскохозяйственную деятельность; 5 - ввоз товаров, включенных в перечень отдельных типов ввозимых иностранных воздушных судов и комплектующих к ним; 6 - ввоз товаров для использования в промышленной переработке; 9 - иные основания, определяемые Комиссией
+							</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ImportCustomsDuty" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак запроса отсрочки (рассрочки) по ввозной таможенной пошлине (1 - запрашивается, 0 - не запрашивается)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Excise" type="adicd:PaymentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак запроса отсрочки (рассрочки) по акцизам (1 - запрашивается, 0 - не запрашивается)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ValueAddedTax" type="adicd:PaymentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак запроса отсрочки (рассрочки) по налогу на добавленную стоимость (1 - запрашивается, 0 - не запрашивается)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalAmount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма платежей, по которым запрашивается отсрочка, рублей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberMonths" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Срок, на который запрашивается отсрочка (рассрочка) (количество календарных месяцев со дня, следующего за днем выпуска в соответствии с таможенной процедурой выпуска для внутреннего потребления товаров)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberDays" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество дней, на который запрашивается отсрочка (рассрочка) (в случае, если запрашиваемый срок - 1 месяц)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsInfo" type="adicd:GoodsInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товарах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Guarantee" type="adicd:GuaranteeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Обеспечение исполнения обязанности по уплате ввозных таможенных пошлин, налогов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclCustoms" type="cat_ru:CustomsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о таможенном(ых) органе(ах), в котором(ых) будет осуществляться декларирование товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BaseDocuments" type="adicd:BaseDocumentsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, на основании которых запрашивается отсрочка (рассрочка)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachedDocuments" type="adicd:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень прилагаемых документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TimetableSign" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак наличия прилагаемого графика поэтапной уплаты сумм ввозных таможенных пошлин и (или) налогов при рассрочке  уплаты сумм ввозных таможенных пошлин и (или) налогов: 1 - да; 0 - нет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TimetablePayment" type="adicd:TimetablePaymentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>График поэтапной уплаты сумм ввозных таможенных пошлин и (или) налогов при рассрочке  уплаты сумм ввозных таможенных пошлин и (или) налогов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApproverPerson" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись руководителя организации либо лица, уполномоченного им на подпись</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002035E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AttachedDocumentsType">
+    <xs:annotation>
+      <xs:documentation>Перечень прилагаемых документов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocArchIdDetails" type="catESAD_cu:RFBasePresentedDocIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификаторы, присвоенные документу (сведениям) при размещении в хранилище электронных документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseDocumentsType">
+    <xs:annotation>
+      <xs:documentation>Документы, на основании которых запрашивается отсрочка (рассрочка)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="PresentedDocumentModeCode" type="clt_ru:CustomsDocumentCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида представляемого документа в соответствии с классификатором видов документов и сведений, используемых при таможенном декларировании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentBeginActionsDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentEndActionsDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocArchIdDetails" type="catESAD_cu:RFBasePresentedDocIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификаторы, присвоенные документу (сведениям) при размещении в хранилище электронных документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CustomsReceiptRegNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер таможенной расписки</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="DocNumberPrefix" type="clt_ru:CodeVariable3Type">
+            <xs:annotation>
+              <xs:documentation>Префикс порядкового номера таможенной расписки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CustomsReceiptType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты таможенной расписки</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsReceiptID" type="adicd:CustomsReceiptRegNumberType">
+        <xs:annotation>
+          <xs:documentation>Реквизиты таможенной расписки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CRAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма по таможенной расписке, рубли</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Описание товара, включая торговое, коммерческое или иное традиционное наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GuaranteeType">
+    <xs:annotation>
+      <xs:documentation>Обеспечение исполнения обязанности по уплате ввозной таможенной пошлины</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GuaranteeAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма обеспечения, в рублей</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsReceipt" type="adicd:CustomsReceiptType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о таможенных расписках</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentRecType">
+    <xs:annotation>
+      <xs:documentation>Детализация платежей по кодам платежа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsPaymentModeCode" type="clt_ru:CustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReqAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма, по которой запрашивается отсрочка (рассрочка), в рублей</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о платежах, по которым запрашивается отсрочка (рассрочка)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Amount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Полная сумма, по которой запрашивается отсрочка (рассрочка), рублей</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsPaymentModeCode" type="adicd:PaymentRecType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Детализация платежей по кодам платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimetablePayMomentType">
+    <xs:annotation>
+      <xs:documentation>Детализация графика поэтапной уплаты сумм ввозных таможенных пошлин и (или) налогов при рассрочке  уплаты сумм ввозных таможенных пошлин и (или) налогов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RecNumber" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер позиции графика</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumberDays" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Количество календарных дней</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Percent" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Доля в процентах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimetablePaymentType">
+    <xs:annotation>
+      <xs:documentation>График поэтапной уплаты сумм ввозных таможенных пошлин и (или) налогов при рассрочке  уплаты сумм ввозных таможенных пошлин и (или) налогов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalNumberDays" type="clt_ru:Count8Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Итого количество календарных дней</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalPercent" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Итого количество долей (в процентах)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimetablePayMoment" type="adicd:TimetablePayMomentType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Детализация графика поэтапной уплаты сумм ввозных таможенных пошлин и (или) налогов при рассрочке  уплаты сумм ввозных таможенных пошлин и (или) налогов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

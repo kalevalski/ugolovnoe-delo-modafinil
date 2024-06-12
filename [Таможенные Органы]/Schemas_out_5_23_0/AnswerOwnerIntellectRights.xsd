@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:aoir="urn:customs.ru:Information:AnswerOwnerIntellectRights:5.23.0" targetNamespace="urn:customs.ru:Information:AnswerOwnerIntellectRights:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Ответ правообладателя о разрешении выпуска/запрете выпуска/продлении срока приостановления срока выпуска товаров с признаками возможного нарушении прав интеллектуальной собственности (Заявление об отмене решения о приостановлении срока выпуска товаров / Запрос о продлении срока приостановления срока выпуска товаров)</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AnswerOwnerIntellectRights" type="aoir:AnswerOwnerIntellectRightsType">
+		<xs:annotation>
+			<xs:documentation>Ответ правообладателя о разрешении выпуска/запрете выпуска/продлении срока приостановления срока выпуска товаров с признаками возможного нарушении прав интеллектуальной собственности (Заявление об отмене решения о приостановлении срока выпуска товаров / Запрос о продлении срока приостановления срока выпуска товаров)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AnswerOwnerIntellectRightsType">
+		<xs:annotation>
+			<xs:documentation>Ответ правообладателя о разрешении выпуска/запрете выпуска/продлении срока приостановления срока выпуска товаров с признаками возможного нарушении прав интеллектуальной собственности (Заявление об отмене решения о приостановлении срока выпуска товаров / Запрос о продлении срока приостановления срока выпуска товаров)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="Answer" type="aoir:AnswerType">
+						<xs:annotation>
+							<xs:documentation>Ответ правообладателя (его представителя) на уведомление о принятом таможенным органом решении о приостановлении срока выпуска товаров, содержащих признаки нарушения прав интеллектуальной собственности</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumberDT" type="RUScat_ru:DocNumberType">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер декларации на товары</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IPOOwner" type="aoir:ApplicantType">
+						<xs:annotation>
+							<xs:documentation>Информация о правообладателе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsWithSignOfViolation" type="aoir:GoodsType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Товары с признаками нарушения прав интеллектуальной собственности</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocumentsList" type="aoir:DocumentType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень приложенных документов / Основание для продления приостановления срока выпуска товаров </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReasonCancelRelease" type="aoir:ReasonCancelReleaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Причина отмены приостановления срока выпуска товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AddInfoApp" type="aoir:AddInfoAppType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дополнительная информация для заявления об отмене решения о приостановлении срока выпуска товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AddInfoAppText" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Дополнительная информация для запроса о продлении срока приостановления срока выпуска товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AmountDamage" type="aoir:AmountDamageType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Размер ущерба, который может быть причинен правообладателю в связи с введением контрафактной продукции в гражданский оборот (для запроса о продлении срока приостановления срока выпуска товаров)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006070E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AddInfoAppType">
+		<xs:annotation>
+			<xs:documentation>Дополнительная информация для заявления об отмене решения о приостановлении срока выпуска товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsProcDestruction" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Декларанту дано письменное согласие на помещение товаров под таможенную процедуру уничтожения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocInfoProcDestruction" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Реквизиты обращения на получение согласия на  на помещение товаров под таможенную процедуру уничтожения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Other" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Иное</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AmountDamageType">
+		<xs:annotation>
+			<xs:documentation>Размер ущерба, который может быть причинен правообладателю в связи с введением контрафактной продукции в гражданский оборот</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsQuantity" type="clt_ru:QuantityBasisType">
+				<xs:annotation>
+					<xs:documentation>Количество (ед.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Amount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость за ед. (руб.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого (руб.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnswerType">
+		<xs:annotation>
+			<xs:documentation>Сведения по ответу правообладателя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AnswerCode" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>1 - Заявление об отмене решения о приостановлении срока выпуска товаров; 2 - Заявление о нарушении прав правообладателя (в форме незаконного нанесения средств индивидуализации или нарушения авторских (смежных) прав) и о привлечении таможенным органом импортера/экспортера к установленной ответственности; 3 - Запрос о продлении срока приостановления срока выпуска товаров; 4 - Иное;  * - Разные по товарам.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnswerNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер и дата ответа правообладателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecisionNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер и дата решения таможенного органа, на которое отвечает правообладатель </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Customs" type="cat_ru:CUCustomsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Таможенный орган, направивший уведомление</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NotifDecisionNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер и дата уведомления о приостановлении срока выпуска товаров, на которое отвечает правообладатель</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApplicantType">
+		<xs:annotation>
+			<xs:documentation>Сведения о заявителе/правообладателях</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:SubjectDetailsType">
+				<xs:sequence>
+					<xs:element name="PersonType" type="clt_ru:CodeVariable2Type">
+						<xs:annotation>
+							<xs:documentation>Тип заявителя/правообладателя.  01 -ФЛ, 02 -  ЮЛ, 03-ТП, 04-ИГ, 05- ИЮЛ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonID" type="clt_ru:DocumentIDType">
+						<xs:annotation>
+							<xs:documentation>Идентификатор Заявителя/правообладателя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BirthDate" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата рождения.  Указывается для  ФЛ/ИП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BirthPlace" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Место рождения. Указывается для  ФЛ/ИП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonPostalAddress" type="cat_ru:AddressType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Почтовый адрес. Указывается для  ФЛ/ИП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Phone" type="clt_ru:PhoneNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Телефон</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Email" type="clt_ru:Text40Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Адрес электронной почты</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Fax" type="clt_ru:PhoneNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Факс</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice minOccurs="0">
+						<xs:element name="RightHolderLegal" type="aoir:RightHolderLegalType">
+							<xs:annotation>
+								<xs:documentation>Сведения о юридическом  лице</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="RightHolderForeignLegal" type="aoir:RightHolderForeignLegalType">
+							<xs:annotation>
+								<xs:documentation>Сведения о иностранном юридическом  лице</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentType">
+		<xs:annotation>
+			<xs:documentation>Сведения о документе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="DocCode" type="clt_ru:CustomsDocumentCodeType">
+						<xs:annotation>
+							<xs:documentation>Код вида документа (заполняется в соответствии с классификатором видов документов, используемом для заполнения таможенных деклараций)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ArchID" type="clt_ru:DocumentIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификатор электронного архива декларанта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ArchDocID" type="clt_ru:DocumentIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификатор документа в электронном архиве декларанта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Причины, по которым невозможно предоставить документ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocKind" type="clt_ru:Numeric1Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Тип приложенного документа: 1 - заявления в ТО о принятии мер, предусмотренных статьями 6.33, 7.12, 14.10 Кодекса РФ об АП; 2 - Обращение в иные уполномоченные органы за защитой прав правообладателя; 3- Документ о необходимости проведения исследования, экспертизы товаров, срок выпуска которых приостановлен; 9 - иное</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GoodsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о товаре</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AnswerCode" type="aoir:AnswerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ответ правообладателя (его представителя) на решение, принятое таможенным органом относительно выпуска товаров, содержащих признаки нарушения прав интеллектуальной собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Consigment" type="clt_ru:Count8Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер партии товаров / накладной реестра ЭГ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер декларируемого  товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код товара по ТН ВЭД ЕАЭС. Гр.33 первый раздел</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntellectPropertySign" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак объекта интеллектуальной собственности («И»). Гр.33 второй раздел  в ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование (торговое, коммерческое или иное традиционное наименование) товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPOinfo" type="aoir:IntellectualPropertyObjectsInfoType">
+				<xs:annotation>
+					<xs:documentation>Информация об ОИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Period" type="clt_ru:Count2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Запрашиваемый срок продления  приостановления выпуска товаров в рабочих днях</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatePeriod" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Запрашиваемый срок продления  приостановления выпуска товаров, дата</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NatureViolationRights" type="aoir:NatureViolationRightsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Характер нарушения прав (для запроса о продлении срока приостановления срока выпуска товаров)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Notes" type="clt_ru:FreeText500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Замечания</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IntellectualPropertyObjectsInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об объекте интеллектуальной собственности</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OISName" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование ОИС. Товарный знак, место происхождения, объект авторского права, смежных прав, патент и т.д. Гр. 31.12</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPObjectRegistryIdDetails" type="cltESAD_cu:IPORegistryNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер ОИС по ТРОИС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPOInfoDoc" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер ОИС в Роспатенте/ВОИС/иное (указать)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NatureViolationRightsType">
+		<xs:annotation>
+			<xs:documentation>Характер нарушения прав</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ImportNotConsentCopyrightHolder" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Ввоз в РФ товаров без согласия правообладателя (в нарушение принципа исчерпания исключительного права на товарный знак) товаров, содержащих принадлежащие ему товарные знаки ('параллельный импорт')</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IllegalPlacement" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Ввоз (вывоз) в РФ товаров с незаконным размещением на них средств индивидуализации (товарные знаки, наименования мест происхождения товаров, географические указания)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Similar" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Ввоз (вывоз) товаров, однородных с товарами правообладателя и содержащих значения, сходные до степени смешения со средствами индивидуализации, принадлежащих правообладателю</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CopiesWithoutConsent" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Ввоз (вывоз) товаров, в которых использованы объекты авторского права и (или) смежных прав, и которые представляют собой или содержат копии произведений или фонограмм, созданных без согласия правообладателя авторского права и (или) смежных прав</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReasonCancelReleaseType">
+		<xs:annotation>
+			<xs:documentation>Причина отмены приостановления срока выпуска товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IndividualToolsPlacedProduct" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Средства индивидуализации размещены на товаре (копии произведений или фонограмм созданы) с согласия правообладателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImportConsentCopyrightHolder" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Ввоз в РФ товаров осуществляется с согласия правообладателя (с соблюдением порядка исчерпания исключительного права на товарный знак)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RightHolderForeignLegalType">
+		<xs:annotation>
+			<xs:documentation>Сведения о иностранном юридическом лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FullNameForeign" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Полное наименование на иностранном языке (в латинской транскрипции)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShortNameForeign" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование на иностранном языке (в латинской транскрипции)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OPFRus" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Организационно-правовая форма на русском языке</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OPFForeign" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Организационно-правовая форма (в латинской транскрипции)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationOrganName" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Наименование органа, зарегистрировавшего организацию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDocumentNumber" type="clt_ru:DocumentNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер документа регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationPlace" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Место регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullAddressForeign" type="clt_ru:FreeText500Type">
+				<xs:annotation>
+					<xs:documentation>Полный адрес организации (на иностранном языке)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RightHolderLegalType">
+		<xs:annotation>
+			<xs:documentation>Сведения о юридическом  лице</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="INNCertificateDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата постановки на учет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationNumber" type="clt_ru:DocumentNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер государственной регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата государственной регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LegalLocation" type="cat_ru:AddressType">
+				<xs:annotation>
+					<xs:documentation>Юридический адрес</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

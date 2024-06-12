@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:AtPAP="urn:customs.ru:Information:CustomsDocuments:AppToPayAdvPipeline:5.23.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AppToPayAdvPipeline:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление лица, внесшего авансовые платежи, о зачете авансовых платежей в счет исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых и компенсационных пошлин в отношении товаров, перемещаемых трубопроводным транспортом</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppToPayAdvPipeline" type="AtPAP:AppToPayAdvPipelineType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, внесшего авансовые платежи, о зачете авансовых платежей в счет исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых и компенсационных пошлин в отношении товаров, перемещаемых трубопроводным транспортом</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppToPayAdvPipelineType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, внесшего авансовые платежи, о зачете авансовых платежей в счет исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых и компенсационных пошлин в отношении товаров, перемещаемых трубопроводным транспортом</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="CustomsRequisites" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган, в который подается заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GtdRegistryNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclarationKind" type="cltESAD_cu:CustomsDeclarationKindType">
+            <xs:annotation>
+              <xs:documentation>Код особенности декларирования товаров по классификатору особенностей таможенного декларирования товаров. Гр.7 ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AtPAPDeclarant" type="RUDECLcat:AEODeclarantDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о декларанте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AtPAPGoodsShipment" type="AtPAP:AtPAPGoodsShipmentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товарной партии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AllPayments" type="AtPAP:AtPAPCustomsPaymentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Итого платежи по Заявлению</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FilledPerson" type="catESAD_cu:ESADFilledPersonType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, заполнившем документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SigningDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата подачи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006273E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа. Код документа в Альбоме форматов</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AtPAPCustomsPaymentType">
+    <xs:annotation>
+      <xs:documentation>Сведения об уплате. Гр. В</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catESAD_cu:ESADout_CUCustomsPaymentType">
+        <xs:sequence>
+          <xs:element name="PaymentWayCode" type="clt_ru:Code2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Способ уплаты в соответствии с классификатором способов уплаты таможенных и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="INN" type="clt_ru:INNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ИНН - Индивидуальный номер налогоплательщика РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AtPAPGoodsShipmentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарной партии</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AtPAPGoods" type="AtPAP:AtPAPGoodsType">
+        <xs:annotation>
+          <xs:documentation>Товарная часть. Гр.31, 32, 33, 38, 45</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AtPAPCustomsPaymentCalculation" type="catESAD_cu:CUCustomsPaymentCalculationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Исчисление таможенных платежей. Гр.47</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AtPAPPayments" type="AtPAP:AtPAPCustomsPaymentType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Подробности подсчета. Гр. В</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AtPAPGoodsType">
+    <xs:annotation>
+      <xs:documentation>Товарная часть Заявления. Гр. 32, 38, 45</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара по ДТ. Гр.32</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Наименование (коммерческое, фирменное или иное традиционное наименование) товаров/ «Товары согласно прилагаемому Списку». Гр.31 первый подраздел</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС. Гр.33 первый раздел</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара нетто (кг). Гр.38</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsCost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Таможенная стоимость. Гр.45 </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeliveryTime" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата начала периода поставки. (элемент 7 гр. 31 ДТ)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeliveryTimeEND" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата окончания периода поставки. (элемент 7 гр. 31 ДТ)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

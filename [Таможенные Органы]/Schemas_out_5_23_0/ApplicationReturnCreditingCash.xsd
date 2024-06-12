@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Приказ ФТС от 10.01.2019 № 7 отменяет действие приказа ФТС от 22.12.2010 № 2520.
+Но вступает в силу приказ ФТС от 10.01.2019 № 7 не ранее даты применения статей 35 и 36 ФЗ от 03.08.2018 № 289-ФЗ.
+А статьи 35 и 36 ФЗ от 03.08.2018 № 289-ФЗ применяются со дня вступления в силу международного договора Российской Федерации, предусматривающего внесение изменений в приложения № 5 и 8 к Договору о Союзе. Эта дата ещё неизвестна.
+
+Мало того, приказ ФТС от 22.12.2010 № 2520 содержит три формы, созданные на основании ФЗ от 27.11.2010 № 311-ФЗ:
+ст. 122 п.1 - Заявление о возврате авансовых платежей; 
+ст. 147 - Заявление о возврате (зачете) излишне уплаченных или излишне взысканных сумм таможенных пошлин, налогов и иных денежных средств;
+ст. 149 - Заявление о возврате (зачете) денежного залога
+
+Приказ ФТС от 10.01.2019 № 7 содержит только форму "Заявление о возврате авансовых платежей", которая сделана нп основании   
+ст. 36 ФЗ от 03.08.2018 № 289-ФЗ.
+Других форм (на основании ст. 147 и 149 ФЗ от 27.11.2010 № 311-ФЗ), присутствующих в приказе ФТС от 22.12.2010 № 2520, в приказе, отменяющем его действие, нет.
+Т.е. нет форм, которые должны быть созданы на основании ст. 67 и 69 ФЗ от 03.08.2018 № 289-ФЗ.
+
+CashType = 1
+Приказ ФТС России от 10 января 2019 года № 7
+Приложение № 1 - Заявление о возврате авансовых платежей
+
+CashType = 2
+Приказ ФТС России от 22 декабря 2010 г. № 2520 с изменениями по Приказу ФТС России № 831 от 2 мая 2012 года 
+Приложение № 2 - Заявление о возврате (зачете) излишне уплаченных или излишне взысканных сумм таможенных пошлин, налогов и иных денежных средств
+
+CashType = 3
+Приказ ФТС России от 22 декабря 2010 г. № 2520 с изменениями по Приказу ФТС России № 831 от 2 мая 2012 года 
+Приложение № 3 - Заявление о возврате (зачете) денежного залога
+-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:arcc="urn:customs.ru:Information:CommercialFinanceDocuments:ApplicationReturnCreditingCash:5.22.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:ApplicationReturnCreditingCash:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заявление о возврате авансовых платежей</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ApplicationReturnCreditingCash" type="arcc:ApplicationReturnCreditingCashType">
+		<xs:annotation>
+			<xs:documentation>Заявление о возврате авансовых платежей</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ApplicationReturnCreditingCashType">
+		<xs:annotation>
+			<xs:documentation>Заявление о возврате авансовых платежей</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="RegistrationReq" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер и дата заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Article" type="clt_ru:Count3Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Номер статьи Федерального закона</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReturnCrediting" type="clt_ru:Numeric1Type">
+						<xs:annotation>
+							<xs:documentation>Заявление о: 0 - возврате, 1 - зачете</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CashType" type="clt_ru:LetterIndicatorType">
+						<xs:annotation>
+							<xs:documentation>Тип средств: 1 - авансовые платежи; 2 - излишне уплаченные или излишне взысканные суммы таможенных пошлин, налогов и иных денежных средств; 3 - денежный залог</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReasonReturningCrediting" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Основание для возврата (зачета); факт, в соответствии с которым возникла излишняя уплата</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConditionCrediting" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Указываются обстоятельства, в связи с которыми производится зачет: погашение задолженности по уплате таможенных платежей, зачет в счет будущих платежей, обеспечение уплаты таможенных платежей и т.д.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AmountCash" type="arcc:AmountCashType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сумма денежных средств</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicantInfo" type="arcc:ApplicantInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о заявителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocSuccession" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о документе, подтверждающем правопреемство</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocTransferAct" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о передаточном акте</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Customs" type="cat_ru:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Таможенный органа, в который подаётся заявление</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PaymentDocument" type="arcc:PaymentDocumentType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Реквизиты платежного документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsReceipt" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Реквизиты таможенной расписки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BankInformation" type="arcc:BankInformationType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о банковских счетах</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AttachedDocuments" type="arcc:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень прилагаемых документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrevCustoms" type="cat_ru:CustomsType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Таможенный органа, в который ранее были поданы документы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PrevAttachedDocuments" type="arcc:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень ранее представленных документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicantSignature" type="cat_ru:PersonSignatureType">
+						<xs:annotation>
+							<xs:documentation>Подпись заявителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GTDID" type="cat_ru:GTDIDType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Номер таможенного документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocPaymentOfCustoms" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Документ по уплате таможенных платежей, пеней, процентов, в счёт которого зачесть</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PayerInfo" type="arcc:PayerInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о вносителе таможенных платежей</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocCalcPayment" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Документ, в соответствии с которым исчислялись таможенные платежи</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocConfCease" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Документ, подтверждающий исполнение (прекращение)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002021E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AmountCashType">
+		<xs:annotation>
+			<xs:documentation>Информация о сумме по виду платежа и КБК</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BCC" type="clt_ru:CodeVariable20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код бюджетной классификации (КБК)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BCCTo" type="clt_ru:CodeVariable20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код бюджетной классификации (КБК), на который необходимо произвести возврат денежных средств</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BCCFrom" type="clt_ru:CodeVariable20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код бюджетной классификации (КБК), с которого необходимо произвести возврат денежных средств</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentModeCode" type="clt_ru:CUCustomsPaymentCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код вида платежа в соответствии с Классификатором  видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Amount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Сумма</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Currency" type="clt_ru:CurrencyNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Валюта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApplicantInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о заявителе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:RUOrganizationBaseType">
+				<xs:sequence>
+					<xs:element name="OKPOID" type="clt_ru:OKPOIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код организации по ОКПО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OKATOCode" type="clt_ru:OKATOCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ОКАТО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Адрес </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Contact" type="cat_ru:ContactType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Контактная информация</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OKSM" type="clt_ru:CountryA2CodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Буквенный код страны в соответствии с классификатором стран мира</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Classification" type="clt_ru:Numeric1Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Классификация лицевого счета: "0" - "юридическое лицо"; "1" - "физическое лицо"; "2" - "ИП". </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OKTMO" type="clt_ru:OKATOCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ОКТМО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Birthdate" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата рождения физического лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SNILS" type="clt_ru:Text40Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер СНИЛС</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AttachedDocumentsType">
+		<xs:annotation>
+			<xs:documentation>Перечень прилагаемых документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="EDocCode" type="clt_ru:CodeVariable10Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код вида электронного документа (сведений)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocArchIdDetails" type="catESAD_cu:RFBasePresentedDocIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Идентификаторы, присвоенные документу (сведениям) при размещении в хранилище электронных документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BankInformationType">
+		<xs:annotation>
+			<xs:documentation>Информация о банковских счетах</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BankInformationType">
+				<xs:sequence>
+					<xs:element name="OKTMO" type="clt_ru:CodeVariable11Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>ОКТМО кредитной организации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OrganizationAccount" type="clt_ru:CodeVariable11Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Лицевой счет организации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CodeBC" type="clt_ru:CodeVariable20Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код по БК</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PayerInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о плательщике</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:OrganizationBaseType">
+				<xs:sequence>
+					<xs:element name="OKPOID" type="clt_ru:OKPOIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код организации по ОКПО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OKATOCode" type="clt_ru:OKATOCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код ОКАТО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Адрес </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Contact" type="cat_ru:ContactType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Контактная информация</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PaymentDocumentType">
+		<xs:annotation>
+			<xs:documentation>Реквизиты платежного документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="PaymentModeCode" type="clt_ru:CustomsPaymentCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код вида таможенного платежа по классификатору видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Amount" type="clt_ru:AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Cумма по платежному документу</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

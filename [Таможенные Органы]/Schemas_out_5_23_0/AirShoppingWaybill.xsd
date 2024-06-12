@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AirShoppingWaybill:5.23.0" version="5.23.0.0" xmlns:asw="urn:customs.ru:Information:CustomsDocuments:AirShoppingWaybill:5.23.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Товарно-транспортная накладная магазина на борту ВС</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AirShoppingWaybill" type="asw:AirShoppingWaybillType" />
+  <xs:complexType name="AirShoppingWaybillType">
+    <xs:annotation>
+      <xs:documentation>Товарно-транспортная накладная магазина на борту ВС</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegNumberWaybill" type="clt_ru:Code10Type">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер накладной магазина</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="RateListCurrency" type="asw:RateListCurrencyType">
+            <xs:annotation>
+              <xs:documentation>Список курсов валют</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="ContainerInfo" type="asw:ContainerInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о контейнере</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Carrier" type="cat_ru:OrganizationBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о перевозчике</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsMovement" type="asw:GoodsMovementType">
+            <xs:annotation>
+              <xs:documentation>Описание перемещения товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Person" type="asw:PersonScheduledNumberType">
+            <xs:annotation>
+              <xs:documentation>Сведения  о лице составившего накладную</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsInfo" type="asw:GoodsInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о товаре</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Comments" type="asw:CommentsType">
+            <xs:annotation>
+              <xs:documentation>Примечание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CheckingItemFightingDamage" type="asw:CheckingItemFightingDamageType">
+            <xs:annotation>
+              <xs:documentation>Проверка на предмет боя и порчи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1003305E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CheckingItemFightingDamageType">
+    <xs:annotation>
+      <xs:documentation>Проверка на предмет боя и порчи</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoardConductorDeparting" type="cat_ru:PersonBaseType">
+        <xs:annotation>
+          <xs:documentation>Подпись борт проводника при вылете</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TransOrganizationDeparting" type="cat_ru:PersonBaseType">
+        <xs:annotation>
+          <xs:documentation>Подпись транспортной организации при вылете</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TransOrganizationArrival" type="cat_ru:PersonBaseType">
+        <xs:annotation>
+          <xs:documentation>Подпись транспортной организации при прилете</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="BoardConductorArrival" type="cat_ru:PersonBaseType">
+        <xs:annotation>
+          <xs:documentation>Подпись борт проводника при прилете</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CommentsType">
+    <xs:annotation>
+      <xs:documentation>Примечание</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="Notice" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContainerInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о контейнере</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Number" type="clt_ru:CodeVariable5Type">
+        <xs:annotation>
+          <xs:documentation>Номер контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberLock" type="clt_ru:CodeVariable5Type">
+        <xs:annotation>
+          <xs:documentation>Номер замка на контейнере</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberSeal" type="clt_ru:CodeVariable5Type">
+        <xs:annotation>
+          <xs:documentation>Номер пломбы на контейнере</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeGoodsType">
+    <xs:annotation>
+      <xs:documentation>Бесплатные товары</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="NameFreeGoods" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PLUCodeFreeGoods" type="clt_ru:Code5Type">
+        <xs:annotation>
+          <xs:documentation>Код PLU товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumberFreeGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberReturnFreeGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество возвращенного товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="GeneralComments" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Общие комментарии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="FreeGoods" type="asw:FreeGoodsType">
+        <xs:annotation>
+          <xs:documentation>Бесплатные товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SoldGoods" type="asw:SoldGoodsType">
+        <xs:annotation>
+          <xs:documentation>Продаваемые товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsListType">
+    <xs:annotation>
+      <xs:documentation>Список товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="GoodsDescription" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumberSentGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество отправленного товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberReturnGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Возращено товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberSoldGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Продано товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PriceUnit" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Стоимость за единицу товара </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PriceGoods" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Стоимость проданного товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PLUCode" type="clt_ru:Code5Type">
+        <xs:annotation>
+          <xs:documentation>Код PLU</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="Comments" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Примечания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsMovementType">
+    <xs:annotation>
+      <xs:documentation>Описание перемещения товара</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catTrans_ru:FlightInfoType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ReturnFlightNumber" type="cltTrans_ru:FlightNumberType">
+            <xs:annotation>
+              <xs:documentation>Обратный номер рейса</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DestinationAirport" type="catTrans_ru:AirportType">
+            <xs:annotation>
+              <xs:documentation>Аэропорт назначения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonScheduledNumberType">
+    <xs:annotation>
+      <xs:documentation>Табельный номер составившего накладную</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ScheduledNumber" type="clt_ru:Code6Type">
+            <xs:annotation>
+              <xs:documentation>Табельный номер</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RateListCurrencyType">
+    <xs:annotation>
+      <xs:documentation>Список курсов валют</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CurrencyName" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Наименование валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Currency" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Валюта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyRate" type="clt_ru:CurrencyRateType">
+        <xs:annotation>
+          <xs:documentation>Курс валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SoldGoodsType">
+    <xs:annotation>
+      <xs:documentation>Продаваемые товары</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AllUnitGoods" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Всего единиц товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCostGoods" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Общая стоимость продаваемых товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TotalCostSoldGoods" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма проданного товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" name="GoodsList" type="asw:GoodsListType">
+        <xs:annotation>
+          <xs:documentation>Список товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

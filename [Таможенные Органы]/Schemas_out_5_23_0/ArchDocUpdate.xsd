@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:adur="urn:customs.ru:Information:EArchDocuments:ArchDocUpdate:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchDocUpdate:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Запрос на замену документа в архиве.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchDocUpdate" type="adur:ArchDocUpdateType" />
+  <xs:complexType name="ArchDocUpdateType">
+    <xs:annotation>
+      <xs:documentation>Запрос на замену документа в архиве</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:ArchBaseType">
+        <xs:sequence>
+          <xs:element name="ArchDocID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Архивный идентификатор документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocumentID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор изменяемого документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentBeginDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentEndDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDoc" type="adur:ArcDocType">
+            <xs:annotation>
+              <xs:documentation>Измененный документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005012E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArcDocType">
+    <xs:annotation>
+      <xs:documentation>Измененный документ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Тело документа</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

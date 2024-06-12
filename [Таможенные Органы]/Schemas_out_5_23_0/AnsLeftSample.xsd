@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:ans_ls="urn:customs.ru:Information:CustomsDocuments:AnsLeftSample:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AnsLeftSample:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сообщение о готовности получения проб и (или) образцов товара</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AnsLeftSample" type="ans_ls:AnsLeftSampleType">
+    <xs:annotation>
+      <xs:documentation>Сообщение о готовности получения проб и (или) образцов товара</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AnsLeftSampleType">
+    <xs:annotation>
+      <xs:documentation>Сообщение о готовности получения проб и (или) образцов товара</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="GTDID" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Номер ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsNumeric" type="clt_ru:Count5Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Номер товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclarantName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование декларанта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="INN" type="clt_ru:INNIDType">
+            <xs:annotation>
+              <xs:documentation>ИНН декларанта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlannedDateTime" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Планируемая дата и время получения проб и (или) образцов товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006344E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

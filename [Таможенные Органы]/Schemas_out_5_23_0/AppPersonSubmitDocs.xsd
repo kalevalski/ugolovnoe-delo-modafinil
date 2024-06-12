@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:apsd="urn:customs.ru:Information:CustomsAuditDocuments:AppPersonSubmitDocs:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:AppPersonSubmitDocs:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Форма электронного обращения проверяемого лица в таможенный орган по вопросу представления документов и (или) сведений в соответствии с требованиями таможенного органа о представлении документов и (или) сведений</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppPersonSubmitDocs" type="apsd:AppPersonSubmitDocsType">
+    <xs:annotation>
+      <xs:documentation>Форма электронного обращения проверяемого лица в таможенный орган по вопросу представления документов и (или) сведений в соответствии с требованиями таможенного органа о представлении документов и (или) сведений</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppPersonSubmitDocsType">
+    <xs:annotation>
+      <xs:documentation>Форма электронного обращения проверяемого лица в таможенный орган по вопросу представления документов и (или) сведений в соответствии с требованиями таможенного органа о представлении документов и (или) сведений</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AppDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата обращения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="apsd:CustomsPersonType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="adt_cat:CustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган, в адрес которого направлено обращение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="apsd:ApplicantType">
+            <xs:annotation>
+              <xs:documentation>Проверяемое лицо</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IdentKindRequest" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Вид требования: 1 - Требование о представлении документов и (или) сведений при камеральной таможенной проверке; 2 - Требование о представлении документов и (или) сведений лицом, связанным с проверяемым лицом по сделкам (операциям) с товарами, в отношении которых проводится таможенная проверка; 3 - Требование о представлении документов и (или) сведений при выездной таможенной проверке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RequestNumber" type="adt_cat:NumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты требования  о предоставлении документов и (или) сведений</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NotificationType" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Вид уведомления: 1 - Уведомление о проведении камеральной таможенной проверки; 2 -  уведомление о проведении плановой выездной таможенной  </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Notif4Audit" type="adt_cat:NumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты уведомления о проведении проверки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocList" type="apsd:DocListType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProlongDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Запрашиваемый срок продления представления документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Files" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество прилагамых файлов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sheets" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество прилагаемых листов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006928E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ApplicantType">
+    <xs:annotation>
+      <xs:documentation>Проверяемая организация/лицо</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:OrganizationType">
+        <xs:sequence>
+          <xs:element name="Chief" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Руководитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReasonDisparityInfo" type="apsd:ReasonDisparityInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Причина несоответствия сведений о проверяемом лице сведениям из ЕГРЮЛ/ЕГРИП</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CustomsLetterType">
+    <xs:annotation>
+      <xs:documentation>Письмо в таможенный орган</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="Customs" type="cat_ru:CustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CustomsPersonType">
+    <xs:annotation>
+      <xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="CustomsDept" type="cat_ru:CustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Phone" type="clt_ru:PhoneNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Телефон</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonCustomsID" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер служебного удостоверения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Department" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Подразделение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rank" type="clt_ru:Text150Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Звание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DocListType">
+    <xs:annotation>
+      <xs:documentation>Перечень докумментов и (или) сведений</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubtmissionKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Представление документа (сведений): 1 - Представлен; 2- Требуется продление срока представления; 3- Отсутствует возможность представления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RequestDoc" type="apsd:RequestDocType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о документах и (или) 
+сведениях, которые необходимо 
+представить согласно Требованию</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvideMark" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Отметка о представлении документа: 1 - Представлен; 2 - Представлен не в полном объеме</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FactDoc" type="apsd:FactDocType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Информация о  представляемых документах и (или) сведениях</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PossibleTerm" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Возможный срок предоставления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Обоснование причин невозможности предоставления/невозможности предоставления к установленному сроку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Note" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FactDocType">
+    <xs:annotation>
+      <xs:documentation>Информация о  представляемых документах и (или) сведениях</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Files" type="apsd:FilesType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Файлы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvidePreviousMark" type="apsd:ProvideMarkType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Отметки о представлении ранее  документа и (или) сведений в таможенный орган  </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProvidingWay" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Способ предоставления: 1- Электронный; 2- На бумажном носителе; 3 - Электронный с досылом на бумажном носителе </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocKind" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Тип документа: 1- Формализованный; 2- Неформализованный</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FilesType">
+    <xs:annotation>
+      <xs:documentation>Файлы</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FileName" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование файла</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileSize" type="clt_ru:Text40Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер файла</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SheetsNumber" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество листов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProvideMarkType">
+    <xs:annotation>
+      <xs:documentation>Отметки о представлении ранее  документа и (или) сведений в таможенный орган  </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="DocumentID" type="clt_ru:DocumentIDType">
+        <xs:annotation>
+          <xs:documentation>Идентификатор, присвоенный электронному документу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsLetter" type="apsd:CustomsLetterType">
+        <xs:annotation>
+          <xs:documentation>Письмо в таможенный орган</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ReasonDisparityInfoType">
+    <xs:annotation>
+      <xs:documentation>Причина несоответствия сведений о проверяемом лице сведениям из ЕГРЮЛ/ЕГРИП</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReasonDisparityText" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Причина несоответствия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentBase" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Документ-основание, подтверждающий правомерность внесенных изменений</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Другие сведения, являющиеся основанием несоответсвия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestDocType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документах и (или) 
+сведениях, которые необходимо 
+представить согласно Требованию
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="Position" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер записи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocCode" type="clt_ru:CustomsDocumentCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида документа и (или) сведений  в соответствии с классификатором видов документов и сведений (решение Комиссии Таможенного союза от 20.09.2010 № 378) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProvidingWay" type="clt_ru:Numeric1Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Способ предоставления: 1- Электронный; 2- На бумажном носителе; 3 - Электронный с досылом на бумажном носителе </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Format" type="clt_ru:Text10Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Формат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocKind" type="clt_ru:Numeric1Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Тип документа: 1- Формализованный; 2- Неформализованный</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

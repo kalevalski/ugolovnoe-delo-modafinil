@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:alst="urn:customs.ru:Information:EArchDocuments:ArchList:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchList:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Список архивов декларанта.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchList" type="alst:ArchListType" />
+  <xs:complexType name="ArchListType">
+    <xs:annotation>
+      <xs:documentation>Список архивов декларанта</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ArchiveList" type="alst:ArchiveListType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Элемент списка архивов декларанта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005013E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArchiveListType">
+    <xs:annotation>
+      <xs:documentation>Элемент списка архивов декларанта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchID" type="ct:GUID">
+        <xs:annotation>
+          <xs:documentation>Идентификатор архива</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchName" type="ct:DocumentNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование архива</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

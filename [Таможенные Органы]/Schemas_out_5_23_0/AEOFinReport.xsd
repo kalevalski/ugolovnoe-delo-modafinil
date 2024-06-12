@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Приложение № 1 к Порядку заполнения форм, порядка, сроков и способов представления отчетности УЭО  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:afr="urn:customs.ru:Information:AEOFinReport:5.23.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" targetNamespace="urn:customs.ru:Information:AEOFinReport:5.23.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Сведения системы учета юридического лица/УЭО</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AEOFinReport" type="afr:AEOFinReportType">
+		<xs:annotation>
+			<xs:documentation>Сведения системы учета юридического лица/УЭО</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AEOFinReportType">
+		<xs:annotation>
+			<xs:documentation>Сведения системы учета юридического лица/УЭО</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="AuthoriziedOperatorDetails" type="RUDECLcat:AEODeclarantDetailsType">
+						<xs:annotation>
+							<xs:documentation>Сведения об уполномоченном экономическом операторе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DODate" type="afr:ReportingPeriodType">
+						<xs:annotation>
+							<xs:documentation>Период, за который представляется отчетность</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CreateDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата формирования сведений</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InRestGood" type="afr:InRestGoodType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Входящий остаток</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PostingPart" type="afr:PostingPartType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Приход товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Expense" type="afr:ExpenseType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Расход товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OutRestGoods" type="afr:OutRestGoodsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Исходящий остаток</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WarehouseGoods" type="afr:WarehouseGoodsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Товары на временном хранении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Signatures" type="cat_ru:PersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Лицо, передавшее сведения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006935E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="GoodsNomenclatuerType">
+		<xs:annotation>
+			<xs:documentation>Код товара по ТН ВЭД ЕАЭС. от 2 до 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{2,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DTInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о ДТ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DT_ZVNumber" type="cat_ru:GTDIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер ДТ (ЗВ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddNumber" type="clt_ru:Code2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительная составляющая номера (ЗВ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TPORegNumber" type="afr:TPORegNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер ТПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumeric" type="clt_ru:Count5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExpenseType">
+		<xs:annotation>
+			<xs:documentation>Расход товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumPP" type="clt_ru:Count8Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReverseOperationSign" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак операции сторнирования:  0 (false) - не применется;               1 (true) - применется</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateOperation" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата операции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Id" type="clt_ru:DocumentIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTinfo" type="afr:DTInfoType" minOccurs="0" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>ДТ / Заявление о выпуске до подачи ДТ / ТПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Наименование товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsTNVEDCode" type="afr:GoodsNomenclatuerType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPD2" type="clt_ru:CodeVariable14Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКПД2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="afr:Quantity24point6Type">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetWeight" type="afr:SignedQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес нетто товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена (тариф) за единицу измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType">
+				<xs:annotation>
+					<xs:documentation>Буквенный код валюты в соответствии с Классификатором валют </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cost" type="afr:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость товара в руб </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommDocumentInfo" type="cat_ru:DocumentBaseType">
+				<xs:annotation>
+					<xs:documentation>Коммерческий документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BayerName" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Наименование покупателя / продавца</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BayerINN" type="clt_ru:INNIDType">
+				<xs:annotation>
+					<xs:documentation>ИНН покупателя / продавца</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BayerKPP" type="clt_ru:KPPCodeType">
+				<xs:annotation>
+					<xs:documentation>КПП покупателя / продавца</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsigneeName" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Наименование грузополучателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsigneeINN" type="clt_ru:INNIDType">
+				<xs:annotation>
+					<xs:documentation>ИНН грузополучателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsigneeKPP" type="clt_ru:KPPCodeType">
+				<xs:annotation>
+					<xs:documentation>КПП грузополучателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Первичный документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Debit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по дебету</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Credit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по кредиту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsProcedure" type="cltESAD_cu:CustomsModeCodeType">
+				<xs:annotation>
+					<xs:documentation>Таможенная процедура</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PostingPartType">
+		<xs:annotation>
+			<xs:documentation>Приход товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumPP" type="clt_ru:Count8Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReverseOperationSign" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак операции сторнирования:  0 (false) - не применется;               1 (true) - применется</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateOperation" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата операции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTinfo" type="afr:DTInfoType" minOccurs="0" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>ДТ / Заявление о выпуске до подачи ДТ / ТПО</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Id" type="clt_ru:DocumentIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Наименование товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="TradeMark" type="clt_ru:NameType">
+					<xs:annotation>
+						<xs:documentation>Наименование товарного знака</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsMark" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Наименование марки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsModel" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Наименование модели продукта (товара)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsMarking" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Артикул товара</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="GoodsTNVEDCode" type="afr:GoodsNomenclatuerType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OKPD2" type="clt_ru:CodeVariable14Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код ОКПД2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="afr:Quantity24point6Type">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetWeight" type="afr:SignedQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес нетто товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GrossWeight" type="afr:SignedQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес брутто товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена (тариф) за единицу измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType">
+				<xs:annotation>
+					<xs:documentation>Буквенный код валюты в соответствии с Классификатором валют</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cost" type="afr:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость товара в руб </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TransportCost" type="afr:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Cтоимость расходов на перевозку (руб.) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InsCost" type="afr:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Cтоимость расходов на страхование (руб.) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddCost" type="afr:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость дополнительных расходов, руб</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustPay" type="afr:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Cумма уплаченных таможенных платежей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateOwner" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата перехода прав собственности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Первичный документ об оприходовании товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AmountPay" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Сумма оплаты товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PayDocument" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ об оплате товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Debit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по дебету</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Credit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по кредиту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportingPeriodType">
+		<xs:annotation>
+			<xs:documentation>Отчётный период</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StartDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата начала отчётного периода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата окончания отчётного периода</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InRestGoodType">
+		<xs:annotation>
+			<xs:documentation>Входящий остаток</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumPP" type="clt_ru:Count8Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="GoodsTNVEDCode" type="afr:GoodsNomenclatuerType">
+					<xs:annotation>
+						<xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OKPD2" type="clt_ru:CodeVariable14Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Код ОКПД2</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Id" type="clt_ru:DocumentIDType">
+					<xs:annotation>
+						<xs:documentation>Уникальный идентификатор</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Weight" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Цена (тариф) за единицу измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriceCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Буквенный код валюты в соответствии с Классификатором валют </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость товара в руб</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutRestGoodsType">
+		<xs:annotation>
+			<xs:documentation>Исходящий остаток</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="afr:InRestGoodType">
+				<xs:sequence>
+					<xs:element name="DTinfo" type="afr:DTInfoType" minOccurs="0" maxOccurs="3">
+						<xs:annotation>
+							<xs:documentation>Сведения из ДТ/ Заявления выпуске до подачи ДТ / ТПО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Quantity24point6Type">
+		<xs:annotation>
+			<xs:documentation>Количество в дополнительной единице измерения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsQuantity" type="afr:SignedQuantityType">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Условное обозначение единицы измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код единицы измерения в соответствии с единицами измерения, применяемыми в ТН ВЭД ЕАЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WarehouseGoodsType">
+		<xs:annotation>
+			<xs:documentation>Товары на временном хранении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumPP" type="clt_ru:Count8Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReverseOperationSign" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак совершения операций сторнирования при возврате товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateOperation" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата операции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WHDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата помещения на временное хранение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Id" type="clt_ru:DocumentIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>Наименование товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="TradeMark" type="clt_ru:NameType">
+					<xs:annotation>
+						<xs:documentation>Наименование товарного знака</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsMark" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Наименование марки</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsModel" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Наименование модели продукта (товара)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GoodsMarking" type="clt_ru:Text50Type">
+					<xs:annotation>
+						<xs:documentation>Артикул товара</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес нетто товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Первичный документ о принятии на склад временного хранения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActDocument" type="cat_ru:DocumentBaseType">
+				<xs:annotation>
+					<xs:documentation>Акт приема-передачи выполненных работ (услуг)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LossDocument" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ об утрате товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Debit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по дебету</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Credit" type="afr:Account30Type">
+				<xs:annotation>
+					<xs:documentation>Номер счета по кредиту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TPORegNumberType">
+		<xs:annotation>
+			<xs:documentation>Справочный номер ТПО</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа, зарегистрировавшего документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocNumber" type="clt_ru:Code10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа по журналу регистрации/типографский номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumPP" type="clt_ru:Code2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер вносимых изменений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Простые локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="SignedQuantityType">
+		<xs:annotation>
+			<xs:documentation>Числовое значение. Допускает отрицательные значения. Всего до 24 цифр. 6 знаков после запятой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:fractionDigits value="6"/>
+			<xs:totalDigits value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AmountType">
+		<xs:annotation>
+			<xs:documentation>Число. Количество денежных единиц. Стоимость. Допускает отрицательные значения. Всего 20 цифр из них до 2 знаков после запятой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:fractionDigits value="2"/>
+			<xs:totalDigits value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Account30Type">
+		<xs:annotation>
+			<xs:documentation>Номер счета. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 30 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

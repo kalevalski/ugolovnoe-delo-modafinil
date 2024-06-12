@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Проект Приказа ФТС "Об утверждении формы обращения о выдаче разрешения на хранение товаров в местах, не являющихся таможенными складами и форм решений таможенного органа по результатам рассмотрения указанного обращения"
+Приложение № 1 - Обращение о выдаче разрешения на хранение товаров в местах, не являющихся таможенными складами
+-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:asgnw="urn:customs.ru:Information:WarehouseDocuments:AppStoreGoodsNotWH:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:WarehouseDocuments:AppStoreGoodsNotWH:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Обращение о выдаче разрешения на хранение товаров в местах, не являющихся таможенными складами</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AppStoreGoodsNotWH" type="asgnw:AppStoreGoodsNotWHType">
+		<xs:annotation>
+			<xs:documentation>Обращение о выдаче разрешения на хранение товаров в местах, не являющихся таможенными складами</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AppStoreGoodsNotWHType">
+		<xs:annotation>
+			<xs:documentation>Обращение о выдаче разрешения на хранение товаров в местах, не являющихся таможенными складами</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="AppDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Customs" type="cat_ru:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Код и наименование таможенного органа в который подается заявление</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Applicant" type="asgnw:ApplicantType">
+						<xs:annotation>
+							<xs:documentation>Сведения о заявителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsInfo" type="asgnw:GoodsInfoType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сведения о товарах</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IndividualCharacteristics" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Причина (обоснование необходимости помещения товаров под таможенную процедуру таможенного склада без размещения на таможенном складе)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StoragePlaceInfo" type="asgnw:StoragePlaceInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о месте хранения товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NormOfLaw" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Норма права ЕАЭС и законодательства Российской Федерации о таможенном деле</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AttachedDocuments" type="cat_ru:DocumentBaseType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень прилагаемых документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApproverPerson" type="cat_ru:PersonSignatureType">
+						<xs:annotation>
+							<xs:documentation>Подпись руководителя организации или уполномоченного от имени организации лица, либо физического лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1008032E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApplicantType">
+		<xs:annotation>
+			<xs:documentation>Заявитель</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:SubjectDetailsType">
+				<xs:sequence>
+					<xs:element name="Government" type="clt_ru:IndicatorType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Признак государственнного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GoodsInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о товаре</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:GoodsBaseType">
+				<xs:sequence>
+					<xs:element name="IndividualCharacteristics" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Индивидуальные признаки товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Количество товара в дополнительной единице измерения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Amount" type="RUScat_ru:AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Стоимость товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StoragePlaceInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о месте хранения товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StoragePlace" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Место хранения товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressStoragePlace" type="RUScat_ru:RUAddressType">
+				<xs:annotation>
+					<xs:documentation>Почтовый адрес места хранения товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerRoomsInfo" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о владении помещениями (открытыми площадками), предполагаемыми для хранения товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TitleDocDetails" type="RUScat_ru:DocBaseType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Реквизиты правоустанавливающих документов на владение помещениями (открытыми площадками)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaterialTechnicalEquipment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Материально-техническое оснащение предполагаемого места хранения товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActionsSafety" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Меры, которые будут приняты декларантом для обеспечения сохранности товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

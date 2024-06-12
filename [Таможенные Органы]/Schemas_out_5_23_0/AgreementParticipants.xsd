@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:agp="urn:customs.ru:Information:EArchDocuments:AgreementParticipants:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:AgreementParticipants:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Соглашение о доступе к документам ЭАДД заинтересованных участников ВЭД </xs:documentation>
+  </xs:annotation>
+  <xs:element name="AgreementParticipants" type="agp:AgreementParticipantsType">
+    <xs:annotation>
+      <xs:documentation>Соглашение о доступе к документам ЭАДД заинтересованных участников ВЭД </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AgreementParticipantsType">
+    <xs:annotation>
+      <xs:documentation>Соглашение о доступе к документам ЭАДД заинтересованных участников ВЭД </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AgreementParticipants" type="ct:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocBeginDate" type="xs:date">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocEndDate" type="xs:date">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Participants" type="ct:EADOrgType" minOccurs="2" maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>Участники Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Agreement" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Текст Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgreementOption" type="agp:AgreementOptionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Опции Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005019E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AgreementOptionType">
+    <xs:annotation>
+      <xs:documentation>опции Соглашения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchShareDoc" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Обеспечение частичного доступа к документам ЭАДД</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShareProc" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Предоставление информации о процедуре декларирования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentFactSign" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак возможности оплаты таможенных платежей </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeclBothAgree" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cогласие что, запрашивающая сторона получит полный доступ к документам ЭАДД (для соглашения между декларантами)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

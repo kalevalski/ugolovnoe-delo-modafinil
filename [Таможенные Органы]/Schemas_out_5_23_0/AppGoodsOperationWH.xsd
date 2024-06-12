@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Распоряжение ФТС России от 30.12.2021 № 331-р "Об организации работы таможенных органов при контроле за совешением операций, связанных с осмотром товаров, находящихся под таможенным контролем (во исполнение Приказа ФТС России от 18.03.2019 № 444) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:agowh="urn:customs.ru:Information:WarehouseDocuments:AppGoodsOperationWH:5.22.0" targetNamespace="urn:customs.ru:Information:WarehouseDocuments:AppGoodsOperationWH:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление лица, обладающего полномочиями в отношении товаров, о необходимости совершения в отношении товаров, находящихся под таможенным контролем, операций, предусмотренных подпунктами 1 и 2 пункта 1 статьи 84 и статьей 102 ТК ЕАЭС</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppGoodsOperationWH" type="agowh:AppGoodsOperationWHType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, обладающего полномочиями в отношении товаров, о необходимости совершения в отношении товаров, находящихся под таможенным контролем, операций, предусмотренных подпунктами 1 и 2 пункта 1 статьи 84 и статьей 102 ТК ЕАЭС</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppGoodsOperationWHType">
+    <xs:annotation>
+      <xs:documentation>Заявление лица, обладающего полномочиями в отношении товаров, о необходимости совершения в отношении товаров, находящихся под таможенным контролем, операций, предусмотренных подпунктами 1 и 2 пункта 1 статьи 84 и статьей 102 ТК ЕАЭС</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="SendDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsName" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган, в который направляется заявление </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="agowh:ApplicantType">
+            <xs:annotation>
+              <xs:documentation>Сведения о декларанте, или лице обладающем полномочиями в отношении товаров </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportDetails" type="agowh:TransportDetailsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о транспортном средстве, на котором размещены либо прибыли товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachedDocument" type="agowh:AttachedDocumentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о транспортном (перевозочном) документе  </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WHDetails" type="agowh:WHDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о месте нахождения товаров </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GTDNumber" type="agowh:DocNumberType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Номер таможенной декларации/таможенного документа (номер транзитной декларации / номер уведомления о прибытии/ номер отчета о принятии товаров на временное хранение) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Operations" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о перечне планируемых операций с товарами </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherInformation" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Иные сведения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppPerson" type="agowh:AppPersonType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, подавшем заявление </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1008043E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ApplicantType">
+    <xs:annotation>
+      <xs:documentation>Сведения о декларанте, или лице обладающем полномочиями в отношении товаров </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BusinessEntityTypeCode" type="RUScat_ru:UnifiedCode20Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Кодовое обозначение организационно-правовой формы, в которой зарегистрирован хозяйствующий субъект</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompanyType" type="agowh:Text200Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование организационно-правовой формы, в которой зарегистрирован хозяйствующий субъект</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OrganizationName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование организации / ФИО физического лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RFOrganizationFeatures" type="cat_ru:RFOrganizationFeaturesType">
+        <xs:annotation>
+          <xs:documentation>Сведения об организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AppPersonType">
+    <xs:annotation>
+      <xs:documentation>Сведения о лице, подавшем заявление</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="PlaceOfWork" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место работы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Contact" type="cat_ru:ContactType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Контактная информация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PowersDoc" type="agowh:PowersDocType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о документе, удостоверяющем полномочия лица на совершение действий от имени лица, обладающего полномочиями в отношении товара </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonINN" type="clt_ru:INNIDType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>ИНН лица, подавшего заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttachedDocumentType">
+    <xs:annotation>
+      <xs:documentation>Прилагаемый документ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:DocBaseV4Type">
+        <xs:sequence>
+          <xs:element name="ArchID" type="clt_ru:ArchiveIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор хранилища электронных документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocID" type="clt_ru:ArchiveDocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор электронного документа в хранилище</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DocNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер таможенного документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocKind" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Вид таможенного документа: 1 – декларация на товары, 2 – транзитная декларация, 3 – пассажирская таможенная декларация, 4 – декларация на транспортное средство, 5 – уведомление о прибытии, 6 – отчет о принятии товаров на временное хранение, 7 – иной документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="CustomsDocNumber" type="cat_ru:GTDIDType">
+          <xs:annotation>
+            <xs:documentation>Номер таможенного документа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="OtherDoclNumber" type="cat_ru:DocumentBaseType">
+          <xs:annotation>
+            <xs:documentation>Номер иного документа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowersDocType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе, удостоверяющем полномочия лица на совершение действий от имени лица, обладающего полномочиями в отношении товара</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PowersDocType" type="clt_ru:Text40Type">
+        <xs:annotation>
+          <xs:documentation>Тип документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PowersDocNumber" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Серия и номер документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PowersDocDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransportDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о транспортном средстве, на котором размещены либо прибыли товары </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransportModeCode" type="clt_ru:TransportModeCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportIdentifier" type="clt_ru:TransportMeansIDType">
+        <xs:annotation>
+          <xs:documentation>Идентификатор. Номер транспортного средства, наименование судна, номер авиарейса, номер поезда, номер железнодорожного вагона (платформ, цистерн и т.п.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportMeansNationalityCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код страны принадлежности транспортного средства по классификатору стран мира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContainerNumber" type="clt_ru:ContainerIdentityType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Номер контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WHDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о месте нахождения товаров </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WHCode" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Код места нахождения товаров </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер Свидетельства о включении в Реестр / Номер лицензии / Номер разрешения таможни на ОХ / Номер приказа о создании ЗТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес места нахождения товаров ЗТК/СВХ/иные места временного хранения товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Text200Type">
+    <xs:annotation>
+      <xs:documentation>Символьные данные. До 200 символов. Текстовый</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:TextCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="200" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

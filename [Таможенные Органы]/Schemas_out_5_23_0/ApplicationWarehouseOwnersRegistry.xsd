@@ -1,0 +1,821 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:RegOwn="urn:customs.ru:Information:RegistrationDocuments:ApplicationWarehouseOwnersRegistry:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" targetNamespace="urn:customs.ru:Information:RegistrationDocuments:ApplicationWarehouseOwnersRegistry:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление по ведению реестра «Владельцы складов временного хранения»</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ApplicationWarehouseOwnersRegistry" type="RegOwn:ApplicationWarehouseOwnersRegistryType">
+    <xs:annotation>
+      <xs:documentation>Заявление по ведению реестра «Владельцы складов временного хранения»</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ApplicationWarehouseOwnersRegistryType">
+    <xs:annotation>
+      <xs:documentation>Заявление по ведению реестра «Владельцы складов временного хранения»</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ApplicationType" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Идентификатор вида заявления: ВК - Заявление о включении в реестр; ИЗ - Заявление о внесении изменений в реестр; ИС - Заявление об исключении из реестра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган, в адрес которого направлено заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Руководитель таможенного органа, в адрес которого направлено заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppOrganizationInfo" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения об организации-заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppOrganizationOPF" type="clt_ru:NameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Организационно-правовая форма</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppOrganizationChief" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Руководитель организации-заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="INNCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Свидетельство о постановке на налоговый учет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EGRULCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Свидетельство о внесении записи в ЕГРЮЛ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BankAccountInfo" type="cat_ru:BankInformationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о банковских счетах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsuranceAgreement" type="RegOwn:InsuranceAgreementType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Договор страхования риска гражданской ответственности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GuaranteeDocuments" type="RegOwn:GuaranteeDocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, подтверждающие предоставление обеспечение уплаты таможенных пошли, налогов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OwnershipConfirmDocuments" type="RegOwn:OwnershipConfirmType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, подтверждающие право владения территорией, помещениями, прилегающей территорией и открытыми площадками</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PermitWarehouseDocuments" type="RegOwn:DocumentInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Разрешительные документы, подтверждающие право осуществлять хранение товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseType" type="RegOwn:WarehouseKindType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Тип склада временного хранения. Товары, принимаемые на хранение (для СВХ закрытого типа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseAreaMeasure" type="RegOwn:WarehouseAreaType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Общая площадь СВХ, площадь и полезный объем помещения, площадь и полезная площадь открытой площадки, площадь прилегающей к СВХ территории</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsSafety" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Обеспечение сохранности товаров, исключения доступа к ним посторонних лиц (не являющихся работниками склада, не обладающих полномочиями в отношении товаров и не являющихся представителями лиц, обладающих такими полномочиями), возможности проведения в отношении товаров таможенного контроля</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseEquipment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Обустройство и оборудование прилегающей к СВХ территории, тип покрытия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseAccess" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подъездные пути к СВХ, удаленность от автомагистралей, ж/д станций, аэропортов, морских (речных) портов, вид транспорта, которым возможна доставка товаров на СВХ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspectionEquipment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Обустройство и оборудование места для проведения таможенного досмотра товаров и транспортных средств</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PerimeterContinuity" type="RegOwn:PerimeterContinuityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Неразрывность территории СВХ по периметру, ограждение (обозначение) открытой площадки и прилегающей к СВХ территории</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KppEquipment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Обустройство и оборудование контрольно-пропускных пунктов, наличие соответствующих средств обеспечения контроля за перемещением товаров и транспортных средств через границы территории СВХ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RadioactivityControlEquipment" type="RegOwn:TechnicalMeansType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Оборудование СВХ техническими средствами таможенного контроля делящихся и радиоактивных материалов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="XRayInspectionEquipment" type="RegOwn:XRayInspectionEquipmentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Оборудование СВХ досмотровой рентгеновской техникой</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WeighingEquipment" type="RegOwn:WeighingEquipmentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Весовое оборудование, предназначенное для использования на СВХ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LoadingEquipment" type="RegOwn:LoadingEquipmentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Оборудование СВХ погрузо-разгрузочной техникой</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsAccountingSystem" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Используемая на СВХ автоматизированная система учета товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommunicationSystems" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Оборудование СВХ телефонной связью, оргтехникой и множительной техникой</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonalCabinetRegDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата и время регистрации участника ВЭД в личном кабинете</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StoreSpecialConditions" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Возможность хранения товаров, требующих особых условий хранения, возможность поддержания в помещении СВХ определенного температурного режима</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachedDocuments" type="RegOwn:DocumentInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, подтверждающие заявленные сведения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseOwnersRegCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Свидетельство о включении в реестр «Владельцы складов временного хранения»</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistryChangeReasons" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Основания для внесения изменений в реестр / исключения из реестра «Владельцы складов временного хранения»</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChangeDetails" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание сведений, подлежащих изменению</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalSheetNumber" type="clt_ru:SheetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Общее количество листов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1001305E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AgreementType">
+    <xs:annotation>
+      <xs:documentation>Договор</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AgreemNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AgreemDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AgreemTill" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Срок действия договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CertificateType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты свидетельства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CertificateSeries" type="clt_ru:CodeVariable2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Серия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateNumber" type="clt_ru:DocumentModeIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateAgency" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование органа, выдавшего документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateTerm" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Срок действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsReceiptDetailsType">
+    <xs:annotation>
+      <xs:documentation>Дополнительные сведения о денежном залоге</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsReceiptRegNumber" type="RegOwn:CustomsReceiptRegNumType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер ТР</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsReceiptRegNumType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер таможенной расписки</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="DocNumberPrefix" type="clt_ru:Code2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Префикс порядкового номера таможенной расписки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DocumentBodyType">
+    <xs:annotation>
+      <xs:documentation>Тело документа с бинарными данными</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FileName" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Имя файла</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileData" type="clt_ru:Text3MB">
+        <xs:annotation>
+          <xs:documentation>Данные файла в кодировке BASE64</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocCode" type="clt_ru:CustomsDocumentCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида запрашиваемого документа (заполняется в соответствии с классификатором видов документов, используемых при заявлении сведений в графе 44 ДТ)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentBody" type="RegOwn:DocumentBodyType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ (бинарные данные)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDeclID" type="clt_ru:ArchiveDeclarantIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор декларанта в Электронном Архиве Декларанта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор архива декларанта (используется при запросе документа из архива)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор документа в архиве (используется при запросе документа из архива)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocumentID" type="clt_ru:ArchiveDocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор документа (используется при запросе документа из архива)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocStatus" type="clt_ru:ArchStatusCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Статус документа в архиве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocDate" type="clt_ru:DateTimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата/время помещения документа в архив (последнего изменения документа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PrDocumentTerm" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Срок действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentIssueAgency" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Орган, выдавший документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentSheetNumber" type="clt_ru:SheetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов в документе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentModeID" type="clt_ru:DocumentModeIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида представленного документа в соответствии с альбомом форматов электронных форм документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GuaranteeDocumentType">
+    <xs:annotation>
+      <xs:documentation>Документ, подтверждающий предоставление обеспечение уплаты таможенных пошли, налогов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RegOwn:DocumentInfoType">
+        <xs:sequence>
+          <xs:element name="Customs" type="cat_ru:CustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GuaranteeAmount" type="clt_ru:AmountType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сумма документа, руб.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PresentLaterIndicator" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Будет предоставлен после принятия предварительного решения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о государственной регистрации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="GuaranteeInfoBank" type="RegOwn:GuaranteeInfoBankDetailsType">
+              <xs:annotation>
+                <xs:documentation>Банковская гарантия</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PropCollateral" type="RegOwn:PropCollateralOrSuretyDetailsType">
+              <xs:annotation>
+                <xs:documentation>Залог имущества</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Surety" type="RegOwn:PropCollateralOrSuretyDetailsType">
+              <xs:annotation>
+                <xs:documentation>Поручительство</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="CashCollateral" type="RegOwn:CustomsReceiptDetailsType">
+              <xs:annotation>
+                <xs:documentation>Денежный залог</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GuaranteeInfoBankDetailsType">
+    <xs:annotation>
+      <xs:documentation>Дополнительные сведения о банковской гарантии</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BankName" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Название банка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BankINN" type="clt_ru:INNIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ИНН банка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InsuranceAgreementType">
+    <xs:annotation>
+      <xs:documentation>Договор страхования риска гражданской ответственности</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RegOwn:AgreementType">
+        <xs:sequence>
+          <xs:element name="InsurCompanyName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование страховой компании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Лицензия страховой компании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurSum" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма страхования, руб.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurCompanyINN" type="clt_ru:INNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ИНН страховой компании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurCompanyKPP" type="clt_ru:KPPCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>КПП страховой компании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurCompanyOGRN" type="clt_ru:OGRNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ОГРН страховой компании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoadingEquipmentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о погрузо-разгрузочной технике</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RegOwn:TechnicalMeansType">
+        <xs:sequence>
+          <xs:element name="CargoCapacity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Грузоподъемность погрузо-разгрузочной техники</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StateRegCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Государственный регистрационный знак</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OperManagementStoragePlaceType">
+    <xs:annotation>
+      <xs:documentation>Сведения, подтверждающие нахождение в хозяйственном ведении / оперативном управлении</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>Документы, подтверждающие нахождение в хозяйственном ведении / оперативном управлении</xs:documentation>
+        </xs:annotation>
+        <xs:element name="Certificate" type="RegOwn:CertificateType">
+          <xs:annotation>
+            <xs:documentation>Свидетельство</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Agreement" type="RegOwn:AgreementType">
+          <xs:annotation>
+            <xs:documentation>Договор</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="OperManagementNotes" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnershipConfirmType">
+    <xs:annotation>
+      <xs:documentation>Документы, подтверждающие право владения территорией, помещениями и прилегающей территорией</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PropObjectName" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Наименование объекта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PropObjectPurpose" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Предназначение объекта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PropObjectArea" type="cat_ru:SupplementaryQuantityType">
+        <xs:annotation>
+          <xs:documentation>Площадь объекта, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>Вид права владения</xs:documentation>
+        </xs:annotation>
+        <xs:element name="OwnStoragePlace" type="RegOwn:OwnStoragePlaceType">
+          <xs:annotation>
+            <xs:documentation>Территория и/или помещения находятся в собственности</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RentStoragePlace" type="RegOwn:RentStoragePlaceType">
+          <xs:annotation>
+            <xs:documentation>Территория и/или помещения находятся в аренде</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="OperManagementStoragePlace" type="RegOwn:OperManagementStoragePlaceType">
+          <xs:annotation>
+            <xs:documentation>Территория и/или помещения находятся в хозяйственном ведении / оперативном управлении</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="PropObjectDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дополнительные сведения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OwnStoragePlaceType">
+    <xs:annotation>
+      <xs:documentation>Сведения, подтверждающие нахождение в собственности</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OwnershipCertificate" type="RegOwn:CertificateType">
+        <xs:annotation>
+          <xs:documentation>Свидетельство о собственности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EncumbrancesIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Наличие обременений (0 - нет, 1 - есть)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EncumbrancesDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание обременений</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PerimeterContinuityType">
+    <xs:annotation>
+      <xs:documentation>Неразрывность территории СВХ по периметру и ограждение открытой площадки и прилегающей территории</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ContinuityIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Неразрывность территории СВХ по периметру (0 - не обеспечена, 1 - обеспечена)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContinuityDetails" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание ограждения территории</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PropCollateralOrSuretyDetailsType">
+    <xs:annotation>
+      <xs:documentation>Дополнительные сведения о залоге имущества / Поручительстве</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GuarantName" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Название организации-гаранта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GuarantINN" type="clt_ru:INNIDType">
+        <xs:annotation>
+          <xs:documentation>ИНН организации-гаранта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GuarantDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дополнительные сведения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RentStoragePlaceType">
+    <xs:annotation>
+      <xs:documentation>Сведения, подтверждающие нахождение в аренде</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TempIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Временное владение и пользование (0 - нет, 1 - да)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RentAgreement" type="RegOwn:AgreementType">
+        <xs:annotation>
+          <xs:documentation>Договор аренды</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AgreementDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Условия аренды</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PermittedUsing" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Разрешенное использование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TechnicalMeansType">
+    <xs:annotation>
+      <xs:documentation>Сведения о техническом средстве</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MeanKind" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Тип технического средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MeanModel" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Модель технического средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MeansNumber" type="clt_ru:Quantity5Type">
+        <xs:annotation>
+          <xs:documentation>Количество технических средств</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Manufacturer" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Производитель технического средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VerificationInfo" type="RegOwn:VerificationInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о поверке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MeanDetails" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Дополнительные сведения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VerificationInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о поверке</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="VerificationDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о поверке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VerificationTerm" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Срок действия поверки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WarehouseAreaType">
+    <xs:annotation>
+      <xs:documentation>Общая площадь СВХ, площадь и полезный объем помещения, площадь и полезная площадь открытой площадки, площадь прилегающей к СВХ территории</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IndoorArea" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Площадь помещения, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndoorUsefulVolume" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Полезный объем помещения, куб. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OutdoorArea" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Площадь открытой площадки, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OutdoorUsefulArea" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Полезная площадь открытой площадки, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdjacentArea" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Площадь прилегающей территории, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WarehouseKindType">
+    <xs:annotation>
+      <xs:documentation>Тип склада временного хранения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WarehouseKindIndicator" type="clt_ru:DigitalIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Тип склада (0 - закрытый, 1 - открытый)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StoreGoodsIndicator" type="clt_ru:DigitalIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Товары, принимаемые на хранение (0 - товары владельца склада, 1 - определенные товары)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StoreGoodsDetails" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, принимаемых на хранение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WeighingEquipmentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о весовом оборудовании, предназначенном для использования на СВХ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RegOwn:TechnicalMeansType">
+        <xs:sequence>
+          <xs:element name="VerificationCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Свидетельство о поверке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WeightCapacity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Грузоподъемность весового оборудования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="XRayInspectionEquipmentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о досмотровой рентгеновской технике</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RegOwn:TechnicalMeansType">
+        <xs:sequence>
+          <xs:element name="XRayCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Лицензия на деятельность в области использования источников ионизирующего излучения (генерирующих)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SanitaryCertificate" type="RegOwn:CertificateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Санитарно-эпидемологическое заключение о соответствии условий работы с лучевой досмотровой установкой</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России от 14.01.2019 г. № 27-->
+<xs:schema xmlns:aatc="urn:customs.ru:Information:CommercialFinanceDocuments:ApplicationAdvanceToCollateral:5.23.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:ApplicationAdvanceToCollateral:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заявление о зачете денежных средств, уплаченных в качестве авансовых платежей, в счет денежного залога</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ApplicationAdvanceToCollateral" type="aatc:ApplicationAdvanceToCollateralType">
+		<xs:annotation>
+			<xs:documentation>Заявление о зачете денежных средств, уплаченных в качестве авансовых платежей, в счет денежного залога</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ApplicationAdvanceToCollateralType">
+		<xs:annotation>
+			<xs:documentation>Заявление о зачете денежных средств, уплаченных в качестве авансовых платежей, в счет денежного залога</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="DocDate" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Customs" type="cat_ru:CustomsType" minOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, в адрес которого направлено заявление</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicantInfo" type="RUScat_ru:SubjectDetailsType" minOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Сведения о заявителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AdvanceAmount" type="clt_ru:AmountType" minOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Сумма денежных средств, уплаченных в качестве авансовых платежей, подлежащих зачету</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PaymentTypeIndicator" type="clt_ru:DigitalIndicatorType" minOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Использование авансовых платежей в качестве: 1 - обеспечения исполнения обязанности по уплате, 2 - обеспечения исполнения обязанностей в сфере таможенного дела, 3 - обеспечения исполнения обязанностей УЭО, 4 - генерального обеспечения, 5 - обеспечения исполнения обязанностей в сфере таможенного дела и УЭО</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ObligationCode" type="clt_ru:CodeVariable6Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код вида обязательства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicantSignature" type="cat_ru:PersonSignatureType">
+						<xs:annotation>
+							<xs:documentation>Подпись руководителя организации или уполномоченного от имени организации или ИП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Notes" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Примечания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002049E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

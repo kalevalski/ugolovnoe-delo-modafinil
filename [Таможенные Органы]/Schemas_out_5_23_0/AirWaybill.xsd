@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:awb="urn:customs.ru:Information:TransportDocuments:Air:AirWaybill:5.23.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:TransportDocuments:Air:AirWaybill:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Авиагрузовая накладная</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AirWaybill" type="awb:AirWaybillType">
+    <xs:annotation>
+      <xs:documentation>Авиагрузовая накладная </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AirWaybillType">
+    <xs:annotation>
+      <xs:documentation>Авиагрузовая накладная </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ConsignmentId" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор товарной партии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgreedValuation" type="clt_ru:AmountType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Декларируемая стоимость  для перевозки. При NVD -  не заполняется</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgreedValuationCurrencyCode" type="clt_ru:CurrencyA3CodeType">
+            <xs:annotation>
+              <xs:documentation>Код валюты, принятой в стране отправления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalCost" type="clt_ru:AmountType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Объявленная стоимость товара для таможни. В случае NCV элемент не заполняется</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NCVIndicator" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Индикатор незаявления стоимости (NCV): 1 - если не заявлена стоимость, 0 - стоимость заявлена в элементе TotalCost</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsuranceCost" type="clt_ru:AmountType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Стоимость страховки . При  XXX элемент не заполняется.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="XXXIndicator" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Индикатор незаявления стоимости страховки (XXX): 1 -  если не заявлена страховка, 0 - страховка заявлена в  элементе InsuranceCost</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SCI" type="cltTrans_ru:SCIType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный статус груза  (Код SCI)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NVDIndicator" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Индикатор незаявления стоимости для перевозки (NVD): 1 - если стоимость  товара не заявлена, 0 - стоимость для перевозки заявлена в элементе AgreedValuation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeparturePoint" type="catTrans_ru:AirportType">
+            <xs:annotation>
+              <xs:documentation>Информация об аэропорте отправления или городе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestinationPoint" type="catTrans_ru:AirportType">
+            <xs:annotation>
+              <xs:documentation>Информация об аэропорте назначения или городе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Registration" type="awb:RegistrationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о составлении накладной </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignor" type="awb:AirOrganizationType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты грузоотправителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignee" type="awb:AirOrganizationType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты грузополучателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssuingCarrierAgent" type="awb:IssueAgentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты агента выдающего перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Payment" type="awb:PaymentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о платежах </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsMovement" type="awb:GoodsMovementType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание перемещения груза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HandlingInfo" type="awb:HandlingInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация по обработке груза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueInfo" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Авиакомпания, выписавшая накладную</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AWBGoodsInfo" type="awb:AWBGoodsInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация о грузе и тарифах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PaymentInfo" type="awb:PaymentInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация по платежам</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConsignorSign" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Подпись грузоотправителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarrierSign" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Подпись перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Mark" type="awb:MarkType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Отметки о прохождении товарами таможенного и иных видов государственного контроля.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestinationOfficeIdentifier" type="clt_ru:CustomsCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа назначения, в регионе деятельности которого расположено место доставки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003301E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AWBGoodsInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о грузе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalPlacesQuantity" type="clt_ru:PackagesQuantityType">
+        <xs:annotation>
+          <xs:documentation>Общее количество грузовых мест товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WeightUnitQualifierCode" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Код измерения общего веса товара (килограммы или фунты)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Общий вес брутто товаров (если в описании товаров нет данных, то значение вводится вручную - иначе - сумма веса брутто по товарам)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общая сумма (22L)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AWBGoods" type="awb:AWBGoodsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание грузовых мест товаров </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AWBGoodsType">
+    <xs:annotation>
+      <xs:documentation>Груз</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsId" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Уникальный идентификатор товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlacesQuantity" type="clt_ru:PackagesQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество мест товара одного наименования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WeightUnitQualifierCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код измерения веса товара (килограммы или фунты)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара, брутто</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RateMixCode" type="clt_ru:Code3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Трехзначный  буквенно-цифровой код  комбинации тарифов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ServiceCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Служебный код, заполняемый выпускающим перевозчиком</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TariffClassCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Класс тарифа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CommodityItemNum" type="clt_ru:CodeVariable7Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>товарный номер / процент скидки, надбавки / тип тарифа для пакетированного груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsVolume" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общий объем, занимаемый перевозимым товаром без указания единиц измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VolumeUnitQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код единицы измерения объема</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaidWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Платный вес товара </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsCommodityCode" type="clt_ru:CodeVariable18Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код  товара по товарной номенклатуре</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FactPlacesQuantity" type="clt_ru:PackagesQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое количество мест товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalSum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма (22H)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RateCharge" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ставка (22G)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescr" type="awb:GoodsDescrType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание груза / дополнительная информация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Dimensions" type="awb:DimensionInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Габариты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContainerInfo" type="awb:ContainerInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация о контейнерах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTInfo" type="awb:DTInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения из декларации на товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AirOrganizationType">
+    <xs:annotation>
+      <xs:documentation>Сведения об организации из  авианакладной.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationType">
+        <xs:sequence>
+          <xs:element name="AccountNumber" type="clt_ru:ForeignAccountType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер счета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ChargesInfoType">
+    <xs:annotation>
+      <xs:documentation>Платеж</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Amount" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Сумма платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChargesSummaryType">
+    <xs:annotation>
+      <xs:documentation>Суммы по платежам</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalAmount" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Общая сумма</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalWeightCharge" type="awb:ChargesInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общая оплата по весу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValuationCharge" type="awb:ChargesInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Плата по объявленной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Taxes" type="awb:ChargesInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Налоги</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalAgentCharges" type="awb:ChargesInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Прочие сборы в пользу  агента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCarrierCharges" type="awb:ChargesInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сборы в пользу перевозчика</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContainerInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о контейнере</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ContainerNum" type="clt_ru:ContainerIdentityType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Номер контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContainerDescr" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DTInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения из декларации на товары</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Номер товара по ДТ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTNumber" type="cat_ru:GTDIDType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер декларации на товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DimensionInfoType">
+    <xs:annotation>
+      <xs:documentation>Габариты</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DimensionsCode" type="clt_ru:MeasureUnitQualifierCodeType">
+        <xs:annotation>
+          <xs:documentation>Код единицы измерения </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Lenght" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Длина</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Wight" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Ширина</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Height" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Высота</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsDescrType">
+    <xs:annotation>
+      <xs:documentation>Описание груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InformationCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код  информации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товара /  дополнительная информация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsMovementType">
+    <xs:annotation>
+      <xs:documentation>Описание перемещения груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FlightNumber" type="cltTrans_ru:FlightNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер рейса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightDate" type="clt_ru:CodeVariable2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>День вылета для трансфертного груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumPP" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Номер перевозчика  по документу 1 - первый, 2 -  второй и т.д.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationPlace" type="cltTrans_ru:AirportIATACodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Пункт назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CarrierName" type="clt_ru:ShortNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование перевозчика</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CarrierCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код авиаперевозчика.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HandlingInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация по обработке груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ServiceInfoCode" type="clt_ru:Code3Type">
+        <xs:annotation>
+          <xs:documentation>Код информации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InfoDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Специальные требования и другая информация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NotificationOrg" type="cat_ru:OrganizationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Организация или лицо для уведомления о прибытии груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IssueAgentType">
+    <xs:annotation>
+      <xs:documentation>Агент выпускающего перевозчика</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="awb:AirOrganizationType">
+        <xs:sequence>
+          <xs:element name="IATACode" type="cltTrans_ru:IATAAgentCode">
+            <xs:annotation>
+              <xs:documentation>Код ИАТА агента</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommissionFlag" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Сведения о  комиссионных для агента: 1 - агенту полагаются комиссионные; 0 - запись отсутствует</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MarkType">
+    <xs:annotation>
+      <xs:documentation>Отметки о прохождении товарами таможенного и иных видов государственного контроля.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MarkSing" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак наличия отметки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MarkKind" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Тип отметки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultControl" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Результат прохождения контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OtherChargesType">
+    <xs:annotation>
+      <xs:documentation>Другие сборы</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OtherChargeCode" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Код  прочих  сборов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EntitlementCode" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Дополнительный код</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherChargeAmount" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Сумма</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация по платежам</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TaxCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коды сборов (только для использования перевозчиком)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WeightValuePrepaidFlag" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак предоплаты  для сборов по весу/объявленной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherChargesPrepaidFlag" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак предоплаты  для других сборов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyRate" type="clt_ru:CurrencyRateType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Курс пересчета в аэропорту назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChargesDestCurrency" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма сборов в валюте страны назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChargesDestination" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма сборов в аэропорту назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCollectCharges" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма сборов в кредит</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherCharges" type="awb:OtherChargesType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Другие сборы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrepaydCharge" type="awb:ChargesSummaryType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Предоплаченные платежи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CollectCharge" type="awb:ChargesSummaryType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Оплата по прибытии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentType">
+    <xs:annotation>
+      <xs:documentation>Информация о платежах </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentMode" type="cltTrans_ru:PaymentModeType">
+        <xs:annotation>
+          <xs:documentation>Вид платежа.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Amount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код иностранной валюты платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Place" type="clt_ru:PlaceNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Место платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateInf" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameInf" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование лица, которое должно оплатить</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Дополнительная информация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Сведения о составлении накладной </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catTrans_ru:AWBNumberType">
+        <xs:sequence>
+          <xs:element name="Date" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата составления документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Place" type="clt_ru:PlaceNameType">
+            <xs:annotation>
+              <xs:documentation>Место составления документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

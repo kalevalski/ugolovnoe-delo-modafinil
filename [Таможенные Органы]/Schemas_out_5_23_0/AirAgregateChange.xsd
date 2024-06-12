@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:aach="urn:customs.ru:Information:TransportDocuments:Air:AirAgregateChange:5.23.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:Air:AirAgregateChange:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Замена агрегатов на воздушном судне</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AirAgregateChange" type="aach:AirAgregateChangeType" />
+  <xs:complexType name="AirAgregateChangeType">
+    <xs:annotation>
+      <xs:documentation>Замена агрегатов на воздушном судне</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegistrationInfo" type="aach:RegistrationInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о составлении документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AirAgChFlightInfo" type="aach:AirAgChFlightInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о рейсе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgregateChangeInfo" type="aach:AgregateChangeInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о замене оборудования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003315E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AirAgChFlightInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о рейсе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catTrans_ru:FlightInfoType">
+        <xs:sequence>
+          <xs:element name="ArrivalAirport" type="catTrans_ru:AirportType">
+            <xs:annotation>
+              <xs:documentation>Аэропорт назначения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarrierName" type="clt_ru:NameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Наименование перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarrierCode" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Двухсимвольный код  перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AirCompanyName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Собственник ВС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RoutingInfo" type="aach:RoutingInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о маршруте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AgregateChangeInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о заменяемом агрегате</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AirportChange" type="catTrans_ru:AirportType">
+        <xs:annotation>
+          <xs:documentation>Аэропорт, в котором производилась замена агрегата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MountedAgr" type="aach:MountedAgrType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Установленное оборудование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DismantledAgr" type="aach:DismantledAgrType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Демонтированное оборудование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AgregateType">
+    <xs:annotation>
+      <xs:documentation>Сведения об оборудовании</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumPP" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AgregateName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование оборудования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AgregateOwner" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Собственник оборудования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PartyUnitNumber" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Партийный номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SerialUnitNumber" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Серийный номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DismantledAgrType">
+    <xs:annotation>
+      <xs:documentation>Демонтированное оборудование</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="aach:AgregateType">
+        <xs:sequence>
+          <xs:element name="Reason" type="clt_ru:Text50Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Причина демонтажа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DismantledAgrDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата демонтажа оборудования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MountedAgrType">
+    <xs:annotation>
+      <xs:documentation>Установленное оборудование</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="aach:AgregateType">
+        <xs:sequence>
+          <xs:element name="MountedAgrQuantity" type="clt_ru:Quantity8Type">
+            <xs:annotation>
+              <xs:documentation>Количество</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaterialType" type="clt_ru:Text50Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Тип материала</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Certificate" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сертификат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgrCondition" type="clt_ru:Text150Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Состояние</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MountedAgrDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата установления оборудования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegistrationInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о составлении документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LNG" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код языка документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата составления документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlaceCreateDoc" type="catTrans_ru:AirportType">
+        <xs:annotation>
+          <xs:documentation>Место составления документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:Code10Type">
+        <xs:annotation>
+          <xs:documentation>Серийный номер документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoutingInfoType">
+    <xs:annotation>
+      <xs:documentation>Маршрут  следования</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumPP" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RIAirportFrom" type="catTrans_ru:AirportType">
+        <xs:annotation>
+          <xs:documentation>Аэропорт отправления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RIAirportTo" type="catTrans_ru:AirportType">
+        <xs:annotation>
+          <xs:documentation>Аэропорт назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

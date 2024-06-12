@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Решение Коллегии Евразийской экономической комиссии № 128 от 26 сентября 2017 года "О заявлении о включении в реестр уполномоченных экономических операторов"-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:ai_aeo="urn:customs.ru:Information:RegistrationDocuments:AppInclAEORegistry:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:RegistrationDocuments:AppInclAEORegistry:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление о включении в реестр уполномоченных экономических операторов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppInclAEORegistry" type="ai_aeo:AppInclAEORegistryType">
+    <xs:annotation>
+      <xs:documentation>Заявление о включении в реестр уполномоченных экономических операторов</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppInclAEORegistryType">
+    <xs:annotation>
+      <xs:documentation>Заявление о включении в реестр уполномоченных экономических операторов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AEOOrganization" type="RUScat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Заявитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AEOSertificateSign" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Запрашиваемый тип свидетельства (свидетельств) (1 - первый; 2 - второй; 3 - третий; 4 - первый и второй.) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ForeignEconomicActivity" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Осуществление внешнеэкономической деятельности, лет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ImplCustRepresentative" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Осуществление деятельности в качестве таможенного представителя, лет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ImplOwnerTempWH" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Осуществление деятельности в качестве владельца склада временного хранения, лет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ImplOwnerCustWH" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Осуществление деятельности в качестве владельца таможенного склада, лет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ImplCustCarrier" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Осуществление деятельности в качестве таможенного перевозчика, лет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CntDTMovingGoods" type="ai_aeo:ImplActivityCountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>При осуществлении внешнеэкономической деятельности, за исключением деятельности по оказанию услуг по перевозке товаров, за каждый год подано деклараций на товары, штук</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalCostMovingGoods" type="ai_aeo:ImplActivityAmountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Суммарная стоимость перемещенных через таможенную границу Евразийского экономического союза товаров за каждый год составляет величину, эквивалентную сумме в евро</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CntTDMovingGoods" type="ai_aeo:ImplActivityCountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>При осуществлении внешнеэкономической деятельности по оказанию услуг по перевозке товаров за каждый год подано транзитных деклараций, штук</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CntTDCustoms" type="ai_aeo:ImplActivityCountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>При осуществлении деятельности в сфере таможенного дела в качестве таможенного представителя за каждый год подано таможенных деклараций, штук</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalCostGoodsTD" type="ai_aeo:ImplActivityAmountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Суммарная стоимость товаров, заявленная в поданных таможенных декларациях, за каждый год составляет величину, эквивалентную сумме в евро</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalCostGoodsWH" type="ai_aeo:ImplActivityAmountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>При осуществлении деятельности в сфере таможенного дела в качестве владельцев складов временного хранения, таможенных складов осуществлено хранение товаров, суммарная стоимость которых за каждый год составляет величину, эквивалентную сумме в евро </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CntTDCarrier" type="ai_aeo:ImplActivityCountIndexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>При осуществлении деятельности в сфере таможенного дела в качестве таможенного перевозчика за каждый год подано транзитных деклараций, штук</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EnsuringDuties" type="ai_aeo:EnsuringDutiesType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Исполнение обязанности уполномоченного экономического оператора планируется обеспечить следующими способами (заполняется, если условие о представлении обеспечения является обязательным для включения в реестр)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoPayCustomsSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Не исполненная в установленный срок обязанность по уплате таможенных платежей, специальных, антидемпинговых, компенсационных пошлин, пеней, процентов во всех государствах - членах Евразийского экономического союза (далее - государства-члены) отсутствует (true - да, отсутствует, false - нет, присутствует)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoDebtSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Задолженность (недоимка) в соответствии с законодательством о налогах и сборах (налоговым законодательством) государства-члена, в котором зарегистрирован заявитель, отсутствует (true - да, отсутствует, false - нет, присутствует)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoFactAdmOffenceSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Факты привлечения во всех государствах-членах заявителя в течение 1 года к административной ответственности за административные правонарушения, привлечение к ответственности за совершение которых законодательством государств-членов определено в качестве основания для отказа во включении в реестр, отсутствуют (true - да, отсутствуют, false - нет, присутствуют)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoFactAttractIndividSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Факты привлечения во всех государствах-членах физических лиц государств-членов, являющихся акционерами заявителя, имеющими 10 и более процентов акций заявителя, его учредителями (участниками), руководителями, главными бухгалтерами, к уголовной ответственности за преступления или уголовные правонарушения, производство по которым отнесено к ведению таможенных и иных государственных органов, привлечение к ответственности за совершение которых законодательством государств-членов определено в качестве основания для отказа во включении в реестр, отсутствуют (true - да, отсутствуют, false - нет, присутствуют)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SystemCorrSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Система учета товаров заявителя отвечает установленным законодательством государств-членов о таможенном регулировании требованиям, позволяет сопоставлять сведения, представленные таможенным органам при совершении таможенных операций, со сведениями о проведении хозяйственных операций и обеспечивает доступ (в том числе удаленный) таможенных органов к таким сведениям (true - да, false - нет)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AggFinStabilityIndicator" type="clt_ru:Quantity8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Совокупный показатель финансовой устойчивости заявителя, рассчитанный в соответствии с порядком определения финансовой устойчивости юридического лица, претендующего на включение в реестр, и значений, характеризующих финансовую устойчивость и необходимых для включения в этот реестр, предусмотренным пунктом 7 статьи 433 ТК ЕАЭС, баллов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StoragePlaceApp" type="ai_aeo:StoragePlaceAppType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сооружения, помещения (части помещений) и (или) открытые площадки (части открытых площадок), предназначенные для временного хранения товаров, находятся у заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RequirStoragePlaceSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Требования к сооружениям, помещениям (частям помещений) и (или) открытым площадкам (частям открытых площадок), на территории которых будет осуществляться временное хранение товаров, завершение действия таможенной процедуры таможенного транзита и (или) проводиться таможенный контроль, к транспортным средствам и работникам заявителя, предусмотренные подпунктом 4 пункта 3 статьи 433 ТК ЕАЭС, соблюдаются (true - да, false - нет)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InclRegister" type="ai_aeo:InclRegisterType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Заявитель включен в реестр (период включения на момент подачи заявления)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoFactExclRegisterSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Факт исключения из реестра в течение 1 года до даты подачи заявления отсутствует (true - да, отсутствует, false - нет, присутствует)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Holders" type="ai_aeo:HoldersType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о физических лицах государств-членов, являющихся акционерами заявителя, имеющими 10 и более процентов акций заявителя, его учредителями (участниками), руководителями, главными бухгалтерами</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinStabIndicators" type="ai_aeo:FinStabIndicatorsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о значениях показателей финансовой устойчивости и совокупного показателя финансовой устойчивости</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StoragePlaceInfo" type="ai_aeo:StoragePlaceInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о сооружениях, помещениях (частях помещений) и (или) открытых площадках (частях открытых площадок), предназначенных для временного хранения товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BranchDetails" type="RUScat_ru:OrganizationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об обособленных подразделениях и (или) филиалах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocsInfo" type="ai_aeo:DocsInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документы, подтверждающие сведения, указанные в настоящем заявлении</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SigningDetails" type="RUScat_ru:SigningDetailsType">
+            <xs:annotation>
+              <xs:documentation>Подпись заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1001303E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="BasisOfUseStoragePaceType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе, подтверждающем нахождение в собственности, хозяйственном владении, оперативном управлении или аренде</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BasisOfUseCode" type="clt_ru:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код основания использования (01 - находится в собственности; 02 - находится в аренде; 03 - находится в хозяйственном ведении; 04 - находится в оперативном управлении.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер и дата документа, подтверждающего нахождение в собственности, хозяйственном ведении, оперативном управлении или аренде</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateBegin" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата начала срока действия документа (договора аренды)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата окончания срока действия документа (договора аренды)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocsSheetNumberInfoType">
+    <xs:annotation>
+      <xs:documentation>Документы, подтверждающие сведения, указанные в настоящем заявлении</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocsSheetNumberDocs" type="clt_ru:SheetNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество листов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileContent" type="CategoryCust:BinaryDataCategoriesCust" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Содержание файла в формате Adobe PDF в Base64</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор электронного архива декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocID" type="clt_ru:DocumentIDType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Идентификатор документа в электронном архиве декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocsInfoType">
+    <xs:annotation>
+      <xs:documentation>Документы, подтверждающие сведения, указанные в настоящем заявлении</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CopiesFounderDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Копии учредительных документов юридического лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NoDebtDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Документ, подтверждающий отсутствие у заявителя задолженности (недоимки) в соответствии с законодательством о налогах и сборах (налоговым законодательством) государства-члена, в котором зарегистрирован заявитель</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FinStabilityDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Документы (копии документов), подтверждающие расчет значений показателей финансовой устойчивости и совокупного показателя финансовой устойчивости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NoFactCriminalDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Документы, выданные компетентным органом государства-члена и подтверждающие отсутствие фактов привлечения к уголовной ответственности физических лиц государств-членов, являющихся акционерами заявителя, имеющими 10 и более процентов акций заявителя, его учредителями (участниками), руководителями, главными бухгалтерами</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HasSystemAccGoodsDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Документы, подтверждающие наличие у заявителя системы учета товаров, отвечающей установленным законодательством государства-члена о таможенном регулировании требованиям, позволяющей сопоставлять сведения, представленные таможенным органам при совершении таможенных операций, со сведениями о проведении хозяйственных операций и обеспечивающей доступ (в том числе удаленный) таможенных органов к таким сведениям</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StoragePlaceDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Копии документов, подтверждающих наличие у заявителя, претендующего на получение свидетельства второго или третьего типа, сооружений, помещений (частей помещений) и (или) открытых площадок (частей открытых площадок), предназначенных для временного хранения товаров, завершения действия таможенной процедуры таможенного транзита и (или) проведения таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherDocs" type="ai_aeo:DocsSheetNumberInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Иные документы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnsuringDutiesType">
+    <xs:annotation>
+      <xs:documentation>Исполнение обязанности уполномоченного экономического оператора планируется обеспечить следующими способами (заполняется, если условие о представлении обеспечения является обязательным для включения в реестр)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DepositCashSum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Внесение денежных средств (денег) на сумму, эквивалентную сумме в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BankGuaranteeSum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Банковская гарантия на сумму, эквивалентную сумме в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GuaranteeSum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Поручительство на сумму, эквивалентную сумме в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PledgePropertySum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Залог имущества на сумму, эквивалентную сумме в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherEnsuringDuties" type="ai_aeo:OtherEnsuringDutiesType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Обеспечение исполнения обязанности иным способом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinStabIndicatorsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о значениях показателей финансовой устойчивости и совокупного показателя финансовой устойчивости</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NetAssets" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер чистых активов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShareCapital" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер уставного капитала</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasicToolsRest" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Остаточная стоимость основных средств</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorAutonomy" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент автономии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorLiquidity" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент общей (текущей) ликвидности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorProfitability" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рентабельность собственного капитала, процентов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorFinancialStability" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент финансовой устойчивости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorUseOwnWorkCapital" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент обеспеченности текущей деятельности собственными оборотными активами</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorsManeuverability" type="ai_aeo:IndicatorInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Коэффициент маневренности собственного капитала</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndicatorsAggregate" type="clt_ru:Quantity3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Совокупный показатель юридического лица, претендующего на включение в реестр (минимум 50 баллов)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HoldersType">
+    <xs:annotation>
+      <xs:documentation>Сведения о физических лицах государств-членов, являющихся акционерами заявителя, имеющими 10 и более процентов акций заявителя, его учредителями (участниками), руководителями, главными бухгалтерами</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="BirthDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BirthPlace" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RelationToApp" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Отношение к заявителю (1 - акционер, 2 - учредитель (участник), 3 - руководитель, 4 - главный бухгалтер)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес регистрации по месту жительства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FactAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес регистрации по месту пребывания</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comment" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Примечание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ImplActivityAmountIndexType">
+    <xs:annotation>
+      <xs:documentation>Показатель за год величины, эквивалентной сумме в евро</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="YearIndex" type="clt_ru:DateYearCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Год показателя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AmountIndex" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ImplActivityCountIndexType">
+    <xs:annotation>
+      <xs:documentation>Показатель за год количества в штуках</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="YearIndex" type="clt_ru:DateYearCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Год показателя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountIndex" type="clt_ru:Count8Type">
+        <xs:annotation>
+          <xs:documentation>Количество штук</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InclRegisterType">
+    <xs:annotation>
+      <xs:documentation>Заявитель включен в реестр (период включения на момент подачи заявления)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegisterType1" type="clt_ru:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>с выдачей свидетельства первого типа, лет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegisterType2" type="clt_ru:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>с выдачей свидетельства второго типа, лет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegisterSertTK" type="clt_ru:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>с выдачей свидетельства в соответствии с ТК ЕАЭС, лет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegisterType2or3Sign" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>с выдачей свидетельства второго или третьего типа (true - да, false - нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IndicatorInfoType">
+    <xs:annotation>
+      <xs:documentation>Показатели индикатора финансовой устойчивости</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AvgIndicator" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Среднее значение показателя за 3 года (расчетное)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualSignIdentificator" type="clt_ru:Quantity2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическая значимость показателя (в баллах)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OtherEnsuringDutiesType">
+    <xs:annotation>
+      <xs:documentation>Обеспечение исполнения обязанности иным способом</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OtherEDMethod" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Способ обеспечения исполнения обязанности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherEDSum" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма обеспечения исполнения обязанности в евро</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StoragePlaceAppType">
+    <xs:annotation>
+      <xs:documentation>Сооружения, помещения (части помещений) и (или) открытые площадки (части открытых площадок), предназначенные для временного хранения товаров, находятся у заявителя</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InPropertySign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>в собственности (true - да, false - нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InEcManagementSign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>в хозяйственном ведении (true - да, false - нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InOperManagementSign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>в оперативном управлении (true - да, false - нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InRentSign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>в аренде по договору на срок не менее 1 года (true - да, false - нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StoragePlaceInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о сооружениях, помещениях (частях помещений) и (или) открытых площадках (частях открытых площадок), предназначенных для временного хранения товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StoragePlaceAddress" type="RUScat_ru:RUAddressType">
+        <xs:annotation>
+          <xs:documentation>Адрес местонахождения объекта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasisOfUseStoragePace" type="ai_aeo:BasisOfUseStoragePaceType">
+        <xs:annotation>
+          <xs:documentation>Сведения о документе, подтверждающем нахождение в собственности, хозяйственном владении, оперативном управлении или аренде</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

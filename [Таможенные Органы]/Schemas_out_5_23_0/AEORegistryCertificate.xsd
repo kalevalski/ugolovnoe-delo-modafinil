@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Решение Коллегии Евразийской экономической комиссии № 129 от 26 сентября 2017 года "О форме свидетельства о включении в реестр уполномоченных экономических операторов и порядке ее заполнения"
+(с учётом полей из: 
+Решение Коллегии Евразийской экономической комиссии № 186 от 19 декабря 2017 года "О форме реестра уполномоченных экономических операторов государства - члена Евразийского экономического союза"
+Решение Коллегии Евразийской экономической комиссии № 187 от 19 декабря 2017 года "Об общем реестре уполномоченных экономических операторов государств - членов Евразийского экономического союза")
+ -->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:aeorc="urn:customs.ru:Information:RegistrationDocuments:AEORegistryCertificate:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:RegistrationDocuments:AEORegistryCertificate:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Свидетельство о включении в реестр уполномоченных экономических операторов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AEORegistryCertificate" type="aeorc:AEORegistryCertificateType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о включении в реестр уполномоченных экономических операторов</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AEORegistryCertificateType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о включении в реестр уполномоченных экономических операторов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AEOCertificateDateBegin" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата вступления в силу свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AEOCertificateRegNumber" type="aeorc:AEOCertificateRegNumberType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AEOOrganization" type="aeorc:AEOOrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о юридическом лице, зарегистрированном в качестве УЭО</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DecisionInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты решения уполномоченного органа государства-члена о включении юридического лица в реестр</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SigningDetails" type="RUScat_ru:SigningDetailsType">
+            <xs:annotation>
+              <xs:documentation>Cведения о руководителе уполномоченного органа государства - члена Евразийского экономического союза, подписавшем документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Status" type="clt_ru:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о статусе свидетельства (02 - действует; 03 - приостановлено; 04 - возобновлено; 05 - прекращено)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SuspendedInfo" type="aeorc:SuspendedInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о приостановлении действия свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RevivedInfo" type="aeorc:RevivedInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о возобновлении действия свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExclusionInfo" type="aeorc:ExclusionInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения об исключении из реестра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StoragePlaceInfo" type="aeorc:StoragePlaceInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о сооружениях, помещениях (частях помещений) и (или) открытых площадках (частей открытых площадок) уполномоченного экономического оператора, предназначенных для использования или используемых для временного хранения товаров (далее - места хранения)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsInfo" type="aeorc:CustomsInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о таможенных органах, на которые возложен контроль мест хранения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GuaranteeInfo" type="aeorc:GuaranteeInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об обеспечении уплаты таможенных платежей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1001302E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AEOCertificateRegNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер свидетельства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType">
+        <xs:annotation>
+          <xs:documentation>Код государства - члена Евразийского экономического союза, уполномоченным органом которого принято решение о включении юридического лица в реестр, в соответствии с классификатором стран мира ("AM" - для Республики Армения, "BY" - для Республики Беларусь, "KZ" - для Республики Казахстан, "KG" - для Кыргызской Республики, "RU" - для Российской Федерации)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SerialNumber" type="clt_ru:Code4Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер свидетельства, присваиваемый уполномоченным органом государства-члена</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CertificateKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Тип выдаваемого свидетельства ("1" - свидетельство первого типа, "2" - свидетельство второго типа, "3" - свидетельство третьего типа)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AEOOrganizationType">
+    <xs:annotation>
+      <xs:documentation>Сведения о юридическом лице, зарегистрированном в качестве УЭО</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AEOParentDetails" type="RUScat_ru:RegisterOrganizationDetailsType">
+        <xs:annotation>
+          <xs:documentation>Сведения о головном подразделении УЭО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AEOBranchDetails" type="RUScat_ru:RegisterOrganizationDetailsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о структурных подразделениях УЭО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BasisOfUseStoragePaceType">
+    <xs:annotation>
+      <xs:documentation>Основание использования места хранения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BasisOfUseCode" type="clt_ru:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код основания использования (01 - находится в собственности; 02 - находится в аренде; 03 - находится в хозяйственном ведении; 04 - находится в оперативном управлении.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер документа, являющегося основанием для использования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата документа, являющегося основанием для использования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateBegin" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата начала права использования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата окончания права использования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsControlZoneInfoType">
+    <xs:annotation>
+      <xs:documentation>Зона таможенного контроля</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsControlZoneId" type="clt_ru:CustomsOfficeNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер документа, подтверждающего создание зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата документа, подтверждающего создание зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateBegin" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата создания зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата ликвидации зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о таможенных органах, на которые возложен контроль мест хранения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код таможенного органа, в регионе деятельности которого зарегистрировано место хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsControlZoneInfo" type="aeorc:CustomsControlZoneInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Зона таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExclusionInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения об исключении из реестра</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер документа об исключении из реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата документа об исключении из реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата исключения из реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GuaranteeInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения об обеспечении уплаты таможенных платежей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GuaranteeType" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Способ обеспечения в соответствии с классификатором способов обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер документа обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата документа обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateBegin" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата начала действия документа обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата окончания действия документа обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RevivedInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о возобновлении действия свидетельства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер документа о возобновлении действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата документа о возобновлении действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата возобновления действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StoragePlaceInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о сооружениях, помещениях (частях помещений) и (или) открытых площадках (частей открытых площадок) уполномоченного экономического оператора, предназначенных для использования или используемых для временного хранения товаров (далее - места хранения)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StoragePlaceName" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование места хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StoragePlaceAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактический адрес места хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalSquare" type="clt_ru:Quantity14point2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Площадь места хранения, кв. м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasisOfUseStoragePace" type="aeorc:BasisOfUseStoragePaceType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Основание использования места хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SuspendedInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о приостановлении действия свидетельства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер документа о приостановлении действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата документа о приостановлении действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата приостановления действия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Проект Приказа МинФина России "Об утверждении формы обращения таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате таможенных пошлин, 
+налогов, специальных, антидемпинговых, компенсационных пошлин, Порядка заполнения обращения таможенного представителя о непредоставлении обеспечения исполнения обязанности 
+по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, формы уведомления таможенного органа о результатах рассмотрения обращения 
+таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, 
+Порядка заполнения уведомления таможенного органа о результатах рассмотрения обращения таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате 
+таможенных пошлин, налогов, специальных, антидемпинговых, компенсационных пошлин, Порядка и сроков взаимодействия таможенного органа и таможенного представителя"
+Приложение № 1
+-->
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:afpe="urn:customs.ru:Information:GuaranteeDocuments:AppFailureProvideEnsure:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:GuaranteeDocuments:AppFailureProvideEnsure:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Обращение таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате таможенных пошлин, налогов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AppFailureProvideEnsure" type="afpe:AppFailureProvideEnsureType">
+		<xs:annotation>
+			<xs:documentation>Обращение таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате таможенных пошлин, налогов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AppFailureProvideEnsureType">
+		<xs:annotation>
+			<xs:documentation>Обращение таможенного представителя о непредоставлении обеспечения исполнения обязанности по уплате таможенных пошлин, налоговн</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="AppDateTime" type="clt_ru:DateTimeCustType">
+						<xs:annotation>
+							<xs:documentation>Дата и время обращения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BrokerInfo" type="afpe:BrokerInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о таможенном представителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Declarant" type="RUScat_ru:OrganizationType">
+						<xs:annotation>
+							<xs:documentation>Декларант</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TermGuaranty" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Срок исполнения обязательства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NumberDeclaration" type="afpe:DocNumberType">
+						<xs:annotation>
+							<xs:documentation>Номер декларации на товары / заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GuaranteeAmount" type="clt_ru:AmountType">
+						<xs:annotation>
+							<xs:documentation>Сумма для резевирования</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ObligationCode" type="clt_ru:CodeVariable6Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код обязательства</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1050028E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BrokerInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о таможенном представителе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:OrganizationType">
+				<xs:sequence>
+					<xs:element name="BrokerReestrNumber" type="clt_ru:DocumentNumberType">
+						<xs:annotation>
+							<xs:documentation>Номер решения о включении юридического лица в Реестр таможенных представителей</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BrokerReestrDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата решения о включении юридического лица в Реестр таможенных представителей</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SignPerson" type="cat_ru:PersonBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>ФИО и должность подписавшего Обращение лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocNumberType">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер таможенного документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:GTDIDType">
+				<xs:sequence>
+					<xs:element name="AddNumber" type="clt_ru:CodeVariable2Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дополнительная составляющая номера </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

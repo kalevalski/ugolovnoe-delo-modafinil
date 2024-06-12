@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:adlr="urn:customs.ru:Information:EArchDocuments:ArchDocListRequest:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchDocListRequest:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Запрос на получение списка документов из архива.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchDocListRequest" type="adlr:ArchDocListRequestType" />
+  <xs:complexType name="ArchDocListRequestType">
+    <xs:annotation>
+      <xs:documentation>Запрос на получение списка документов в архиве</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:ArchBaseType">
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005005E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

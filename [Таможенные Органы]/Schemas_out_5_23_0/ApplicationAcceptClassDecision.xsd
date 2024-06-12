@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:aacd="urn:customs.ru:Information:CustomsDocuments:ApplicationAcceptClassDecision:5.23.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ApplicationAcceptClassDecision:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление о принятии решения о классификации товара, перемещаемого через таможенную границу Евразийского экономического союза в несобранном или разобранном виде, в том числе в некомплектном или незавершенном виде, ввоз или вывоз которого предполагается различными товарными партиями в течение установленного периода времени</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ApplicationAcceptClassDecision" type="aacd:ApplicationAcceptClassDecisionType" />
+  <xs:complexType name="ApplicationAcceptClassDecisionType">
+    <xs:annotation>
+      <xs:documentation>Заявление о принятии решения о классификации товара</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DecisionSign" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Признак заявления о принятии решения о классификации товара (1- заявление о принятии решения, 0 - заявление о принятии предварительного решения)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberApplication" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateApplication" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Declarant" type="aacd:DeclarantType">
+            <xs:annotation>
+              <xs:documentation>Информация о заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CUESADCustomsRepresentative" type="aacd:CustomsRepresentativeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный представитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodInfo" type="aacd:GoodInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о товаре</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись заявителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachedDocuments" type="aacd:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Опись прилагаемых документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006126E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AttachedDocumentsType">
+    <xs:annotation>
+      <xs:documentation>Информация о дополнительном направлении документов, указанных в заявлении</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocForm" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак электронной формы документа, представляемого с заявлением о принятии предварительного решения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PresentationDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Срок представления документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SheetsNumber" type="clt_ru:SheetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов приложения (кроме сброшюрованных приложений)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ComponentType">
+    <xs:annotation>
+      <xs:documentation>Перечень компонентов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumberComponent" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Номер компонента/Номер части компонента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameComponent" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование компонента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Классификационный код по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес нетто компонента, кг</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsInformation" type="catESAD_cu:GoodsGroupInformationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Характеристики товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsExport" type="cat_ru:CustomsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Таможенный орган вывоза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsRepresentativeType">
+    <xs:annotation>
+      <xs:documentation>Информация о таможенном представителе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUDECLcat:BrokerRegistryDocDetailsType">
+        <xs:sequence>
+          <xs:element name="ContractRepresDecl" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Договор таможенного представителя с декларантом</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="RFOrganizationFeatures" type="cat_ru:RFOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Российской Федерации</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RKOrganizationFeatures" type="cat_ru:RKOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Республики Казахстан</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RBOrganizationFeatures" type="cat_ru:RBOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Республики Беларусь</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RAOrganizationFeatures" type="cat_ru:RAOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Республики Армения</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="KGOrganizationFeatures" type="cat_ru:KGOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Кыргызской Республики</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeclarantType">
+    <xs:annotation>
+      <xs:documentation>Информация о заявителе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationType">
+        <xs:sequence>
+          <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LegalAddress" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Юридический адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GoodInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о товаре</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TechnicalDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Общее техническое описание товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MethodInstal" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Способ монтажа (сборки)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BeginDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Планируемый период поставки товара: дата начала</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Планируемый период поставки товара: дата  окончания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsModeCode" type="cltESAD_cu:CustomsModeCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код таможенной процедуры, под которую будет помещен товар </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Причины, по которым невозможна подача заявлений на выпуск в одном таможенном органе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddressFactInstal" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес места фактической сборки, монтажа, установки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsControls" type="cat_ru:CustomsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Контролирующая таможня</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Component" type="aacd:ComponentType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Перечень компонентов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

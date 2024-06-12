@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Приказ ФТС России № 446 от 18 марта 2019 года "Об утверждении формы заявления перевозчика на выгрузку (передачу) припасов и формы решения таможенного органа по результатам рассмотрения указанного заявления". Приложение № 1 - Заявление перевозчика на выгрузку (передачу) припасов-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:aus="urn:customs.ru:Information:TransportDocuments:AppUnloadingStore:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:TransportDocuments:AppUnloadingStore:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление перевозчика на выгрузку (передачу) припасов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AppUnloadingStore" type="aus:AppUnloadingStoreType">
+    <xs:annotation>
+      <xs:documentation>Заявление перевозчика на выгрузку (передачу) припасов</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AppUnloadingStoreType">
+    <xs:annotation>
+      <xs:documentation>Заявление перевозчика на выгрузку (передачу) припасов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AppDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата заявления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Код и наименование таможенного органа в который подается заявление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppCarrier" type="RUScat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявителе (перевозчике)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ActionStoreInfo" type="aus:ActionStoreInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о предполагаемых действиях с припасами</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlaceStoreInfo" type="aus:PlaceStoreInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о месте нахождения выгружаемых припасов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StoresInfo" type="aus:StoresInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о припасах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherCarrier" type="RUScat_ru:OrganizationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о перевозчике, которому передаются припасы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WhereStoragePlace" type="aus:PlaceStoreInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место размещения припасов после их выгрузки  (передачи)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AttachedDocuments" type="aus:AttachedDocumentsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень прилагаемых документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApproverPersonAppCarrier" type="aus:ApproverPersonAppCarrierType">
+            <xs:annotation>
+              <xs:documentation>Подпись уполномоченного лица перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003007E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ActionStoreInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о предполагаемых действиях с припасами</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ActionStore" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Предполагаемое действие с припасами: 1 - выгрузка, 2 - передача</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Заявляемая дата совершения действий с припасами</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StartActionTime" type="clt_ru:TimeCustType">
+        <xs:annotation>
+          <xs:documentation>Заявляемое время начала действия с припасами</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndActionTime" type="clt_ru:TimeCustType">
+        <xs:annotation>
+          <xs:documentation>Заявляемое время окончания действия с припасами</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AircraftInformationType">
+    <xs:annotation>
+      <xs:documentation>Сведения о регистрации и национальной  принадлежности воздушного судна</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AircraftRegNumber" type="clt_ru:CodeVariable11Type">
+        <xs:annotation>
+          <xs:documentation>Регистрационный знак (номер) воздушного судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AircraftCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Кодовое обозначение страны регистрации воздушного судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AircraftCountryName" type="clt_ru:CountryNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование страны регистрации воздушного судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApproverPersonAppCarrierType">
+    <xs:annotation>
+      <xs:documentation>Сведения об уполномоченном лице перевозчика</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="PersonKind" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Идентификатор лица: 1 - должностное лицо таможенного представителя, 2 - должностное лицо декларанта, 3 - физическое лицо</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocId" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер регистрации в реестре таможенных представителей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AttachedDocumentsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о прилагаемом документе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="ElectronicDocumentID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор документа, присвоенный информационной системой таможенных органов при представлении документа в электронном виде</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ElectronicArchID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор хранилища электронных документов при представлении документа в электронном виде</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentModeID" type="clt_ru:DocumentModeIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида представленного документа в соответствии с альбомом форматов электронных форм документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PlaceStoreInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о месте нахождения припасов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PlaceKind" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Идентификатор места: 1 - воздушное судно, 2- водное судно, 3 - поезд, 4 - зона таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="AircraftInformation" type="aus:AircraftInformationType">
+          <xs:annotation>
+            <xs:documentation>Сведения о регистрации и национальной принадлежности воздушного судна</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ShipDetails" type="aus:ShipDetailsType">
+          <xs:annotation>
+            <xs:documentation>Реквизиты и характеристики водного судна</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Train" type="aus:TrainInformationType">
+          <xs:annotation>
+            <xs:documentation>Сведения о номере и индексе поезда</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="StoragePlace" type="aus:ZTKType">
+          <xs:annotation>
+            <xs:documentation>Сведения о ЗТК</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="AddInfoPlaceStore" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Дополнительная информация о местонахождении припасов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ShipDetailsType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты и характеристики судна</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ShipIMONumber" type="clt_ru:CodeVariable7Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ИМО номер судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код страны принадлежности судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipCountryName" type="clt_ru:CountryNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование страны принадлежности судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipRegDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipRegNum" type="clt_ru:CodeVariable10Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер регистрации судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipRegPort" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Порт регистрации судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipOwnerName" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование судовладельца</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipType" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Тип судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ShipRegistrationOtherInfo" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Иные сведения о регистрации водного судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StoresInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о припасах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumPP" type="clt_ru:CodeVariable10Type">
+        <xs:annotation>
+          <xs:documentation>№ п/п </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameStores" type="clt_ru:FreeText250Type" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Наименование припасов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StoresQuantity" type="cat_ru:SupplementaryQuantityType">
+        <xs:annotation>
+          <xs:documentation>Количество припасов в основной единице измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType">
+        <xs:annotation>
+          <xs:documentation>Количество припасов в дополнительной единице измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsNomenclatureCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrainInformationType">
+    <xs:annotation>
+      <xs:documentation>Сведения о номере и индексе поезда</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TrainNumber" type="clt_ru:TransportMeansIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер поезда</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TrainIndex" type="clt_ru:Code15Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Индекс поезда</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ZTKType">
+    <xs:annotation>
+      <xs:documentation>Место хранения припасов в зоне таможенного контроля</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Customs" type="cat_ru:CustomsType">
+        <xs:annotation>
+          <xs:documentation>Код и наименование таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Почтовый адрес</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер документа, подтверждающего создание зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата документа, подтверждающего создание зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateBegin" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата создания зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateEnd" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата ликвидации зоны таможенного контроля</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

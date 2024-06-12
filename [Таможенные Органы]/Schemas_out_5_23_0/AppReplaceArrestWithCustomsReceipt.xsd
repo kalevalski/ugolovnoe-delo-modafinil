@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России от 21.11.2018 № 1876 "Об утверждении форм документов, применяемых таможенными органами в целях обеспечения взыскания таможенных платежей,
+специальных, антидемпинговых, компенсационных пошлин, процентов и пеней за счет имущества и обращения взыскания на товары"-->
+<xs:schema xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:els_agr="urn:customs.ru:Information:ELSDocuments:ELSAggregateTypes:5.22.0" xmlns:arawc="urn:customs.ru:Information:CommercialFinanceDocuments:AppReplaceArrestWithCustomsReceipt:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:AppReplaceArrestWithCustomsReceipt:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:ELSDocuments:ELSAggregateTypes:5.22.0" schemaLocation="ELSAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заявление о замене/уведомление об отказе в замене/ решение о замене ареста имущества на денежный залог</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AppReplaceArrestWithCustomsReceipt" type="arawc:AppReplaceArrestWithCustomsReceiptType">
+		<xs:annotation>
+			<xs:documentation>Заявление о замене/уведомление об отказе в замене/ решение о замене ареста имущества на денежный залог</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AppReplaceArrestWithCustomsReceiptType">
+		<xs:annotation>
+			<xs:documentation>Заявление о замене/уведомление об отказе в замене/ решение о замене ареста имущества на денежный залог</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="Customs" type="cat_ru:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AppNumber" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер и дата заявления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DecisionInfo" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Реквизиты решения/уведомления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocKind" type="clt_ru:CodeVariable2Type">
+						<xs:annotation>
+							<xs:documentation>Тип документа: 0 - заявление, 1 - уведомление об отказе, 2 - решение о замене</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ApplicantInfo" type="els_agr:DeclarantInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о заявителе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ImpositionArrest" type="cat_ru:DocumentBaseType">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер и дата решения  таможенного  органа  о наложении ареста на имущество</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsReceipt" type="clt_ru:DocumentNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер таможенной расписки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Amount" type="clt_ru:AmountType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сумма таможенной расписки по заявлению, рубли</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RefusalReason" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Основания принятия решения об отказе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ExecSignature" type="cat_ru:PersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Подпись заявителя/исполнителя</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustChiefSignature" type="cat_ru:PersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Подпись начальника таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002061E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+</xs:schema>
