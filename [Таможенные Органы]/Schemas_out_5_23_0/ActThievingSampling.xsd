@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:ats="urn:customs.ru:Information:CustomsDocuments:ActThievingSampling:5.23.0" xmlns:catESAD_ru="urn:customs.ru:RUCommonAggregateTypes:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActThievingSampling:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUCommonAggregateTypes:5.23.0" schemaLocation="RUESADCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Акт отбора проб и образцов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActThievingSampling" type="ats:ActThievingSamplingType">
+    <xs:annotation>
+      <xs:documentation>Акт отбора проб и образцов</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ActThievingSamplingType">
+    <xs:annotation>
+      <xs:documentation>Акт отбора проб и образцов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Date" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата составления акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Number" type="cat_ru:GTDID6Type">
+            <xs:annotation>
+              <xs:documentation>Номер акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DecisionNumber" type="ats:DecisionNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер Решения о назначении таможенной экспертизы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NameObject" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Наименование предмета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatePresentation" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата предъявления предметов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateTakeDuplicateAct" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата получения копии акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Application" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Приложение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Код и наименование таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TakeSample" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Лицо, отобравшее пробы или образцы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Expert" type="ats:PersonInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный эксперт (эксперт)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Witness" type="ats:PersonInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Понятые</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherParticipant" type="ats:PersonInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Иные лица, обладающие полномочиями в отношении товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Accessories" type="ats:AccessoriesType">
+            <xs:annotation>
+              <xs:documentation>Принадлежность предметов, пробы или образцы которых берут</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TermsThievingSampling" type="ats:TermsThievingSamplingType">
+            <xs:annotation>
+              <xs:documentation>Условия отбора проб или образцов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Packing" type="ats:PackingType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Упаковка взятых проб или образцов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Observation" type="ats:ObservationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Замечания и заявления присутствующих (участвующих) лиц</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonSignatureAuthorAct" type="ats:PersonSignatureAuthorActType">
+            <xs:annotation>
+              <xs:documentation>Подпись лица, составившего акт</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonPresent" type="ats:PersonInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о декларанте, ином лице, обладающем полномочиями в отношении товаров, или их представителях</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Specialist" type="ats:PersonInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Специалист</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherSpecialist" type="ats:PersonInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Иные специалисты</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DescriptionSample" type="ats:DescriptionSampleType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание отобранных проб (образцов)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CopyReceived" type="cat_ru:PersonSignatureType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Лицо, получившее копию акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006022E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AccessoriesOrganizationType">
+    <xs:annotation>
+      <xs:documentation>Организация, которой  принадлежат предметы. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Organization" type="cat_ru:OrganizationBaseType">
+        <xs:annotation>
+          <xs:documentation>Сведения о организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LegalAddress" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Юридический адрес организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OrganizationPerson" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Представить организации.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccessoriesPersonType">
+    <xs:annotation>
+      <xs:documentation>Лицо, обладающее полномочиями в отношении товаров.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="YearBirth" type="clt_ru:Code4Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Год рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BirthPlace" type="clt_ru:CountryNameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Домашний адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccessoriesType">
+    <xs:annotation>
+      <xs:documentation>Принадлежность предметов пробу или образцов, которых берут</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LocationObject" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Нахождение предметов (в ручной клади, багаже, почтовом отправлении №, вагон и т.д.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Departure" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Страна отправления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Arrival" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Страна прибытия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AccessoriesOrganization" type="ats:AccessoriesOrganizationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Организация, которой  принадлежат предметы. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AccessoriesPerson" type="ats:AccessoriesPersonType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Лицо, которому  принадлежат предметы </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Absent" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак  отсутствия владельца товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AddressThievingSamplingType">
+    <xs:annotation>
+      <xs:documentation>Адрес, по которому проводилось отбор проб или образцов.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WarehousePlace" type="catESAD_ru:WarehousePlaceType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о лицензии/ свидетельстве склада.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsLocationPlace" type="catESAD_ru:GoodsLocationPlaceType">
+        <xs:annotation>
+          <xs:documentation>Сведения о местонахождении товара. (склад получателя, иное место).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DescriptionSampleType">
+    <xs:annotation>
+      <xs:documentation>Описание отобранных проб (образцов)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Danger" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак того, что пробы (образцы) являются опасными</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Perishable" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак того, что пробы (образцы) являются скоропортящимися</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DangerKind" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Вид опасности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PeriodStorage" type="clt_ru:Text10Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Срок хранения для скоропортящихся проб (образцов)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StorageConditions" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Условия хранения для скоропортящихся проб (образцов)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DecisionNumberType">
+    <xs:annotation>
+      <xs:documentation>Номер решения</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDID6Type">
+        <xs:sequence>
+          <xs:element name="ExpertisePoint" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Момент назначения экспертизы (ДВ - до выпуска ДТ, ПВ - после выпуска ДТ) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InfoObjectType">
+    <xs:annotation>
+      <xs:documentation>Информация о предметах, взятых в качестве проб или образцов.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Position" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RefListNumeric" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Номер товара по порядку в исходном документе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameOdject" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование, индивидуальные признаки предметов, взятых в качестве проб или образцов.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QuantityWeight" type="ats:QuantityWeightType">
+        <xs:annotation>
+          <xs:documentation>Количество в единицах измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Currency" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Валюта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IndWH" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак, что образец остался на СВХ </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObservationType">
+    <xs:annotation>
+      <xs:documentation>Замечания и заявления присутствующих (участвующих) лиц</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ObservationContents" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Содержание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonSignatureObservation" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Фамилия, инициалы лица, сделавшего заявление или замечание.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PackingType">
+    <xs:annotation>
+      <xs:documentation>Упаковка взятых проб или образцов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="KindPacking" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Вид упаковки, которая оклеена ярлыком обеспечения сохранности упаковки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumberSeal" type="clt_ru:Text10Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Номер пломбы упаковки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExplanatoryLabels" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Пояснительные надписи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InfoObject" type="ats:InfoObjectType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация о предметах, взятых в качестве проб или образцов.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о лице</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="AddressWitness" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Домашний адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlaceEmployment" type="cat_ru:OrganizationBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место работы </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonSignatureAuthorActType">
+    <xs:annotation>
+      <xs:documentation>Подпись лица, составившего акт</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа, указанный на оттиске ЛНП</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QuantityWeightType">
+    <xs:annotation>
+      <xs:documentation>Количество в дополнительной единице измерения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество товара в единице измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MeasureUnitQualifierName" type="clt_ru:CodeVariable20Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Условное обозначение единицы измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MeasureUnitQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код единицы измерения в соответствии с единицами измерения, применяемыми в ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TermsThievingSamplingType">
+    <xs:annotation>
+      <xs:documentation>Условия отбора проб или образцов</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Weather" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Погода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Light" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Освещение: 0 - искусственное; 1 - естественное</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Arrangement" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание научно - технических и технических средств, применяемых при отборе проб или образцов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sample" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Отобраны: 0 - образцы; 1 - пробы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddressThievingSampling" type="ats:AddressThievingSamplingType">
+        <xs:annotation>
+          <xs:documentation>Адрес, по которому проводился отбор проб или образцов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

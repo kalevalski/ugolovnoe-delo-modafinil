@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 14.02.2019 г. № 258 "Об утверждении форм документов, составляемых таможенными органами при проведении таможенных проверок, 
+порядков их заполнения и порядка внесения изменений в решение о проведении выездной таможенной проверки" 
+Приложение № 9 - Акт изъятия товаров (SeizureKind=1)
+Приказ ФТС России от 04.12.2018 г. №1980 "Об утверждении форм постановления об изъятии товаров, акта изъятия товаров и акта о возврате изъятых товаров и порядков их заполнения"
+Приложение № 2 Акт изъятия товаров (SeizureKind=2)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:asg="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureGoods:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureGoods:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт изъятия товаров</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActSeizureGoods" type="asg:ActSeizureGoodsType">
+		<xs:annotation>
+			<xs:documentation>Акт изъятия товаров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActSeizureGoodsType">
+		<xs:annotation>
+			<xs:documentation>Акт изъятия товаров</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="CustomActArresting" type="adt_cat:CustomsIssuedType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, составивший Акт изъятия товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SeizureKind" type="clt_ru:Numeric1Type">
+						<xs:annotation>
+							<xs:documentation>Изъятие осуществляется: 1 - в рамках таможенной проверки; 2 - в иных случаях</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActPlace" type="clt_ru:NameType">
+						<xs:annotation>
+							<xs:documentation>Место составления акта изъятия товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления изъятия товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActTimeBegin" type="clt_ru:TimeCustType">
+						<xs:annotation>
+							<xs:documentation>Время начала изъятия товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActTimeEnd" type="clt_ru:TimeCustType">
+						<xs:annotation>
+							<xs:documentation>Время окончания изъятия товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ResolutionInfo" type="adt_cat:ResolutionInfoType">
+						<xs:annotation>
+							<xs:documentation>Реквизиты Постановления об изъятии</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Article" type="clt_ru:Numeric1Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Статья Федерального закона от 3.08.2018 № 289-ФЗ, в соотвветствии с которой изымаются товары: 1 -  статья 318; 2 - статья 319</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonStorGoods" type="adt_cat:RespSubjectType">
+						<xs:annotation>
+							<xs:documentation>Лицо, у которого обнаружены товары, либо его представитель</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherPersons" type="adt_cat:ResponsiblePersonType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Иные лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Specialist" type="adt_cat:ResponsiblePersonType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Специалист</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsInfo" type="asg:GoodsInfoType">
+						<xs:annotation>
+							<xs:documentation>Изъятые товары</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Seal" type="asg:SealType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Средства идентификации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsLocation" type="asg:StoragePlaceInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Место нахождения товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="StoragePlaceInfo" type="asg:StoragePlaceInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Место, в которое товары будут переданы на хранение</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonsNotesInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Замечания, сделанные присутствующими лицами</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Applications" type="asg:ApplicationsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Приложения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecondExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Копию Акта получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RefusalMark" type="adt_cat:RefusalMarkType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Отметка об отказе от подписания акта или о неявке проверяемого лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006913E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApplicationsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о приложениях</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AppName" type="clt_ru:FreeText500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование приложения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="clt_ru:Count3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество листов/носителей информации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование единицы измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsInfoType">
+		<xs:annotation>
+			<xs:documentation>Изымаемые товары</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="InventoryGoodsSign" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>К акту приложена опись товаров (1 или true - да, 0 или false - нет) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Goods" type="asg:GoodsType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Перечень изъятых товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FixInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о применении способов фиксации (фото, киносъемка, видеозаписи и др.) и приложении указанных материалов к акту </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsType">
+		<xs:annotation>
+			<xs:documentation>Изымаемый товар</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsCharacteristics" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Индивидуальные признаки товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SealType">
+		<xs:annotation>
+			<xs:documentation>Сведения о средствах идентификации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IdentNumber" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Номер наложенного средства идентификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentKind" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Вид средств идентификации: 1 - пломба, 2 - печать, 3 - иное</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentDesc" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание по средству идентификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StoragePlaceInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о месте хранения изъятых товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StoragePlace" type="RUScat_ru:RUAddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место хранения товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WarehouseSign" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место хранения - СВХ (1 или true - да, 0 или false - нет) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CertificateNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер свидетельства о включении в реестр владельцев СВХ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

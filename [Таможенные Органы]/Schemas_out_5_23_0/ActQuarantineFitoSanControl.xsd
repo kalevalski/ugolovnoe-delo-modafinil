@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActQuarantineFitoSanControl:5.22.0" version="5.22.0.0" xmlns:aqfsc="urn:customs.ru:Information:CustomsDocuments:ActQuarantineFitoSanControl:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Акт государственного карантинного фитосанитарного контроля</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActQuarantineFitoSanControl" type="aqfsc:ActQuarantineFitoSanControlType" />
+  <xs:complexType name="ActQuarantineFitoSanControlType">
+    <xs:annotation>
+      <xs:documentation>Акт государственного карантинного фитосанитарного контроля</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NameSubject" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Наименование субъекта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NameManagement" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Наименование подразделения управления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="NumberIKR" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Номер ИКР, на основании которого разрешается ввоз</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="ResultScreening" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Результат досмотра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConfiscationSamples" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Для карантинной фитосанитарной экспертизы отобраны образцы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReturnDestructionSamples" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Образцы  после   проведения   экспертизы если 1- возращены, 2-  уничтожены, 3 - оставлены на хранение.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Prescription" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Предписываются следующие карантинные  фитосанитарные  мероприятия,</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthorizedOfficial" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Уполномоченное  должностное лицо</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="DescriptionConsignment" type="aqfsc:DescriptionConsignmentType">
+            <xs:annotation>
+              <xs:documentation>Описание груза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FitoSanitaryCertificateInfo" type="aqfsc:FitoSanitaryCertificateInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о фитосанитарном (карантинном) сертификате</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Owner" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Акт составлен  в  присутствии  владельца   (представителя)   груза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1006102E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArrivalOriginInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о прибытии и происхождении груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CountryName" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование страны</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegionName" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Наименование региона</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DescriptionConsignmentType">
+    <xs:annotation>
+      <xs:documentation>Описание груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Описание продукции, грузов, материалов, транспортных средств.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QuantityPlace" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Общее количество мест</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsWeightQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Вес продукции (кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Arrival" type="aqfsc:ArrivalOriginInfoType">
+        <xs:annotation>
+          <xs:documentation>Прибытие груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Origin" type="aqfsc:ArrivalOriginInfoType">
+        <xs:annotation>
+          <xs:documentation>Происхождение груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="LocationPlace" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Место нахождения продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DesinfestationInfo" type="aqfsc:DesinfestationType">
+        <xs:annotation>
+          <xs:documentation>Сведения об обеззараживании</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DesinfestationType">
+    <xs:annotation>
+      <xs:documentation>Обеззараживание</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DateDesinfestation" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата обеззараживания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TreatmentMethod" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Способ обработки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Chemical" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Химикат (действующее вещество)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Duration" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Экспозиция</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Temperature" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Температура</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Concentration" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Концентрация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FitoSanitaryCertificateInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о фитосанитарном (карантинном) сертификате</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="IssueOrganization" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Наименование органа, выдавшего сертификат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sender" type="cat_ru:OrganizationBaseType">
+            <xs:annotation>
+              <xs:documentation>Отправитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Receiver" type="cat_ru:OrganizationBaseType">
+            <xs:annotation>
+              <xs:documentation>Получатель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Desinfestation" type="aqfsc:DesinfestationType">
+            <xs:annotation>
+              <xs:documentation>Обеззараживание</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

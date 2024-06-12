@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:AdInf="urn:customs.ru:Information:CustomsDocuments:AditionalInformation:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AditionalInformation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Дополнительная  информация к заявлению на ЕПГУ</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AditionalInformation" type="AdInf:AditionalInformationType">
+    <xs:annotation>
+      <xs:documentation>Дополнительная  информация к заявлению на ЕПГУ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AditionalInformationType">
+    <xs:annotation>
+      <xs:documentation>Дополнительная  информация к заявлению на ЕПГУ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="AdviceLetterID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор уведомления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationInfo" type="AdInf:ApplicationInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppliedDocument" type="AdInf:AppliedDocumentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Вложение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentIDType" use="required" fixed="1006293E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ApplicationInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о заявке</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="ApplicationSourceSystemID" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Идентификатор заявления на ЕПГУ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicationID" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Идентификатор заявки в АПС "Электронные Госуслуги"</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DepartmentCode" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Код подразделения, в которое предоставляется заявка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AppliedDocumentType">
+    <xs:annotation>
+      <xs:documentation>Вложение</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Имя файла документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Number" type="clt_ru:Quantity5Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер файла документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Expansion" type="clt_ru:CodeVariable4Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Расширение файла</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Base" type="clt_ru:Text3MB" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Файл в формате base64</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

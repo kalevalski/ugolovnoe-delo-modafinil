@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 14.02.2019 г. № 258 "Об утверждении форм документов, составляемых таможенными органами при проведении таможенных проверок, 
+порядков их заполнения и порядка внесения изменений в решение о проведении выездной таможенной проверки" 
+Приложение № 10 - Акт изъятия документов-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:asdca="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureDocsInCustAudit:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureDocsInCustAudit:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт изъятия документов</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActSeizureDocsInCustAudit" type="asdca:ActSeizureDocsInCustAuditType">
+		<xs:annotation>
+			<xs:documentation>Акт изъятия документов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActSeizureDocsInCustAuditType">
+		<xs:annotation>
+			<xs:documentation>Акт изъятия документов</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="CustomActArresting" type="adt_cat:CustomsIssuedType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, составивший Акт изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActPlace" type="clt_ru:NameType">
+						<xs:annotation>
+							<xs:documentation>Место составления акта изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления акта изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActTimeBegin" type="clt_ru:TimeCustType">
+						<xs:annotation>
+							<xs:documentation>Время начала изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActTimeEnd" type="clt_ru:TimeCustType">
+						<xs:annotation>
+							<xs:documentation>Время окончания изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ResolutionInfo" type="adt_cat:ResolutionInfoType">
+						<xs:annotation>
+							<xs:documentation>Реквизиты Постановления об изъятии</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonStorDocs" type="adt_cat:RespSubjectType">
+						<xs:annotation>
+							<xs:documentation>Лицо, у которого обнаружены документы, либо его представитель</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherPersons" type="adt_cat:ResponsiblePersonType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Иные лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Specialist" type="adt_cat:ResponsiblePersonType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Специалист</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocsInfo" type="asdca:DocsInfoType">
+						<xs:annotation>
+							<xs:documentation>Изъятые документы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonsNotesInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Замечания, сделанные присутствующими лицами</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Applications" type="asdca:ApplicationsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Приложения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecondExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Копию Акта получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RefusalMark" type="adt_cat:RefusalMarkType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Отметка об отказе от подписания акта или неявки проверяемого лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006933E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApplicationsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о приложениях</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AppName" type="clt_ru:FreeText500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование приложения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="clt_ru:Count3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество листов/носителей информации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование единицы измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocsInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об изымаемых документах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DocsInfo" type="asdca:DocsType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Сведения об изымаемых документах</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="InventorySheetNumber" type="clt_ru:Count3Type">
+					<xs:annotation>
+						<xs:documentation>Количество листов описи</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="FixInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о применении способов фиксации (фото, киносъемка, видеозаписи и др.) и приложении указанных материалов к акту </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocsType">
+		<xs:annotation>
+			<xs:documentation>Изымаемые документы</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="DocsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Описание, индивидуальные признаки документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocsQuantity" type="clt_ru:Count3Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Количество документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

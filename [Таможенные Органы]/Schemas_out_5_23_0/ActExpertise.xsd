@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:acex="urn:customs.ru:Information:CustomsDocuments:ActExpertise:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActExpertise:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Акт экспертизы</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActExpertise" type="acex:ActExpertiseType" />
+  <xs:complexType name="ActExpertiseType">
+    <xs:annotation>
+      <xs:documentation>Акт экспертизы</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NameCommission" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Наименование комиссии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Authority" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование органа, назначившего экспертизу</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Production" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Представленные изделия (материалы)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Questions" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Поставленные вопросы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MethodExpertise" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Метод проведения экспертизы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Article" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Статья УПК РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChiefInspection" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Начальник государственной инспекции пробирного надзора</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ListCommission" type="cat_ru:PersonBaseType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Лист комиссии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Resolution" type="acex:DocumentType">
+            <xs:annotation>
+              <xs:documentation>Постановление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Receipt" type="acex:DocumentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Квитанция</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ResultsExamination" type="acex:ResultsExaminationType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Результат экспертизы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommissionSignature" type="cat_ru:PersonSignatureType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подпись комиссии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006104E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DocumentType">
+    <xs:annotation>
+      <xs:documentation>Описание предъявляемого документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер предъявляемого документа.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата предъявляемого документа.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResultsExaminationType">
+    <xs:annotation>
+      <xs:documentation>Результат экспертизы</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NameProduction" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование изделий (материалов)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество, шт.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WeighQuantity" type="clt_ru:WeighQuantityType">
+        <xs:annotation>
+          <xs:documentation>Масса, г</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameMetal" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование драгоценного металла (недрагметалла)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sample" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Проба</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

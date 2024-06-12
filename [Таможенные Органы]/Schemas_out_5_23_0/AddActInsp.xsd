@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:ATDcat="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" xmlns:aai="urn:customs.ru:Information:CustomsDocuments:AddActInsp:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:AddActInsp:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" schemaLocation="ATDCommon.xsd" />
+  <xs:annotation>
+    <xs:documentation>Дополнение/приложение к акту досмотра/осмотра/наблюдения/изменении СТИ</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AddActInsp" type="aai:AddActInspType">
+    <xs:annotation>
+      <xs:documentation>Дополнение/приложение к акту досмотра/осмотра/наблюдения/изменении СТИ</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AddActInspType">
+    <xs:annotation>
+      <xs:documentation>Дополнение/приложение к акту досмотра/осмотра/наблюдения/изменении СТИ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Act_ID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ATDNum" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="4">
+            <xs:annotation>
+              <xs:documentation>Комментарии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreviewInfo" type="ATDcat:PreviewInfoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о вложении</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006246E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+</xs:schema>

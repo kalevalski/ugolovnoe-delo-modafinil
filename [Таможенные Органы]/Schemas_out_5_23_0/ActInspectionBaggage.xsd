@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Решение Комиссии Таможенного союза от 20.05.2010 г. № 260 "О формах таможенных документов" 
+Акт таможенного досмотра (таможенного осмотра) товаров, перемещаемых через таможенную границу Евразийского экономического союза физическими лицами для личного пользования в сопровождаемом багаже-->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catESAD_ru="urn:customs.ru:RUCommonAggregateTypes:5.23.0" xmlns:aib="urn:customs.ru:Information:CustomsDocuments:ActInspectionBaggage:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActInspectionBaggage:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUCommonAggregateTypes:5.23.0" schemaLocation="RUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Акт таможенного досмотра (осмотра) товаров, перемещаемых через таможенную границу Евразийского экономического союза физическими лицами для личного пользования в сопровождаемом багаже.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActInspectionBaggage" type="aib:ActInspectionBaggageType">
+    <xs:annotation>
+      <xs:documentation>Акт таможенного досмотра (осмотра) товаров, перемещаемых через таможенную границу Евразийского экономического союза физическими лицами для личного пользования в сопровождаемом багаже.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ActInspectionBaggageType">
+    <xs:annotation>
+      <xs:documentation>Акт таможенного досмотра (осмотра) товаров, перемещаемых через таможенную границу Евразийского экономического союза физическими лицами для личного пользования в сопровождаемом багаже</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="SendDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата направления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ActNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Номер акта таможенного досмотра (осмотра)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ActType" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Типа акта: 0 - таможенный досмотр, 1 - таможенный осмотр (с применением ТСТК)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Direction" type="clt_ru:LetterIndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Направление перемещения: 1 - вывоз, 2 - ввоз</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BeginInspection" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время начала таможенного досмотра (осмотра)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndInspection" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время окончания таможенного досмотра (осмотра)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ATDCustomsPerson" type="catESAD_ru:ATDCustomPersonType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо  ТО, присутствовавшее при досмотре</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspectionParticipant" type="aib:InspectionParticipantType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Лицо, перемещающее товары / лицо, присутствующее при досмотре (осмотре)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FlagDeclarantAbsence" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак отсутствия декларанта: 0 - декларант отсутствует; 1- декларант присутствует</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Reason" type="aib:ReasonType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Причина проведения таможенного досмотра в отсутствие декларанта или иного лица, обладающего полномочиями в отношении товаров (их представителей) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DepartCountry" type="RUScat_ru:CountryDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Страна отправления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestinCountry" type="RUScat_ru:CountryDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Страна назначения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportModeCode" type="clt_ru:TransportModeCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида транспортного средства по классификатору видов транспорта и транспортировки товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="VoyageNumber" type="clt_ru:Text40Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер рейса</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspectionPlace" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Место проведения таможенного досмотра (осмотра) (ЗТК, помещение, каюта, купе и т.д.)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PassDeclaration" type="cat_ru:GTDIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер пассажирской декларации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspectionResults" type="aib:InspectionResultsType">
+            <xs:annotation>
+              <xs:documentation>Результаты таможенного досмотра (осмотра)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UseTMCC" type="aib:UseTMCCType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Применяемые технические средства таможенного контроля</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ApplicMarks" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Прилагаемые к акту этикетки, ярлыки и другие средства идентификации товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BillDoc" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Прилагаемые платежные документы, подтвеждающие приобретение и стоимость товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PhotoQuantity" type="clt_ru:Quantity5Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество фотографий, прилагаемых к Акту досмотра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FixInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о применении фото- (видео-) или аудиотехники</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndCompose" type="clt_ru:DateTimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата и время завершения составления АТДО</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sheets" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006042E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="GoodsType">
+    <xs:annotation>
+      <xs:documentation>Описание товара</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OffenseDescription" type="aib:OffenseGoodsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание выявленного нарушения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType">
+        <xs:annotation>
+          <xs:documentation>Количество товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LuggageDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание места багажа, его отличительные и идентификационные признаки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDamageFlag" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак повреждения товара и/или упаковки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DamageDesc" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание повреждения товаров и упаковки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InspectionParticipantType">
+    <xs:annotation>
+      <xs:documentation>Лицо, присутствующее при досмотре (осмотре)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="Status" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Статус или должность лица, присутствующего при досмотре (осмотре): 1 - лицо, перемещающее товары; 2 - декларант (иное лицо, уполномоченное в отношении товаров, либо представитель); 3 - эксперт; 4 - понятой</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Job" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место работы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место жительства и (или) временного пребывания на территории ЕАЭС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ParticipantDocs" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthoritesDocs" type="cat_ru:AuthoritesDocumentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, подтверждающий полномочия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ATDReceiveCopy" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак, подтверждающий факт получения второго экземпляра АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SecExempDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата получения второго экземпляра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SecExempTime" type="clt_ru:TimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Время получения второго экземпляра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignatureFlag" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак, подтверждающий факт подписи АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Заявление лица</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InspectionResultsType">
+    <xs:annotation>
+      <xs:documentation>Результаты таможенного досмотра (осмотра)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LuggagePlace" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Количество мест багажа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LuggageBruttoWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общий вес брутто багажа (кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TextAct" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Текст Акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsViolationFlag" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак выявления товаров, подлежащих описанию в АТДО: 0 - не выявлены; 1- выявлены</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InspGoods" type="aib:InspGoodsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о товарах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InspGoodsType">
+    <xs:annotation>
+      <xs:documentation>АТД - сведения о товарах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Общее количество наименований досматриваемых товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OffenseGoods" type="aib:GoodsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товары, отноительно которых выявлено нарушение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LawDocumentType">
+    <xs:annotation>
+      <xs:documentation>Cсылка на положения правовых актов </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="ArticleNumber" type="clt_ru:Text10Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Статья</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartNumber" type="clt_ru:Text10Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Часть</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClauseNumber" type="clt_ru:Text10Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Пункт</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OffenseGoodsType">
+    <xs:annotation>
+      <xs:documentation>Товары, относительно которых выявлены нарушения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OffenseIndicator" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Вид нарушения: 1 - количество/вес превышает установленные нормы для беспошлинного ввоза; 2- товар является (может являться) предметом административного нарушения/преступления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LawDocument" type="aib:LawDocumentType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Ссылка на положения правовых актов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReasonType">
+    <xs:annotation>
+      <xs:documentation>Причина проведения досмотра в отсутствие декларанта или иного лица </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ReasonText" type="clt_ru:FreeText500Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Причина проведения досмотра в отсутствие декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LawDocument" type="aib:LawDocumentType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Ссылки на таможенное законодательство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UseTMCCType">
+    <xs:annotation>
+      <xs:documentation>Применяемые технические средства таможенного контроля</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TSTKCode" type="clt_ru:CodeVariable4Type">
+        <xs:annotation>
+          <xs:documentation>Код применяемых ТСТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TSTK" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование ТСТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

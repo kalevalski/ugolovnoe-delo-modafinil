@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:ExchangeDocuments:AdditionalRegistrationNotif:5.22.0" version="5.22.0.0" xmlns:adrgn="urn:customs.ru:Information:ExchangeDocuments:AdditionalRegistrationNotif:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltExch_ru="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonLeafTypes:5.0.8" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonLeafTypes:5.0.8" schemaLocation="ExchangeCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Уведомление о регистрации дополнения к договору поручительства </xs:documentation>
+  </xs:annotation>
+  <xs:element name="AdditionalRegistrationNotif" type="adrgn:AdditionalRegistrationNotifType" />
+  <xs:complexType name="AdditionalRegistrationNotifType">
+    <xs:annotation>
+      <xs:documentation>Уведомление о регистрации дополнения к договору поручительства </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата формирования уведомления.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="GRN" type="cltExch_ru:GuaranteeNumType">
+            <xs:annotation>
+              <xs:documentation>Cсылочный номер гарантии в транзите </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="AdditionalID" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор, присваиваемый дополнению к договору поручительства при регистрации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdditionalNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Присвоенный номер дополнения к договору поручительства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1004093E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

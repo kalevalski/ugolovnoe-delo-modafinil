@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 14.02.2019 г. № 258 "Об утверждении форм документов, составляемых таможенными органами при проведении таможенных проверок,
+	порядков их заполнения и порядка внесения изменений в решение о проведении выездной таможенной проверки"
+	Приложение № 4 "Акт об отказе в доступе на объект проверяемого лица для проведения выездной  таможенной проверки"-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:adaa="urn:customs.ru:Information:CustomsAuditDocuments:ActDenialAccessAudit:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActDenialAccessAudit:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт об отказе в доступе на объект проверяемого лица для проведения выездной  таможенной проверки</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActDenialAccessAudit" type="adaa:ActDenialAccessAuditType">
+		<xs:annotation>
+			<xs:documentation>Акт об отказе в доступе на объект проверяемого лица для проведения выездной  таможенной проверки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActDenialAccessAuditType">
+		<xs:annotation>
+			<xs:documentation>Акт об отказе в доступе на объект проверяемого лица для проведения выездной  таможенной проверки</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="Customs" type="adt_cat:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, составивший Акт об отказе в доступе на объект</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActPlace" type="clt_ru:NameType">
+						<xs:annotation>
+							<xs:documentation>Место составления акта отказа в доступе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления акта об отказе в доступе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsPersonInfo" type="adaa:CustomsPersonInfoType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Должностные лица ТО, составившие и подписавшие акт</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuditOrganization" type="adt_cat:AuditOrganizationType">
+						<xs:annotation>
+							<xs:documentation>Сведения о проверяемом лице</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DecisionPerformAudit" type="adt_cat:NumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Решение о проведении выездной таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DeniedAccessRooms" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Наименование или иные сведения, идентифицирующие помещение и (или) территорию, к которым отказано в доступе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RoomsAddress" type="RUScat_ru:RUAddressType">
+						<xs:annotation>
+							<xs:documentation>Адрес территории или помещения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ListAttractedPersons" type="cat_ru:PersonSignatureType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Привлеченные должностные лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SuppresAndUnsealInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сведения о фактах пресечения сопротивления, вскрытия запертых помещений и др.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonsNotesInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Замечания, заявления, сделанные присутсвующими лицами</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuditOrganizationSignature" type="cat_ru:PersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Подпись проверяемого лица (представителя)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecondExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Копию акта (второй экземпляр акта) получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RefusalMark" type="adt_cat:RefusalMarkType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Отметка об отказе от подписания акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006911E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CustomsPersonInfoType">
+		<xs:annotation>
+			<xs:documentation>Таможенный орган, выпустивший документ,  начальник (заместитель) таможенного органа или уполномоченное им лицо</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ApproverPerson" type="cat_ru:PersonSignatureType">
+				<xs:annotation>
+					<xs:documentation>Подпись должностного или уполномоченного лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsAuthorizingOrder" type="adt_cat:CustomsOrderType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Уполномочивающий таможенный приказ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

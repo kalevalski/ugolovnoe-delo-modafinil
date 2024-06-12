@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Решение КТС от 20.05.2010 № 260 "О формах таможенных документов" 
+в ред. Решения Коллегии ЕЭК от 11.07.2017 № 84 "О внесении изменений в Решение Комиссии Таможенного союза от 20 мая 2010 г. N 260"-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:acip="urn:customs.ru:Information:CustomsAuditDocuments:ActCustomsInspPlace:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActCustomsInspPlace:5.23.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт таможенного осмотра помещений и территорий</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActCustomsInspPlace" type="acip:ActCustomsInspPlaceType">
+		<xs:annotation>
+			<xs:documentation>Акт таможенного осмотра помещений и территорий</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActCustomsInspPlaceType">
+		<xs:annotation>
+			<xs:documentation>Акт таможенного осмотра помещений и территорий</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="Customs" type="cat_ru:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Наименование таможенного органа, выпустившего Акт</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Date" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActNumber" type="clt_ru:DocumentNumberType">
+						<xs:annotation>
+							<xs:documentation>Номер акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BeginInspDate" type="clt_ru:DateTimeCustType">
+						<xs:annotation>
+							<xs:documentation>Дата и время начала осмотра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EndInspDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата и время окончания осмотра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsPerson" type="RUScat_ru:CustomsPersonDetails" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Должностное лицо, осуществившее осмотр</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocumentBase" type="cat_ru:DocumentBaseType">
+						<xs:annotation>
+							<xs:documentation>Сведения о предписании на проведение таможенного осмотра\ решении (предписании) о проведении выездной таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Owner" type="adt_cat:WitnessesType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Владелец помещений или его представитель</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Other" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Иные лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Specialist" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Специалист</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NamePlaceInfo" type="acip:NamePlaceInfoType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сведения об осматриваемых помещениях</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Actions" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Действия, совершенные должностными лицами таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FixInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сведения о применении способов фиксации (фото, киносъемка, видеозаписи и др.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Results" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Результат осмотра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Applications" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Прилагаемые к акту документы и материалы, имеющие значение, в том числе чертежи, схемы места осмотра, фото, таблицы и др.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SpecialMarks" type="acip:SpecialMarksType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Особые отметки (факты отказа в доступе на территорию (в помещения), пресечения сопротивления, вскрытия запертых помещений (с указанием даты и времени вскрытия), перерывы в проведении таможенного осмотра помещений и территорий на время убытия должностного лица (должностных лиц), проводящего такой осмотр, из помещения и (или) с территории (дата и время начала перерыва, дата и время возобновления таможенного осмотра помещений и территорий) и др.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonsNotesInfo" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Замечания, сделанные присутствующими лицами</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecondExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Копию акта (второй экземпляр акта) получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006942E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="NamePlaceInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об осматриваемых помещениях и территориях</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NamePlace" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование помещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressPlace" type="RUScat_ru:RUAddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес помещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpecialMarksType">
+		<xs:annotation>
+			<xs:documentation>Особые отметки (факты отказа в доступе на территорию (в помещения), пресечения сопротивления, вскрытия запертых помещений (с указанием даты и времени вскрытия), перерывы в проведении таможенного осмотра помещений и территорий на время убытия должностного лица (должностных лиц), проводящего такой осмотр, из помещения и (или) с территории (дата и время начала перерыва, дата и время возобновления таможенного осмотра помещений и территорий) и др.)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SpecialMarksText" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Особые отметки (факты отказа в доступе на территорию (в помещения), пресечения сопротивления и др.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpeningDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата вскрытия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpeningTime" type="clt_ru:TimeCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Время вскрытия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsInspBreak" type="acip:CustomsInspBreakType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Перерыв в проведении таможенного осмотра помещений и территорий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsInspBreakType">
+		<xs:annotation>
+			<xs:documentation>Перерыв в проведении таможенного осмотра помещений и территорий</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BreakBegin" type="clt_ru:DateTimeCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время начала перерыва</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BreakEnd" type="clt_ru:DateTimeCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата и время возобновления таможенного осмотра помещений и территорий</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

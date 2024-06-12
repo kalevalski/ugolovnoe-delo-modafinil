@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- ПП от ** № ** и Приказ МинФина РФ от ** № ** эксперимент  -->
+<xs:schema xmlns:aecmd="urn:customs.ru:Information:CustomsDocuments:Add_E_ComMPODeclaration:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:RUDECLcat="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:Add_E_ComMPODeclaration:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:RUDeclCommonAggregateTypesCust:5.23.0" schemaLocation="RUDeclCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Доп. сведения к декларации на товары на МПО</xs:documentation>
+  </xs:annotation>
+  <xs:element name="Add_E_ComMPODeclaration" type="aecmd:Add_E_ComMPODeclarationType">
+    <xs:annotation>
+      <xs:documentation>Доп. сведения к декларации на товары на МПО</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Add_E_ComMPODeclarationType">
+    <xs:annotation>
+      <xs:documentation>Доп. сведения к декларации на товары на МПО</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="EECEDocHeaderAddInfo" type="RUScat_ru:EECEDocHeaderAddInfoType">
+            <xs:annotation>
+              <xs:documentation>Дополнительные технологические реквизиты электронного документа (сведений)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsModeCode" type="cltESAD_cu:CustomsModeCodeType">
+            <xs:annotation>
+              <xs:documentation>Код таможенной процедуры в соответствии с классификатором видов таможенных процедур </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DT_Number" type="cat_ru:GTDIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер декларации на товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DT_GoodsDetails" type="aecmd:DT_GoodsDetailsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товарах ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DesignatedPostalOperator" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о назначенном операторе почтовой связи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomCode" type="cat_ru:CustomsType">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа, в регионе деятельности которого находится таможенный склад, расположенный в ММПО</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignatoryPerson" type="aecmd:SignatoryPersonDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, заполнившем (подписавшем) таможенный документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006296E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DT_GoodsDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах ДТ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DTGoodsNumeric" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара в ДТ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MPODetails" type="aecmd:MPODetailsType" maxOccurs="500">
+        <xs:annotation>
+          <xs:documentation>Сведения об МПО, в котором товар поступил на таможенную территорию ЕАЭС (на территорию Российской Федерации) / убывает при реэкспорте</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MPODetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о  МПО</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MPO_Number" type="clt_ru:Code13Type">
+        <xs:annotation>
+          <xs:documentation>Уникальный номер МПО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MPO_GoodsDetails" type="aecmd:MPO_GoodsDetailsType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о товарах МПО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MPO_GoodsDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарах МПО</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара в МПО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UINGoods" type="clt_ru:CodeVariable20Type" maxOccurs="500">
+        <xs:annotation>
+          <xs:documentation>УИН экземпляра товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Наименование товара, включая коммерческое, фирменное или иное традиционное наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SignatoryPersonDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о физическом лице, заполнившем (подписавшем) таможенный документ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SigningDetails" type="RUScat_ru:SigningDetailsType">
+        <xs:annotation>
+          <xs:documentation>Cведения о должностном лице, подписавшем документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SignatoryPersonIdentityDetails" type="RUDECLcat:SignatoryPersonIdentityDetailsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о документе, удостоверяющем личность лица, заполнившего (подписавшего) таможенный документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QualificationCertificate" type="clt_ru:CodeVariable6Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер квалификационного аттестата специалиста по таможенному оформлению</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PowerOfAttorneyDetails" type="catESAD_cu:DocBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Документ, удостоверяющий полномочия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

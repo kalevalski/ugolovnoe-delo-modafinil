@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActRegistrationMining:5.22.0" version="5.22.0.0" xmlns:arm="urn:customs.ru:Information:CustomsDocuments:ActRegistrationMining:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Акт регистрации объемов добычи (вылова) при выгрузке в порту (пункте выгрузки)/при перегрузке промысловым судном</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActRegistrationMining" type="arm:ActRegistrationMiningType" />
+  <xs:complexType name="ActRegistrationMiningType">
+    <xs:annotation>
+      <xs:documentation>Акт регистрации объемов добычи (вылова) при выгрузке в порту (пункте выгрузки)/при перегрузке промысловым судном.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NameManagement" type="clt_ru:Text50Type">
+            <xs:annotation>
+              <xs:documentation>Наименование пограничного управления береговой охраны (пограничного управления))</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateAct" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата составления акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StartDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата начала перегрузки/выгрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StartTime" type="clt_ru:TimeCustType">
+            <xs:annotation>
+              <xs:documentation>Время начала перегрузки/выгрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="EndDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата окончания перегрузки/выгрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="EndTime" type="clt_ru:TimeCustType">
+            <xs:annotation>
+              <xs:documentation>Время окончания перегрузки/выгрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OverloadUnloading" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Акт регистрации объемов добычи (вылова) при: 0 - выгрузке, 1 - перегрузке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="arm:RegistrationNumberType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExecutionPlace" type="cat_ru:AddressType">
+            <xs:annotation>
+              <xs:documentation>Место составления акта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Vessel" type="arm:VesselType">
+            <xs:annotation>
+              <xs:documentation>Сведение о передающем судне или судне, которого осуществляется выгрузка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ReceivingVessel" type="arm:VesselType">
+            <xs:annotation>
+              <xs:documentation>Сведения о принимающем судне</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="VesselExtracted" type="arm:VesselType">
+            <xs:annotation>
+              <xs:documentation>Сведения о судне, с которого добыто рыбное сырье и рыбопродукция</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="Registration" type="arm:RegistrationType">
+            <xs:annotation>
+              <xs:documentation>Регистрация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="InspectorSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись инспектора</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShipmasterSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись капитана судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="RegistrationDatabase" type="arm:RegistrationDatabaseType">
+            <xs:annotation>
+              <xs:documentation>Регистрация в базе данных</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1006105E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ProductListType">
+    <xs:annotation>
+      <xs:documentation>Лист зарегистрированной продукции</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="ProductType" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Вид продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Weigh" type="clt_ru:WeighQuantityType">
+        <xs:annotation>
+          <xs:documentation>Вес (нетто), кг</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ConversionFactor" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Коэффициент пересчета готовой продукции в сырец</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Объем использованного сырца, кг</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="AreaMining" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Район добычи (зона, подзона)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TimingExtraction" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Сроки добычи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MeasurementUnitTime" type="clt_ru:MeasureUnitQualifierNameType">
+        <xs:annotation>
+          <xs:documentation>Единица измерения срока добычи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="Consignee" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Грузополучатель (куда направлена или кому предназначена продукция)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationDatabaseType">
+    <xs:annotation>
+      <xs:documentation>Регистрация в базе данных</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransferMethod" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Способ передачи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateTransfer" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата передачи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeTransfer" type="clt_ru:TimeCustType">
+        <xs:annotation>
+          <xs:documentation>Время передачи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonSignature" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Подпись</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер акта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumberInspectors" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Персональный номер государственного инспектора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SerialNumber" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Регистрация</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StartDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата начала периода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата окончания периода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Action" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>В счет квот добычи (вылова) водных биоресурсов для осуществления: 1- промышленного рыболовства; 2- прибрежного рыболовства; 3-рыболовства в научно-исследовательских и контрольных целях в соответствии с разрешениями.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" name="Resolution" type="arm:ResolutionType">
+        <xs:annotation>
+          <xs:documentation>Разрешение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" name="ProductList" type="arm:ProductListType">
+        <xs:annotation>
+          <xs:documentation>Лист зарегистрированной продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResolutionType">
+    <xs:annotation>
+      <xs:documentation>Разрешение</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResolutionNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер разрешения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ResolutionDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата разрешения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Issued" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Кем выдано</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VesselType">
+    <xs:annotation>
+      <xs:documentation>Сведения о судне</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Type" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Тип судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NumberBoard" type="clt_ru:CodeVariable7Type">
+        <xs:annotation>
+          <xs:documentation>Бортовой номер судна</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Shipowner" type="cat_ru:OrganizationBaseType">
+        <xs:annotation>
+          <xs:documentation>Сведения о судовладельце</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

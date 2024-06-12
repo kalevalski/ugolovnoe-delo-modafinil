@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 14.02.2019 г. № 258 "Об утверждении форм документов, составляемых таможенными органами при проведении таможенных проверок, 
+порядков их заполнения и порядка внесения изменений в решение о проведении выездной таможенной проверки" 
+Приложение № 27 - Акт опечатывания помещений, складов, архивов и иных мест нахождения (хранения) документов и товаров, в отношении которых проводится выездная таможенная проверка -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:asr="urn:customs.ru:Information:CustomsAuditDocuments:ActSealingRooms:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActSealingRooms:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт опечатывания помещений, складов, архивов и иных мест нахождения (хранения) документов и товаров, в отношении которых проводится выездная таможенная проверка</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActSealingRooms" type="asr:ActSealingRoomsType">
+		<xs:annotation>
+			<xs:documentation>Акт опечатывания помещений, складов, архивов и иных мест нахождения (хранения) документов и товаров, в отношении которых проводится выездная таможенная проверка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActSealingRoomsType">
+		<xs:annotation>
+			<xs:documentation>Акт опечатывания помещений, складов, архивов и иных мест нахождения (хранения) документов и товаров, в отношении которых проводится выездная таможенная проверка</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="Customs" type="adt_cat:CustomsIssuedType">
+						<xs:annotation>
+							<xs:documentation>Наименование таможенного органа, выпустившего Акт</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления Акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActPlace" type="clt_ru:NameType">
+						<xs:annotation>
+							<xs:documentation>Место составления Акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DecisionPerformAudit" type="adt_cat:ResolutionInfoType">
+						<xs:annotation>
+							<xs:documentation>Реквизиты Решения о проведении выездной таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuditOrganization" type="adt_cat:AuditOrganizationType">
+						<xs:annotation>
+							<xs:documentation>Проверяемое лицо</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Owner" type="asr:OwnerType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Владелец помещений или его представитель</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Other" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Иные лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="NamePlaceInfo" type="asr:NamePlaceInfoType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сведения о помещениях, складах, архивах и иных местах нахождения (хранения) документов и товаров, в отношении которых производится выездная таможенная проверка</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Goods" type="cat_ru:GoodsBaseType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Товары, находящиеся в опечатанном помещении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Docs" type="asr:DocsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Документы, находящиеся в опечатанном помещении</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SealingDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата опечатывания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SealingTime" type="clt_ru:TimeCustType">
+						<xs:annotation>
+							<xs:documentation>Время опечатывания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SealingMethod" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Способ опечатывания (оттиски печати, пломбы, содержание оттиска)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Comment" type="clt_ru:FreeText500Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Замечания, заявления, сделанные при опечатывании</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CommentSignature" type="cat_ru:PersonSignatureType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Подпись лица, сделавшего замечание или заявление</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OwnersSignature" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Подпись проверяемого лица или его представитля</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustodyReceipt" type="cat_ru:PersonSignatureType">
+						<xs:annotation>
+							<xs:documentation>Расписка проверяемого лица или его представителя о принятии под охрану опечатанного помещения, иного места</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ResponsibilityMeasures" type="clt_ru:IndicatorType">
+						<xs:annotation>
+							<xs:documentation>С мерами ответственности за вскрытие помещения, иного опечатанного места ознакомлен</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006915E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="DocsType">
+		<xs:annotation>
+			<xs:documentation>Возвращаемые документы</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="DocsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Описание, индивидуальные признаки документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocsQuantity" type="clt_ru:Count3Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Количество документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NamePlaceInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об опечатываемом помещении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NamePlace" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование помещений, складов, архивов и иных мест нахождения (хранения) документов и товаров, в отношении которых производится выездная таможенная проверка</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressPlace" type="RUScat_ru:RUAddressType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес помещения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OwnerType">
+		<xs:annotation>
+			<xs:documentation>Сведения о владельце помещения</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="adt_cat:WitnessesType">
+				<xs:sequence>
+					<xs:element name="AuthoritesDocument" type="cat_ru:AuthoritesDocumentType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Документ, подтверждающий полномочия</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

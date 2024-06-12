@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 05.02.2019 г. № 180 "Об утверждении Порядка изъятия таможенных, транспортных (перевозочных), коммерческих и иных документов, средств идентификации таких документов и товаров для проведения таможенной экспертизы и формы акта об изъятии таможенных, транспортных (перевозочных), коммерческих и иных документов, средств идентификации таких документов и товаров для проведения таможенной экспертизы" -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:asd="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureDocs:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ActSeizureDocs:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Акт об изъятии таможенных, транспортных (перевозочных), коммерческих и иных документов, средств идентификации таких документов и товаров для проведения таможенной экспертизы</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ActSeizureDocs" type="asd:ActSeizureDocsType">
+		<xs:annotation>
+			<xs:documentation>Акт об изъятии таможенных, транспортных (перевозочных), коммерческих и иных документов, средств идентификации таких документов и товаров для проведения таможенной экспертизы</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ActSeizureDocsType">
+		<xs:annotation>
+			<xs:documentation>Акт об изъятии таможенных, транспортных (перевозочных), коммерческих и иных документов, средств идентификации таких документов и товаров для проведения таможенной экспертизы</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="CustomActArresting" type="adt_cat:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, производящий изъятие документов и средств идентификации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActRegNumber" type="cat_ru:GTDID6Type">
+						<xs:annotation>
+							<xs:documentation>Номер акта</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления акта изъятия</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTInfo" type="asd:DTInfoType">
+						<xs:annotation>
+							<xs:documentation>Реквизиты ДТ или иного документа, используемого в качестве таможенной декларации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DecisionNumber" type="asd:DecisionNumberType">
+						<xs:annotation>
+							<xs:documentation>Номер Решения о назначении таможенной экспертизы / исследования</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InitiatorDecision" type="asd:InitiatorDecisionType">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, вынесший Решение о назначении таможенной экспертизы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="InspectorInfo" type="asd:CustPersonType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация об инспекторе, принявшем Решение о назначении таможенной экспертизы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonStorDocs" type="RUScat_ru:SubjectBaseDetailsType">
+						<xs:annotation>
+							<xs:documentation>Лицо, у которого изымаются документы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RespSubject" type="asd:RespSubjectType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о лице, в присутствии которого произведено изъятие документов и (или) средств идентификации (включая дату получения копии акта)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Witnesses" type="adt_cat:WitnessesType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Понятые</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PlaceSeizureDocs" type="RUScat_ru:SubjectDetailsType">
+						<xs:annotation>
+							<xs:documentation>Место изъятия документов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocsInfo" type="asd:DocsInfoType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Изъятые документы и (или) средства идентификации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Package" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Описание упаковки и наименование средства идентификации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonsNotesInfo" type="asd:PersonsNotesInfoType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Присутствующие (участвующие) лица (с указанием заявления и (или) замечания, если есть)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustPerson" type="asd:CustPersonType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Должностное лицо таможенного органа, составившее акт</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Экземпляр акта получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006914E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CustPersonType">
+		<xs:annotation>
+			<xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:PersonBaseType">
+				<xs:sequence>
+					<xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>ЛНП инспектора</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код таможенного органа, указанный на оттиске ЛНП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Phone" type="clt_ru:PhoneNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер служебного телефона</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DecisionNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер решения</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:GTDID6Type">
+				<xs:sequence>
+					<xs:element name="ExpertisePoint" type="clt_ru:Code2Type">
+						<xs:annotation>
+							<xs:documentation>Момент назначения экспертизы (ДВ - до выпуска ДТ, ПВ - после выпуска ДТ) </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocsInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения об изымаемых документах и (или) средств идентификации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Position" type="clt_ru:Count5Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер строки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RefListNumeric" type="clt_ru:Count5Type">
+				<xs:annotation>
+					<xs:documentation>Номер товара по порядку в исходном документе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentName" type="clt_ru:DocumentNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование документа или средства идентификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrDocumentDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание средства идентификации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SheetQuantity" type="clt_ru:SheetNumberType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество листов изъятого документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTInfoType">
+		<xs:annotation>
+			<xs:documentation>Реквизиты ДТ или иного документа, используемого в качестве таможенной декларации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DTNumberInfo" type="asd:DTNumberInfoType">
+					<xs:annotation>
+						<xs:documentation>Реквизиты таможенной декларации</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OtherDocument" type="cat_ru:DocumentBaseType">
+					<xs:annotation>
+						<xs:documentation>Реквизиты иного документа, используемого в качестве таможенной декларации</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTNumberInfoType">
+		<xs:annotation>
+			<xs:documentation>Реквизиты таможенной декларации</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:GTDIDType">
+				<xs:annotation>
+					<xs:documentation>Номер ДТ</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="DeclarationKind" type="cltESAD_cu:CustomsDeclarationKindType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Вид таможенной декларации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GTDDocumentID" type="clt_ru:DocumentIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Уникальный идентификатор ДТ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="InitiatorDecisionType">
+		<xs:annotation>
+			<xs:documentation>Сведения об инициаторе таможенной экспертизы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа инициатора таможенной экспертизы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Наименование таможенного органа инициатора таможенной экспертизы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Address" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Адрес таможенного органа инициатора таможенной экспертизы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonsNotesInfoType">
+		<xs:annotation>
+			<xs:documentation>Заявления, замечания присутствующих лиц</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:PersonBaseType">
+				<xs:sequence>
+					<xs:element name="Notes" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Содержание заявления или замечания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Proposal" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Предложение</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RespSubjectType">
+		<xs:annotation>
+			<xs:documentation>Сведения о лице, в присутствии которого произведено изъятие документов и (или) средств идентификации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ResponsiblePerson" type="cat_ru:PersonBaseType">
+				<xs:annotation>
+					<xs:documentation>Лицо, уполномоченное в отношении товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AuthoritesDocument" type="cat_ru:AuthoritesDocumentType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий полномочия</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Date" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата получения копии акта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

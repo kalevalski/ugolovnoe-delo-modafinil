@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:aogsn="urn:customs.ru:Information:CustomsAuditDocuments:AdministrativeOffenseGoodsSeizureNotice:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:AdministrativeOffenseGoodsSeizureNotice:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Уведомление о совершении таможенных операций в отношении изъятых (арестованных) по делу об административном правонарушении товаров</xs:documentation>
+	</xs:annotation>
+	<xs:element name="AdministrativeOffenseGoodsSeizureNotice" type="aogsn:AdministrativeOffenseGoodsSeizureNoticeType">
+		<xs:annotation>
+			<xs:documentation>Уведомление о совершении таможенных операций в отношении изъятых (арестованных) по делу об административном правонарушении товаров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AdministrativeOffenseGoodsSeizureNoticeType">
+		<xs:annotation>
+			<xs:documentation>Уведомление о совершении таможенных операций в отношении изъятых (арестованных) по делу об административном правонарушении товаров</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="DocumentDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата составления документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsPerson" type="aogsn:CustomsPersonType">
+						<xs:annotation>
+							<xs:documentation>Должностное лицо таможенного органа, составившее документ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OffenceCaseInfo" type="aogsn:OffenceCaseInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения по делу об АП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Offender" type="aogsn:OffenderType">
+						<xs:annotation>
+							<xs:documentation>Субъект АП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocumentDecision" type="aogsn:DocumentDecisionType">
+						<xs:annotation>
+							<xs:documentation>Постановление (решение) по делу об АП</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DocumentSeized" type="aogsn:DocumentSeizedType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Протоколы изъятия (ареста) товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Owner" type="aogsn:OwnerOrKeeperType">
+						<xs:annotation>
+							<xs:documentation>Владелец изъятых (арестованных) товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Keeper" type="aogsn:OwnerOrKeeperType">
+						<xs:annotation>
+							<xs:documentation>Хранитель изъятых (арестованных) товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006938E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AKArticlesPartType">
+		<xs:annotation>
+			<xs:documentation>Cведения о части статьи Кодекса РФ об административных правонарушениях </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NpaArticlePart" type="clt_ru:Text10Type">
+				<xs:annotation>
+					<xs:documentation>Номер части статьи КоАП РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsMain" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак основной части (0/false - нет, 1/true - да) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsPersonType">
+		<xs:annotation>
+			<xs:documentation>Должностное лицо таможенного органа, вынесшее определение по делу об АП</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:PersonBaseType">
+				<xs:sequence>
+					<xs:element name="PersonCodePost" type="clt_ru:Text50Type">
+						<xs:annotation>
+							<xs:documentation>Идентификатор должности по классификатору ФТС России</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsSubUnit" type="clt_ru:Text150Type">
+						<xs:annotation>
+							<xs:documentation>Наименование подразделения таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+						<xs:annotation>
+							<xs:documentation>Код таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsFullName" type="clt_ru:FreeText250Type">
+						<xs:annotation>
+							<xs:documentation>Наименование таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsAddress" type="RUScat_ru:RUAddressType">
+						<xs:annotation>
+							<xs:documentation>Адрес таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DocumentDecisionType">
+		<xs:annotation>
+			<xs:documentation>Постановление (решение) по делу об АП</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Date" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата постановления (решения) по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeCode" type="clt_ru:DocumentIDType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор вида постановления (решения) по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeName" type="clt_ru:FreeText500Type">
+				<xs:annotation>
+					<xs:documentation>Наименование постановления (решения) по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Authority" type="clt_ru:FreeText500Type">
+				<xs:annotation>
+					<xs:documentation>Наименование органа вынесшего постановление (решение) по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentSeizedType">
+		<xs:annotation>
+			<xs:documentation>Протоколы изъятия (ареста) товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Date" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeCode" type="clt_ru:DocumentIDType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор вида протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeName" type="clt_ru:FreeText500Type">
+				<xs:annotation>
+					<xs:documentation>Наименование вида протокола</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KoAPArticleType">
+		<xs:annotation>
+			<xs:documentation>Состав АП</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NpaArticle" type="clt_ru:Text10Type">
+				<xs:annotation>
+					<xs:documentation>Номер статьи КоАП РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsMain" type="clt_ru:IndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак основной статьи (0/false - нет, 1/true - да) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NpaArticleParts" type="aogsn:AKArticlesPartType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Номера частей статьи КоАП РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OffenceCaseInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения по делу об АП</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CaseID" type="clt_ru:DocumentIDType">
+				<xs:annotation>
+					<xs:documentation>Уникальный идентификатор дела об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CaseRegNumber" type="clt_ru:DocumentNumberType">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер дела об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CaseRegDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации дела об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CaseCustomsCode" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа, ведущего производство по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CaseCustomsFullName" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Полное наименование таможенного органа, ведущего производство по делу об АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KoAPArticle" type="aogsn:KoAPArticleType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Состав АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OffenderType">
+		<xs:annotation>
+			<xs:documentation>Субъект АП</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="clt_ru:Numeric1Type">
+				<xs:annotation>
+					<xs:documentation>Тип субъекта АП: «1» - юридическое лицо; «2» - физическое лицо; «3» - индивидуальный предприниматель; «4» - должностное лицо</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganizationName" type="clt_ru:FreeText500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Субъект АП. Наименование ЮЛ. (для Type=1,3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Person" type="aogsn:PersonType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Субъект АП. Сведения о ФЛ.  (для Type=2,3,4)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="INN" type="clt_ru:INNIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ИНН субъекта АП в РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KPP" type="clt_ru:KPPCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>КПП субъекта АП в РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OGRN" type="clt_ru:OGRNIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ОГРН (НЗА, ОГРНИП) субъекта АП в РФ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RN" type="clt_ru:Text50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер субъекта АП в стране регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NN" type="clt_ru:Text50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Налоговый номер субъекта АП в стране регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegPlace" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место регистрации субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код страны принадлежности субъекта АП по Общероссийскому классификатору стран мира</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OwnerOrKeeperType">
+		<xs:annotation>
+			<xs:documentation>Владелец сведений (документов)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="aogsn:OffenderType">
+				<xs:sequence>
+					<xs:element name="Address" type="RUScat_ru:RUAddressType">
+						<xs:annotation>
+							<xs:documentation>Адрес регистрации (местонахождения)/ Адрес хранения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PersonType">
+		<xs:annotation>
+			<xs:documentation>Физическое лицо - субъект АП</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Surname" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Фамилия субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="clt_ru:NameType">
+				<xs:annotation>
+					<xs:documentation>Имя субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MiddleName" type="clt_ru:NameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Отчество субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BirthDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата рождения субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BirthPlace" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Место рождения субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Gender" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Пол субъекта АП</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

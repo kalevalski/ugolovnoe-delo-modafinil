@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:ATDcat="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" xmlns:aip="urn:customs.ru:Information:CustomsDocuments:ActInspPhoto:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ActInspPhoto:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" schemaLocation="ATDCommon.xsd" />
+  <xs:annotation>
+    <xs:documentation>Изображение к акту досмотра/осмотра</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ActInspPhoto" type="aip:ActInspPhotoType" />
+  <xs:complexType name="ActInspPhotoType">
+    <xs:annotation>
+      <xs:documentation>Изображение к акту досмотра/осмотра</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Act_ID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ATDNum" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер АТД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustDocNumber" type="aip:CustDocNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер таможенного документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreviewInfo" type="aip:InfoPhotoType">
+            <xs:annotation>
+              <xs:documentation>Информация о вложении</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006247E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="Text99MB">
+    <xs:annotation>
+      <xs:documentation>Строка в кодировке BASE64 до 99Мб</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="103809024" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CustDocNumberType">
+    <xs:annotation>
+      <xs:documentation>Номер таможенного документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Тип документа: 0 - уведомление о прибытии на таможенную территорию, 1 - транзитная декларация, 2 - книжка МДП , 3 - номер ДО-1/описи, 4 - ДТ, 5- уведомление об убытии, 9 - иной документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="GTDID" type="cat_ru:GTDIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Номер документа из 3ех секций</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DocNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Произвольный номер документа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InfoPhotoType">
+    <xs:annotation>
+      <xs:documentation>Изображение и информация о нем</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ATDcat:PreviewInfoType">
+        <xs:sequence>
+          <xs:element name="Image" type="aip:Text99MB" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Данные в кодировке base64 </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

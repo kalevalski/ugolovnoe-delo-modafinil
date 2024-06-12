@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:addcrr="urn:customs.ru:Information:ExchangeDocuments:AddCustomerRegRefusal:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltExch_ru="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonLeafTypes:5.0.8" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:ExchangeDocuments:AddCustomerRegRefusal:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonLeafTypes:5.0.8" schemaLocation="ExchangeCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отказ в принятии дополнения к договору поручительства должностным лицом.</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AddCustomerRegRefusal" type="addcrr:AddCustomerRegRefusalType" />
+  <xs:complexType name="AddCustomerRegRefusalType">
+    <xs:annotation>
+      <xs:documentation>Отказ в принятии дополнения к договору поручительства должностным лицом.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RefusalDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата принятия решения об отказе.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestinationCustoms" type="cat_ru:CUCustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган назначения.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:CustomsPersonType">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RefuseReason" type="addcrr:RefuseReasonType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Причины отказа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdditionalNumber" type="addcrr:AdditionalRegistrationType">
+            <xs:annotation>
+              <xs:documentation>Дополнение к договору поручительства </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1004103E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AdditionalRegistrationType">
+    <xs:annotation>
+      <xs:documentation>Дополнение к договору поручительства </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GRN" type="cltExch_ru:GuaranteeNumType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cсылочный номер гарантии в транзите </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdditionalID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Уникальный идентификатор, присваиваемый дополнению к договору поручительства при регистрации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdditionalNumber" type="cat_ru:GTDIDType">
+        <xs:annotation>
+          <xs:documentation>Присвоенный номер дополнения к договору поручительства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="RefuseReasonType">
+    <xs:annotation>
+      <xs:documentation>Причины отказа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RefusalReasonCode" type="cltExch_ru:ResultCodeType">
+        <xs:annotation>
+          <xs:documentation>Код причины отказа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RefusalReasonDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание причины отказа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
