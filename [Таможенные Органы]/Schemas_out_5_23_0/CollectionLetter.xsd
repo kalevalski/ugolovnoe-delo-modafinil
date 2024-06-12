@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:col="urn:customs.ru:Information:CommercialFinanceDocuments:CollectionLetter:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:CollectionLetter:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Инкассовое поручение</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CollectionLetter" type="col:CollectionLetterType" />
+  <xs:complexType name="CollectionLetterType">
+    <xs:annotation>
+      <xs:documentation>Инкассовое поручение</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="PaymentModeCode" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Код вида платежа (0 - не заполнено, 1 - электронно, 2 - почтой, 3 - телеграфом)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PaymentAmount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Сумма</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransactionKind" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Вид операции. Фиксированное значение "01"</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Priority" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Очередность платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReceiptDateCollectBank" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата представления документов получателем в обслуживающий его банк</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReceiptDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата поступления расчетного документа в банк плательщика. Заполняется при платежах клиента кредитной организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChargeOffDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата списания денежных средств со счета плательщика. Заполняется при платежах клиента кредитной организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Purpose" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Назначение платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ValueSpelledOut" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Сумма прописью</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinCardDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата помещения в картотеку</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentReference" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Payer" type="col:PayerType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты плательщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Payee" type="catComFin_ru:PayCustomerType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты получателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DepartmentalInfo" type="col:DepartmentalDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Ведомственная информация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentSign" type="cat_ru:PersonSignatureType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подписи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RecipBankMark" type="catComFin_ru:BankMarkType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Отметки банка получателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PayBankMark" type="catComFin_ru:BankMarkType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Отметки банка плательщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartPayment" type="catComFin_ru:PartPaymentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о частичном платеже</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002002E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DepartmentalDetailsType">
+    <xs:annotation>
+      <xs:documentation>Ведомственная информация по инкассовому поручению</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catComFin_ru:DepartmentalInfoType">
+        <xs:sequence>
+          <xs:element name="UniqueID" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор платежа/начисления (графа Код)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PayerType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты плательщика</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catComFin_ru:PayCustomerType">
+        <xs:sequence>
+          <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

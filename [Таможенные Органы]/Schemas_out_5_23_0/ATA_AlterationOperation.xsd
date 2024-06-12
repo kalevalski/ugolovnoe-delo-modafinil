@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_ao="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationOperation:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationOperation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Корректировка информации по операции карнета АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_AlterationOperation" type="ata_ao:ATA_AlterationOperationType">
+    <xs:annotation>
+      <xs:documentation>Корректировка информации по операции карнета АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_AlterationOperationType">
+    <xs:annotation>
+      <xs:documentation>Корректировка информации по операции карнета АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:annotation>
+            <xs:documentation>Таможенный орган, запросивший внесение изменений</xs:documentation>
+          </xs:annotation>
+          <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время внесения изменений</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlterationOperation" type="ata_ct:DocumentBodyType">
+            <xs:annotation>
+              <xs:documentation>Измененная операция карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationType" type="ata_ct:OperationType">
+            <xs:annotation>
+              <xs:documentation>Тип операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomRequested" type="clt_ru:CustomsCodeType">
+            <xs:annotation>
+              <xs:documentation>Код ТО, запросивший корректировку операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Blocked" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Признак блокировки изменяемой операции. 0 - Блокировка отсутствует. 1 - Наложена блокировка на операцию</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003438E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

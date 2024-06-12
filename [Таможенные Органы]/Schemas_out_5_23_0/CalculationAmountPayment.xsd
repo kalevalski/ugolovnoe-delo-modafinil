@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ccp="urn:customs.ru:Information:CustomsDocuments:CalculationAmountPayment:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:CalculationAmountPayment:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Расчет размера обеспечения уплаты таможенных платежей</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CalculationAmountPayment" type="ccp:CalculationAmountPaymentType" />
+  <xs:complexType name="CalculationAmountPaymentType">
+    <xs:annotation>
+      <xs:documentation>Расчет размера обеспечения уплаты таможенных платежей</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NumberSheet" type="clt_ru:CodeVariable3Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер листа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Total" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Итого: размер обеспечения по ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Quantity" type="clt_ru:Quantity8Type">
+            <xs:annotation>
+              <xs:documentation>Количество товаров, в отношении которых требуется обеспечение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DescriptionGoods" type="ccp:DescriptionGoodsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товаре</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GTDID" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер  ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPersonSignature" type="cat_ru:CustomsPersonType">
+            <xs:annotation>
+              <xs:documentation>Подпись должностного лица таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006024E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AmountDuesCalculationType">
+    <xs:annotation>
+      <xs:documentation>Расчет суммы таможенных пошлин и сборов, уплаченных декларантом</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CUCustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа  по классификатору видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AmountDues" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма таможенных пошлин и сборов, уплаченных декларантом (в соответствии с гр. 47 ДТ)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CalculationType">
+    <xs:annotation>
+      <xs:documentation>Расчет размера обеспечения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CUCustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа  по классификатору видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxBase" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Основа начисления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxBaseCurrencyCode" type="clt_ru:CurrencyN3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Цифровой код валюты основы начисления (адвалорная ставка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Rate" type="cltESAD_cu:RateType">
+        <xs:annotation>
+          <xs:documentation>Ставка.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RateTypeCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вид ставки (адвалорная -"%", специфическая - "*")</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RateCurrencyCode" type="clt_ru:CurrencyN3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Цифровой код валюты ставки (специфическая ставка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WeightingFactor" type="cltESAD_cu:WeightingFactorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Весовой коэффициент единицы измерения (специфическая ставка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RateTNVEDQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код единицы измерения ставки (специфическая ставка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Amount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DescriptionGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование (торговое, коммерческое или иное традиционное наименование) товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара, нетто (кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetWeightQuantity2" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара, нетто без учета всех видов упаковки (кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара, брутто (кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsCost" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Корректировка/таможенная стоимость товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OriginCountryName" type="clt_ru:CountryNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Краткое наименование страны происхождения / экономического союза.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Кода страны происхождения.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Position" type="clt_ru:CodeVariable3Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара, в отношении которого производится расчет размера обеспечения уплаты таможенных платежей</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AllQuantityGoods" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Общее количество товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SourceInformation" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Источники информации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReasonCalculationPayment" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Основа для расчета размера обеспечения (в рублях)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCustomsPayment" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Итоговый размер обеспечения уплаты таможенных платежей.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCustomsDues" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Итоговую сумму таможенных пошлин и сборов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalPaymentGoods" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Итоговый размер обеспечения уплаты таможенных платежей в отношении данного товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Calculation" type="ccp:CalculationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Расчет размера обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsGroupDescription" type="catESAD_cu:GoodsGroupDescriptionType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание и характеристика товаров / Описание группы товаров одного наименования с отличающимися от других групп характеристиками</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AmountDuesCalculation" type="ccp:AmountDuesCalculationType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Расчет суммы таможенных пошлин и сборов, уплаченных декларантом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cmo="urn:customs.ru:Information:CommercialFinanceDocuments:ContractMonetary:5.22.0" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:ContractMonetary:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" schemaLocation="CommercialFinanceCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Валютный контракт, принятый на учет уполномоченным банком</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ContractMonetary" type="cmo:ContractMonetaryType">
+    <xs:annotation>
+      <xs:documentation>Валютный контракт, принятый на учет уполномоченным банком</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ContractMonetaryType">
+    <xs:annotation>
+      <xs:documentation>Валютный контракт, принятый на учет уполномоченным банком</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Date" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата поставновки контракта на учет</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BankName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Полное или сокращенное фирменное название уполномоченного банка (филиала уполномоченного банка), принявшего на учет контракт и присвоившего ему уникальный номер</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PSNumber" type="cmo:RegNumberType">
+            <xs:annotation>
+              <xs:documentation>Уникальный номер контракта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ResidentInfo" type="cmo:ResidentInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о резиденте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NonresidentInfo" type="cmo:NonresidentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Реквизиты нерезидента</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommonContractInfo" type="cmo:ContractTermsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Общие сведения о контракте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdditionalInfo" type="cmo:AdditionalInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о постановке на учет, переводе и снятии с учета контракта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UpdatingInfo" type="cmo:UpdatingInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о внесении изменений в учетную информацию о контракте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreviousPSNumber" type="cmo:RegNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный номер, ранее присвоенный контракту</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GrantResident" type="cmo:GrantResidentType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о резиденте, которому уступаются требования </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002031E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AdditionalInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о постановке на учет, переводе и снятии с учета контракта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Number" type="clt_ru:CodeVariable2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BankRegistrationNumber" type="clt_ru:Code4Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер уполномоченного банка, территориального учреждения Банка России, принявшего на учет контракт и присвоившего ему уникальный номер (принявшего на обслуживание контракт)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AffilianceRegistrationNumber" type="clt_ru:Code4Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер филиала банка, принявшего на учет контракт и присвоившего ему уникальный номер (принявшего на обслуживание контракт)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransferDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата принятия контракта на обслуживание при его переводе из другого уполномоченного банка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ClosingDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата снятия с учета контракта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ClosingReasons" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Основание снятия с учета контракта </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContractTermsType">
+    <xs:annotation>
+      <xs:documentation>Общие сведения о контракте</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Number" type="cltComFin_ru:Text100Type">
+        <xs:annotation>
+          <xs:documentation>Номер контракта / "БН"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MostLaterDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Наиболее поздняя по сроку дата (дата подписания контракта, дата вступления его в силу, дата составления)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyName" type="clt_ru:CurrencyNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование валюты контракта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты контракта alpha-3</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContractSum" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общая сумма обязательства, предусмотренная контрактом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NonContractSum" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cимвол "БС" (указывается в случае отсутствия информации для заполнения графы общая сумма)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompletionDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата завершения исполнения всех обязательств по контракту</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NonresidentType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты нерезидента (нерезидентов)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование нерезидента по контрактному договору</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryCode" type="clt_ru:CountryA2CodeType">
+        <xs:annotation>
+          <xs:documentation>Код страны alpha-2</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryName" type="clt_ru:CountryNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование страны места нахождения / места жительства.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegNumberType">
+    <xs:annotation>
+      <xs:documentation>Уникальный номер контракта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegistrationPeriod" type="clt_ru:MonthYearType">
+        <xs:annotation>
+          <xs:documentation>Период в котором оформлен контракт (gg - год, mm - номер месяца).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PSSerialNumber" type="clt_ru:Code4Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер контракта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BankRegistrationNumber" type="clt_ru:Code4Type">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер уполномоченного банка в соответствии с Книгой государственной регистрации кредитных организаций (КГРКО)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AffiliateSerialNumber" type="clt_ru:Code4Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер уполномоченного банка в соответствии с КГРКО / (GU(Код ОКАТО))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContractCode" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Код вида контракта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResidentSign" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак резидента, оформившего контракт</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResidentInfoType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты резидента</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:RUOrganizationBaseType">
+        <xs:sequence>
+          <xs:element name="RUAddress" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ORGNDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата внесения записи в государственный реестр</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GrantResidentType">
+    <xs:annotation>
+      <xs:documentation>Сведения о резиденте, которому уступаются требования </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cmo:ResidentInfoType">
+        <xs:sequence>
+          <xs:element name="DocGrant" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Документ, подтверждающий уступку требования или перевод долга по контракту</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UpdatingInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о внесении изменений в учетную информацию о контракте</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Number" type="clt_ru:CodeVariable10Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер записи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Restructuring" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата внесения изменений в учетную информацию о контракте </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReasonsDocuments" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о документе, на основании которого внесены изменения в учетную информацию о контракте</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

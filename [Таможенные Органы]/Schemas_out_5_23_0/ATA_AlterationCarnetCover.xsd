@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_acc="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationCarnetCover:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationCarnetCover:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Корректировка обложки карнета АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_AlterationCarnetCover" type="ata_acc:ATA_AlterationCarnetCoverType">
+    <xs:annotation>
+      <xs:documentation>Корректировка обложки карнета АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_AlterationCarnetCoverType">
+    <xs:annotation>
+      <xs:documentation>Корректировка обложки карнета АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время внесения изменений</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlterationCarnetCover" type="ata_ct:DocumentBodyType">
+            <xs:annotation>
+              <xs:documentation>Измененная обложка карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlterationMode" type="ata_ct:Count2Type" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Этап внесения изменений в обложку карнета АТА: 1 - до выпуска, 2 - после выпуска</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreviousCarnetNumber" type="ata_ct:ATACarnetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер предыдущего карнета АТА. Заполняется в случае корректировки номера карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003437E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

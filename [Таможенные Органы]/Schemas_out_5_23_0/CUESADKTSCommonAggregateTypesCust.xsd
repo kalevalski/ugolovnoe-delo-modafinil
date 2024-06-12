@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:CUEKTSCommonAggregateTypes:5.22.0" version="5.22.0.0" xmlns:catEKTS_cu="urn:customs.ru:CUEKTSCommonAggregateTypes:5.22.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>КТС. Общие сложные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="Adjustment2TypeCodeType">
+    <xs:annotation>
+      <xs:documentation>Тип корректировки - блок 2</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BasisCalculating" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак корректировки основы для расчета таможенной стоимости товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddAccrual" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак корректировки дополнительных начислений к основе для расчета таможенной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак корректировки величины затрат, разрешенных к вычету из основы для расчета таможенной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasisCompilationKTS" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак обстоятельств, послуживших основанием для составления КТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CUKTSCustomsPaymentCalculationType">
+    <xs:annotation>
+      <xs:documentation>КТС. Исчисление таможенных платежей</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catESAD_cu:CUCustomsPaymentCalculationType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PrecedingPaymentAmount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Предыдущая сумма платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ChangeAmount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Изменение </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="PrecedingPaymentCurrencyCode" type="clt_ru:CurrencyN3CodeType">
+            <xs:annotation>
+              <xs:documentation>Код валюты предыдущей суммы платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="PaymentDocument" type="catEKTS_cu:KTSPaymentDocumentType">
+            <xs:annotation>
+              <xs:documentation>Платежный документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="KTSContractTermsType">
+    <xs:annotation>
+      <xs:documentation>КТС - Сведения об  условиях поставки, валюте и общей стоимости. (гр. 20, 22, 23, 24)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catESAD_cu:ContractCostType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DealFeatureCode" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Код особенности сделки (договора). В соответствии с классификатором особенности внешнеэкономической сделки, используемым в государствах-членах Таможенного союза. Гр. 24 ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DealNatureCode" type="cltESAD_cu:DealNatureCodeType">
+            <xs:annotation>
+              <xs:documentation>Код характера сделки с декларируемыми товарами в соответствии с классификатором характера сделки, используемым в государствах-членах Таможенного союза. Гр.24 ДТ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="DeliveryTerms" type="cat_ru:DeliveryTermsType">
+            <xs:annotation>
+              <xs:documentation>Условие поставки товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="KTSGoodsItemType">
+    <xs:annotation>
+      <xs:documentation>КТС. Сведения о корректируемом товаре</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catESAD_cu:CUESADGoodsItemType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GoodsSerialNumber" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер товара в КТС для РБ и РК</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Adjustment1TypeCode" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Тип корректировки - блок 1</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Adjustment3TypeCode" type="clt_ru:LetterIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Тип корректировки - блок 3</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="AdditionalSheetNumber" type="clt_ru:SheetNumberType">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер добавочного листа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SheetPartNumeric" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Часть листа (1-2) для РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreviousCustomsCost" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Предыдущее значение таможенной стоимости.гр 45 правый подраздел</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="TotalCorrectedCost" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма ТП, подлеж. взысканию/возврату по товару</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="KTSKind" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Тип КТС (1-2) для РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Adjustment2TypeCode" type="catEKTS_cu:Adjustment2TypeCodeType">
+            <xs:annotation>
+              <xs:documentation>Тип корректировки - блок 2</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType">
+            <xs:annotation>
+              <xs:documentation>Количество в дополнительной единице измерения. Заполняется только количество.гр 41</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="3" minOccurs="0" name="SupplementaryQuantity1" type="cat_ru:SupplementaryQuantityType">
+            <xs:annotation>
+              <xs:documentation>Количество в дополнительной единице измерения, отличной от основной и дополнительной (1,2) Заполняется только количество.гр 31 элемент 1</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="KTSGoodsPackaging" type="catESAD_cu:ESADGoodsPackagingType">
+            <xs:annotation>
+              <xs:documentation>Сведения о грузовых местах, поддонах и упаковке товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="RBSupplementaryGoodsQuantity" type="cat_ru:SupplementaryQuantityType">
+            <xs:annotation>
+              <xs:documentation>Количество товара помещенного под процедуру переработки и свободную таможенную зону для РБ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="KTSGoodsShipmentType">
+    <xs:annotation>
+      <xs:documentation>КТС. Общие сведения о товарной партии</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalGoodsNumber" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Общее количество товаров КТС. гр. 5</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TotalSheetNumber" type="clt_ru:Count3Type">
+        <xs:annotation>
+          <xs:documentation>Общее количество комплектов КТС-1 и КТС-2. гр 3</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TotalCustomsAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сведения о стоимости/общая таможенная стоимость.гр 12 левый подраздел</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PreviousTotalCustomsAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Предыдущее значение  общей таможенной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DebtReturnSumm" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Общая сумма, подлежащая возврату (взысканию)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KTSPaymentDocumentType">
+    <xs:annotation>
+      <xs:documentation>Платежный документ</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="PaymentAmount" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Сумма платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="PaymentWayCode" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Способ уплаты в соответствии с классификатором способов уплаты таможенных и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0">
+            <xs:element name="RFOrganizationFeatures" type="cat_ru:RFOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Российской Федерации</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RKOrganizationFeatures" type="cat_ru:RKOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Республики Казахстан</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RBOrganizationFeatures" type="cat_ru:RBOrganizationFeaturesType">
+              <xs:annotation>
+                <xs:documentation>Сведения об организации. Особенности Республики Беларусь</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="KTSPaymentsReCalcType">
+    <xs:annotation>
+      <xs:documentation>Перерасчет платежей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа  по классификатору видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PaymentAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PrecedingPaymentAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Предыдущая сумма платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ChangeAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Изменение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PaymentCurrencyCode" type="clt_ru:CurrencyN3CodeType">
+        <xs:annotation>
+          <xs:documentation>Цифровой код валюты суммы платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

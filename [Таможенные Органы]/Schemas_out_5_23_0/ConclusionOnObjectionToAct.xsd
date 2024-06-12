@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФТС России  от 14.02.2019 г. № 258 "Об утверждении форм документов, составляемых таможенными органами при проведении таможенных проверок,
+ порядков их заполнения и порядка внесения изменений в решение о проведении выездной таможенной проверки" 
+Приложение № 28 - Заключение по возражениям проверяемого лица на акт таможенной проверки-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:adt_cat="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" xmlns:cota="urn:customs.ru:Information:CustomsAuditDocuments:ConclusionOnObjectionToAct:5.23.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ConclusionOnObjectionToAct:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:CustomsAuditDocuments:AuditCommonAggregateTypesCust:5.23.0" schemaLocation="AuditCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заключение по возражениям проверяемого лица на акт таможенной проверки</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ConclusionOnObjectionToAct" type="cota:ConclusionOnObjectionToActType">
+		<xs:annotation>
+			<xs:documentation>Заключение по возражениям проверяемого лица на акт таможенной проверки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ConclusionOnObjectionToActType">
+		<xs:annotation>
+			<xs:documentation>Заключение по возражениям проверяемого лица на акт таможенной проверки</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="CustomsIssued" type="cota:CustomsIssuedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган, подпись начальника (заместителя начальника) таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConclusionNumber" type="adt_cat:NumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата и номер заключения по возражениям проверяемого лица на акт таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConclusionPlace" type="clt_ru:NameType">
+						<xs:annotation>
+							<xs:documentation>Место составления заключения по возражениям проверяемого лица на акт таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ChiefCommission" type="cota:CustomsIssuedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Должностное лицо ТО, проводившее таможенную проверку, (руководитель комиссии по проведению проверки)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AuditOrganization" type="adt_cat:AuditOrganizationType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения об юридическом/физическом лице, в отношении которого проведена проверка</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ObjectionNumber" type="adt_cat:NumberType">
+						<xs:annotation>
+							<xs:documentation>Дата и номер документа возражений проверяемого лица на акт таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ActNumber" type="adt_cat:NumberType">
+						<xs:annotation>
+							<xs:documentation>Номер акта таможенной проверки</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConclusionsOnObjections" type="cota:ConclusionsOnObjectionsType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Сделанные выводы</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecExempDate" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата получения второго экземпляра</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SecondExempReceived" type="adt_cat:SecondExempReceivedType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Второй экземпляр заключения на руки получил</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006926E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CustomsIssuedType">
+		<xs:annotation>
+			<xs:documentation>Таможенный орган, подпись должностного или уполномоченного лица</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="adt_cat:CustomsIssuedType">
+				<xs:sequence>
+					<xs:element name="PersonCustomsID" type="clt_ru:DocumentNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер служебного удостоверения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Rank" type="clt_ru:Text150Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Звание</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Note" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Примечание</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConclusionsOnObjectionsType">
+		<xs:annotation>
+			<xs:documentation>Сделанные выводы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NameStructuralUnitAct" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Структурная единица акта таможенной проверки, в отношении положений которой проверяемым лицом представлены возражения (замечания)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegulationAct" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Текст положения акта таможенной проверки, в отношении которого проверяемым лицом представлены возражения (замечания)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjectionsToAct" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Текст возражения проверяемого лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Conclusions" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Выводы должностного лица таможенного органа по возражениям проверяемого лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

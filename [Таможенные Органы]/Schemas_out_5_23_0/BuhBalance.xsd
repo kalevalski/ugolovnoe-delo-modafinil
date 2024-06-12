@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Приказ ФНС России от 13.11.2019 № ММВ-7-1/570@ "Об утверждении форматов представления экземпляра составленной годовой бухгалтерской (финансовой) отчетности и аудиторского заключения о ней в виде электронных документов в целях формирования государственного информационного ресурса бухгалтерской (финансовой) отчетности" Приложение №1 Таблица 4.10, Приложение №2 Таблица 4.7
+Форма баланса - Приложение № 1 к приказу Минфина РФ от 2 июля 2010 г.№ 66н-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:buhbal="urn:customs.ru:Information:WarehouseDocuments:BuhBalance:5.22.0" targetNamespace="urn:customs.ru:Information:WarehouseDocuments:BuhBalance:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Бухгалтерский баланс</xs:documentation>
+  </xs:annotation>
+  <xs:element name="BuhBalance" type="buhbal:BuhBalanceType">
+    <xs:annotation>
+      <xs:documentation>Бухгалтерский баланс</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BuhBalanceType">
+    <xs:annotation>
+      <xs:documentation>Бухгалтерский баланс</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ReportingDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Отчетная дата</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Organization" type="buhbal:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения об организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MandatoryAuditSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Бухгалтерская отчетность подлежит обязательному аудиту: 0 - нет, 1 - да</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuditOrganization" type="cat_ru:OrganizationBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения об аудиторской организации/ индивидуальном аудиторе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocKind" type="clt_ru:LetterIndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Форма бухгалтерской отчетности: 1 - полная форма, 2 - краткая форма</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="Full" type="buhbal:FullType">
+              <xs:annotation>
+                <xs:documentation>Полная форма</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Simplified" type="buhbal:SimplifiedType">
+              <xs:annotation>
+                <xs:documentation>Сокращенная форма</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006944E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="FreeText255Type">
+    <xs:annotation>
+      <xs:documentation>Текстовая строка. До 255 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:TextCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Quantity12Type">
+    <xs:annotation>
+      <xs:documentation>Количество. Целое число. 0 знаков после запятой. От 0. Всего до 12 цифр</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:IntegerCategoriesCust">
+      <xs:totalDigits value="12" />
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ActivFullType">
+    <xs:annotation>
+      <xs:documentation>Актив баланса (полная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="NonCurrentAssets" type="buhbal:NonCurrentAssetsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Внеоборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CurrentAssets" type="buhbal:CurrentAssetsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Оборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ActivSimplifiedType">
+    <xs:annotation>
+      <xs:documentation>Актив баланса  (упрощенная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="TangibleNonCurrentAssets" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Материальные внеоборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherNonCurrentAssets" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Нематериальные, финансовые и другие внеоборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Reserves" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Запасы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MonetaryFunds" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Денежные средства и денежные эквиваленты</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherCurrentAssets" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Финансовые и другие оборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BalanceBaseType">
+    <xs:annotation>
+      <xs:documentation>Основные элементы баланса</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Explanation" type="clt_ru:CodeVariable4Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер пояснения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReportSumm" type="buhbal:Quantity12Type">
+        <xs:annotation>
+          <xs:documentation>Сумма на отчетную дату отчетного периода</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PreviousSumm" type="buhbal:Quantity12Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма на 31 декабря предыдущего года</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrecedingSumm" type="buhbal:Quantity12Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма на 31 декабря года, предшествующего предыдущему</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CapitalReservesType">
+    <xs:annotation>
+      <xs:documentation>Капиталы и резервы</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="AuthorizedCapital" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уставный капитал (складочный капитал, уставной фонд, вклады товарищей)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OwnShares" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Собственные акции, выкупленные у акционеров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NonCurrentAssetsRevaluation" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Переоценка внеоборотных активов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdditionalCapital" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Добавочный капитал (без переоценки)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReserveCapital" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Резервный капитал</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RetainedEarnings" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Нераспределенная прибыль (непокрытый убыток)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CurrentAssetsType">
+    <xs:annotation>
+      <xs:documentation>Оборотные активы</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="Reserves" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Запасы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ValueAddedTax" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Налог на добавленную стоимость по приобретенным ценностям</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AccountsReceivable" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дебиторская задолженность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinancialInvestments" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Финансовые вложения (за исключением денежных эквивалентов)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MonetaryFunds" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Денежные средства и денежные эквиваленты</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherCurrentAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Прочие оборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FullType">
+    <xs:annotation>
+      <xs:documentation>Бухгалтерский баланс (полная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Activ" type="buhbal:ActivFullType">
+        <xs:annotation>
+          <xs:documentation>Актив баланса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Passiv" type="buhbal:PassivFullType">
+        <xs:annotation>
+          <xs:documentation>Пассив баланса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IndicatorType">
+    <xs:annotation>
+      <xs:documentation>Детализация отдельного показателя на определенную дату</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="IndicatorName" type="buhbal:FreeText255Type">
+            <xs:annotation>
+              <xs:documentation>Наименование показателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LongTermLiabilitiesType">
+    <xs:annotation>
+      <xs:documentation>Долгосрочные обязательства</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="BorrowedFunds" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Заемные средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeferredTaxLiabilities" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Отложенные налоговые обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EstimatedLiabilities" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Оценочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherLiabilities" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Прочие обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NonCurrentAssetsType">
+    <xs:annotation>
+      <xs:documentation>Внеоборотные активы</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="IntangibleAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Нематериальные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ResearchResults" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Результаты исследований и разработок</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntangibleSearchAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Нематериальные поисковые активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TangibleSearchAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Материальные поисковые активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FixedAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Основные средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProfitableInvestments" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Доходные вложения в материальные ценности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FinancialInvestments" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Финансовые вложения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeferredTaxAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Отложенные налоговые активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherNonCurrentAssets" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Прочие внеоборотные активы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganizationType">
+    <xs:annotation>
+      <xs:documentation>Сведения об организации</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationType">
+        <xs:sequence>
+          <xs:element name="EconomicActivity" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Вид экономической деятельности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EconomicActivityCode" type="clt_ru:Code2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код по ОКВЭД2</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FormOfOwnership" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Организационно-правовая форма/форма собственности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OKOPF_OKFSCode" type="clt_ru:Text50Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код по ОКОПФ/ОКФС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OKUDCode" type="clt_ru:Code8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код формы по ОКУД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PassivFullType">
+    <xs:annotation>
+      <xs:documentation>Пассив баланса (полная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="CapitalReserves" type="buhbal:CapitalReservesType">
+            <xs:annotation>
+              <xs:documentation>Капиталы и резервы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TargetFinancing" type="buhbal:TargetFinancingType">
+            <xs:annotation>
+              <xs:documentation>Целевое финансирование</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LongTermLiabilities" type="buhbal:LongTermLiabilitiesType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Долгосрочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShortTermLiabilities" type="buhbal:ShortTermLiabilitiesType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Краткосрочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PassivSimplifiedType">
+    <xs:annotation>
+      <xs:documentation>Пассив баланса  (упрощенная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="CapitalReserves" type="buhbal:BalanceBaseType">
+            <xs:annotation>
+              <xs:documentation>Капитал и резервы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TargetedFunds" type="buhbal:BalanceBaseType">
+            <xs:annotation>
+              <xs:documentation>Целевые средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TrustFunds" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Фонд недвижимого и особо ценного движимого имущества и иные целевые фонды</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LongTermBorrowedFunds" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Долгосрочные заемные средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherLongTermLiabilities" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Другие долгосрочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShortTermBorrowedFunds" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Краткосрочные заемные средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreditorDebt" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Кредиторская задолженность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherShortTermLiabilities" type="buhbal:BalanceBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Другие краткосрочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SectionBaseType">
+    <xs:annotation>
+      <xs:documentation>Основные элементы статьи баланса</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="Indicator" type="buhbal:IndicatorType" minOccurs="0" maxOccurs="3">
+            <xs:annotation>
+              <xs:documentation>Детализация отдельного показателя на определенную дату</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ShortTermLiabilitiesType">
+    <xs:annotation>
+      <xs:documentation>Краткосрочные обязательства</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="BorrowedFunds" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Заемные средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreditorDebt" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Кредиторская задолженность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FutureIncome" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Доходы будущих периодов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EstimatedLiabilities" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Оценочные обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherLiabilities" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Прочие обязательства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SimplifiedType">
+    <xs:annotation>
+      <xs:documentation>Бухгалтерский баланс (упрощенная форма)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Activ" type="buhbal:ActivSimplifiedType">
+        <xs:annotation>
+          <xs:documentation>Актив баланса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Passiv" type="buhbal:PassivSimplifiedType">
+        <xs:annotation>
+          <xs:documentation>Пассив баланса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TargetFinancingType">
+    <xs:annotation>
+      <xs:documentation>Целевое финансирование</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="buhbal:BalanceBaseType">
+        <xs:sequence>
+          <xs:element name="MutualFund" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Паевой фонд</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TargetCapital" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Целевой капитал</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TargetedFunds" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Целевые средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PropertyFund" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Фонд недвижимого и особо ценного движимого имущества</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TrustFunds" type="buhbal:SectionBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Резервный и иные целевые фонды</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

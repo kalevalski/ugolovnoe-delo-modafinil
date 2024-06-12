@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:arcn="urn:customs.ru:Information:TransportDocuments:Railway:ArrivalConfirmation:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:TransportDocuments:Railway:ArrivalConfirmation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Подтверждение о прибытии</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArrivalConfirmation" type="arcn:ArrivalConfirmationType" />
+  <xs:complexType name="ArrivalConfirmationType">
+    <xs:annotation>
+      <xs:documentation>Подтверждение о прибытии</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NotifDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата подачи уведомления о прибытии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NotifTime" type="clt_ru:TimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Время подачи уведомления о прибытии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Комментарий</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReasonReg" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Основание регистрации прибытия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Confirmation" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер подтверждения о прибытии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:CustomsPersonType">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо таможенного органа, выдавшее Подтверждение о прибытии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="TD" type="cat_ru:GTDIDType">
+              <xs:annotation>
+                <xs:documentation>Номер транзитной декларации</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="TIRID" type="arcn:TIRIDType">
+              <xs:annotation>
+                <xs:documentation>Номер книжки МДП</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="SubmissionDocumentsDateTime" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время представления ТД и иных документов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArrivalRegistrationDateTime" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время регистрации прибытия транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Carrier" type="RUScat_ru:SubjectDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перевозчик</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportIdentifier" type="clt_ru:TransportMeansIDType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Номер транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProducedDocuments" type="arcn:ProducedDocumentsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Представленные документы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspectionResult" type="arcn:InspectionResultsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Результаты таможенного осмотра транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LocationPlace" type="arcn:LocationPlaceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Местонахождение товаров и транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IdentRemovalIndicator" type="clt_ru:Numeric1Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак, определяющий возможность снятия средств идентификации: 0 - не разрешено; 1 - разрешено; 2 - разрешено только должностным лицам таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnloadingIndicator" type="clt_ru:Numeric1Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак, определяющий возможность выгрузки товаров: 0 - не разрешено; 1 - разрешено; 2 - обязательно; 3 - обязательно в присутствии должностных лиц таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MovingToWarehouseIndicator" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак, определяющий возможность перемещения товаров из места нахождения на склад временного хранения: 0 - невозможно; 1 - возможно</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Warehouse" type="arcn:SVHType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Информация о складе временного хранения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlacingToWarehouseDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата и время размещения товаров на складе временного хранения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ZoneDate" type="clt_ru:DateTimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата и время прибытия в зону таможенного контроля</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003407E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="InspectionResultsType">
+    <xs:annotation>
+      <xs:documentation>Результаты таможенного осмотра транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CargoHoldDamageIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак наличие повреждений гр. отделения ТС: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentBrokenIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак нарушения средства идентификации: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentBrokenInfo" type="arcn:SealType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Нарушеные средства идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentRemovalIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак снятия средств идентификации: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentRemovalInfo" type="arcn:SealType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Снятые средства идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentAppliedIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак наложеных средств идентификации: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentAppliedInfo" type="arcn:SealType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наложеные средства идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationPlaceType">
+    <xs:annotation>
+      <xs:documentation>Местонахождение товаров и транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Customs" type="cat_ru:CustomsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код и наименование таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProducedDocumentsType">
+    <xs:annotation>
+      <xs:documentation>Представленные документы</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ProducedDocumentsQuantity" type="clt_ru:Quantity3Type">
+        <xs:annotation>
+          <xs:documentation>Количество представленных документов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProducedDocument" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Представленный документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SealType">
+    <xs:annotation>
+      <xs:documentation>Информация о средстве идентификации</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IdentNumber" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Номер средства идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SVHType">
+    <xs:annotation>
+      <xs:documentation>Информация о складе временного хранения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WarehouseName" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование склада временного хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес склада временного хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WarehouseLicenceID" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер документа о включении в реестр владельцев складов временного хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WarehouseLicenceDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата включения в реестр владельцев складов временного хранения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TIRIDType">
+    <xs:annotation>
+      <xs:documentation>Номер книжки МДП</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TIRID" type="clt_ru:Code8Type">
+        <xs:annotation>
+          <xs:documentation>Номер книжки МДП.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TIRSeries" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Серия книжки МДП.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TIRPageNumber" type="clt_ru:Count5Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер листа книжки МДП.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

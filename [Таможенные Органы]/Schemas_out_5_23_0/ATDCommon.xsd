@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:ATDcat="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ATDCommon:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Общие типы процессов фактического контроля</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="Text50kB">
+    <xs:annotation>
+      <xs:documentation>Текстовая информация. До 50кбайт</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="51200" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IDKKindType">
+    <xs:annotation>
+      <xs:documentation>Вид места дислокации ИДК: 1-автмобильный ПП, 2-морской порт,  3- ЖДПП, 4 - воздушный ПП, 5- вне ПП</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:NumericCategoriesCust">
+      <xs:minInclusive value="0" />
+      <xs:totalDigits value="1" />
+      <xs:fractionDigits value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddInfoType">
+    <xs:annotation>
+      <xs:documentation>Описание вложения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Other" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Иное</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AllView" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общий вид</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transport" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Транспортное средство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadTransport" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Загрузка транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Insp" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Инспектор</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Pack" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Упаковка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Mark" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Маркировка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Physical" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Физические параметры товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Weighing" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Взвешивание</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustDocNumberType">
+    <xs:annotation>
+      <xs:documentation>Номер таможенного документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocKind" type="clt_ru:CodeVariable2Type">
+        <xs:annotation>
+          <xs:documentation>Тип документа: 0 - уведомление о прибытии на таможенную территорию, 1 - транзитная декларация, 2 - книжка МДП , 3 - номер ДО-1/описи, 4 - ДТ, 5 - уведомление об убытии, 6 - иностранная транзитная декларация, 7- коносамент, 8 - документ физического лица, 9 - Номер Акта ранее проведенного осмотра с ИДК, 99 - Иное</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="GTDID" type="cat_ru:GTDIDType">
+          <xs:annotation>
+            <xs:documentation>Номер документа из трех секций</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DocNumber" type="ATDcat:DocNumberType">
+          <xs:annotation>
+            <xs:documentation>Произвольный номер документа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomsPersonDetails">
+    <xs:annotation>
+      <xs:documentation>Сведения о должностном лице таможенного органа</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа, указанный на оттиске ЛНП</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DocNumberType">
+    <xs:annotation>
+      <xs:documentation>Номер документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DocDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Произвольный номер документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InstrInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InstrDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата создания документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InstrTime" type="clt_ru:TimeCustType">
+        <xs:annotation>
+          <xs:documentation>Время создания документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Customs" type="cat_ru:CUCustomsType">
+        <xs:annotation>
+          <xs:documentation>Таможенный орган</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsOfficer" type="ATDcat:CustomsPersonDetails" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PreviewInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о вложении</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ImageID" type="clt_ru:DocumentIDType">
+        <xs:annotation>
+          <xs:documentation>Уникальный идентификатор изображения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ImageDate" type="clt_ru:DateTimeCustType">
+        <xs:annotation>
+          <xs:documentation>Дата и время создания/сохранения изображения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="clt_ru:Text10Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Формат изображения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Person" type="cat_ru:PersonBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Владелец</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileName" type="clt_ru:Text150Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Имя файла</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Preview" type="ATDcat:Text50kB" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Миниатюрное изображение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddInfo" type="ATDcat:AddInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание вложения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарии к изображению</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Declarant" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения об участнике ВЭД</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

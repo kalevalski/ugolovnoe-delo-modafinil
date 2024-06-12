@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_findoor="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindOpenOperationResponse:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindOpenOperationResponse:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Результат поиска незавершенных операций по карнетам АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_FindOpenOperationResponse" type="ata_findoor:ATA_FindOpenOperationResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска незавершенных операций по карнетам АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_FindOpenOperationResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска незавершенных операций по карнетам АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="OperationInfo" type="ata_findoor:OperationsInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об операции по карнету АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003425E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="OperationsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения об операции по карнету АТА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssueDate" type="xs:dateTime">
+        <xs:annotation>
+          <xs:documentation>Дата и время подписания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="ata_ct:OperationType">
+        <xs:annotation>
+          <xs:documentation>Тип операции с карнетом АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Holder" type="ata_ct:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Держатель карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IntendedUse" type="ata_ct:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Предполагаемое использование товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="xs:date">
+        <xs:annotation>
+          <xs:documentation>Дата истечения операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

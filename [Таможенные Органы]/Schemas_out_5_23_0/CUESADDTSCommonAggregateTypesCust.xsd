@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_EDTS_cu="urn:customs.ru:CUESADDTSCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" targetNamespace="urn:customs.ru:CUESADDTSCommonAggregateTypes:5.22.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.22.0.0">
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation> ДТС. Общие сложные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AdditionalDataType">
+		<xs:annotation>
+			<xs:documentation>Дополнительная информация, для которой не предусмотрено специальных элементов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CVDAdditionalInformationKindCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код вида дополнительной информации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PositionNumber" type="clt_ru:CodeVariable3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер графы</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInformation" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Дополнительные данные</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsDocIdDetails" type="cat_EDTS_cu:CustomDocIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер декларации на товары</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTConsignmentItemOrdinal" type="clt_ru:Count3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер товара в декларации на товары, регистрационный номер которой указан в графе «Дополнительные данные»</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Column7CDescriptionType">
+		<xs:annotation>
+			<xs:documentation>Подробности в случае, если стоимость сделки близка к возможным проверочным величинам гр. 7в</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConsignmentItemOrdinal" type="clt_ru:CodeVariable3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер товара по декларации таможенной стоимости</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DescriptionText" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения об использованной проверочной величине</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CostConfirmationDocumentType">
+		<xs:annotation>
+			<xs:documentation>Документы, подтверждающие заявленные сведения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PreviousCostAppriaseMethod" type="cltESAD_cu:CustomsCostAppraiseMethodType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Предыдущий метод определения таможенной стоимости. (для метода 6)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MethodCondition" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Условия применения соответствующего метода (1-5)  для метода 6 при гибком подходе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomDocIDType">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер таможенного документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:GTDIDType">
+				<xs:sequence>
+					<xs:element name="Code" type="clt_ru:CodeVariable2Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер (идентификатор) вносимых изменений и (или) дополнений</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DTS_CUCustomsCostCalculationType">
+		<xs:annotation>
+			<xs:documentation>Расчет таможенной стоимости</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DTSMethod1" type="cat_EDTS_cu:DTSMethod1Type">
+					<xs:annotation>
+						<xs:documentation>Подробности расчета таможенной стоимости по ДТС-1 методу 1; ДТС-2 метод 6 на основе метода 1</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DTSMethod236" type="cat_EDTS_cu:DTSMethod236Type">
+					<xs:annotation>
+						<xs:documentation>Подробности расчета таможенной стоимости по методу  стоимости сделки с идентичными и однородными товарами и резервного на их основе (2,3,6)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DTSMethod46" type="cat_EDTS_cu:DTSMethod46Type">
+					<xs:annotation>
+						<xs:documentation>Резервный метод на основе метода вычитания (4,6)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DTSMethod56" type="cat_EDTS_cu:DTSMethod56Type">
+					<xs:annotation>
+						<xs:documentation>Резервный метод на основе метода сложения (5,6)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSAdditionalPaymentsType">
+		<xs:annotation>
+			<xs:documentation>Платежи за использование интеллектуальной собственности и условия передачи части дохода продавцу. гр.9</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Column9" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Признак наличия лицензионных договорных отношений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column9A" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Графа 9а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column9B" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Графа 9б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSBuyerSellerDependenceType">
+		<xs:annotation>
+			<xs:documentation>Взаимосвязь между покупателем и продавцом. гр.7</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Column7A" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Графа 7а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column7B" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Графа 7б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column7C" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Графа 7в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSCurrencyPaymentType">
+		<xs:annotation>
+			<xs:documentation>Информация по сумме оплаты в валюте</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PositionsNumber" type="clt_ru:CodeVariable3Type">
+				<xs:annotation>
+					<xs:documentation>Номер позиции (номер графы ДТС, к которой относятся такие сведения)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Сумма в валюте счета по позиции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+				<xs:annotation>
+					<xs:documentation>Трехзначный буквенный код валюты по позиции, в соответствии с классификатором валют</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата применения курса валюты по позиции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyRate" type="clt_ru:CurrencyRateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Курс валюты по позиции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyQuantity" type="clt_ru:Count6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество единиц валюты, для которой указан курс для РБ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSFilledPersonType">
+		<xs:annotation>
+			<xs:documentation>Дата заполнения и лицо, заполнившее ДТС</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="catESAD_cu:ESADFilledPersonType">
+				<xs:sequence>
+					<xs:element name="FilledDate" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата заполнения ДТС</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegNumberDoc" type="clt_ru:DocumentNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Исходящий номер регистрации документов в соответствии с системой (регламентом) учета исходящих документов декларанта или таможенного представителя в Республике Беларусь</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DTSMethod1Type">
+		<xs:annotation>
+			<xs:documentation>Подробности расчета таможенной стоимости по ДТС-1 методу 1; ДТС-2 метод 6 на основе метода 1</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Method1CalculationBasis" type="cat_EDTS_cu:Method1CalculationBasisType">
+				<xs:annotation>
+					<xs:documentation>Основа расчета таможенной стоимости по методу 1. Гр. А (11, 12)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Method1AdditionalSum" type="cat_EDTS_cu:Method1AdditionalSumType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительные начисления. Гр. Б (13-20)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Method1Deduction" type="cat_EDTS_cu:Method1DeductionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вычеты: расходы в национальной валюте, которые включены в А. (гр. В 21-24)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSMethod236Type">
+		<xs:annotation>
+			<xs:documentation>Подробности расчета таможенной стоимости по методу стоимости сделки с идентичными или с однородными товарами и (или) резервному методу на их основе (2,3,6)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Method2Basis" type="cat_EDTS_cu:Method2BasisType">
+				<xs:annotation>
+					<xs:documentation>Основа расчета таможенной стоимости по методу 2,3,6. Гр. А (11)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Method2DealCorrect" type="cat_EDTS_cu:Method2DealCorrectType">
+				<xs:annotation>
+					<xs:documentation>Поправка стоимости сделки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdenticalGoodsQuantity" type="cat_EDTS_cu:DTSSupplementaryQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество идентичных/однородных товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclaratedGoodsQuantity" type="cat_EDTS_cu:DTSSupplementaryQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество ввозимых товаров. 17б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSMethod46Type">
+		<xs:annotation>
+			<xs:documentation>Подробности расчета таможенной стоимости по методу вычитания и (или) резервному методу на его основе (4,6)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Method46Basis" type="cat_EDTS_cu:Method46BasisType">
+				<xs:annotation>
+					<xs:documentation>Основа для расчета таможенной стоимости по методу 4,6 гр. А (11)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Method46Deduction" type="cat_EDTS_cu:Method46DeductionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вычеты сумм, которые вошли в раздел А гр. Б (12-16)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclaratedGoodsQuantity" type="cat_EDTS_cu:DTSSupplementaryQuantityType">
+				<xs:annotation>
+					<xs:documentation>Количество ввозимых товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSMethod56Type">
+		<xs:annotation>
+			<xs:documentation>Подробности расчета таможенной стоимости по методу сложения и (или) резервному методу на его основе (5,6)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Method56Basis" type="cat_EDTS_cu:Method56BasisType">
+				<xs:annotation>
+					<xs:documentation>Основа расчета для метода 5,6 гр. А (11-17)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSPresentedDocumentsType">
+		<xs:annotation>
+			<xs:documentation>Представленные документы</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:DocumentBaseType">
+				<xs:sequence>
+					<xs:element name="PresentedDocumentModeCode" type="clt_ru:CustomsDocumentCodeType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код вида представляемого документа. Заполняется в соответствии с классификатором видов документов, используемых при заявлении сведений в графе 44</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PositionNumber" type="clt_ru:Numeric1Type">
+						<xs:annotation>
+							<xs:documentation>Номер графы ДТС: 4,5,6,8</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConsignmentItemOrdinal" type="clt_ru:Count3Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Номер товара в декларации таможенной стоимости</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsDocIdDetails" type="cat_EDTS_cu:CustomDocIDType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер декларации на товары, в соответствии с которой идентичный или однородный товар был помещен под таможенную процедуру</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTConsignmentItemOrdinal" type="clt_ru:Count3Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Порядковый номер товара в декларации на товары, в соответствии с которой идентичный или однородный товар был помещен под таможенную процедуру</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DTSRFTechMarkType">
+		<xs:annotation>
+			<xs:documentation>Технологические отметки ДТС для РФ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RFTechDocumentId" type="catESAD_cu:RFPresentedDocIDType" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Дополнительные технологические характеристики документов, удостоверяющих личность и удостоверяющих полномочия лица, подающего таможенную декларацию</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSSellingLimitationType">
+		<xs:annotation>
+			<xs:documentation>Ограничения на пользование товарами и обязательства при продаже товаров. гр.8</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Column8A" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Графа 8а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Column8B" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Графа 8б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTSSupplementaryQuantityType">
+		<xs:annotation>
+			<xs:documentation>Количество в дополнительной единице измерения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsQuantity" type="clt_ru:QuantityBasis0Type">
+				<xs:annotation>
+					<xs:documentation>Количество товара в единице измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Условное обозначение единицы измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasureUnitQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код единицы измерения в соответствии с единицами измерения, применяемыми в ТН ВЭД ЕАЭС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method1AdditionalSumType">
+		<xs:annotation>
+			<xs:documentation>Дополнительные начисления. Гр. Б (13-20)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AgentBonus" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы, произведенные покупателем на выплату вознаграждений посреднику (агенту), брокеру, в национальной валюте, за исключением вознаграждений за закупку товаров . гр 13а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PackageExpenses" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы произведенные покупателем на тару и упаковку. гр 13б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StoreCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость сырья, материалов, деталей, полуфабрикатов и тому подобных предметов, из которых состоят ввозимые товары. гр 14а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductionToolkitCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость инструментов, штампов, форм и других подобных предметов, использованных при производстве ввозимых товаров. гр 14б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WorkingStockCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость материалов, израсходованных при производстве ввозимых товаров. гр 14в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DesignPayment" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость проектирования, разработки, инженерной конструкторской работы художественного оформления, дизайна, эскизов и чертежей, выполненных вне таможенной территории Евразийского экономического союза и необходимых для производства ввозимых товаров. гр 14г</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntellectualPropertyPayment" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Лицензионные и иные подобные платежи за использование объектов интеллектуальной собственности - см. графу 9 (а). 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SellerIncome" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Часть дохода (выручки), полученного в результате последующей продажи, распоряжения иным способом или использования товаров, которая прямо или косвенно причитается продавцу - см. графу 9 (б) 16</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BorderTransportCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы по перевозке (транспортировке) товаров до места прибытия товаров на таможенную территорию Евразийского экономического союза. гр 17</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BorderPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия / место назначение декларируемых товаров (гр. 17,18)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LoadCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы по погрузке, выгрузке/перегрузке товаров и операциям, связанным с перевозкой до места прибытия товаров на таможенную территорию Евразийского экономического союза. гр 18</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InsuranceCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы на страхование в связи с операциями, указанными в графах 17 и 18. гр 19</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAdditionalSum" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого Б в национальной валюте. гр 20</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method1CalculationBasisType">
+		<xs:annotation>
+			<xs:documentation>Основа расчета таможенной стоимости по методу 1. Гр. А (11, 12)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DealCurrencyAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена, фактически уплаченная или подлежащая уплате в валюте счета. гр11a</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DealCurrencyCode" type="clt_ru:CurrencyA3CodeType">
+				<xs:annotation>
+					<xs:documentation>Трехзначный буквенный код валюты счета, в соответствии с классификатором валют </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DealNationalAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена сделки в национальной валюте</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DealCurrencyDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата применения курса пересчета цены сделки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DealCurrencyRate" type="clt_ru:CurrencyRateType">
+				<xs:annotation>
+					<xs:documentation>Курс пересчета цены сделки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurrencyQuantity" type="clt_ru:Count6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество единиц валюты, для которой указан курс для РБ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndirectNationalPayment" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Косвенные платежи в национальной валюте. 11б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndirectCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Трехзначный буквенный код валюты косвенных платежей, в соответствии с классификатором валют</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndirectCurrencyDate" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дата применения курса пересчета косвенных платежей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndirectCurrencyRate" type="clt_ru:CurrencyRateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Курс пересчета косвенных платежей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndirectCurrencyQuantity" type="clt_ru:Count6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Количество единиц валюты, для которой указан курс для РБ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BasisNationalAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого гр. А в национальной валюте. гр 12</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method1DeductionType">
+		<xs:annotation>
+			<xs:documentation>Вычеты: Расходы в национальной валюте, которые включены в А. (гр. В 21-24)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BuildingAmount" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы на строительство, возведение, сборку, монтаж, обслуживание или оказание технического содействия, производимые после ввоза товаров на таможенную территорию Евразийского экономического союза. гр 21</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnionTransportCharge" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы по перевозке (транспортировке) товаров после их прибытия на таможенную территорию Евразийского экономического союза. гр 22</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnionTaxPayment" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Пошлины, налоги и сборы, взимаемые на таможенной территории Евразийского экономического союза. гр 23</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalDeductionAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого В в национальной валюте. гр 24</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method2BasisType">
+		<xs:annotation>
+			<xs:documentation>Основа расчета таможенной стоимости по методу 2,3,6. Гр. А (11)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IdenticalDealNationalAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость сделки с идентичными/однородными товарами в национальной валюте. 11</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method2DealCorrectType">
+		<xs:annotation>
+			<xs:documentation>Корректировка стоимости сделки. Гр. Б (12-17)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MinusQuantityCorrect" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на количество. (-) 12а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusCommerceCorrect" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на коммерческий уровень. (-) 12б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusBorderTransportCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах по перевозке (транспортировке) товаров до места прибытия товаров на таможенную территорию Евразийского экономического союза. (-) 12в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusBorderPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия / место назначение идентичных или однородных товаров. 12 в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusLoadCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах по погрузке, выгрузке/перегрузке товаров и операциям, связанным с перевозкой до места прибытия товаров на таможенную территорию Евразийского экономического союза. (-) 12г</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusArrivalPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия идентичных или однородных товаров. 12г</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusInsuranceCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах на страхование в связи с операциями, указанными в гр 12в и 12г. (-) 12д</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinusTotalSum" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого 12 в национальной валюте. гр 13</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusQuantityCorrect" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на количество.(+) 14а</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusCommerceCorrect" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на коммерческий уровень. (+) 14б</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusBorderTransportCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах по перевозке (транспортировке) товаров до места прибытия товаров на таможенную территорию Евразийского экономического союза. (+) 14в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusBorderPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия / место назначения ввозимых товаров 14в</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusLoadCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах по погрузке, выгрузке/перегрузке товаров и операциям, связанным с перевозкой до места прибытия товаров на таможенную территорию Евразийского экономического союза. (+) 14г</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusArrivalPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия товаров 14г</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusInsuranceCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Поправка на разницу в расходах на страхование в связи с операциями, указанными в гр 14в и 14г (+) 14д</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlusTotalSum" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого 14 в национальной валюте. 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalDealCorrect" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость сделки с учетом корректировок в национальной валюте 11а -13+15. гр 16   </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method46BasisType">
+		<xs:annotation>
+			<xs:documentation>Основа для расчета таможенной стоимости по методу 4,6 гр. А (11)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="IdenticalDealNationalPrice" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Цена единицы ввозимых, идентичных или однородных товаров в национальной валюте</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdenticalDealCode" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код единицы измерения в соответствии с классификатором единиц измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method46DeductionType">
+		<xs:annotation>
+			<xs:documentation>Вычеты сумм, которые вошли в раздел А гр. Б (12-16)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AgentCharge" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Вознаграждения посреднику (агенту) либо надбавки к цене, обычно производимых для получения прибыли и покрытия коммерческих и управленческих расходов гр 12</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnionTransportCharge" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Расходы на перевозку (транспортировку), страхование и иные связанные с такими операциями расходы, осуществленные на таможенной территории Евразийского экономического союза. гр 13</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnionTaxPayment" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Таможенные пошлины, налоги, сборы, подлежащие уплате в связи с ввозом товаров на таможенную территорию Евразийского экономического союза или с их продажей на территории государства - члена Евразийского экономического союза, включая налоги и сборы субъектов государства - члена Евразийского экономического союза и местные налоги и сборы. гр 14</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcessingAddedCost" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Стоимость, добавленная в результате переработки (обработки). гр 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalDeductionAmount" type="clt_ru:AmountType">
+				<xs:annotation>
+					<xs:documentation>Итого Б в национальной валюте (по графам с 12 по 15) гр 16</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Method56BasisType">
+		<xs:annotation>
+			<xs:documentation>Основа расчета для метода 5,6</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ProductionStoreExpense" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Общая сумма расходов производителя (продавца) ввозимых товаров по изготовлению и (или) приобретению материалов и расходов на производство. гр. 11</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PackageExpenses" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы покупателя на тару и упаковку, в том числе стоимость упаковочных материалов и работ по упаковке. (гр. 12 а)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DesignPaymentProduction" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость проектирования, разработки, инженерной, конструкторской работы, художественного оформления, дизайна, эскизов и чертежей, произведенных (оказанных) на таможенной территории Евразийского экономического союза (гр. 12 б)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StoreCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость сырья, материалов, деталей, полуфабрикатов и иных товаров, из которых произведены (состоят) ввозимые товары (гр. 12 в)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProductionToolkitCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость инструментов, штампов, форм и иных подобных товаров, использованных при производстве ввозимых товаров (гр. 12 г)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumablesCost" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость материалов, израсходованных при производстве ввозимых товаров (гр. 12 д)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DesignPayment" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Стоимость проектирования, разработки, инженерной, конструкторской работы, художественного оформления, дизайна, эскизов и чертежей выполненных вне таможенной территории Евразийского экономического союза и необходимых для производства ввозимых товаров (гр. 12 е)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddProductionValueAmount" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Величина иных расходов, связанных с производством ввозимых товаров (гр. 12 ж)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommerceExpense" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма прибыли и коммерческих и управленческих расходов (гр. 13)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BorderTransportCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы по перевозке (транспортировке) товаров до места прибытия товаров на таможенную территорию Евразийского экономического союза (гр. 14)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BorderPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия / место назначения декларируемых товаров (гр. 14)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LoadCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы по погрузке, разгрузке/перегрузке товаров и операциям, связанным с перевозкой до места прибытия товаров на таможенную территорию Евразийского экономического союза. гр. 15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ArrivalPlace" type="clt_ru:PlaceNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Место прибытия декларируемых товаров (гр. 15)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InsuranceCharges" type="clt_ru:AmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Расходы на страхование в связи с операциями, указанными в графах 14 и 15. гр 16</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReasonApplyMethodType">
+		<xs:annotation>
+			<xs:documentation>Причина, по которой предшествующие методы определения стоимости не применимы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReasonDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание причины</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

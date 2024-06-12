@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:appi="urn:customs.ru:Information:EArchDocuments:ArchPermitParticipantsInfo:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchPermitParticipantsInfo:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сведения об иных участниках, имеющих доступ к просмотру документов архива</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchPermitParticipantsInfo" type="appi:ArchPermitParticipantsInfoType" />
+  <xs:complexType name="ArchPermitParticipantsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения об иных участниках, имеющих доступ к просмотру документов архива</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ArchDeclID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Идентификатор декларанта в архиве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Participant" type="appi:ParticipantType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Участник, имеющий допуск к просмотру документов архива</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005015E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArchDocumentType">
+    <xs:annotation>
+      <xs:documentation>Документ архива</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchDocID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор документа в архиве</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocumentID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Уникальный идентификатор документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArchiveType">
+    <xs:annotation>
+      <xs:documentation>Архив, доступный для просмотра</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchID" type="ct:GUID">
+        <xs:annotation>
+          <xs:documentation>Идентификатор архива</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocument" type="appi:ArchDocumentType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Документ архива</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ParticipantType">
+    <xs:annotation>
+      <xs:documentation>Участник, имеющий допуск к просмотру документов архива</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ParticipantID" type="ct:GUID">
+        <xs:annotation>
+          <xs:documentation>Идентификатор участника</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Archive" type="appi:ArchiveType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Архив, доступный для просмотра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

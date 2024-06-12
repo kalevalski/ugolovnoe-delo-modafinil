@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_cc="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetCover:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetCover:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Обложка карнета АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetCover" type="ata_cc:ATA_CarnetCoverType">
+    <xs:annotation>
+      <xs:documentation>Обложка карнета АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_CarnetCoverType">
+    <xs:annotation>
+      <xs:documentation>Обложка карнета АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssuingCountry" type="clt_ru:CountryA2CodeType">
+            <xs:annotation>
+              <xs:documentation>Код страны выдачи карнета (графа G.a обложки карнета), заполняется в соответствии с Решением КТС 378 (международный код страны ISO 3166-1 Alpha-2)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА (графа G.a обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи карнета АТА  (графа I обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ValidUntil" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Срок действия карнета АТА  (графа G.с обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Holder" type="ata_ct:FreeText100Type">
+            <xs:annotation>
+              <xs:documentation>Держатель карнета АТА (графа А обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HolderAddress" type="ata_ct:FreeText1000Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес держателя карнета АТА (графа А обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RepresentedBy" type="ata_ct:FreeText1000Type">
+            <xs:annotation>
+              <xs:documentation>Представитель держателя (графа B обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntendedUse" type="ata_ct:FreeText100Type">
+            <xs:annotation>
+              <xs:documentation>Предполагаемое использование товаров (графа C обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssuedBy" type="clt_ru:FreeText500Type">
+            <xs:annotation>
+              <xs:documentation>Наименование выдающей ассоциации (графа G.b обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GuaranteedBy" type="clt_ru:FreeText500Type">
+            <xs:annotation>
+              <xs:documentation>Наименование гарантирующей ассоциации  (графа G.b обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DepCustomsCert" type="ata_cc:DepCustomsCertType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Удостоверение таможенного органа страны вывоза (графа H обложки карнета), заполняеся только для карнетов АТА, выданный в РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPersonRequisites" type="ata_ct:CustomsPersonRequisitesType">
+            <xs:annotation>
+              <xs:documentation>Данные о таможенном инспекторе, оформившем обложку карнета АТА (графа H обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GeneralList" type="ata_cc:GeneralList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Общий список товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRegistrationRefusal" type="ata_ct:CarnetRegistrationRefusalType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Информация об отказе в регистрации карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReplacedCarnetNumber" type="ata_ct:ATACarnetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер замененного карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreDuplicationCarnetNumber" type="ata_ct:ATACarnetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА до выдачи дубликата</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubmissionMode" type="ata_ct:Count2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Способ подачи карнета АТА: 1 - заведен вручную, 2 - представлен XML, 3 - сформирован в рамказ СМЭВ, 4 - представлен с использованием личного кабинета</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReplacingCarnetDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Срок действия заменяющего карнета АТА на временный вывоз товаров, в случае, если заменяющий карнет АТА выдан второй раз и срок действия таможенной процедуры временного вывоза по карнету АТА с учетом заменяющих карнетов АТА превышает 2 года</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003411E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DepCustomsCertType">
+    <xs:annotation>
+      <xs:documentation>Удостоверение таможенного органа страны вывоза (графа H обложки карнета)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IdentifiedGoodsNum" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Перечень товарных позиций с нанесенными средствами идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsCheckSign" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак проведения проверки товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Place" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Место совершения таможенных операций (населенный пункт)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeneralList">
+    <xs:annotation>
+      <xs:documentation>Общий список товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TotalPcsQuantity" type="clt_ru:Quantity11Type">
+        <xs:annotation>
+          <xs:documentation>Общее количество товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCost" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Общая стоимость товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты, заполняется в соответствии с Решением КТС 378 (трехзначный буквенный код)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Good" type="ata_cc:Good" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товарная позиция</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Good">
+    <xs:annotation>
+      <xs:documentation>Товарная позиция</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ListNumber" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара в основном списке карнета АТА (графа 1 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description" type="ata_ct:FreeText4000Type">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, меток и номеров при их наличии (графа 2 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PcsQuantity" type="clt_ru:Quantity11Type">
+        <xs:annotation>
+          <xs:documentation>Кол-во товара,шт (графа 3 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddQuantity" type="clt_ru:QuantityBasis0Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество в ДЕИ (графа 4 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddQuantityUnit" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код ДЕИ (графа 4 общего списка), заполняется в соответствии с Решением КТС 378 (принимает значения 112 - м3 или 166 - кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Cтоимость товара в валюте  (графа 5 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OriginCountry" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код страны происхождения (графа 6 общего списка), заполняется в соответствии с Решением КТС 378 (международный код страны ISO 3166-1 Alpha-2)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара в соответствии с ТН ВЭД ЕАЭС (графа 7 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsMarks" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Отметки таможенного органа об идентификационных метках, наложенных на товары (графа 7 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

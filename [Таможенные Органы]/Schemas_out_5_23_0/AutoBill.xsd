@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Постановление Правительства РФ от 21.12.2020 № 2200 "Об утверждении Правил перевозок грузов автомобильным транспортом и о внесении изменений в пункт 2.1.1 Правил дорожного движения Российской Федерации"
+Приложение №4 (в редакции постановления Правительства РФ от 30.11.2021 № 2116)  -->
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:atb="urn:customs.ru:Information:TransportDocuments:AutoBill:5.22.0" xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:AutoBill:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Автомобильная транспортная накладная</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AutoBill" type="atb:AutoBillType">
+    <xs:annotation>
+      <xs:documentation>Автомобильная транспортная накладная</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AutoBillType">
+    <xs:annotation>
+      <xs:documentation>Автомобильная транспортная накладная (тип)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="NumberTN" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер ТН</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateTN" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата ТН</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberCopies" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Номер экземпляра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Order" type="atb:OrderType">
+            <xs:annotation>
+              <xs:documentation>Заказ (заявка) и информация о принятии заказа к исполнению</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestinationOfficeIdentifier" type="clt_ru:CustomsCodeType">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа назначения, в регионе деятельности которого расположено место доставки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignor" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о грузоотправителе (раздел 1)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Forwarder" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Грузоотправитель является экспедитором: 0 - нет; 1 - да</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CalculationDoc" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документа, определяющего основания осуществления расчетов по договору перевозки иным лицом, отличным от грузоотправителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customer" type="cat_ru:OrganizationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о заказчике услуг по организации перевозки груза (раздел 1а)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportationContract" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты договора на выполнение услуг по организации перевозки груза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignee" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о грузополучателе (раздел 2)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="DeliveryPlace" type="clt_ru:NameType">
+              <xs:annotation>
+                <xs:documentation>Место доставки</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DeliveryAddress" type="cat_ru:AddressType">
+              <xs:annotation>
+                <xs:documentation>Адрес доставки</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="Cargo" type="atb:CargoType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Наименование груза (раздел 3)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentTN" type="atb:DocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, приложенные к ТН (раздел 4)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentCargo" type="atb:DocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Документы, приложенные к  грузу (раздел 4)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentShipment" type="atb:DocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документов, подтверждающих отгрузку товаров, и сопроводительной ведомости (раздел 4)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ConsignorInstruction" type="atb:ConsignorInstructionType">
+            <xs:annotation>
+              <xs:documentation>Указания грузоотправителя (раздел 5)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LoadCargo" type="atb:LoadCargoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Прием груза (раздел 8)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnloadCargo" type="atb:LoadUnloadCargoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Выдача груза (раздел 10)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Carrier" type="atb:CarrierType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перевозчик (раздел 6)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RoadTrain" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перевозка осуществляется автопоездом: 0 - нет; 1 - да</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transport" type="atb:TransportType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Транспортное средство (раздел 7)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarrierComments" type="atb:CarrierCommentsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Оговорки и замечания перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Readdressing" type="atb:ReaddressingType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Переадресовка (раздел 9)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Calculation" type="atb:CalculationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Стоимость перевозки груза (установленная плата) в рублях (раздел 12)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Notes" type="atb:NoteType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Отметки грузоотправителей, грузополучателей и перевозчиков (раздел 11)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003103E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DocumentType">
+    <xs:annotation>
+      <xs:documentation>Приложенные документы</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="INN" type="clt_ru:INNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ИНН составителя документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentModeCode" type="clt_ru:CustomsDocumentCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида документа в соответствии с классификатором видов документов и сведений, используемых при таможенном декларировании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExpirationDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReleaseOrganization" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Организация, выдавшая документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransportType">
+    <xs:annotation>
+      <xs:documentation>Сведения об ТС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TypeRoadTrain" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Часть автопоезда: 1 - тягач; 2 - прицеп; 3 - полуприцеп</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TypeOwnership" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Тип владения транспортным средством перевозчиком: 1 - собственность; 2 - совместная собственность супругов; 3 - аренда; 4 - лизинг; 5 - безвозмездное пользование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumber" type="clt_ru:TransportMeansIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Kind" type="cltESAD_cu:TransportKindCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Тип ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Mark" type="clt_ru:Text40Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Марка ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Tonnage" type="clt_ru:WeighQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Грузоподъемность (тоннаж)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Capacity" type="clt_ru:Quantity14point2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вместимость в куб.м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BasisOwnership" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Реквизиты документа(-ов), подтверждающего(-их) основание владения грузовым автомобилем (тягачом, а также прицепом (полуприцепом))</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpecialPermission" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Реквизиты специального разрешения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Validity" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Срок действия специального разрешения, </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HeavyOversized" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Является транспортное средство тяжеловесным и (или) крупногабаритным: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DangerousCargo" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Транспортное средство перевозит опасный груз: 0 - нет; 1 - да</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Route" type="atb:RouteType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Установленный маршрут движения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SealType">
+    <xs:annotation>
+      <xs:documentation>Информация о пломбах или ЗПУ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IdentNumber" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Номер наложенного средства идентификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentKind" type="clt_ru:LetterIndicatorType">
+        <xs:annotation>
+          <xs:documentation>Вид средств идентификации: 1 - пломба, 2 - печать, 3 - иное</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentDesc" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечание по средству идентификации и его состоянию</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AmountType">
+    <xs:annotation>
+      <xs:documentation>Сумма и валюта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Трехзначный буквенный код валюты суммы. По классификатору валют</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cумма</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LoadCargoType">
+    <xs:annotation>
+      <xs:documentation>Прием груза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="atb:LoadUnloadCargoType">
+        <xs:sequence>
+          <xs:element name="LoadingPointOwner" type="cat_ru:OrganizationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о владельце объекта инфраструктуры пункта погрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Loading" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Погрузка груза в транспортное средство осуществлена: 0 - грузоотправителем, 1 - иным уполномоченным грузоотправителем лицом</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LoadingPerson" type="cat_ru:OrganizationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения об уполномоченном грузоотправителем лице, осуществившем погрузку груза в транспортное средство</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LoadingPersonDoc" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документов, подтверждающих полномочия лица</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LoadUnloadCargoType">
+    <xs:annotation>
+      <xs:documentation>Погрузка/выгрузка груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес места погрузки/выгрузки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата и время подачи ТС на погрузку/выгрузку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время прибытия ТС на погрузку/выгрузку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualStateOfPackages" type="atb:PackingInformationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое состояние груза, упаковки, маркировки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Seal" type="atb:SealType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Фактическое состояние опломбирования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CargoWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Масса груза в кг</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlacesQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonSign" type="atb:PersonSignatureType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Подпись грузоотправителя/грузополучателя/водителя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualDepDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время убытия ТС с погрузки/выгрузки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CargoWeightCalculation" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Метод определения массы брутто: 1 - определение разницы между массой транспортного средства после погрузки и перед погрузкой по общей массе; 2 - взвешивание поосно; 3 - расчетная масса груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NettoCargoWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Масса груза нетто в кг</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PackingInformationType">
+    <xs:annotation>
+      <xs:documentation>Сведения об упаковке и маркировке</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PackageTypeCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код наличия упаковки товара: 0 - Без упаковки; 1 - С упаковкой; 2 - Без упаковки в оборудованных емкостях транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CargoState" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое состояние груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PackingMark" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Маркировка грузовых мест</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PackingInfo" type="catESAD_cu:PackagePalleteInformationType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация об упаковке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CalculationType">
+    <xs:annotation>
+      <xs:documentation>Расчет провозных платежей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CostOfTheCarrierService" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Стоимость перевозки без налога в рублях</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProcedureCalculation" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Порядок (механизм) расчета (исчислений) платы</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Payer" type="atb:PayerType">
+        <xs:annotation>
+          <xs:documentation>Реквизиты, позволяющие идентифицировать лицо, от которого будут поступать денежные средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxRate" type="clt_ru:ProcentNumericType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Налоговая ставка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TaxSum" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cумма налога, предъявляемая покупателю</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalCost" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cтоимость перевозки с налогом</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrimaryAccDocSubject" type="atb:PrimaryAccDocSubject" minOccurs="0" maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>Реквизиты, позволяющие идентифицировать Экономического субъекта, составляющего первичный учетный документ о факте хозяйственной жизни со стороны Перевозчика / Грузоотправителя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonSign" type="atb:PersonSignatureType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Подпись лица, ответственного за оформление факта хозяйственной жизни со стороны Перевозчика / Грузоотправителя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PrimaryAccDocSubject">
+    <xs:annotation>
+      <xs:documentation>Реквизиты, позволяющие идентифицировать Экономического субъекта, составляющего первичный учетный документ о факте хозяйственной жизни со стороны Перевозчика / Грузоотправителя</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationBaseType">
+        <xs:sequence>
+          <xs:element name="EconomicSubject" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Экономический субъект, составляющий первичный учетный документ о факте хозяйственной жизни со стороны: 0 - Перевозчика; 1 - Грузоотправителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EconomicSubjectBaseDoc" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Основание, по которому Экономический субъект является составителем документа о факте хозяйственной жизни</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConsignorInstructionType">
+    <xs:annotation>
+      <xs:documentation>Указания грузоотправителя</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PerformRequirements" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Указания, необходимые для выполнения санитарных, карантинных, таможенных и пр. требований</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Seal" type="atb:SealType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о ЗПУ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeadlineTransport" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рекомендуемый предельный срок перевозки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Temperature" type="clt_ru:Text150Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рекомендации по температурному режим перевозки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="atb:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Объявленная стоимость (ценность) груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OverloadProhibition" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Перегрузка запрещена - 1 или true - да (запрещена); 0 или false - нет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedLimit" type="clt_ru:Quantity3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Рекомендуемое ограничение скорости движения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonDirectReaddressing" type="cat_ru:OrganizationType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о лицах, по указанию которых может осуществляться переадресовка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DirectReaddressing" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Способы передачи указаний на переадресовку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Route" type="atb:RouteType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Установленный маршрут перевозки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonSignatureType">
+    <xs:annotation>
+      <xs:documentation>Подпись грузоотправителя/грузополучателя/водителя</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="TypePerson" type="clt_ru:Numeric1Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Подпись: 1 - грузоотправителя; 2 - грузополучателя; 3 - лица, уполномоченного грузополучателем; 4 - водителя; 5 - лица, уполномоченного перевозчиком</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarrierType">
+    <xs:annotation>
+      <xs:documentation>Сведения о перевозчике</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:SubjectDetailsType">
+        <xs:sequence>
+          <xs:element name="ResponsiblePerson" type="atb:PersonType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Данные уполномоченного лица</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Drivers" type="atb:DriverType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Водители</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarrierCommentsType">
+    <xs:annotation>
+      <xs:documentation>Замечания перевозчика</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ActualStateLoad" type="atb:PackingInformationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое состояние груза, упаковки, маркировки, опломбирования при приеме груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChangeConditionsInMove" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Изменение условий перевозки при движении</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActualStateUnload" type="atb:PackingInformationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое состояние груза, упаковки, маркировки, опломбирования при сдаче груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChangeConditionsInUnload" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Изменение условий перевозки при выгрузке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadActualArrDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время прибытия ТС на погрузку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadActualDepDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время убытия ТС с погрузки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadBruttoCargoWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Масса груза брутто в кг при погрузке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadPlacesQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест при погрузке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Bracing" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Крепление груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LoadingOperations" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Проведение погрузочных работ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnloadActualArrDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время прибытия ТС на выгрузку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnloadActualDepDateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактические дата и время убытия ТС с выгрузки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnloadBruttoCargoWeight" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Масса груза брутто в кг при выгрузке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UnloadPlacesQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест при выгрузке</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonType">
+    <xs:annotation>
+      <xs:documentation>Сведения о персонах</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="Contact" type="cat_ru:ContactType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Контактная информация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DriverType">
+    <xs:annotation>
+      <xs:documentation>Сведения о водителях</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="atb:PersonType">
+        <xs:sequence>
+          <xs:element name="INN" type="clt_ru:INNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ИНН водителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DriversLicense" type="atb:DriversLicenseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты водительского удостоверения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DriversLicenseType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты водительского удостоверения</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="Series" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Серия водительского удостоверения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrderType">
+    <xs:annotation>
+      <xs:documentation>Заказ (заявка)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumberOrder" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер заказа (заявки)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateOrder" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата заказа (заявки)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateAcceptingOrder" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата принятия заказа (заявки) к исполнению</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonAcceptingOrder" type="cat_ru:PersonBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ФИО, должность лица, принявшего заказ к исполнению</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReaddressingType">
+    <xs:annotation>
+      <xs:documentation>Переадресация груза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DateReaddressing" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата переадресации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FormReaddressing" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Форма переадресации: 0 - устно; 1 - письменно</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonReaddressing" type="cat_ru:OrganizationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о лице, от которого получено указание о переадресации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Consignee" type="cat_ru:OrganizationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о новом грузополучателе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес нового места выгрузки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateTime" type="clt_ru:DateTimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата и время подачи ТС под выгрузку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RouteType">
+    <xs:annotation>
+      <xs:documentation>Участок маршрута </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="From" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Где взять </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="To" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Куда доставить </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PointNumber" type="clt_ru:Count2Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер точки маршрута</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарий</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CargoType">
+    <xs:annotation>
+      <xs:documentation>Информация о грузе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CargoDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Отгрузочное наименование</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Package" type="atb:PackingInformationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Маркировка, вид тары, способ упаковки грузового места</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара нетто (кг) грузового места</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Вес товара брутто (кг) грузового места</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Capacity" type="clt_ru:Quantity11Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Объем грузового места в куб.м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sizes" type="atb:DimensionsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер грузового места</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DangerCargo" type="atb:DangerCargoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация об опасных грузах (по каждому опасному веществу, материалу или изделию в соответствии с пунктом 5.4.1 ДОПОГ)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CargoSpaces" type="clt_ru:Quantity11Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Density" type="clt_ru:Quantity11Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Плотность груза в кг/куб.м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дополнительные характеристики груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContainerQuantity" type="clt_ru:Quantity8Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество контейнеров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContainerIdentificator" type="clt_ru:ContainerIdentityType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Номер (идентификатор) контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoteType">
+    <xs:annotation>
+      <xs:documentation>Отметка</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DescriptionNote" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Описание обстоятельств, послуживших основанием для отметки, сведения о коммерческих и иных актах, в том числе о погрузке/выгрузке груза</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Calculation" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Расчет и размер штрафа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonSign" type="cat_ru:PersonSignatureType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Подпись, дата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DimensionsType">
+    <xs:annotation>
+      <xs:documentation>Габаритные размеры</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Height" type="clt_ru:Quantity14point2Type">
+        <xs:annotation>
+          <xs:documentation>Высота, м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Width" type="clt_ru:Quantity14point2Type">
+        <xs:annotation>
+          <xs:documentation>Ширина, м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Length" type="clt_ru:Quantity14point2Type">
+        <xs:annotation>
+          <xs:documentation>Длина, м</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DangerCargoType">
+    <xs:annotation>
+      <xs:documentation>Информация по опасным грузам</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DangerCargoDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация об опасном грузе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="HazardousCargoCode" type="cltTrans_ru:HazardousCargoCodeType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Код класса опасности груза по МОПОГ/ДОПОГ для опасных грузов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PayerType">
+    <xs:annotation>
+      <xs:documentation>Данные плательщика</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catComFin_ru:InvoiceParticipantType">
+        <xs:sequence>
+          <xs:element name="PaymentRequisitions" type="catComFin_ru:PaymentRequisitionsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Банковские реквизиты</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PostalAddress" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

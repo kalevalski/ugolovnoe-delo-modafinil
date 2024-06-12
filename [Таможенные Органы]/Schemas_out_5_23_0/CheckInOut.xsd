@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:chit="urn:customs.ru:Information:TransportDocuments:Air:CheckInOut:5.23.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:TransportDocuments:Air:CheckInOut:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сообщение о регистрации прибытия воздушного судна/Сообщение о разрешении на убытие воздушного судна</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CheckInOut" type="chit:CheckInOutType" />
+  <xs:complexType name="CheckInOutType">
+    <xs:annotation>
+      <xs:documentation>Сообщение о регистрации прибытия воздушного судна/Сообщение о разрешении на убытие воздушного судна</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="UIN" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>УИН</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignInOut" type="clt_ru:DigitalIndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак: 1- Прибытие, 0 - Убытие</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegNumberInOut" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер сообщения о прибытии/убытии</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateOperation" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата операции (регистрации прибытия/убытия) </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TimeOperation" type="clt_ru:TimeCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Время операции (регистрации прибытия/убытия)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ControlDecision" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Принятое решение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:CustomsPersonType">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо таможенного органа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customs" type="cat_ru:CUCustomsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о таможенном органе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Flight" type="chit:FlightType">
+            <xs:annotation>
+              <xs:documentation>Сведения о рейсе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003309E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="FlightType">
+    <xs:annotation>
+      <xs:documentation>Сведения о рейсе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catTrans_ru:FlightInfoType">
+        <xs:sequence>
+          <xs:element name="DestinationAirport" type="catTrans_ru:AirportType">
+            <xs:annotation>
+              <xs:documentation>Аэропорт назначения </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

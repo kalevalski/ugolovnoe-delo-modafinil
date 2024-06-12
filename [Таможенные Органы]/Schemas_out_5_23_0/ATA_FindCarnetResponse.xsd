@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_findcr="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindCarnetResponse:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindCarnetResponse:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Результат поиска карнетов АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_FindCarnetResponse" type="ata_findcr:ATA_FindCarnetResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска карнетов АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_FindCarnetResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска карнетов АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="CarnetInfo" type="ata_findcr:CarnetInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о карнете АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003419E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CarnetInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о карнете АТА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Holder" type="ata_ct:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Держатель карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IntendedUse" type="ata_ct:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Предполагаемое использование товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssuedBy" type="clt_ru:FreeText500Type">
+        <xs:annotation>
+          <xs:documentation>Наименование выдающей ассоциации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssueDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValidUntil" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Срок действия карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsGroupInfo" type="ata_findcr:GoodsGroupInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о группе товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubmissionMode" type="ata_ct:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Способ подачи карнета АТА: 1 - заведен вручную, 2 - представлен XML, 3 - сформирован в рамказ СМЭВ, 4 - представлен с использованием личного кабинета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsGroupInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о группе товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsGroupStatus" type="ata_findcr:GoodsGroupStatusType">
+        <xs:annotation>
+          <xs:documentation>Состояние группы товаров.  Допустимые значения: UNREGISTRED; IMPORTED; EXPORTED; TRNOPEN; CHKRSKIM; CHKRSKEX; CHKRSKREIM; CHKRSKREEX; CHKRSKOPTR; CHKRSKCLTR; PRPTIM; PRPTEX; PRPTREEX; PRPTREIM; PRPTOPTR; PRPTCLTR</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="clt_ru:Quantity11Type">
+        <xs:annotation>
+          <xs:documentation>Количество товаров в группе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="GoodsGroupStatusType">
+    <xs:annotation>
+      <xs:documentation>Состояние группы товаров</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="UNREGISTRED" />
+      <xs:enumeration value="IMPORTED" />
+      <xs:enumeration value="EXPORTED" />
+      <xs:enumeration value="TRNOPEN" />
+      <xs:enumeration value="CHKRSKIM" />
+      <xs:enumeration value="CHKRSKEX" />
+      <xs:enumeration value="CHKRSKREIM" />
+      <xs:enumeration value="CHKRSKREEX" />
+      <xs:enumeration value="CHKRSKOPTR" />
+      <xs:enumeration value="CHKRSKCLTR" />
+      <xs:enumeration value="PRPTIM" />
+      <xs:enumeration value="PRPTEX" />
+      <xs:enumeration value="PRPTREEX" />
+      <xs:enumeration value="PRPTREIM" />
+      <xs:enumeration value="PRPTOPTR" />
+      <xs:enumeration value="PRPTCLTR" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

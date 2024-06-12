@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:CashMemorandum:5.22.0" version="5.22.0.0" xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cm="urn:customs.ru:Information:CommercialFinanceDocuments:CashMemorandum:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сведения из товарного и кассового чека</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CashMemorandum" type="cm:CashMemorandumType" />
+  <xs:complexType name="CashMemorandumType">
+    <xs:annotation>
+      <xs:documentation>Сведения из товарного и кассового чека</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Number" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер чека</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="CreateDateTime" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время составления чека</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="CashDeskNumber" type="clt_ru:Text50Type">
+            <xs:annotation>
+              <xs:documentation>Номер кассы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CashPayment" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак того, что расчет является наличным</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+            <xs:annotation>
+              <xs:documentation>Код валюты чека</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Sum" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма, уплаченная покупателем</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Change" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Сдача</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Customer" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Покупатель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Seller" type="cm:SellerType">
+            <xs:annotation>
+              <xs:documentation>Продавец</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SellerSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись продавца (кассира)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="CustomerSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись покупателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="Goods" type="cm:GoodsType">
+            <xs:annotation>
+              <xs:documentation>Товар</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1002019E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="GoodsType">
+    <xs:annotation>
+      <xs:documentation>Линия товарного чека</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catComFin_ru:SpecificationGoodsType">
+        <xs:sequence>
+          <xs:element name="Number" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Номер товара в списке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Discount" type="clt_ru:ProcentNumericType">
+            <xs:annotation>
+              <xs:documentation>Скидка, в процентах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="TaxPercent" type="clt_ru:ProcentNumericType">
+            <xs:annotation>
+              <xs:documentation>Налог, в процентах от стоимости товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Notes" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SellerType">
+    <xs:annotation>
+      <xs:documentation>Продавец</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Organisation" type="cat_ru:OrganizationBaseType">
+        <xs:annotation>
+          <xs:documentation>Реквизиты организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Address" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Адрес организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

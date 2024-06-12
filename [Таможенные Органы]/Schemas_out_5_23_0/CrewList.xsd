@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:TransportDocuments:Sea:CrewList:5.23.0" version="5.23.0.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cl="urn:customs.ru:Information:TransportDocuments:Sea:CrewList:5.23.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Судовая роль</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CrewList" type="cl:CrewListType" />
+  <xs:complexType name="CrewListType">
+    <xs:annotation>
+      <xs:documentation>Судовая роль</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="LanguageCode" type="clt_ru:LanguageCodeType">
+            <xs:annotation>
+              <xs:documentation>Код языка документа </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeparturePort" type="cltTrans_ru:PortNameType">
+            <xs:annotation>
+              <xs:documentation>Название порта отправления судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="ArrivalIndicator" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак прибытия судна относительно Российской стороны</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Carrier" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Название перевозчика (агента)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Notice" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Примечание </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RUPersonnel" type="clt_ru:CodeVariable4Type">
+            <xs:annotation>
+              <xs:documentation>Количество российских членов экипажа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ForeignPersonnel" type="clt_ru:CodeVariable4Type">
+            <xs:annotation>
+              <xs:documentation>Количество иностранных членов экипажа.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись документа капитаном, морским агентом или каким-либо другим лицом, надлежащим образом уполномоченным на то капитаном</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Vessel" type="catTrans_ru:VesselType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>Сведения о прибытии или убытии судна</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Arrival" type="catTrans_ru:PortType">
+              <xs:annotation>
+                <xs:documentation>Информация о прибытии</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Sailing" type="catTrans_ru:PortType">
+              <xs:annotation>
+                <xs:documentation>Информация об убытии</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element maxOccurs="unbounded" name="CockpitPersonnel" type="cl:CockpitPersonnelType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты членов экипажа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1003205E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CockpitPersonnelType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты членов экипажа</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonBaseType">
+        <xs:sequence>
+          <xs:element name="PersNumeric" type="clt_ru:CodeVariable4Type">
+            <xs:annotation>
+              <xs:documentation>Порядковый номер (1- номер капитана)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nationality" type="clt_ru:CountryA2CodeType">
+            <xs:annotation>
+              <xs:documentation>Гражданство (альфа код страны)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BirthPlace" type="clt_ru:PlaceNameType">
+            <xs:annotation>
+              <xs:documentation>Место рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateofBirth" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата рождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Document" type="RUScat_ru:RUIdentityCardType">
+            <xs:annotation>
+              <xs:documentation>Вид и номер документа, удостоверяющего личность члена экипажа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

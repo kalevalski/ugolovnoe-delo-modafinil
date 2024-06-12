@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:Contract:5.22.0" version="5.22.0.0" xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:con="urn:customs.ru:Information:CommercialFinanceDocuments:Contract:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Договор (контракт) купли-продажи/ Договор поставки товаров</xs:documentation>
+  </xs:annotation>
+  <xs:element name="Contract" type="con:ContractType" />
+  <xs:complexType name="ContractType">
+    <xs:annotation>
+      <xs:documentation>Контракт/ Договор поставки</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="SupplementationSign" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Признак наличия дополнений/приложений к контракту, имеющих отношение к перемещаемым/декларируемым товарам</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContractTerms" type="catComFin_ru:ContractDescriptionType">
+            <xs:annotation>
+              <xs:documentation>Условия контракта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ForeignPerson" type="cat_ru:OrganizationWBankType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты иностранной стороны контракта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RussianPerson" type="cat_ru:OrganizationWBankType">
+            <xs:annotation>
+              <xs:documentation>Описание российского контрактодержателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ContractDeliveryTerms" type="catComFin_ru:ContractDeliveryTermsType">
+            <xs:annotation>
+              <xs:documentation>Описание условий поставки в контракте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ContractSpecification" type="catComFin_ru:ContractSpecificationType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты спецификации к контракту</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContractRegistration" type="catComFin_ru:ContractRegistrationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о подписании (заключении) контракта (дата, номер, место)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContractSignedPerson" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Лицо, подписавшее документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1002004E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

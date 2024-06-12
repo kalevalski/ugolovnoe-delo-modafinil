@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:TransportDocuments:Sea:CertificateTitleVessel:5.23.0" version="5.23.0.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:ctv="urn:customs.ru:Information:TransportDocuments:Sea:CertificateTitleVessel:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Свидетельство о праве собственности на судно</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CertificateTitleVessel" type="ctv:CertificateTitleVesselType" />
+  <xs:complexType name="CertificateTitleVesselType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о праве собственности на судно</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssuedInspectorate" type="clt_ru:Text50Type">
+            <xs:annotation>
+              <xs:documentation>Наименование бассейна, по которому выдано свидетельство Государственной речной судоходной инспекцией</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssuedChief" type="clt_ru:Text50Type">
+            <xs:annotation>
+              <xs:documentation>Наименование бассейна, начальник которого   подписывает свидетельство.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="clt_ru:CodeVariable7Type">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueDateDoc" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи сертификата</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Shipowner" type="ctv:ShipownerType">
+            <xs:annotation>
+              <xs:documentation>Сведения о судовладельце</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Vessel" type="catTrans_ru:ShipDataType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Register" type="ctv:RegisterType">
+            <xs:annotation>
+              <xs:documentation>Государственный судовой реестр Российской Федерации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignatureChief" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись начальника Государственной речной судоходной инспекции.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1003207E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="RegisterType">
+    <xs:annotation>
+      <xs:documentation>Государственный судовой реестр Российской Федерации</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumberRegister" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateRegister" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата реестра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ShipownerType">
+    <xs:annotation>
+      <xs:documentation>Сведения о судовладельце</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PostalAddress" type="cat_ru:AddressType">
+            <xs:annotation>
+              <xs:documentation>Почтовый адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="LocationPlace" type="cat_ru:AddressType">
+            <xs:annotation>
+              <xs:documentation>Место нахождения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

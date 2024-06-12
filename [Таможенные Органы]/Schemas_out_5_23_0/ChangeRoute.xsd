@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:chr="urn:customs.ru:Information:ExchangeDocuments:ChangeRoute:5.22.0" targetNamespace="urn:customs.ru:Information:ExchangeDocuments:ChangeRoute:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление на изменение маршрута</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ChangeRoute" type="chr:ChangeRouteType" />
+  <xs:complexType name="ChangeRouteType">
+    <xs:annotation>
+      <xs:documentation>Заявление на изменение маршрута</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="InitialRoute" type="chr:RouteType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Исходный маршрут</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NewRoute" type="chr:RouteType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Новый маршрут</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Причины изменения маршрута</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TDTSNumber" type="chr:ETDTSNumberType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер ТДТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1004126E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ETDTSNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер ЭТДТС</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="TransportModeCode" type="clt_ru:TransportModeCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида транспорта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DestinationType">
+    <xs:annotation>
+      <xs:documentation>Место назначения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DestinationPlace" type="clt_ru:PlaceNameType">
+        <xs:annotation>
+          <xs:documentation>Пункт назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationCountry" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Страна назначения. Краткое название страны в соответствии с классификатором стран мира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Страна назначения. Буквенный код страны в соответствии с классификатором стран мира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RouteType">
+    <xs:annotation>
+      <xs:documentation>Маршрут. Графа 5 ТДТС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Destination" type="chr:DestinationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Место назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightInfo" type="chr:FlightInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о рейсе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlightInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о рейсе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FlightNumber" type="clt_ru:CodeVariable6Type">
+        <xs:annotation>
+          <xs:documentation>Номер рейса.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата рейса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightTime" type="clt_ru:TimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Время вылета рейса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

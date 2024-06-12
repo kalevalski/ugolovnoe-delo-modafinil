@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Проект приказа ФТС России "Об утверждении формы решения о классификации товара в соответствии с единой Товарной номенклатурой внешнеэкономической деятельности Евразийского экономического союза, формы решения об изменении решения о классификации товара в соответствии с единой Товарной номенклатурой внешнеэкономической деятельности Евразийского экономического союза, порядков их заполнения, а также порядков и сроков принятия указанных решений" 
+Приложение №4 (DCGType=0) 
+Приказ ФТС России от 31.01.2019 №156 "Об утверждении формы решения о классификации товара в соответствии с единой Товарной номенклатурой внешнеэкономической деятельности Евразийского экономического союза, формы решения об изменении решения о классификации товара в соответствии с единой Товарной номенклатурой внешнеэкономической деятельности Евразийского экономического союза, порядков их заполнения, а также порядков и сроков принятия указанных решений" 
+Приложение №4 (DCGType=1)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:RUSclt_ru="urn:customs.ru:RUSCommonLeafTypes:5.21.0" xmlns:cdc="urn:customs.ru:Information:CustomsDocuments:ClassDecisionChange:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ClassDecisionChange:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:RUSCommonLeafTypes:5.21.0" schemaLocation="RUSCommonLeafTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Решение об изменении решения о классификации товара</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ClassDecisionChange" type="cdc:ClassDecisionChangeType">
+		<xs:annotation>
+			<xs:documentation>Решение об изменении решения о классификации товара</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ClassDecisionChangeType">
+		<xs:annotation>
+			<xs:documentation>Решение об изменении решения о классификации товара</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="DCGOType" type="clt_ru:IndicatorType">
+						<xs:annotation>
+							<xs:documentation>Форма документа: 0 - новая; 1 - старая</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Date" type="clt_ru:DateCustType">
+						<xs:annotation>
+							<xs:documentation>Дата регистрации решения об изменении решения о классификации товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegistrationNumber" type="cdc:RegNumDecisionClassGoodType">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер решения об изменении решения о классификации товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegNumDecisionClassGood" type="cdc:RegNumDecisionClassGoodType">
+						<xs:annotation>
+							<xs:documentation>Номер решения о классификации товара в соответствии с единой ТН ВЭД ЕАЭС, в которое вносятся изменения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Declarant" type="cdc:DeclarantType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Декларант</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Customs" type="cdc:CustomsType">
+						<xs:annotation>
+							<xs:documentation>Наименование таможенного органа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RegNumberDT" type="cdc:DTListType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Перечень ДТ, по которым принято решение</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsPerson" type="cat_ru:PersonSignatureType">
+						<xs:annotation>
+							<xs:documentation>Подпись должностного лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Application" type="cdc:ApplicationType" minOccurs="0" maxOccurs="20">
+						<xs:annotation>
+							<xs:documentation>Дополнительный лист</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006206E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApplicationType">
+		<xs:annotation>
+			<xs:documentation>Дополнительный лист</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ApplicationNum" type="clt_ru:Count2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер дополнительного листа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ApplicationText" type="clt_ru:Text3MB" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Текст дополнительного листа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsType">
+		<xs:annotation>
+			<xs:documentation>Код и наименование таможенного органа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Code" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OfficeName" type="clt_ru:Text150Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChangesDescriptionType">
+		<xs:annotation>
+			<xs:documentation>Описание изменений</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GRNumber" type="clt_ru:Text10Type">
+				<xs:annotation>
+					<xs:documentation>Номер графы (пункта)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PreviousValue" type="RUSclt_ru:FreeText4000Type">
+				<xs:annotation>
+					<xs:documentation>Старое значение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NewValue" type="RUSclt_ru:FreeText4000Type">
+				<xs:annotation>
+					<xs:documentation>Новое значение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о товарах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ListNumeric" type="clt_ru:Count3Type">
+				<xs:annotation>
+					<xs:documentation>Номер по порядку</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumeric" type="clt_ru:Count3Type">
+				<xs:annotation>
+					<xs:documentation>Номер товара по ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Наименование товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChangesDescription" type="cdc:ChangesDescriptionType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание изменений</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeclarantType">
+		<xs:annotation>
+			<xs:documentation>Сведения о декларанте (пункт 2)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:SubjectDetailsType">
+				<xs:sequence>
+					<xs:element name="SeparateDivision" type="RUScat_ru:OrganizationType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения об обособленном подразделении, не являющемся юридическим лицом и выступающим от имени юридического лица</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DTListType">
+		<xs:annotation>
+			<xs:documentation>Перечень ДТ, по которым принято решение</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsNumeric" type="cat_ru:GTDIDType">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcedureID" type="clt_ru:DocumentIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор  процедуры декларирования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Goods" type="cdc:GoodsType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о товарах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegNumDecisionClassGoodType">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер решения / изменения решения о классификации товара в соответствии с единой ТН ВЭД ЕАЭС</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SerialNumber" type="clt_ru:Code6Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый исходящий номер</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Date" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата принятия решения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocKind" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак принятия решения о классификации товара: З - по заявлению; Э - по декларации на товары для экспресс-грузов; П - по пассажирской таможенной декларации для экспресс-грузов; Д - по нескольким таможенным декларациям; И - признак изменения решения о классификации товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

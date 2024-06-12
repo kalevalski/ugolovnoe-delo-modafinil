@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:cbr="urn:customs.ru:ReportingCollection:CustomsBrokerReport:5.22.0" targetNamespace="urn:customs.ru:ReportingCollection:CustomsBrokerReport:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отчетность о деятельности таможенного представителя</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CustomsBrokerReport" type="cbr:CustomsBrokerReportType">
+    <xs:annotation>
+      <xs:documentation>Отчет о деятельности таможенного представителя</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CustomsBrokerReportType">
+    <xs:annotation>
+      <xs:documentation>Отчет о деятельности таможенного представителя</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ReportDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата подачи отчёта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportNumber" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер отчёта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingDateFrom" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата начала отчётного периода</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReportingDateTo" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата окончания отчётного периода</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsBroker" type="cbr:CustomsBrokerType">
+            <xs:annotation>
+              <xs:documentation>Таможенный представитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Person" type="cbr:PersonType">
+            <xs:annotation>
+              <xs:documentation>Рукводитель организации либо лицо, имеющее право подписи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfoSpecialists" type="cbr:InfoSpecialistsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о специалистах по таможенным операциям, состоящих в штате организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfoInsuranceCases" type="cbr:InfoInsuranceCasesType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о страховых случаях, произошедших в период действия договора страхования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfoBankAccounts" type="cbr:InfoBankAccountsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о банковских счетах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfoPaymentFines" type="cbr:InfoPaymentFinesType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об уплате штрафов, вынесенных по делам об административных правонарушениях, ответственность за которые предусмотрена статьей 16.2 и/или 16.3 КоАП РФ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InfoStageProcedure" type="cbr:InfoStageProcedureType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о стадиях процедур, проводимых в отношении таможенного представителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Founder" type="cbr:FounderType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Учредитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InternetInform" type="cbr:InternetInformType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об опубликовании стоимости услуг таможенного представителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1004119E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CustomsBrokerType">
+    <xs:annotation>
+      <xs:documentation>Таможенный представитель</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationBaseType">
+        <xs:sequence>
+          <xs:element name="CustomsRepresCertificate" type="catESAD_cu:CUESADCustomsRepresCertificateType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер в реестре таможенных представителей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonType">
+    <xs:annotation>
+      <xs:documentation>Специалист по таможенным операциям, заполнивший отчет</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonSurname" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Фамилия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Имя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonMiddleName" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Отчество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonQCNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер квалификационного аттестата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonQCDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата квалификационного аттестата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InfoSpecialistsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о специалистах по таможенным операциям, состоящих в штате организации</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>ФИО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType">
+        <xs:annotation>
+          <xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumberCertificate" type="cbr:RegistrationNumberCertificateType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер КАСТО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateIssueCertificate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи квалификационного аттестата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LevelUpDate" type="clt_ru:DateCustType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Дата проставления отметки о прохождении повышения квалификации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationNumberCertificateType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер квалификационного аттестата.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SerialNumber" type="cbr:CodeVariable15Type">
+        <xs:annotation>
+          <xs:documentation>Номер КАСТО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NumberManagement" type="clt_ru:CustomsCodeType">
+        <xs:annotation>
+          <xs:documentation>РТУ, выдавшее КАСТО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CodeVariable15Type">
+    <xs:annotation>
+      <xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 15 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="InfoInsuranceCasesType">
+    <xs:annotation>
+      <xs:documentation>Сведения о страховых случаях, произошедших в период действия договора страхования</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InsuranceContractNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер договора страхования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsuranceContractDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата заключения договора страхования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsuranceContractDateFrom" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата заключения договора страхования (период его действия с)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsuranceContractDateTo" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата заключения договора страхования (период его действия по)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsuranceAgency" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Страховая организация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsuredEventDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата наступления страхового случая</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReasonInsuredEvent" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Причина наступления страхового случая</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InsurancePaymentAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Размер страховой выплаты (руб.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InfoBankAccountsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о банковских счетах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BankName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Название банка</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BankAccount" type="clt_ru:ForeignAccountType">
+        <xs:annotation>
+          <xs:documentation>Номер счета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateOpen" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата открытия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DateClose" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата закрытия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InfoStageProcedureType">
+    <xs:annotation>
+      <xs:documentation>Сведения о стадиях процедур, проводимых в отношении таможенного представителя</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Reorganization" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Реорганизация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DecisionSuspendOperations" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Принятие судом решения о приостановлении деятельности юридического лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Liquidation" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ликвидация</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Bankruptcy" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Банкротство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InfoPaymentFinesType">
+    <xs:annotation>
+      <xs:documentation>Сведения об уплате штрафов, вынесенных по делам об административных правонарушениях, ответственность за которые предусмотрена статьей 16.2 и/или 16.3 КоАП РФ</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DecisionNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер постановления по делу об административных нарушениях</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DecisionDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата постановления по делу об административных нарушениях</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PenaltyAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма штрафа (руб.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConfirmingDateNumber" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата и номер документа, подтверждающего уплату штрафа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaidAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Уплаченная сумма (руб.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InternetInformType">
+    <xs:annotation>
+      <xs:documentation>Сведения об опубликовании в интернете</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="URL" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Адрес официального сайта таможенного представителя в сети "Интернет"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DatePublication" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата официального опубликования данных о стоимости услуг </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FounderType">
+    <xs:annotation>
+      <xs:documentation>Учередитель</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationBaseType">
+        <xs:sequence>
+          <xs:element name="ForeingIndicator" type="clt_ru:IndicatorType">
+            <xs:annotation>
+              <xs:documentation>Является ли учредитель иностранным лицом</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:cltComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" elementFormDefault="qualified" version="5.8.0.0">
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Общие простые типы  коммерческих и финансовых документов</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="CBCType">
+    <xs:annotation>
+      <xs:documentation>Идентификатор. Код бюджетной классификации (КБК). Текстовый. До 20 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CertificateSeriesCodeType">
+    <xs:annotation>
+      <xs:documentation>Код. Серия свидетельства о государственной регистрации  организации. До 4 символов. Текстовый</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CorrAccountType">
+    <xs:annotation>
+      <xs:documentation>Идентификатор. Номер балансового счета второго порядка. Числовой. от 5 до 20 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+      <xs:pattern value="\d{5,20}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DueDateCodeType">
+    <xs:annotation>
+      <xs:documentation>Код. Код срока оплаты по контракту. 2 символа. Числовой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:pattern value="\d{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InvoiceCurrencyRateType">
+    <xs:annotation>
+      <xs:documentation>Курс иностранной валюты. 25 знаков. До 6 знаков после запятой. Числовой.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:NumericCategoriesCust">
+      <xs:fractionDigits value="6" />
+      <xs:minInclusive value="0" />
+      <xs:totalDigits value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PaymentModeCodeType">
+    <xs:annotation>
+      <xs:documentation>Код. Код формы расчетов по контракту. Заполняется согласно справочнику. 2 символа. Числовой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:pattern value="\d{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PriceType">
+    <xs:annotation>
+      <xs:documentation>Цена. Число. 4 знаков после запятой. 25 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:NumericCategoriesCust">
+      <xs:fractionDigits value="4" />
+      <xs:minInclusive value="0" />
+      <xs:totalDigits value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MoreAccuratePriceType">
+    <xs:annotation>
+      <xs:documentation>Цена. 25 знаков. До 6 знаков после запятой. Числовой.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:NumericCategoriesCust">
+      <xs:fractionDigits value="6" />
+      <xs:minInclusive value="0" />
+      <xs:totalDigits value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SaleTermsCodeType">
+    <xs:annotation>
+      <xs:documentation>Код. Код срока оплаты по инвойсу. НСИ: KL203I, KL203E. 2 символа. Числовой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:pattern value="\d{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TaxDocDateCodeTextType">
+    <xs:annotation>
+      <xs:documentation>Код. Дата налогового документа. Текстовый. До 10 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TaxDocIDTextType">
+    <xs:annotation>
+      <xs:documentation>Идентификатор. Номер налогового документа. Текстовый. До 15 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Text100Type">
+    <xs:annotation>
+      <xs:documentation>Текстовое описание. До 100 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:TextCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

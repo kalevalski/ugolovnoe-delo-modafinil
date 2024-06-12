@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_on="urn:customs.ru:Information:TransportDocuments:ATA:ATA_OffenseNotif:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_OffenseNotif:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Уведомление о наличии фактов нарушения сроков временного ввоза</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_OffenseNotif" type="ata_on:ATA_OffenseNotifType">
+    <xs:annotation>
+      <xs:documentation>Уведомление о наличии фактов нарушения сроков временного ввоза</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_OffenseNotifType">
+    <xs:annotation>
+      <xs:documentation>Уведомление о наличии фактов нарушения сроков временного ввоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата создания уведомления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationRegNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationType" type="ata_ct:OperationType">
+            <xs:annotation>
+              <xs:documentation>Тип операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomRequested" type="clt_ru:CustomsCodeType">
+            <xs:annotation>
+              <xs:documentation>Код ТО, сформировавший уведомление</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentType" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Вид документа-основания. 1 - Докладная записка; 2 - Служебная записка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата регистрации документа-основания</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер документа-основания</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comment" type="ata_ct:FreeText1000Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Примечания</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003443E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cbc="urn:customs.ru:Information:RegistrationDocuments:CustomsBrokerCertificate:5.22.0" xmlns:cltReg_ru="urn:customs.ru:Information:RegistrationDocuments:RegistrationCommonLeafTypes:4.8.1" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:RegistrationDocuments:CustomsBrokerCertificate:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:RegistrationDocuments:RegistrationCommonLeafTypes:4.8.1" schemaLocation="RegistrationCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сведения о включении в реестр таможенных представителей</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CustomsBrokerCertificate" type="cbc:CustomsBrokerCertificateType">
+    <xs:annotation>
+      <xs:documentation>Сведения о включении в реестр таможенных представителей</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CustomsBrokerCertificateType">
+    <xs:annotation>
+      <xs:documentation>Сведения о включении в реестр таможенных представителей</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="FormNumber" type="cltReg_ru:FormNumType">
+            <xs:annotation>
+              <xs:documentation>Номер бланка</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentReference" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Organization" type="cbc:BrokerOrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения об организации-таможенном представителе (брокере)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PaymentGuarantee" type="cbc:PaymentGuaranteeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Обеспечение уплаты таможенных платежей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FieldRestrictions" type="cbc:FieldRestrictionsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Ограничения сферы деятельности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись должностного лица (ФИО, должность, дата)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1001103E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="BranchDescriptionType">
+    <xs:annotation>
+      <xs:documentation>Сведения об обособленном подразделении.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="OrganizationName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование обособленного подразделения.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KPP" type="clt_ru:KPPCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>КПП (Код причины постановки на учет) обособленного подразделения.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес организации.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BrokerOrganizationType">
+    <xs:annotation>
+      <xs:documentation>Сведения об организации-таможенном представителе (брокере)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:OrganizationBaseType">
+        <xs:sequence>
+          <xs:element name="BranchDescriprion" type="cbc:BranchDescriptionType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Обособленное структурное подразделение организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Address" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FactAddress" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Фактический  адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FieldRestrictionsType">
+    <xs:annotation>
+      <xs:documentation>Ограничения сферы деятельности</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsRestriction" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ограничения по видам товаров в соответствии с ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransportRestriction" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ограничения по видам транспорта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegionRestriction" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ограничения по региону деятельности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProcedureRestriction" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Ограничения по видам таможенных операций</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentGuaranteeType">
+    <xs:annotation>
+      <xs:documentation>Обеспечение уплаты таможенных платежей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CustomsPaymentCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код вида таможенного платежа по классификатору видов налогов, сборов и иных платежей, взимание которых возложено на таможенные органы.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentAmount" type="clt_ru:AmountType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сумма обеспечения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Решение Коллегии ЕЭК от 7 ноября 2017 г. №140 Порядок совершения таможенных операций, связанных с продлением срока нахождения на таможенной территории ЕАЭC временно ввезенных транспортных средств международной перевозки. п.3  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:cipr="urn:customs.ru:Information:CustomsDocuments:CurrentImportProlong:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:CurrentImportProlong:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Заявление на продление сроков временного ввоза / Запрос о продлении срока нахождения на таможенной территории ЕАЭС временно ввезенных транспортных средств международной перевозки
+</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CurrentImportProlong" type="cipr:CurrentImportProlongType" />
+  <xs:complexType name="CurrentImportProlongType">
+    <xs:annotation>
+      <xs:documentation>Заявление на продление сроков временного ввоза / Запрос о продлении срока нахождения на таможенной территории ЕАЭС временно ввезенных транспортных средств международной перевозки
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="InitialPeriod" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Первоначальный срок временного ввоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateProlong" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата, до которой необходимо продлить срок временного ввоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Причины</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TDTSNumber" type="cipr:ETDTSNumberType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер ТДТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transport" type="cat_ru:TransportMeansBaseType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Транспортное средство</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Place" type="cipr:PlaceType">
+            <xs:annotation>
+              <xs:documentation>Сведения о месте фактического нахождения транспортных средств</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Applicant" type="cipr:ApplicantType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Заявитель</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Route" type="cipr:RouteType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Маршрут</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006171E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ApplicantType">
+    <xs:annotation>
+      <xs:documentation>Сведения о заявителе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:SubjectBaseDetailsType">
+        <xs:sequence>
+          <xs:element name="IdentityCard" type="RUScat_ru:RUIdentityCardType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о документе, удостоверяющем личность физического лица, направившего запрос</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubjectAddressDetails" type="RUScat_ru:RUAddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес места нахождения юридического лица, организации, либо места жительства физического лица, направивших заявление (запрос)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommunicationDetails" type="cat_ru:ContactType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Предпочтительный для лица, направившего запрос, способ информирования о результатах рассмотрения запроса  (по электронной почте, по телефону и т.п.).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DestinationType">
+    <xs:annotation>
+      <xs:documentation>Место назначения</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DestinationPlace" type="clt_ru:PlaceNameType">
+        <xs:annotation>
+          <xs:documentation>Пункт назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationCountry" type="clt_ru:CountryNameType">
+        <xs:annotation>
+          <xs:documentation>Страна назначения. Краткое название страны в соответствии с классификатором стран мира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Страна назначения. Буквенный код страны в соответствии с классификатором стран мира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ETDTSNumberType">
+    <xs:annotation>
+      <xs:documentation>Регистрационный номер ЭТДТС</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:GTDIDType">
+        <xs:sequence>
+          <xs:element name="TransportModeCode" type="clt_ru:TransportModeCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида транспорта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FlightInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о рейсе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FlightNumber" type="clt_ru:CodeVariable6Type">
+        <xs:annotation>
+          <xs:documentation>Номер рейса.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата рейса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightTime" type="clt_ru:TimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Время вылета рейса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlaceType">
+    <xs:annotation>
+      <xs:documentation>Сведения о месте фактического нахождения транспортных средств</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Customs" type="cat_ru:CustomsType">
+        <xs:annotation>
+          <xs:documentation>Таможенный орган, в регионе деятельности которого находится транспортное средство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FactTSAddress" type="cat_ru:AddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о месте фактического нахождения транспортных средств</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RWstation" type="cipr:RWstationType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Станция</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RouteType">
+    <xs:annotation>
+      <xs:documentation>Маршрут</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Destination" type="cipr:DestinationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Место назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FlightInfo" type="cipr:FlightInfoType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о рейсе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RWstationType">
+    <xs:annotation>
+      <xs:documentation>ЖД станция</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StationCode" type="clt_ru:RailwayStationCodeType">
+        <xs:annotation>
+          <xs:documentation>Код станции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StationName" type="clt_ru:PlaceNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование станции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RailwayCode" type="clt_ru:CodeVariable4Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код железной дороги</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

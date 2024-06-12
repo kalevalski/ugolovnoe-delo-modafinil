@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ca="urn:customs.ru:Information:WarehouseDocuments:CommercialAct:5.22.0" xmlns:catWH_ru="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonAggregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltWH_ru="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonLeafTypesCust:5.16.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:WarehouseDocuments:CommercialAct:5.22.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonAggregateTypesCust:5.22.0" schemaLocation="WarehouseCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonLeafTypesCust:5.16.0" schemaLocation="WarehouseCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Коммерческий акт - документ, составленный владельцем СВХ в связи с выявлением несоответствий товаров, находящихся на временном хранении, сведениям из товаросопроводительных документов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CommercialAct" type="ca:CommercialActType" />
+  <xs:complexType name="CommercialActType">
+    <xs:annotation>
+      <xs:documentation>Коммерческий акт - документ, составленный владельцем СВХ в связи с выявлением несоответствий товаров, находящихся на временном хранении, сведениям из товаросопроводительных документов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DO1ReportLinkData" type="catWH_ru:WareHouseReportLinkDataType">
+            <xs:annotation>
+              <xs:documentation>Сведения об отчете о принятии по форме ДО-1, в отношении товаров которого составлен настоящий Акт</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ActDetails" type="ca:ActDetailsType">
+            <xs:annotation>
+              <xs:documentation>Сведения об акте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehouseOwner" type="catWH_ru:WarehouseOwnerType">
+            <xs:annotation>
+              <xs:documentation>Данные о владельце склада</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DiscrepancyInfo" type="ca:DiscrepancyInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о выявленных несоответствиях</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WareHousePerson" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Уполномоченный сотрудник, подписавший настоящий акт от склада</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarrierPerson" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уполномоченный сотрудник, подписавший настоящий акт от перевозчика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RecipientPerson" type="cat_ru:PersonBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уполномоченный сотрудник, подписавший настоящий акт от получателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1008028E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ActDetailsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об акте</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ActName" type="clt_ru:DocumentNameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование акта (Акт, Коммерческий акт, Акт общей формы и т.д.)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата акта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActOrderNumber" type="clt_ru:Count10Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер Акта (для первого начиная с единицы), составленного в отношении товаров указанного отчета о принятии, начиная с момента подачи отчета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре согласно отчету о принятии</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DO1GoodNumber" type="clt_ru:Count10Type">
+        <xs:annotation>
+          <xs:documentation>Номер товара в отчете ДО-1</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дополнение в примечание по товару (графа 11 отчета), уточняющее причины и обстоятельства отсутствия товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BruttoVolQuantType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия веса товара сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BruttoVolQuantByDocs" type="catWH_ru:WHSuppQuantityType">
+        <xs:annotation>
+          <xs:documentation>Вес брутто/объем согласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BruttoVolQuantByFact" type="catWH_ru:WHSuppQuantityType">
+        <xs:annotation>
+          <xs:documentation>Вес брутто/объем фактический</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DiscrepancyDetailsType">
+    <xs:annotation>
+      <xs:documentation>Описание подробностей об обстоятельствах выявления несоответствий</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RecipientFlag" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак присутствия представителя грузополучателя в момент выявления несоответствий: 0 - не присутствует; 1 - присутствует</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CarrierFlag" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак присутствия представителя перевозчика в момент выявления несоответствий: 0 - не присутствует; 1 - присутствует</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LeaksFlag" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Признак наличия повреждений упаковок товаров: 0 - не присутствует; 1 - присутствует</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LeaksDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание повреждений упаковок товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DiscrepancyInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о выявленных несоответствиях</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Stage" type="cltWH_ru:GoodMismatchStageType">
+        <xs:annotation>
+          <xs:documentation>Этап, на котором выявлены несоответствия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выявления несоответствия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Time" type="clt_ru:TimeCustType">
+        <xs:annotation>
+          <xs:documentation>Время выявления несоответствия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reasons" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание причин несоответствия и обстоятельств их выявления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TotalPackageNumber" type="clt_ru:Quantity8Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Общее количество грузовых мест с учетом выявленных несоответствий</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DiscrepancyDetails" type="ca:DiscrepancyDetailsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание подробностей выявленных несоответствий</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MissingGoods" type="ca:ActGoodsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, которые были заявлены в документах, но оказались отсутствующими по факту</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DiscrepantGoods" type="ca:DiscrepantGoodsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, которые были заявлены в документах, присутствуют по факту, но отличаются по своим характеристикам от сведений, заявленных в товаросопроводительных документах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExtraGoods" type="catWH_ru:WHShipmentInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, которые не были заявлены в документах, но оказались в грузе по факту. Сведения о выявленных товарах, контейнерах, в которых они находятся, заполняются в рамках товарных партий, идентифицируемых товаротранспортным документом (накладной). Нумерация товаров продолжается с номера, следующего за последним, использованном в указанном отчете о принятии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DiscrepantGoodsType">
+    <xs:annotation>
+      <xs:documentation>Описание товаров, которые были заявлены в документах, присутствуют по факту, но отличаются по своим характеристикам от сведений, заявленных в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ca:ActGoodsType">
+        <xs:sequence>
+          <xs:element name="GoodsTNVEDCode" type="ca:GoodsTNVEDCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsDescription" type="ca:GoodsDescriptionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Описание товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InvoiceCost" type="ca:InvoiceCostType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о фактурной стоимости</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlaceNumber" type="ca:PlaceNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество грузовых мест</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsQuantity" type="ca:GoodsQuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество товара в дополнительной единице измерения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BruttoVolQuant" type="ca:BruttoVolQuantType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Вес брутто/объем</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GoodsDescriptionType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия наименования (описания) товара сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsDescriptionByDocs" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товара согласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescriptionByFact" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание товара фактическое</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsQuantityType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия количества товара в дополнительной единице измерения сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsQuantityByDocs" type="catWH_ru:WHSuppQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество товара в дополнительной единице измерения согласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantityByFact" type="catWH_ru:WHSuppQuantityType">
+        <xs:annotation>
+          <xs:documentation>Количество товара в дополнительной единице фактическое</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsTNVEDCodeType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия кода товара по ТН ВЭД ЕАЭС сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TNVEDCodeByDocs" type="clt_ru:GoodsNomenclatureCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС согласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCodeByFact" type="clt_ru:GoodsNomenclatureCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС фактический</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvoiceCostDataType">
+    <xs:annotation>
+      <xs:documentation>Сведения о фактурной стоимости</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CostAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Стоимость</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CostCurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Буквенный код валюты фактурной стоимости</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvoiceCostType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия фактурной стоимости товара сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="InvoiceCostByDocs" type="ca:InvoiceCostDataType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактурная стоимость cогласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InvoiceCostByFact" type="ca:InvoiceCostDataType">
+        <xs:annotation>
+          <xs:documentation>Фактурная стоимость фактическая</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PlaceNumberType">
+    <xs:annotation>
+      <xs:documentation>Описание несоответствия количества мест товара сведениям, заявленным в товаросопроводительных документах</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PlaceNumberByDocs" type="clt_ru:Quantity8Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест согласно товаросопроводительным документам</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlaceNumberByFact" type="clt_ru:Quantity8Type">
+        <xs:annotation>
+          <xs:documentation>Количество грузовых мест фактическое</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PackageCodeByFact" type="clt_ru:PackageCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код вида упаковки (груза), выявленный по факту</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlaceDescriptionByFact" type="cltWH_ru:CargoPlacesDescriptionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Фактическое описание грузовых мест</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

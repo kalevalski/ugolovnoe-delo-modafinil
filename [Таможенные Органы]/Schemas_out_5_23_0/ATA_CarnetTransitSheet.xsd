@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_cts="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetTransitSheet:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetTransitSheet:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отрывной лист транзита</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetTransitSheet" type="ata_cts:ATA_CarnetTransitSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист транзита</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_CarnetTransitSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист транзита</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DeclarantInfo" type="ata_cts:TransitDeclInfoBaseType">
+            <xs:annotation>
+              <xs:documentation>Информация от карнетодержателя при оформлении транзита</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsInfo" type="ata_cts:TransitCustInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении транзита</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DestCustomsInfo" type="ata_cts:TransitDestCustInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Информация, заполняемая таможенным инспектором таможенного органа доставки при завершении транзита</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sheet" type="ata_ct:ATA_CarnetTearSheetBaseType">
+            <xs:annotation>
+              <xs:documentation>Данные отрывного листа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003416E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="TransitCustInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении транзита</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DestinationCustoms" type="cat_ru:CustomsType">
+        <xs:annotation>
+          <xs:documentation>Информация о таможенном органе доставки товаров (графа H.a отрывного листа транзита)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestCustomsAddress" type="ata_ct:FreeText1000Type">
+        <xs:annotation>
+          <xs:documentation>Адрес таможенного органа доставки товаров (графа H.e отрывного листа транзита)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TransitDateLimit" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Срок доставки товаров (графа H.b отрывного листа транзита)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsMark" type="ata_ct:CustomsMarkType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Прочие отметки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Decision" type="ata_ct:DecisionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Решение таможенного инспектора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsPersonRequisites" type="ata_ct:CustomsPersonRequisitesType">
+        <xs:annotation>
+          <xs:documentation>Данные о таможенном инспекторе, оформившем таможенную процедуру</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransitDeclInfoBaseType">
+    <xs:annotation>
+      <xs:documentation>Информация, заполняемая таможенным инспектором при завершении транзита</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ata_ct:DeclInfoBaseType">
+        <xs:sequence>
+          <xs:element name="RefVoucherNum" type="clt_ru:CodeVariable2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер ваучера открытия транзита (технологическое поле)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExpVoucherNum" type="clt_ru:CodeVariable2Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер ваучера вывоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransitDestCustInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация, заполняемая таможенным инспектором при завершении транзита</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ata_ct:CustInfoBaseType">
+        <xs:sequence>
+          <xs:element name="AdministrativeOffense" type="ata_ct:AdministrativeOffenseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты дела об административном правонарушении</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

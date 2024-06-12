@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cgms="urn:customs.ru:Information:TransportDocuments:Air:CargoManifest:5.23.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:Air:CargoManifest:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Грузовой манифест</xs:documentation>
+	</xs:annotation>
+	<xs:element name="CargoManifest" type="cgms:CargoManifestType">
+		<xs:annotation>
+			<xs:documentation>Грузовой манифест</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CargoManifestType">
+		<xs:annotation>
+			<xs:documentation>Грузовой манифест</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="ManifestDate" type="clt_ru:DateCustType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Дата заполнения манифеста</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CarrierName" type="clt_ru:NameType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Наименование перевозчика</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CarrierCode" type="clt_ru:Code2Type">
+						<xs:annotation>
+							<xs:documentation>Двухсимвольный код перевозчика</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LNG" type="clt_ru:Code2Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код языка документа</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FlightInfo" type="catTrans_ru:FlightInfoType">
+						<xs:annotation>
+							<xs:documentation>Сведения о рейсе</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IsNilCargo" type="clt_ru:IndicatorType">
+						<xs:annotation>
+							<xs:documentation>Признак nil-манифеста: 0 - нет, 1 - да.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="DestinationInfo" type="cgms:DestinationInfoType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Информация о разгрузке товара</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="DestinationAirportForNilManifest" type="catTrans_ru:AirportType">
+							<xs:annotation>
+								<xs:documentation>Аэропорт прилёта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003303E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="CustomsInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация для таможни</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Notice" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код страны происхождения товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о ДТ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodNumber" type="clt_ru:Count3Type">
+				<xs:annotation>
+					<xs:documentation>Номер товара по ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PartialExport" type="clt_ru:IndicatorType">
+				<xs:annotation>
+					<xs:documentation>Признак частичного вывоза</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTNumber" type="cat_ru:GTDIDType">
+				<xs:annotation>
+					<xs:documentation>Номер декларации на товары</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DensityGroupType">
+		<xs:annotation>
+			<xs:documentation>Группа объемного веса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DensityIndicator" type="clt_ru:Code2Type">
+				<xs:annotation>
+					<xs:documentation>Индикатор </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DensityGroup" type="clt_ru:Quantity2Type">
+				<xs:annotation>
+					<xs:documentation>Количество</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DestinationInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о разгрузке товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NilCargoCode" type="clt_ru:Code3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>NilCargoCode. Служебное поле</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DestinationAirport" type="catTrans_ru:AirportType">
+				<xs:annotation>
+					<xs:documentation>Аэропорт назначения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BulkGargo" type="cgms:GoodsInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание груза навалом</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDCargo" type="cgms:ULDGoodsType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Товары, перевозимые в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DimensionsInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о габаритах  груза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="WeightCode" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>Код измерения веса </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PiecesNumber" type="clt_ru:PackagesQuantityType">
+				<xs:annotation>
+					<xs:documentation>Количество мест</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightQuantity" type="clt_ru:WeighQuantityType">
+				<xs:annotation>
+					<xs:documentation>Вес </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dimensions" type="cat_ru:DimensionsType">
+				<xs:annotation>
+					<xs:documentation>Габариты</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о грузе</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="catTrans_ru:AWBNumberType">
+				<xs:sequence>
+					<xs:element name="ShipmentDescriptionCode" type="clt_ru:LetterIndicatorType">
+						<xs:annotation>
+							<xs:documentation>ShipmentDescriptionCode</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PlacesQuantity" type="clt_ru:PackagesQuantityType">
+						<xs:annotation>
+							<xs:documentation>Количество мест, принятых к перевозке / Количество мест товара по накладной при полной загрузке товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="WeightUnitQualifierCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код измерения веса товара (килограммы или фунты)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Вес товара, брутто</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type">
+						<xs:annotation>
+							<xs:documentation>Описание товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GoodsCommodityCode" type="clt_ru:CodeVariable18Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Код  товара по товарной номенклатуре</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OriginAirport" type="catTrans_ru:AirportType">
+						<xs:annotation>
+							<xs:documentation>Аэропорт погрузки  (из  накладной)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DestimationAirport" type="catTrans_ru:AirportType">
+						<xs:annotation>
+							<xs:documentation>Аэропорт назначения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VolumeInfo" type="cgms:VolumeInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Объем товара</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DensityGroup" type="cgms:DensityGroupType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Группа объемного веса</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TotalConsigmentPieces" type="cgms:TotalConsigmentPiecesType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения об общем количестве товара по накладной при частичной погрузке</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="HandlingRequirement" type="cgms:HandlingInfoType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Требования по обработке груза</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DimensionsInfo" type="cgms:DimensionsInfoType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Информация о габаритах  груза</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MovementInfo" type="cgms:MovementInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация о последующем перемещении груза</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OtherServiceInfo" type="cgms:OtherServiceInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Прочая служебная информация</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CustomsInfo" type="cgms:CustomsInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Информация для таможни</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DTInfo" type="cgms:DTInfoType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о ДТ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GDInfo" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Сведения о Решении инспектора по раннее ввезенному товару</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HandlingInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация по обработке груза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NumPP" type="clt_ru:Numeric1Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер записи</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ServiceInfoCode" type="clt_ru:Code3Type">
+				<xs:annotation>
+					<xs:documentation>Код информации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InfoDescription" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Специальные требования и другая информация</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MovementInfoType">
+		<xs:annotation>
+			<xs:documentation>Информация о последующем перемещении груза</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MovementPriorityCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Приоритет</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RoutigInfo" type="catTrans_ru:RoutigInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Маршрут  следования</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OtherServiceInfoType">
+		<xs:annotation>
+			<xs:documentation>Прочая служебная информация</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Notice1" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Примечание 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Notice2" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalConsigmentPiecesType">
+		<xs:annotation>
+			<xs:documentation>Сведения об общем количестве товара по накладной при частичной погрузке</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ShipmentDescriptionCode" type="clt_ru:LetterIndicatorType">
+				<xs:annotation>
+					<xs:documentation>ShipmentDescriptionCode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberPieces" type="clt_ru:Quantity4Type">
+				<xs:annotation>
+					<xs:documentation>Количество мест товара по накладной</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ULDGoodsType">
+		<xs:annotation>
+			<xs:documentation>Сведения о контейнерах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ULDType" type="clt_ru:Code3Type">
+				<xs:annotation>
+					<xs:documentation>Тип контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDSerialNumber" type="clt_ru:CodeVariable5Type">
+				<xs:annotation>
+					<xs:documentation>Серийный номер контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDOwnerCode" type="clt_ru:Code3Type">
+				<xs:annotation>
+					<xs:documentation>Код владельца контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDLoadIndicator" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Признак загрузки контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDComent" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Примечание </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalULDPlacesQuantity" type="clt_ru:PackagesQuantityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Общее количество мест товара в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightUnitQualifierCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код измерения веса товара (килограммы или фунты)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GrossWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Общий вес товара, брутто</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDGoods" type="cgms:GoodsInfoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о товарах в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDMoveInfo" type="cgms:ULDMoveInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о перемещении контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DTInfo" type="cgms:DTInfoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сведения о ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ULDMoveInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о перемещении контейнера</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ULDVolAvailCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ULD Volume Available Code</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ULDRoutingInfo" type="catTrans_ru:RoutigInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о маршруте контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VolumeInfoType">
+		<xs:annotation>
+			<xs:documentation>Объем товара</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsVolume" type="clt_ru:QuantityBasisType">
+				<xs:annotation>
+					<xs:documentation>Общий объем, занимаемый перевозимым товаром без указания единиц измерения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VolumeUnitQualifierCode" type="clt_ru:Code2Type">
+				<xs:annotation>
+					<xs:documentation>Код единицы измерения объема</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VolumeUnitQualifierName" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Наименование единицы измерения объема</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

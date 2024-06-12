@@ -1,0 +1,1415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" targetNamespace="urn:customs.ru:CommonLeafTypes:5.10.0" elementFormDefault="qualified" version="5.10.0.0">
+	<xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Общие простые прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AccountType">
+		<xs:annotation>
+			<xs:documentation>Число. Номер банковского счета. 0 знаков после запятой. 20 знаков.  Используется для указания номера счета в российских банках</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AmountType">
+		<xs:annotation>
+			<xs:documentation>Число. Количество денежных единиц. Допускает отрицательные значения. Всего 20 цифр из них до 2 знаков после запятой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:fractionDigits value="2"/>
+			<xs:totalDigits value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArchStatusCodeType">
+		<xs:annotation>
+			<xs:documentation>Статус документа в архиве. Текст. До 50 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArchiveDeclarantIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор пользователя электронного архива декларанта. Текстовая строка. До 36 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArchiveDocumentIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор документа, присвоенный электронным архивом декларанта. Текстовая строка. До 36 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArchiveIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор архива декларанта. Текстовая строка. До 36 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BICIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. BIC код банка. 9 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BINType">
+		<xs:annotation>
+			<xs:documentation>Бизнес-идентификационный номер (БИН) Республика Казахстан. 12 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BankMFOType">
+		<xs:annotation>
+			<xs:documentation>МФО банка. От 1 до 30 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CUCustomsPaymentCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида таможенного платежа. 4 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CUCustomsProcedureType">
+		<xs:annotation>
+			<xs:documentation>Тип перемещения. 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CUGoodsNomenclatuerCodeType">
+		<xs:annotation>
+			<xs:documentation>Код товара по ТН ВЭД ЕАЭС. 6, 8 и 10 символов для ТД; 4 и 10 символов для ДТ/КДТ. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[0-9]{4}|[0-9]{6}|[0-9]{8}|[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CityNameType">
+		<xs:annotation>
+			<xs:documentation>Название населенного пункта. До 35 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code10Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code13Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 13 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code14Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 14 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="14"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code15Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 15 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code2Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 2 символа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code3Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 3 символа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code4Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 4 символа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code5Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 5 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code6Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 6 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code8Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 8 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Code9Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. 9 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable10Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable11Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 11 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable14Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 14 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="14"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable18Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств.  От 1 до 18 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable20Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 20 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable2Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 2 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable3Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 3 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable4Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 4 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable5Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств.  От 1 до 5 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable6Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 6 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable7Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств.  От 1 до 7 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeVariable8Type">
+		<xs:annotation>
+			<xs:documentation>Код. Символьная строка (буквы, цифры, знаки) используемая для краткого (и (или) независимого от языка) представления или замены определенных значений или текстовых свойств. От 1 до 8 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ContainerIdentityType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Номер контейнера. От 1 до 17 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count10Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1  до 10 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="10"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count19Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 19 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="19"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count2Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 2 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="2"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count3Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 3 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="3"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count4Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 4 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="4"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count5Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 5 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="5"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count6Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 6 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="6"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count8Type">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер. От 1 до 8 цифр </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="8"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryA2CodeType">
+		<xs:annotation>
+			<xs:documentation>Код страны alpha-2 (две буквы латинского алфавита). 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[A-Z]{2}|[0]{2}|[9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryA3CodeType">
+		<xs:annotation>
+			<xs:documentation>Буквенный  код страны (ISO Alpha 3)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryN3CodeType">
+		<xs:annotation>
+			<xs:documentation>Код страны digital-3. 3 символа. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование страны. До 40 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyA3CodeType">
+		<xs:annotation>
+			<xs:documentation>Код валюты alpha-3. 3 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyN3CodeType">
+		<xs:annotation>
+			<xs:documentation>Код валюты. Цифровой. 3 цифры</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyNameType">
+		<xs:annotation>
+			<xs:documentation>Краткое наименование валюты. До 70 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="70"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyRateType">
+		<xs:annotation>
+			<xs:documentation>Курс валюты. Всего 11 цифр. До 4 знаков после запятой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:totalDigits value="11"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomsCodeType">
+		<xs:annotation>
+			<xs:documentation>Код таможенного органа. 2, 5 или 8 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[0-9]{2}|[0-9]{5}|[0-9]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomsDocumentCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида представляемого документа. 5 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomsOfficeNameType">
+		<xs:annotation>
+			<xs:documentation>Краткое наименование таможенного органа. До 50 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomsPaymentCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида таможенного платежа. До 4 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DateCustType">
+		<xs:annotation>
+			<xs:documentation>Дата. Дата в формате YYYY-MM-DD. По стандарту формат ISO 8601</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:DateCategoriesCust"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateTimeCustType">
+		<xs:annotation>
+			<xs:documentation>ДатаВремя. Дата и время в формате YYYY-MM-DDThh :mm :ss. По стандарту ISO 8601</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:DateTimeCategoriesCust"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateYearCustType">
+		<xs:annotation>
+			<xs:documentation>Год. Год в формате CCYY. По стандарту ISO 8601</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:YearCategoriesCust"/>
+	</xs:simpleType>
+	<xs:simpleType name="DeliveryTermsNumericCodeType">
+		<xs:annotation>
+			<xs:documentation>Код условий поставки. 2 символа. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DigitalIndicatorType">
+		<xs:annotation>
+			<xs:documentation>Число. Индикатор. От -9 до 9</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:fractionDigits value="0"/>
+			<xs:totalDigits value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentCodeType">
+		<xs:annotation>
+			<xs:documentation>Код видов документов, использемых при таможенном декларировании. от 4 до 5 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="4"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Текстовая строка. До 36 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentModeIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Идентификатор вида документа (код документа по Альбому форматов). До 30 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование представляемого документа. До 250 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер представляемого документа. До 50 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EngineIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификационный номер двигателя. От 1 до 40 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EnginePowerQuanityType">
+		<xs:annotation>
+			<xs:documentation>Мощность двигателя в лошадиных силах или киловаттах. Всего до 9 цифр. До 2 знаков после запятой. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:totalDigits value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EngineVolumeType">
+		<xs:annotation>
+			<xs:documentation>Рабочий объем двигателя (транспортного средства). До 6 знаков. 0 знаков после запятой. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:fractionDigits value="0"/>
+			<xs:totalDigits value="6"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ForeignAccountType">
+		<xs:annotation>
+			<xs:documentation>Код. Номер банковского счета. 50 знаков.  Используется для указания номера счета, если номер счета может не соответствовать формату ЦБ РФ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FreeText250Type">
+		<xs:annotation>
+			<xs:documentation>Текстовая строка. До 250 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FreeText500Type">
+		<xs:annotation>
+			<xs:documentation>Текстовая строка. До 500 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GTDIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Номер ДТ. От 1 до 7 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GoodMarkingType">
+		<xs:annotation>
+			<xs:documentation>Артикул (код товара, номер по каталогу производителя) . Текст. До 30 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GoodsNomenclatuerAddCodeType">
+		<xs:annotation>
+			<xs:documentation>Код товара по классификатору дополнительной таможенной информации. 4 символа. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GoodsNomenclatureCodeType">
+		<xs:annotation>
+			<xs:documentation>Код товара по ТН ВЭД ЕАЭС. От 4 до 10 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{4,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IINType">
+		<xs:annotation>
+			<xs:documentation>Индивидуальный идентификационный номер (ИИН) Республика Казахстан. 12 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INNIDType">
+		<xs:annotation>
+			<xs:documentation>Индивидуальный номер налогоплательщика в соответствии с национальной системой кодирования (в РФ для юр. лиц - 10 цифр, для физ. лиц - 12 цифр). От 10 до 12 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="10"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ITNReservType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Резервное поле для ИТН. От 1 до 36 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ITNType">
+		<xs:annotation>
+			<xs:documentation>ИТН участника ВЭД. 13 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityCardCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида документа, удостоверяющего личность. 2 символа. Текстовый (используется до версии АФ 5.14.3)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityCardNameType">
+		<xs:annotation>
+			<xs:documentation>Код. Краткое наименование документа, удостоверяющего личность. До 15 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityCardNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер документа, удостоверяющего личность. До 25 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdentityCardSeriesType">
+		<xs:annotation>
+			<xs:documentation>Серия документа, удостоверяющего личность. До 11 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IncotermsDeliveryStringCodeType">
+		<xs:annotation>
+			<xs:documentation>Код условий поставки. 3 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\D{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IndicatorType">
+		<xs:annotation>
+			<xs:documentation>Индикатор. Список двух взаимно исключающих булевых значений истина/ложь, вкл./выкл. и т.д.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IndicatorCategoriesCust"/>
+	</xs:simpleType>
+	<xs:simpleType name="KGINNIDType">
+		<xs:annotation>
+			<xs:documentation>Налоговый номер налогоплательщика (ИНН, ПИН). Кыргызская Республика. 14 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KGOKPOIDType">
+		<xs:annotation>
+			<xs:documentation>Код Общереспубликанского классификатора предприятий и организаций (ОКПО). Кыргызская Республика. 8 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KPPCodeType">
+		<xs:annotation>
+			<xs:documentation>Код причины постановки на налоговый учет. 9 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LNPIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Номер личной номерной печати таможенного инспектора. 4 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LanguageCodeType">
+		<xs:annotation>
+			<xs:documentation>Код языка alpha-2 в стандарте ISO 639-1. 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LetterIndicatorType">
+		<xs:annotation>
+			<xs:documentation>Код. 1 символ. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MarkCarCodeType">
+		<xs:annotation>
+			<xs:documentation>Код марки транспортного средства в соответствии с классификатором марок дорожных транспортных средств. 3 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MarkCarNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование марки транспортного средства в соответствии с классификатором марок дорожных транспортных средств. До 250 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MeasureUnitQualifierCodeType">
+		<xs:annotation>
+			<xs:documentation>Код единицы измерения. 3 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MeasureUnitQualifierNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование единицы измерения. От 1 до 13 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MonthYearType">
+		<xs:annotation>
+			<xs:documentation>ГодМесяц. Год и месяц в формате YYYY-MM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:gYearMonth"/>
+	</xs:simpleType>
+	<xs:simpleType name="NameType">
+		<xs:annotation>
+			<xs:documentation>Наименование субъекта. Организация, ФИО. До 150 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric1Type">
+		<xs:annotation>
+			<xs:documentation>Число (порядковый номер, коэффициент, процент) без единиц измерения. 0 знаков после запятой. От 0 до 9</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:minInclusive value="0"/>
+			<xs:totalDigits value="1"/>
+			<xs:fractionDigits value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OGRNIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Основной государственный регистрационный номер (ОГРН) индивидуального предпринимателя или организации. 15 или 13 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="(\d{15})|(\d{13})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OKATOCodeType">
+		<xs:annotation>
+			<xs:documentation>Код ОКАТО. От 5 до 11 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{5,11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OKPOIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Код организации по ОКПО. 10 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OverallDimensionType">
+		<xs:annotation>
+			<xs:documentation>Габаритный размер. мм. До 5 цифр. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:totalDigits value="5"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackageCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида груза, код упаковки. 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackagesQuantityType">
+		<xs:annotation>
+			<xs:documentation>Количество грузовых мест. От 0 включительно. До 8 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="8"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PakageNumberType">
+		<xs:annotation>
+			<xs:documentation>Количество грузовых мест / порядковый номер грузового места. До 8 знаков. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:totalDigits value="8"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер телефона (факса, телекса). От 1 до 24 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PlaceNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование места (порта, ж/д станции и т.п.). До 40 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PostType">
+		<xs:annotation>
+			<xs:documentation>Должность. До 250 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PostalCodeType">
+		<xs:annotation>
+			<xs:documentation>Почтовый индекс, введенный почтовой службой для сортировки и доставки корреспонденции. От 1 до 9 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrecedingDocumentNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер предшествующего документа. 7 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProcentNumericType">
+		<xs:annotation>
+			<xs:documentation>Процент от 0 до 100. До 2 знаков после запятой. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="2"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity11Type">
+		<xs:annotation>
+			<xs:documentation>Количество. Целое число. 0 знаков после запятой. От 0. Всего до 11 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="11"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity14point2Type">
+		<xs:annotation>
+			<xs:documentation>Количество . От 0. 2 знака после запятой. 14 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:totalDigits value="14"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity18point3Type">
+		<xs:annotation>
+			<xs:documentation>Количество . От 0. 3 знака после запятой. 18 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:totalDigits value="18"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity2Type">
+		<xs:annotation>
+			<xs:documentation>Количество. Целое число. 0 знаков после запятой. От 0. Всего до 2 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:minInclusive value="0"/>
+			<xs:totalDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity3Type">
+		<xs:annotation>
+			<xs:documentation>Количество. Целое число. 0 знаков после запятой. От 0. Всего до 3 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="3"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity4Type">
+		<xs:annotation>
+			<xs:documentation>Количество.  Целое число. 0 знаков после запятой. От 0. Всего до 4 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="4"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity4point2Type">
+		<xs:annotation>
+			<xs:documentation>Количество. От 0. 2 знака после запятой. 4 цифры</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:totalDigits value="4"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity5Type">
+		<xs:annotation>
+			<xs:documentation>Количество.  Целое число. 0 знаков после запятой. От 0. Всего до 5 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="5"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Quantity8Type">
+		<xs:annotation>
+			<xs:documentation>Количество. Целое число. 0 знаков после запятой. От 0. Всего до 8 цифр</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IntegerCategoriesCust">
+			<xs:totalDigits value="8"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QuantityBasis0Type">
+		<xs:annotation>
+			<xs:documentation>Количество в единицах измерения. Всего до 24 цифр. 6 знаков после запятой, больше нуля</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:minInclusive value="0.000001"/>
+			<xs:fractionDigits value="6"/>
+			<xs:totalDigits value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QuantityBasisType">
+		<xs:annotation>
+			<xs:documentation>Количество в единицах измерения. Всего до 24 цифр. 6 знаков после запятой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:NumericCategoriesCust">
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="6"/>
+			<xs:totalDigits value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RNNIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Регистрационный номер налогоплательщика в соответствии с национальной системой кодирования. 12 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RailwayStationCodeType">
+		<xs:annotation>
+			<xs:documentation>Код железнодорожной станции согласно классификатору ж/д станций от 5 до 6 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="(\d{5})|(\d{6})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegionCodeType">
+		<xs:annotation>
+			<xs:documentation>Код региона согласно Справочнику автомобильные коды регионов России. 2 или 3 цифры. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="(\d{3})|(\d{2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegionType">
+		<xs:annotation>
+			<xs:documentation>Наименование региона страны (регион, область, штат и т.п.) от 1 до 50 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SWIFTIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. S.W.I.F.Т код банка. От 8 до 11символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:maxLength value="11"/>
+			<xs:minLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SeriesCodeType">
+		<xs:annotation>
+			<xs:documentation>Код. Серия документа. 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="([А-Я]{2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceModeCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида работ и услуг согласно классификатору услуг во внешнеэкономической деятельности, разработанный Статистическим комитетом Содружества Независимых Государств. От 7 до 9 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{7,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SheetNumberType">
+		<xs:annotation>
+			<xs:documentation>Число. Номер листа / общее количество листов. До 5 цифр. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:totalDigits value="5"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ShortNameType">
+		<xs:annotation>
+			<xs:documentation>Краткое наименование организации. До 120 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="120"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SocialServiceCertificateType">
+		<xs:annotation>
+			<xs:documentation>Номер справки об отсутствии номерного знака общественных услуг. Республика Армения.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SocialServiceNumberType">
+		<xs:annotation>
+			<xs:documentation>Номерной знак общественных услуг. Республика Армения. 10 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StreetHouseType">
+		<xs:annotation>
+			<xs:documentation>Название улицы и номер дома. До 50 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TINType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Trader Identification Number. От 1 до 17 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="17"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TIRHolderIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор держателя книжки МДП. Текстовый. Длина до 18 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TNVEDContractType">
+		<xs:annotation>
+			<xs:documentation>Код товара по ТН ВЭД ЕАЭС для РК 9, 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[0-9]{9}|[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TaxOrganIDType">
+		<xs:annotation>
+			<xs:documentation>Код налогового органа согласно Справочнику кодов обозначения налоговых органов для целей учета налогоплательщиков (СОУН). 4 символа. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TerritoryCodeType">
+		<xs:annotation>
+			<xs:documentation>Код единицы административно-территориального деления. От 8 до 17 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{8,17}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text10Type">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание. До 10 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text150Type">
+		<xs:annotation>
+			<xs:documentation>Символьные данные. До 150 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text3MB">
+		<xs:annotation>
+			<xs:documentation>Текстовая информация. До 3Мбайт</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4404019"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text40Type">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание. До 40 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text4Type">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание. До 4 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text50Type">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание. До 50 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Text5Type">
+		<xs:annotation>
+			<xs:documentation>Текстовое описание. До 5 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TextCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimeCustType">
+		<xs:annotation>
+			<xs:documentation>Время. Время в формате hh :mm :ss. По стандарту ISO 8601</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:TimeCategoriesCust"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransitDirectionCodeType">
+		<xs:annotation>
+			<xs:documentation>Тип перевозки. 2 символа. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportCategoryCodeType">
+		<xs:annotation>
+			<xs:documentation>Категория транспортного средства. Допустимые значения: A,B,C,D,E (латинские символы). 1 символ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="B"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="E"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportMeansColorCodeType">
+		<xs:annotation>
+			<xs:documentation>Код цвета транспортного средства. 3 символа. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportMeansIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Идентификатор транспортного средства. До 40 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportModeCodeType">
+		<xs:annotation>
+			<xs:documentation>Код вида транспорта. 2 знака. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование вида транспортного средства. До 100 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportPassportIDType">
+		<xs:annotation>
+			<xs:documentation>Число. Порядковый номер паспорта транспортного средства. 6 или 7 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="[0-9]{6}|[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransportStateSignIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Государственный знак транспортного средства. От 1 до 13 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UNNType">
+		<xs:annotation>
+			<xs:documentation>Учетный номер налогоплательщика (УНН). Республика Армения. 8 символов. Цифровой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="\d{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UNPTtype">
+		<xs:annotation>
+			<xs:documentation>Учетный номер плательщика (УНП) Республика Беларусь 9 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VINIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Идентификационный номер (VIN) транспортного средства. До 40 символов. Текстовый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VisualIdentifierCIMType">
+		<xs:annotation>
+			<xs:documentation>Визуально отображаемый идентификационный номер (идентификатор) контрольного (идентификационного) знака. 20 символов. Шаблон значений [A-Z]{2}[-]{1}[A-Z0-9]{6}[-]{1}[A-Z0-9]{10}</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:CodeCategoriesCust">
+			<xs:pattern value="[A-Z]{2}-[A-Z0-9]{6}-[A-Z0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WarehouseLicenceIDType">
+		<xs:annotation>
+			<xs:documentation>Номер свидетельства о включении в реестр СВХ / ТС  от 1 до 13 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeighQuantityType">
+		<xs:annotation>
+			<xs:documentation>Вес в кг. До 6 символов. Числовой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:QuantityCategoriesCust">
+			<xs:totalDigits value="6"/>
+			<xs:minInclusive value="0"/>
+			<xs:fractionDigits value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

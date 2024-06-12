@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Проект Приказа ФТС "Об утверждении способа предоставления отчетности лицами, пользующимися и (или) владеющими товарами, помещенными под таможенную процедуру 
+временного ввоза (допуска), формы отчета, порядка его заполнения, а такжк порядка и сроков предоставления такой отчетности"
+-->
+<xs:schema xmlns:cctir="urn:customs.ru:Information:CustomsAuditDocuments:ComplyConditionTempImpReport:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsAuditDocuments:ComplyConditionTempImpReport:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отчет о соблюдении условий использования товаров в соответствии с таможенной процедурой временного ввоза (допуска), установленных пунктом 2 статьи 220 Таможенного кодекса Евразийского экономического союза, лицами, пользующимися и (или) владеющими товарами, помещенными под таможенную процедуру временного допуска</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ComplyConditionTempImpReport" type="cctir:ComplyConditionTempImpReportType">
+    <xs:annotation>
+      <xs:documentation>Отчет о соблюдении условий использования товаров в соответствии с таможенной процедурой временного ввоза (допуска), установленных пунктом 2 статьи 220 Таможенного кодекса Евразийского экономического союза, лицами, пользующимися и (или) владеющими товарами, помещенными под таможенную процедуру временного допуска</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ComplyConditionTempImpReportType">
+    <xs:annotation>
+      <xs:documentation>Отчет о соблюдении условий использования товаров в соответствии с таможенной процедурой временного ввоза (допуска), установленных пунктом 2 статьи 220 Таможенного кодекса Евразийского экономического союза, лицами, пользующимися и (или) владеющими товарами, помещенными под таможенную процедуру временного допуска</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Organization" type="RUScat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Лицо, представляющее отчетность</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Quarter" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Номер отчетного квартала</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsList" type="cctir:GoodsListType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Список товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonSignature" type="cctir:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись уполномоченного лица</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006345E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CompletionProcedureType">
+    <xs:annotation>
+      <xs:documentation>Сведения о завершении таможенной процедуры временного ввоза (гр. 9-13)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CustomsModeCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код таможенной процедуры</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество товара в основных единицах измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SupplemenaryQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>Количество товара в дополнительных единицах измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара в соответствии с ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTNumber" type="cat_ru:GTDIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер ДТ/перечня товаров на основании которого таможенная процедура завершена</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompletionWay" type="cctir:CompletionWayType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Иной способ завершения таможенной процедуры временного ввоза (допуска)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompletionWayType">
+    <xs:annotation>
+      <xs:documentation>Способ завершения таможенной процедуры временного ввоза</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ComplitionKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>1- Товары помещены под таможенную процедуру реэкспорта; 2- Товары уничтожены/безвозвратно утрачены; 3- Таможенный контроль завершен; 4- Товары помещены под таможенную процедуру, отличную от реэкспорта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsModeCode" type="clt_ru:Code2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код таможенной процедуры (отличной от реэкспорта), под которую помещены товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Information" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения о способе завершения таможенной процедуры временного ввоза (допуска)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsConditionType">
+    <xs:annotation>
+      <xs:documentation>Сведения об использовании временно ввезенных товаров (гр. 8)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ConditionKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>1 -Товары находятся в неизменном состоянии; 2 - Реквизиты уведомления таможенного органа о передаче временно ввезенныхтоваров; 3 - Сведения об использовании (местонахождении) товаров, если срок временного ввоза был продлен после его истечения; 4 - Сведения о наименовании иностранного лица, которому передано право собственности на временно ввезенные товара на основании пункта 8 статьи 276 ТК ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Notification" type="cat_ru:DocumentBaseType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Реквизиты уведомления таможенного органа о передаче временно ввезенных товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LocationGoods" type="cctir:LocationGoodsType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения об использовании (местонахождении) товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsUser" type="cctir:GoodsUserType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о передаче прав собственности иностранному лицу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsListType">
+    <xs:annotation>
+      <xs:documentation>Товары, представленные в отчете</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StringNumber" type="clt_ru:SheetNumberType">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер строки отчета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTNumber" type="cat_ru:GTDIDType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный  номер ДТ/перечня товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Наименование товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Number" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер товара в ДТ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType">
+        <xs:annotation>
+          <xs:documentation>Количество товара в основной единице измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SupplementaryQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>Количество товара в дополнительной единице измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsTransactions" type="cctir:GoodsTransactionsType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения об операциях, совершенных с временно ввезенными товарами (гр. 6)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transfers" type="cctir:TransfersType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о передаче временно ввезенных товаров во владение и пользование иным лицами (гр. 7)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsCondition" type="cctir:GoodsConditionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведени об использовании временно ввезенных товрваров (гр. 8)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CompletionProcedure" type="cctir:CompletionProcedureType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о завершении таможенной процедуры временного ввоза (допуска) (гр. 9-13)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ProcedureCondition" type="cctir:ProcedureConditionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о приостановлении/возобновлении действия таможенной процедуры временного ввоза (гр. 14)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Note" type="cctir:NoteType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Примечания </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsTransactionsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об операциях, совершенных с временно ввезенными товарами (гр. 6)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransactionKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Вид сведений о совершенных операциях: 1 - Сведения об операцииях, совершенных для обеспечения сохранности временно ввезенных товаров, включая ремонт (за исключением капитального ремонта, модернизации), техническое обслуживание и другие операции, необходимые для поддержания товаров в нормальном состоянии; 2 - Сведения о проведенных испытаниях, исследованиях, тестированиях, проверках, опытах или экспериментах с временно ввезенными товарами либо об использовании временно ввезенных товаров в ходе испытаний, исследований, тестирования, проверки, проведения опытов или экспериментов; 3 - Сведения об операциях, предусмотренные пунктами 1,2 и 4 статьи 277 ТК ЕАЭС (если таковые совершались)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Описание операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transactions" type="cctir:TransactionsPeriodType">
+        <xs:annotation>
+          <xs:documentation>Период совершения  операций</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsUserType">
+    <xs:annotation>
+      <xs:documentation>Лицо, которому были переданы товары</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="User" type="RUScat_ru:OrganizationType">
+        <xs:annotation>
+          <xs:documentation>Лицо, которому были переданы товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата передачи</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения об использовании (местонахождении) товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Location" type="RUScat_ru:RUAddressType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о местонахождении товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InfoAboutUsing" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Сведения об использовании</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoteType">
+    <xs:annotation>
+      <xs:documentation>Отметка о завершении/приостановлении таможенной процедуры временного ввоза (гр. 15)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MarkKind" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Таможенная процедура временного ввоза (допуска) завершена/приостановлена: 1- По всем товарам полностью; 2- По части товаров</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Пояснение</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonSignatureType">
+    <xs:annotation>
+      <xs:documentation>Подпись руководителя организации/уполномоченного лица</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Person" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Сведения о лице, подписавшем документ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuthoritesDocument" type="cat_ru:AuthoritesDocumentType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Сведения о документе, удостоверяющем полномочия </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProcedureConditionType">
+    <xs:annotation>
+      <xs:documentation>Сведения о приостановлении/возобновлении действия таможенной процедуры временного ввоза (гр. 14)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ConditionKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>1- Таможенная процедура приостановлена; 2- Таможенная процедура возобновлена</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence minOccurs="0">
+        <xs:element name="Suspension" type="cctir:SuspensionType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Дата и основание приостановления</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Date" type="clt_ru:DateCustType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Дата возобновления</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SuspensionType">
+    <xs:annotation>
+      <xs:documentation>Дата и основание приостановлния</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата приостановления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SuspensionDoc" type="cctir:SuspensionDocType">
+        <xs:annotation>
+          <xs:documentation>Рег. номер ДТ/иного документа, являющегося основанием для приостановления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SuspensionDocType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе - основании для приостановлении</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="DTNumber" type="cat_ru:GTDIDType">
+          <xs:annotation>
+            <xs:documentation>Рег. номер декларации на товары</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DocumentNumber" type="cat_ru:DocumentBaseType">
+          <xs:annotation>
+            <xs:documentation>Рег. номер иного документа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionsPeriodType">
+    <xs:annotation>
+      <xs:documentation>Сроки выполнения операций</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BeginDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата начала</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата окончания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransfersType">
+    <xs:annotation>
+      <xs:documentation>Сведения о передаче временно ввезенных товаров во владение и пользование иным лицами (гр. 7)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransferKind" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>1 - Передача товаров без разрешения таможенного органа; 2- Передача товаров с разрешения таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="GoodsUser" type="cctir:GoodsUserType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Лицо, которому были переданы товары, и дата передачи</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CustomsDocument" type="cat_ru:DocumentBaseType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Реквизиты решения таможенного органа</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

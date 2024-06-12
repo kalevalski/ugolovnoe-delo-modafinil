@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_an="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationNotif:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_AlterationNotif:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Уведомление по внесению изменений в операцию</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_AlterationNotif" type="ata_an:ATA_AlterationNotifType">
+    <xs:annotation>
+      <xs:documentation>Уведомление по внесению изменений в операцию</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_AlterationNotifType">
+    <xs:annotation>
+      <xs:documentation>Уведомление по внесению изменений в операцию</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:annotation>
+            <xs:documentation>Уведомление по внесению изменений в операцию</xs:documentation>
+          </xs:annotation>
+          <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата создания уведомления</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationType" type="ata_ct:OperationType">
+            <xs:annotation>
+              <xs:documentation>Тип операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomRequested" type="clt_ru:CustomsCodeType">
+            <xs:annotation>
+              <xs:documentation>Код ТО, запросивший корректировку операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlterationOperation" type="ata_ct:DocumentBodyType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Измененная операция карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdditionalInformation" type="ata_ct:FreeText1000Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация по уведомлению</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Decision" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Решение по запросу. 0 - Отказ во внесении изменений. 1 - Внесение изменений совершено</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003439E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ctlinf="urn:customs.ru:Information:TransportDocuments:ControlInformation:5.22.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ControlInformation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Информация о наличии подконтрольных товаров</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ControlInformation" type="ctlinf:ControlInformationType">
+    <xs:annotation>
+      <xs:documentation>Информация о наличии подконтрольных товаров</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ControlInformationType">
+    <xs:annotation>
+      <xs:documentation>Информация о наличии подконтрольных товаров</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ControledGood" type="ctlinf:ConsignmentsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товарных партиях</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003440E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="CodeZTKType">
+    <xs:annotation>
+      <xs:documentation>Код ЗТК. От 1 до 64 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:CodeCategoriesCust">
+      <xs:minLength value="1" />
+      <xs:maxLength value="64" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConsignmentsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товарных партиях</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count5Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер товара по порядку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Decision" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>1- Да; 2 - Нет; 3 Товар не подлежит санитарно-карантинному; ветеринарному; карантинному фитосанитарному контролю по причине "...."</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VetDecision" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Необходимость проведения вет контроля: 1- Да; 2 - Нет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SKKDecision" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Необходимость проведения санитарно-карантийного контроля: 1- Да; 2 - Нет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FKKtDecision" type="clt_ru:Numeric1Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Нобходимость проведения фитосанитарного карантийного контроля: 1- Да; 2 - Нет</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reason" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарий пользователя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Author" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Автор комментария</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Date" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата решения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConsignmentNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер коносамента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ZTKNum" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер ЗТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ZTKName" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование ЗТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Container" type="ctlinf:ContainerType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация о контейнерах</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContainerType">
+    <xs:annotation>
+      <xs:documentation>Сведения о контейнере</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ContainerNum" type="clt_ru:ContainerIdentityType">
+        <xs:annotation>
+          <xs:documentation>Номер контейнера</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ZTKNum" type="clt_ru:Text50Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер ЗТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ZTKName" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Наименование ЗТК</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

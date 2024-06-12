@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+	<xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Общие прикладные типы Карнет АТА</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AktKindType">
+		<xs:annotation>
+			<xs:documentation>Тип акта. Доступные значения: ATD; ATN; ATO</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="ATD"/>
+			<xs:enumeration value="ATN"/>
+			<xs:enumeration value="ATO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ATACarnetNumberType">
+		<xs:annotation>
+			<xs:documentation>Символьный номер до 20 знаков</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CarnetRevisionType">
+		<xs:annotation>
+			<xs:documentation>Версия карнета АТА (целое число от 1, 0 знаков после запятой, до 2 цифр)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="2"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DecisionCodeType">
+		<xs:annotation>
+			<xs:documentation>Код решения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="clt_ru:Code2Type">
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="99"/>
+			<xs:enumeration value="00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FreeText100Type">
+		<xs:annotation>
+			<xs:documentation>Текстовая строка до 100 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FreeText1000Type">
+		<xs:annotation>
+			<xs:documentation>Текстовая строка до 1000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FreeText4000Type">
+		<xs:annotation>
+			<xs:documentation>Текстовая строка до 4000 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Count2Type">
+		<xs:annotation>
+			<xs:documentation>Порядковый номер (целое число от 1, 0 знаков после запятой, до 2 цифр)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="2"/>
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GoodsNumberList">
+		<xs:annotation>
+			<xs:documentation>Номера оформленных товаров</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100000"/>
+			<xs:pattern value="[0-9,/-]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperationType">
+		<xs:annotation>
+			<xs:documentation>Типы операций по карнетам АТА</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="importation"/>
+			<xs:enumeration value="reexportation"/>
+			<xs:enumeration value="exportation"/>
+			<xs:enumeration value="reimportation"/>
+			<xs:enumeration value="transitOpen"/>
+			<xs:enumeration value="transitClose"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RegistrationRefusalCodeType">
+		<xs:annotation>
+			<xs:documentation>Код причины отказа в регистрации карнета АТА</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:annotation>
+				<xs:documentation>Код причины отказа в регистрации карнета АТА</xs:documentation>
+			</xs:annotation>
+			<xs:enumeration value="general_reason"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReportType">
+		<xs:annotation>
+			<xs:documentation>Тип отчета - import, export, transit, offense, refusal, releaseRefusal, submission</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FindOperationType">
+		<xs:annotation>
+			<xs:documentation>Типы запрашиваемых операций по карнетам АТА - importation, reexportation, exportation, reimportation, transitOpen, transitClose, refusal, duplicate, substitution, alteration</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ViewType">
+		<xs:annotation>
+			<xs:documentation>Формат отчета</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="xlsx"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObjectIDType">
+		<xs:annotation>
+			<xs:documentation>Идентификатор объекта. Текстовая строка. До 36 символов</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="CategoryCust:IdentifierCategoriesCust">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="36"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ActInformationType">
+		<xs:annotation>
+			<xs:documentation>Информация по акту таможенного досмотра/осмотра/наблюдения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ActType" type="ata_ct:AktKindType">
+				<xs:annotation>
+					<xs:documentation>Тип акта. Доступные значения: ATD - досмотра; ATO - осмотра; ATN - наблюдения </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ActNumber" type="clt_ru:FreeText250Type">
+					<xs:annotation>
+						<xs:documentation>Номер акта таможенного осмотра/досмотра</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ActDate" type="clt_ru:DateCustType">
+					<xs:annotation>
+						<xs:documentation>Дата акта таможенного наблюдения</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="GoodsNumbers" type="ata_ct:GoodsNumberList">
+				<xs:annotation>
+					<xs:documentation>Номера товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdministrativeOffenseType">
+		<xs:annotation>
+			<xs:documentation>Реквизиты дела об административном правонарушении</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OffenceRequisites" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Реквизиты дела об административном правонарушении</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ClauseNumber" type="clt_ru:Text50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номера статей КоАП России</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppliedSealType">
+		<xs:annotation>
+			<xs:documentation>Информация о наложенных пломбах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SealNumbers" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Номера пломб</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumbers" type="ata_ct:GoodsNumberList">
+				<xs:annotation>
+					<xs:documentation>Номера товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ATA_CarnetTearSheetBaseType">
+		<xs:annotation>
+			<xs:documentation>Отрывной лист</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TearSheetType" type="ata_ct:OperationType">
+				<xs:annotation>
+					<xs:documentation>Типы отрывного листа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+				<xs:annotation>
+					<xs:documentation>Номер карнета АТА (графа G.a обложки карнета)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VoucherNumber" type="clt_ru:CodeVariable2Type">
+				<xs:annotation>
+					<xs:documentation>Номер отрывного листа (графа G)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер отрывного листа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TransportMeans" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Транспортное средство (графа D отрывного листа)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PackingDetails" type="ata_ct:FreeText100Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Данные об упаковке (графа E отрывного листа)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AuthorizationDocumentType">
+		<xs:annotation>
+			<xs:documentation>Информация о разрешительном документе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocumentRequisites" type="cat_ru:DocumentBaseType">
+				<xs:annotation>
+					<xs:documentation>Реквизиты документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FOIVName" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Наименование ведомства, выдавшего документ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumbers" type="ata_ct:GoodsNumberList">
+				<xs:annotation>
+					<xs:documentation>Номера товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CarnetRegistrationRefusalType">
+		<xs:annotation>
+			<xs:documentation>Реквизиты отказа в регистрации карнета АТА</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RegistrationRefusalCode" type="ata_ct:RegistrationRefusalCodeType">
+				<xs:annotation>
+					<xs:documentation>Код причины отказа в регистрации карнета АТА</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationRefusalComment" type="clt_ru:FreeText250Type">
+				<xs:annotation>
+					<xs:documentation>Описание причины отказа в регистрации карнета АТА</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfirmationDocumentsType">
+		<xs:annotation>
+			<xs:documentation>Подтверждающие документы в Карнете АТА (номер ДТ или номер ваучера)</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="DT" type="ata_ct:DTNumbersType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Декларация на товары</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="VoucherNumbers" type="clt_ru:FreeText250Type" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Номера ваучеров</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CustInfoBaseType">
+		<xs:annotation>
+			<xs:documentation>Информация, заполняемая таможенным инспектором в отрывном листе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsMark" type="ata_ct:CustomsMarkType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Прочие отметки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Decision" type="ata_ct:DecisionType">
+				<xs:annotation>
+					<xs:documentation>Решение таможенного инспектора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsPersonRequisites" type="ata_ct:CustomsPersonRequisitesType">
+				<xs:annotation>
+					<xs:documentation>Данные о таможенном инспекторе, оформившем таможенную процедуру</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsMarkType">
+		<xs:annotation>
+			<xs:documentation>Информация для графы Прочие отметки</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ActInformation" type="ata_ct:ActInformationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация по акту таможенного досмотра/осмотра/наблюдения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AuthorizationDocument" type="ata_ct:AuthorizationDocumentType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о разрешительном документе</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AppliedSeal" type="ata_ct:AppliedSealType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Информация о наложенных пломбах</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OtherMarks" type="clt_ru:FreeText250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Прочие отметки</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsPersonRequisitesType">
+		<xs:annotation>
+			<xs:documentation>Данные о таможенном инспекторе, оформившем таможенную процедуру</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsInfo" type="cat_ru:CustomsType">
+				<xs:annotation>
+					<xs:documentation>Информация о таможенном органе оформления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsPersonSignature" type="ata_ct:CustomsPersonSignatureType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Подпись должностного лица</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomsPersonSignatureType">
+		<xs:annotation>
+			<xs:documentation>Подпись должностного лица</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:CustomsPersonType">
+				<xs:sequence>
+					<xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+						<xs:annotation>
+							<xs:documentation>Дата и время подписания.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Type" type="clt_ru:FreeText250Type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Тип согласования</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DeclInfoBaseType">
+		<xs:annotation>
+			<xs:documentation>Информация от карнетодержателя в отрывном листе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsNumbers" type="ata_ct:GoodsType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Товары, которые декларант заявляет для помещения под таможенную процедуру</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantSign" type="ata_ct:DeclarantSignType">
+				<xs:annotation>
+					<xs:documentation>Подпись карнетодержателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeclarantSignType">
+		<xs:annotation>
+			<xs:documentation>Подпись карнетодержателя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Place" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>Место совершения таможенных операций (населенный пункт)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FillingDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата заполнения отрывного листа декларантом</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeclarantName" type="clt_ru:Text50Type">
+				<xs:annotation>
+					<xs:documentation>ФИО лица (декларанта), заполнившего отрывной лист</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DecisionType">
+		<xs:annotation>
+			<xs:documentation>Решение таможенного инспектора</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DecisionDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата принятия решения</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecisionCode" type="ata_ct:DecisionCodeType">
+				<xs:annotation>
+					<xs:documentation>Решение по отрывному листу - код</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecisionText" type="clt_ru:CodeVariable20Type">
+				<xs:annotation>
+					<xs:documentation>Решение по отрывному листу - текст</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecisionComment" type="clt_ru:FreeText500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Комментарий к принятому решению</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentBodyType">
+		<xs:annotation>
+			<xs:documentation>Тело прикладного документа</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any processContents="skip">
+				<xs:annotation>
+					<xs:documentation>Тело прикладного документа</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DTNumbersType">
+		<xs:annotation>
+			<xs:documentation>Информация о номерах ДТ и коде таможенной процедуры</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Numbers" type="clt_ru:FreeText500Type">
+				<xs:annotation>
+					<xs:documentation>Номера деклараций на товары в одну строку</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomsProcedure" type="cltESAD_cu:CustomsModeCodeType">
+				<xs:annotation>
+					<xs:documentation>Код таможенной процедуры</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsType">
+		<xs:annotation>
+			<xs:documentation>Товарная позиция</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ListNumber" type="clt_ru:Count5Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер товара в основном списке карнета АТА (графа 1 общего списка)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType">
+				<xs:annotation>
+					<xs:documentation>Код товара в соответствии с ТН ВЭД ЕАЭС (графа 7 общего списка)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjID" type="ata_ct:ObjectIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор объекта контроля</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestParamsType">
+		<xs:annotation>
+			<xs:documentation>Параметры запроса</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Код таможенного органа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateFrom" type="clt_ru:DateCustType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начало периода выборки данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTo" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Окончание периода выборки данных</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OperationInfoType">
+		<xs:annotation>
+			<xs:documentation>Инофрмация по операции карнеата АТА</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CarnetOperation" type="ata_ct:DocumentBodyType">
+				<xs:annotation>
+					<xs:documentation>Операция по карнету АТА</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevealedRisks" type="ata_ct:RevealedRisksType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Отчет по выявленным рискам</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinCul" type="ata_ct:DocumentBodyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Документы от Минкультуры</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RevealedRisksType">
+		<xs:annotation>
+			<xs:documentation>Отчет по выявленным рискам</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Revision" type="ata_ct:Count2Type">
+				<xs:annotation>
+					<xs:documentation>Версия отчета по рискам</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Body" type="ata_ct:DocumentBodyType">
+				<xs:annotation>
+					<xs:documentation>Отчет по выявленным рискам</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObjectListType">
+		<xs:annotation>
+			<xs:documentation>перчень товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsNumberList" type="ata_ct:GoodsNumberList">
+				<xs:annotation>
+					<xs:documentation>Номера товаров</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ObjId" type="ata_ct:ObjectIDType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Идентификаторы объектов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

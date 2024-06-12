@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:catExch_ru="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonAggregateTypes:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cddr="urn:customs.ru:Information:ExchangeDocuments:ConfirmDeclDocsRecip:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:ExchangeDocuments:ConfirmDeclDocsRecip:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:ExchangeDocuments:ExchangeCommonAggregateTypes:5.22.0" schemaLocation="ExchangeCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Подтверждение получения документов </xs:documentation>
+  </xs:annotation>
+  <xs:element name="ConfirmDeclDocsRecip" type="cddr:ConfirmDeclDocsRecipType" />
+  <xs:complexType name="ConfirmDeclDocsRecipType">
+    <xs:annotation>
+      <xs:documentation>Подтверждение получения документов </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="SendDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата создания подтверждения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SendTime" type="clt_ru:TimeCustType">
+            <xs:annotation>
+              <xs:documentation>Время создания подтверждения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Comments" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Комментарий</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RecipDocument" type="catExch_ru:RecipDocumentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о полученных документах.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Declarant" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения об организации - декларанте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclPerson" type="catExch_ru:DeclPersonType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, создавшем подтверждение.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclDecision" type="cddr:DeclDecisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Решение декларанта. (заполняется в случае получения уведомления о проведении фактического контроля)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1004073E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DeclDecisionType">
+    <xs:annotation>
+      <xs:documentation>Решение декларанта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DeclAgree" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Признак согласия декларанта прибыть на досмотр</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeclDate" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Дата прибытия декларанта на досмотр</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DeclTime" type="clt_ru:TimeCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Время прибытия декларанта на досмотр</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InspectionPlace" type="cddr:InspectionPlaceType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Описание места проведения досмотра</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InspectionPlaceType">
+    <xs:annotation>
+      <xs:documentation>Описание места проведения досмотра</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:CUCustomsType">
+        <xs:sequence>
+          <xs:element name="InformationTypeCode" type="clt_ru:Code2Type">
+            <xs:annotation>
+              <xs:documentation>Тип информации: 11- СВХ;  21- ТС; 25 - Свободный склад; 31- Склад получателя; 41 - Склад хранения собственных товаров (для РК); 52 - Транспортное средство (для РК); 60 - Помещение (площадки) УЭО; 72 - ЗТК (для РБ); 91 - Адрес места хранения  (для РБ); 99 - Иное место ВХ, 80- ОЭЗ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspPlaceName" type="clt_ru:PlaceNameType">
+            <xs:annotation>
+              <xs:documentation>Наименование места досмотра, СВХ, ж/д станции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspPlaceDesc" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание места проведения досмотра. Иная информация о месте досмотра</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WarehousePlace" type="cddr:WarehousePlaceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о СВХ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InspAddress" type="cat_ru:AddressType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Адрес места досмотра (заполняется, в случае досмотра вне СВХ)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WarehousePlaceType">
+    <xs:annotation>
+      <xs:documentation>Место погрузки/разгрузки. Сведения о лицензии/ свидетельстве склада</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocumentModeCode" type="clt_ru:LetterIndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Тип документа:1-Лицензия 2-Свидетельство</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

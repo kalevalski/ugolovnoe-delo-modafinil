@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:bwb="urn:customs.ru:Information:TransportDocuments:BunkerWaybill:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cltpi_ru="urn:customs.ru:Information:PriorInformation:PriorCommonLeafTypes:5.17.0" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0" xmlns:RUSclt_ru="urn:customs.ru:RUSCommonLeafTypes:5.21.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:BunkerWaybill:5.22.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:PriorInformation:PriorCommonLeafTypes:5.17.0" schemaLocation="PriorCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Categories:3.0.0" schemaLocation="CategoriesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonLeafTypes:5.21.0" schemaLocation="RUSCommonLeafTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Бункерная накладная (расписка; накладная на поставку бункерного топлива)</xs:documentation>
+  </xs:annotation>
+  <xs:element name="BunkerWaybill" type="bwb:BunkerWaybillType">
+    <xs:annotation>
+      <xs:documentation>Бункерная накладная (расписка; накладная на поставку бункерного топлива)</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BunkerWaybillType">
+    <xs:annotation>
+      <xs:documentation>Бункерная накладная (расписка; накладная на поставку бункерного топлива)</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="RegNumber" type="clt_ru:Count8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер бункерной накладной</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата бункерной накладной</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="VesselName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование бункеруемого судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ShipIMONumber" type="cltpi_ru:IMONumberType" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Идентификационный номер бункеруемого судна (IMO)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeliveryDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата поставки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeliveryPort" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Порт поставки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BunkeringVessel" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование судна- бункеровщика </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FuelName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование топлива</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Volume" type="bwb:QuantityType">
+            <xs:annotation>
+              <xs:documentation>Объем, м3</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Quantity" type="bwb:QuantityType">
+            <xs:annotation>
+              <xs:documentation>Количество, т</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FuelTemperature" type="bwb:TemparatureType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Температура топлива, ºC</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SulfurContent" type="bwb:QuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Содержание серы, %</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Viscosity" type="bwb:QuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Вязкость при 50ºC, сСт</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Density" type="bwb:QuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Плотность при 15ºC, кг/м2 </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FluidityTemperature" type="bwb:TemparatureType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Температура текучести, ºC</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FlashPoint" type="bwb:TemparatureType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Температура вспышки, ºC</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="WaterContent" type="bwb:QuantityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Содержание воды, %</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Declaration" type="cat_ru:GTDIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер декларации на товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclUseSign" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Декларирование припасов осуществлялось с использованием Декларации на товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TestResult" type="RUSclt_ru:FreeText1000Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Отметка о соответствии / несоответствии качественного состояния бункерного топлива (результаты проб)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleNumVessel" type="clt_ru:Count8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер пробы для судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleNumBunker" type="clt_ru:Count8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер пробы для бункеровщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleNumMARPOLVessel" type="clt_ru:Count8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер пробы МАРПОЛ для судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleNumMARPOLBunker" type="clt_ru:Count8Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер пробы МАРПОЛ для бункеровщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthorizedPersonVessel" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Подпись капитана либо иного лица, уполномоченного осуществить грузовую операцию по бункеровке/приему-передаче топлива</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuthorizedPersonBunker" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Подпись капитана бункеровщика либо иного лица, уполномоченного осуществить грузовую операцию по передаче топлива</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003442E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные простые прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="QuantityType">
+    <xs:annotation>
+      <xs:documentation>Количество. Всего 10 цифр. До 4 знаков после запятой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:QuantityCategoriesCust">
+      <xs:totalDigits value="10" />
+      <xs:minInclusive value="0" />
+      <xs:fractionDigits value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TemparatureType">
+    <xs:annotation>
+      <xs:documentation>Температура. Всего 10 цифр. До 1 знака после запятой</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="CategoryCust:QuantityCategoriesCust">
+      <xs:totalDigits value="10" />
+      <xs:minInclusive value="0" />
+      <xs:fractionDigits value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:acd="urn:customs.ru:Information:EArchDocuments:ArchShareDoc:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchShareDoc:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Документы в архиве декларанта для доступа заинтересованных участников ВЭД по Соглашению</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchShareDoc" type="acd:ArchShareDocType" />
+  <xs:complexType name="ArchShareDocType">
+    <xs:annotation>
+      <xs:documentation>Документы в архиве декларанта для доступа заинтересованных участников ВЭД по Соглашению</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DocSign" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>Тип документа. 0 - предоставление доступа к документам другим участникам ВЭД, 1 - запрос списка документов с доступом на чтение в рамках Соглашения, 2 -уведомление о документах  с правами на чтение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AgreementParticipants" type="ct:AgreementNumType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты Соглашения</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentInfo" type="acd:ArchDocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация о документе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005017E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArchDocumentType">
+    <xs:annotation>
+      <xs:documentation>Информация о документе</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="ArchID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Идентификатор архива</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Архивный идентификатор документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocumentID" type="ct:GUID" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Уникальный идентификатор документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocStatus" type="ct:FreeText255Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Статус документа в архиве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentCode" type="ct:DocumentModeIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор вида документа по альбому форматов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PresentedDocumentModeCode" type="ct:CustomsDocumentCodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код вида представляемого документа в соответствии с классификатором видов документов и сведений, используемых при таможенном декларировании</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExecutiveBodyID" type="ct:GUID" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор исполнительного органа, выдавшего разрешительный документ (для РФ)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocBeginDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocEndDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocDate" type="xs:dateTime" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата/время помещения документа в архив ( последнего изменения документа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FirstDT" type="ct:GTDIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер первой ДТ, при подаче который использован документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

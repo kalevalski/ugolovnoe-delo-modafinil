@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" xmlns:c_inv="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialInvoice:5.22.0" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialInvoice:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Счет-фактура</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CommercialInvoice" type="c_inv:CommercialInvoiceType" />
+  <xs:complexType name="CommercialInvoiceType">
+    <xs:annotation>
+      <xs:documentation>Счет фактура</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код иностранной валюты счета-фактуры. Указывается, если суммы, указываемые в счете-фактуре, выражены в иностранной валюте.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CurrencyRate" type="clt_ru:CurrencyRateType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Установленный курс иностранной валюты счета-фактуры на дату счета-фактуры. Указывается, если счет-фактура в иностранной валюте, курс  которой не равен курсы ЦБ.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TotalCost" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая стоимость всех товаров, с учетом налогов.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TaxSum" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Общая сумма налоговых сборов.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Buyer" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о покупателе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Seller" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о продавце</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignee" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Грузополучатель и его адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consignor" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Грузоотправитель и его адрес</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InvoiceGoods" type="catComFin_ru:RussianInvoiceGoodsType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения о товарах счета-фактуры</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PayDocsRegistration" type="cat_ru:DocumentBaseType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Платежно-расчетные документы к счету-фактуре.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Registration" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Регистрационные данные счета-фактуры.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>Подпись</xs:documentation>
+            </xs:annotation>
+            <xs:element name="IndividualEntrepreneur" type="c_inv:IndividualEntrepreneurType">
+              <xs:annotation>
+                <xs:documentation>Индивидуальный предприниматель</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SignatureDirectorChiefAccountant" type="c_inv:SignatureDirectorChiefAccountantType">
+              <xs:annotation>
+                <xs:documentation>Подпись руководителя организации и главного бухгалтера.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="Mark" type="catComFin_ru:MarkType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Отметки о прохождении товарами таможенного и иных видов государственного контроля.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1002003E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="IndividualEntrepreneurType">
+    <xs:annotation>
+      <xs:documentation>Данные индивидуального предпринимателя</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:PersonSignatureType">
+        <xs:sequence>
+          <xs:element name="OGRNID" type="clt_ru:OGRNIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Основной государственный регистрационный  номер (ОГРН) частного предпринимателя или организации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SignatureDirectorChiefAccountantType">
+    <xs:annotation>
+      <xs:documentation>Подпись руководителя организации и главного бухгалтера.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Director" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Руководитель организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChiefAccountant" type="cat_ru:PersonSignatureType">
+        <xs:annotation>
+          <xs:documentation>Главный бухгалтер</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

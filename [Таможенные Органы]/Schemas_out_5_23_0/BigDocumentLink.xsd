@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:bdl="urn:customs.ru:Information:EArchDocuments:BigDocumentLink:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:BigDocumentLink:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сведения о документах большого объема</xs:documentation>
+  </xs:annotation>
+  <xs:element name="BigDocumentLink" type="bdl:BigDocumentLinkType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документах большого объема</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BigDocumentLinkType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документах большого объема</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="EADDocID" type="ct:GUID">
+            <xs:annotation>
+              <xs:documentation>Идентификатор документа в ЭАД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RequestID" type="ct:GUID" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор запроса, на размещение документа в ЭАД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005022E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

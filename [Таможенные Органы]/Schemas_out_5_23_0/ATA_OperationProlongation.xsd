@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_opprol="urn:customs.ru:Information:TransportDocuments:ATA:ATA_OperationProlongation:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_OperationProlongation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Продление срока операции временного ввоза/вывоза</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_OperationProlongation" type="ata_opprol:ATA_OperationProlongationType">
+    <xs:annotation>
+      <xs:documentation>Продление срока операции временного ввоза/вывоза</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_OperationProlongationType">
+    <xs:annotation>
+      <xs:documentation>Продление срока операции временного ввоза/вывоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OperationType" type="ata_ct:OperationType">
+            <xs:annotation>
+              <xs:documentation>Тип операций по карнетам АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Новый срок операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppealRequisites" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты обращения о продлении операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPersonRequisites" type="ata_ct:CustomsPersonRequisitesType">
+            <xs:annotation>
+              <xs:documentation>Данные о таможенном инспекторе, оформившем таможенную процедуру</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003432E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

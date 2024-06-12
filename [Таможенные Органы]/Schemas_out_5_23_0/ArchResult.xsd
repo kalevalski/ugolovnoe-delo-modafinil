@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" xmlns:rslt="urn:customs.ru:Information:EArchDocuments:ArchResult:5.22.0" targetNamespace="urn:customs.ru:Information:EArchDocuments:ArchResult:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:EArchDocuments:EADCommonTypes:5.22.0" schemaLocation="EADCommonTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Результат обработки сообщения / выполнения операции в ЭАД</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArchResult" type="rslt:ArchResultType" />
+  <xs:complexType name="ArchResultType">
+    <xs:annotation>
+      <xs:documentation>Уведомление о результате проверки / обработке сообщения в ЭАД</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ct:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Response" type="rslt:ResponseType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Результат выполнения операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="ct:DocumentModeIDType" use="required" fixed="1005016E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EADInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о документах в архиве декларанта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchDeclID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор декларанта а ЭАД</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор архива</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор документа в архиве декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocStatus" type="ct:FreeText255Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Статус документа в архиве.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DtNumber" type="ct:DocumentNumberType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер ДТ, в которой докумет впервые предоставлялся.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseType">
+    <xs:annotation>
+      <xs:documentation>Элемент, содержащий результат выполнения операции (положительный или отрицательный)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RefDocumentID" type="ct:GUID" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор документа, в котором была допущена ошибка.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultInformation" type="rslt:ResultInformationType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Код возврата при обработке сообщения, результат выполнения операции (запрос к ЭАД, запрос статуса/истории процесса)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResultInformationType">
+    <xs:annotation>
+      <xs:documentation>Информация  о  результате обработки документа</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ResultCode" type="ct:ResultCodeType">
+        <xs:annotation>
+          <xs:documentation>Код ошибки.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultDescription" type="ct:FreeText255Type" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Текстовое описание ошибки.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EADInfo" type="rslt:EADInfoType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Информация о документах в архиве декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

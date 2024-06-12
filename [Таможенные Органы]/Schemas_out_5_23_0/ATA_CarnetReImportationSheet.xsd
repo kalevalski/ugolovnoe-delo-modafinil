@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_cris="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetReImportationSheet:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetReImportationSheet:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отрывной лист обратного ввоза</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetReImportationSheet" type="ata_cris:ATA_CarnetReImportationSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист обратного ввоза</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_CarnetReImportationSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист обратного ввоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DeclarantInfo" type="ata_cris:ReImportationDeclInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация от карнетодержателя при оформлении обратного ввоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsInfo" type="ata_cris:ReImportationCustInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении обратного ввоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sheet" type="ata_ct:ATA_CarnetTearSheetBaseType">
+            <xs:annotation>
+              <xs:documentation>Данные отрывного листа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003415E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ReImportationDeclInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация от карнетодержателя при оформлении обратного ввоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ata_ct:DeclInfoBaseType">
+        <xs:sequence>
+          <xs:element name="ExpVoucherNum" type="clt_ru:CodeVariable2Type" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Номер ваучера вывоза (графа F.a отрывного листа обратного ввоза)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartiallyClosedGoodsNum" type="ata_ct:GoodsNumberList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перечень товаров, снимаемых частично</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProcessedGoodsNum" type="ata_ct:GoodsNumberList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номера товаров, которые подвергались обработке за границей (графа F.b отрывного листа обратного ввоза)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NonReimportingDtGoodsNum" type="ata_ct:GoodsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень товаров, представленных и не предназначенных для обратного ввоза (помещаются под иную процедуру) (графа F.c  отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NonReimportingRemainGoodsNum" type="ata_ct:GoodsNumberList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перечень товаров, представленных и не предназначенных для обратного ввоза (остаток) (графа F.c отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReimportedGoodsNum" type="ata_ct:GoodsNumberList" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Перечень ввезенных ранее товаров (графа F.с  отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReimportConfirmationDoc" type="ata_ct:ConfirmationDocumentsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационные номера документов, подтверждающий ввоз или помещение под таможенную процедуру (номер ваучера или номер ДТ) (графа F.c отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReImportationCustInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении обратного вывоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ata_ct:CustInfoBaseType">
+        <xs:sequence>
+          <xs:element name="AdministrativeOffense" type="ata_ct:AdministrativeOffenseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты дела об административном правонарушении</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NonReimportingGoodsDTNum" type="ata_cris:NonReimportingGoodsDTNumType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационные номера ДТ в случае если товары представлены, но не ввезены обратно (графа H.c отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReimportConfirmationDoc" type="ata_ct:ConfirmationDocumentsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационные номера документов, подтверждающий ввоз или помещение под таможенную процедуру (номер ваучера или номер ДТ) (графа H.с отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NonReimportingGoodsDTNumType">
+    <xs:annotation>
+      <xs:documentation>Декларации на товары</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DTNumbers" type="ata_ct:DTNumbersType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Декларации на товары</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

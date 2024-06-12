@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cdi="urn:customs.ru:Information:RegistrationDocuments:CertificatDImmatriculation:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:RegistrationDocuments:CertificatDImmatriculation:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Свидетельство о регистрации транспортного средства. </xs:documentation>
+  </xs:annotation>
+  <xs:element name="CertificatDImmatriculation" type="cdi:CertificatDImmatriculationType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о регистрации транспортного средства.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="CertificatDImmatriculationType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство о регистрации транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="Comment" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Прочие отметки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PTSNumber" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер Паспорта ТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Registration" type="cdi:RegistrationType">
+            <xs:annotation>
+              <xs:documentation>Регистрационные данные свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnRegistration" type="cdi:UnRegistrationType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Данные о снятии с учета ТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CDITransportMeans" type="cdi:CDITransportMeansType">
+            <xs:annotation>
+              <xs:documentation>Сведения о транспортном средстве </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CDIAutomobileowner" type="cdi:CDIAutomobileownerType">
+            <xs:annotation>
+              <xs:documentation>Сведения о собственнике транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1001301E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CDIAutomobileownerType">
+    <xs:annotation>
+      <xs:documentation>Сведения о собственнике транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>ФИО физического лица/Наименование организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NaturalPersonIndicator" type="clt_ru:IndicatorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Индикатор, заполняется в случае, если страхователь - физическое лицо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PostalAdress" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Адрес владельца ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CDITransportMeansType">
+    <xs:annotation>
+      <xs:documentation>Сведения о транспортном средстве </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catESAD_cu:AutomobileBaseType">
+        <xs:sequence>
+          <xs:element name="TransportStateSignID" type="clt_ru:TransportStateSignIDType">
+            <xs:annotation>
+              <xs:documentation>Государственный знак транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportMeansColorCode" type="clt_ru:TransportMeansColorCodeType">
+            <xs:annotation>
+              <xs:documentation>Код цвета транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EnginePowerKvtQuanity" type="clt_ru:EnginePowerQuanityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Мощность двигателя в киловаттах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EnginePowerHpQuanity" type="clt_ru:EnginePowerQuanityType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Мощность двигателя в лошадиных силах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MaxWeightQuantity" type="clt_ru:WeighQuantityType">
+            <xs:annotation>
+              <xs:documentation>Разрешенная максимальная масса ТС в кг</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MinWeightQuantity" type="clt_ru:WeighQuantityType">
+            <xs:annotation>
+              <xs:documentation>Масса без нагрузки в кг</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TransportCategoryCode" type="clt_ru:TransportCategoryCodeType">
+            <xs:annotation>
+              <xs:documentation>Категория транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EngineModel" type="clt_ru:Text40Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Модель двигателя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Kind" type="clt_ru:Text50Type">
+            <xs:annotation>
+              <xs:documentation>Тип ТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Регистрационные данные свидетельства ТС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="RegionCode" type="clt_ru:RegionCodeType">
+        <xs:annotation>
+          <xs:documentation>Код региона</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SeriesCode" type="clt_ru:Code2Type">
+        <xs:annotation>
+          <xs:documentation>Серия свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssueDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи свидетельства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GAIName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование ГАИ, выдавшего свидетельство о регистрации ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UnRegistrationType">
+    <xs:annotation>
+      <xs:documentation>Сведения о снятии с учета ТС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Date" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата снятия с учета</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GAIName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование ГАИ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cause" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Текст причины снятия с учета ТС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

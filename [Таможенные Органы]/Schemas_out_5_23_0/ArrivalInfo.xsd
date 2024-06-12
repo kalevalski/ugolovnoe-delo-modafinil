@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:catWH_ru="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonAggregateTypesCust:5.22.0" xmlns:catpi_ru="urn:customs.ru:Information:PriorInformation:PriorCommonAggregateTypes:5.23.0" xmlns:ai="urn:customs.ru:Information:CustomsDocuments:ArrivalInfo:5.23.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ArrivalInfo:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:WarehouseDocuments:WarehouseCommonAggregateTypesCust:5.22.0" schemaLocation="WarehouseCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:PriorInformation:PriorCommonAggregateTypes:5.23.0" schemaLocation="PriorCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Информация о прибытии товаров на таможенную территорию</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ArrivalInfo" type="ai:ArrivalInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация о прибытии товаров на таможенную территорию</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ArrivalInfoType">
+    <xs:annotation>
+      <xs:documentation>Комплексный тип информации о прибытии товаров на таможенную территорию</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="ArrivalCustomsCode" type="clt_ru:CustomsCodeType">
+            <xs:annotation>
+              <xs:documentation>Код таможенного органа в месте прибытия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArrivalDateTime" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата и время прибытия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Header" type="ai:HeaderType">
+            <xs:annotation>
+              <xs:documentation>Заголовок информации</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnloadWarehouseDetails" type="catpi_ru:PI_EEC_UnloadWarehouseDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о планируемом месте временного хранения товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Consigment" type="ai:ConsigmentType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Товарно-транспортная накладная</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006274E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ArchDocInfoType">
+    <xs:annotation>
+      <xs:documentation>Комплексный тип со сведениями о размещении электронного документа в электронном архиве</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ArchID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор электронного архива декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ArchDocID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор документа в электронном архиве декларанта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsigmentType">
+    <xs:annotation>
+      <xs:documentation>Комплексный тип для описания товарно-транспортной накладной</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="catWH_ru:WhTransportDocType">
+        <xs:sequence>
+          <xs:element name="UnloadWarehouseDetails" type="catpi_ru:PI_EEC_UnloadWarehouseDetailsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о планируемом месте временного хранения товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocInfo" type="ai:ArchDocInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Информация о размещении документа в электронном архиве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Good" type="catWH_ru:WhGoodType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание товара</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Container" type="catWH_ru:WHContainerInformationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание контейнера</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ProducedDocument" type="ai:ProducedDocumentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Представляемый документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HeaderType">
+    <xs:annotation>
+      <xs:documentation>Комплексный тип для описания общих сведений информации о прибытии</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DepartureCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код страны отправления</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DestinationCountryCode" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код страны назначения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transport" type="catWH_ru:WhTransportType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Транспортное средство</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Carrier" type="catWH_ru:WHCarrierType">
+        <xs:annotation>
+          <xs:documentation>Перевозчик</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ParticipantID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Идентификатор участника ВЭД, использованный перевозчиком для представления документов при прибытии</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PI_RegID" type="clt_ru:DocumentIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Регистрационный идентификатор предварительной информации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProducedDocumentType">
+    <xs:annotation>
+      <xs:documentation>Комплексный тип для описания представляемого товаросопроводительного документа</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="DocumentKind" type="clt_ru:CustomsDocumentCodeType">
+            <xs:annotation>
+              <xs:documentation>Код вида представленного документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArchDocInfo" type="ai:ArchDocInfoType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Информация о размещении документа в электронном архиве</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

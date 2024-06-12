@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:catESAD_cu="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" xmlns:contpp="urn:customs.ru:Information:CustomsDocuments:ConclusionTPPIdentify:5.22.0" targetNamespace="urn:customs.ru:Information:CustomsDocuments:ConclusionTPPIdentify:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+	<xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd"/>
+	<xs:import namespace="urn:customs.ru:CUESADCommonAggregateTypesCust:5.22.0" schemaLocation="CUESADCommonAggregateTypesCust.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Заключение об идентификации иностранных товаров, помещенных под таможенную процедуру свободной таможенной зоны, в товарах, изготовленных (полученных) на территории Калининградской области с использованием таких иностранных товаров</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ConclusionTPPIdentify" type="contpp:ConclusionTPPIdentifyType">
+		<xs:annotation>
+			<xs:documentation>Заключение об идентификации иностранных товаров, помещенных под таможенную процедуру свободной таможенной зоны, в товарах, изготовленных (полученных) на территории Калининградской области с использованием таких иностранных товаров</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ConclusionTPPIdentifyType">
+		<xs:annotation>
+			<xs:documentation>Заключение об идентификации иностранных товаров, помещенных под таможенную процедуру свободной таможенной зоны, в товарах, изготовленных (полученных) на территории Калининградской области с использованием таких иностранных товаров</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat_ru:BaseDocType">
+				<xs:sequence>
+					<xs:element name="RegistrationNumber" type="contpp:RegistrationNumberType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Регистрационный номер заключения</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OEZ_Resident" type="contpp:OEZ_RezidentType">
+						<xs:annotation>
+							<xs:documentation>Заявитель /Резидент ОЭЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OEZ_Manufacturer" type="contpp:OEZ_RezidentType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Производитель / Резидент ОЭЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Activity" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Операции, совершаемые в отношении сырьевых товаров, комплектующих, упаковочных материалов</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MethodIdentify" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Способ установления факта использования товаров при изготовлении готовой продукции</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="PersonIssue" type="cat_ru:PersonSignatureType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Выдавшее должностное лицо</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Goods" type="contpp:GoodsListType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Товары спецификации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1006229E">
+					<xs:annotation>
+						<xs:documentation>Идентификатор вида документа</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GoodsInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о товарах</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код товара по ТН ВЭД ЕАЭС  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вес товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsGroupInformation" type="catESAD_cu:GoodsGroupInformationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Характеристика товаров </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Количество товара </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsListType">
+		<xs:annotation>
+			<xs:documentation>Готовая продукция и сырье</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Position" type="clt_ru:Count3Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер позиции</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Products" type="contpp:GoodsInfoType">
+				<xs:annotation>
+					<xs:documentation>Готовая продукция</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsRaw" type="contpp:GoodsRawType">
+				<xs:annotation>
+					<xs:documentation>Использованное сырье</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="cat_ru:GTDIDType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер ДТ / ТД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsNumeric" type="clt_ru:Count3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Номер товара в ДТ / ТД</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ownership" type="cat_ru:DocumentBaseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Документ основание владения, пользования и (или) распоряжения товарами</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsStatus" type="clt_ru:CodeVariable3Type">
+				<xs:annotation>
+					<xs:documentation>Статус товаров: ИНТ - иностранные товары, ТТС - товары Евразийского экономического союза, ОЭЗ - товары, полностью произведенные на территории ОЭЗ, УПК - упаковка (кроме первичной)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GoodsRawType">
+		<xs:annotation>
+			<xs:documentation>Товары, послужившие сырьем</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код товара по ТН ВЭД ЕАЭС </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Описание товара</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsGroupInformation" type="catESAD_cu:GoodsGroupInformationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Характеристика товаров </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NetWeightQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Фискированная норма использования (кг) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GoodsQuantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Фиксированная норма использования (ДЕИ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightMin" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Начало диапазона нормы использования (кг) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightMax" type="clt_ru:QuantityBasisType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Конец диапазона нормы использования (кг) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuantityMin" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Начало диапазона нормы использования (ДЕИ) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QuantityMax" type="cat_ru:SupplementaryQuantityType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Конец диапазона нормы использования (ДЕИ) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegistrationNumberType">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер заключения</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomsCode" type="clt_ru:CustomsCodeType">
+				<xs:annotation>
+					<xs:documentation>Признак территориальной торгово-промышленной палаты, которая выдала Заключение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegistrationDate" type="clt_ru:DateCustType">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации документа.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="clt_ru:CodeVariable10Type">
+				<xs:annotation>
+					<xs:documentation>Порядковый номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OEZ_RezidentType">
+		<xs:annotation>
+			<xs:documentation>Резидент ОЭЗ </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RUScat_ru:SubjectDetailsType">
+				<xs:sequence>
+					<xs:element name="OEZ_ResidentCertif" type="cat_ru:DocumentBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Свидетельство, удостоверяющее регистрацию лица в качестве резидента ОЭЗ</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FactAddress" type="cat_ru:AddressType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Фактический адрес организации</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:BarterTransactionPasport:5.22.0" version="5.22.0.0" xmlns:btp="urn:customs.ru:Information:CommercialFinanceDocuments:BarterTransactionPasport:5.22.0" xmlns:catComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltComFin_ru="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonLeafTypesCust:5.8.0" schemaLocation="CommercialFinanceCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:CommercialFinanceDocuments:CommercialFinanceCommonAgregateTypesCust:5.22.0" schemaLocation="CommercialFinanceCommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Паспорт бартерной сделки</xs:documentation>
+  </xs:annotation>
+  <xs:element name="BarterTransactionPasport" type="btp:BarterTransactionPasportType" />
+  <xs:complexType name="BarterTransactionPasportType">
+    <xs:annotation>
+      <xs:documentation>Паспорт бартерной сделки - документ контроля и учета бартерных сделок, совершаемых российскими лицами в соответствии с заключенными внешнеэкономическими договорами</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="MFER" type="catComFin_ru:ShortCompanyDescType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты Управления уполномоченного МВЭС России</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RussianCompany" type="btp:RussianCompanyType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты российской стороны контракта</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContractTerms" type="btp:BarterContractTermsType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты и условия договора</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="PermitPayment" type="btp:PermitPaymentType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты и условия разрешение МВЭС России на отсрочку платежа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MFERSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись от Управления уполномоченного МВЭС России</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RussianCompanySignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись от российского лица</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SpecialComments" type="btp:SpecialCommentsType">
+            <xs:annotation>
+              <xs:documentation>Особые отметки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="Enclosure" type="btp:EnclosureType">
+            <xs:annotation>
+              <xs:documentation>Приложение к Паспорту бартерной сделки </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Registration" type="btp:RegistrationType">
+            <xs:annotation>
+              <xs:documentation>Регистрационные данные Паспорта бартерной сделки    </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ForeignContractor" type="btp:ForeignContractorType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты иностранного контрагента</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1002001E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="BarterContractTermsType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты и условия договора по Бартеру</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Amount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Общая сумма договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentModeCode" type="cltComFin_ru:PaymentModeCodeType">
+        <xs:annotation>
+          <xs:documentation>Код применяемой формы расчетов по договора</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DueDateCode" type="cltComFin_ru:DueDateCodeType">
+        <xs:annotation>
+          <xs:documentation>Код расчетного срока ввоза (таможенного оформления) на таможенную территорию Российской Федерации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LastDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Последняя дата</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Contract" type="cat_ru:DocumentBaseType">
+        <xs:annotation>
+          <xs:documentation>Дата и номер контракта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="ChangeContract" type="cat_ru:DocumentBaseType">
+        <xs:annotation>
+          <xs:documentation>Номера и даты изменений/дополнений к контракту</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnclosureType">
+    <xs:annotation>
+      <xs:documentation>Приложение к Паспорту бартерной сделки </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExportIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Индикатор экспорта товаров, в случае импорта не заполняется</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Описание товаров (услуг) </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsQuantity" type="clt_ru:QuantityBasisType">
+        <xs:annotation>
+          <xs:documentation>Количество товара в указанных единицах измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MeasureUnitQualifierCode" type="clt_ru:MeasureUnitQualifierCodeType">
+        <xs:annotation>
+          <xs:documentation>Код единицы измерения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SupplementaryQualifierName" type="clt_ru:MeasureUnitQualifierNameType">
+        <xs:annotation>
+          <xs:documentation>Название единицы измерения при возможности ее указания</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Price" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Цена единицы экспортируемого (импортируемого) товара в валюте цены Договора.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost1" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Стоимость (в тысячах денежных единиц) экспортируемых (импортируемых) товаров, работ, услуг, результатов интеллектуальной деятельности в валюте цены Договора на условиях основного базиса поставки.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element maxOccurs="4" minOccurs="0" name="DeliveryTermsStringCode" type="clt_ru:IncotermsDeliveryStringCodeType">
+        <xs:annotation>
+          <xs:documentation>Код базиса поставки экспортируемых (импортируемых) товаров в соответствии с Международными правилами толкования торговых терминов ИНКОТЕРМС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ServiceModeCode" type="clt_ru:ServiceModeCodeType">
+        <xs:annotation>
+          <xs:documentation>Коды работ и услуг согласно Классификатору услуг во внешнеэкономической деятельности </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element name="ImportGoodsCost" type="btp:GoodsCostType">
+          <xs:annotation>
+            <xs:documentation>Итоговая стоимость импортируемых товаров, работ, услуг, результатов интеллектуальной деятельности</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ExportGoodsCost" type="btp:GoodsCostType">
+          <xs:annotation>
+            <xs:documentation>Итоговая стоимость экспортируемых товаров, работ, услуг, результатов интеллектуальной деятельности</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ForeignContractorType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты иностранного контрагента</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование иностранного контрагента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CountryCode" type="clt_ru:CountryN3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код страны регистрации контрагента</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LegalAddress" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Юридический адрес</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsCostType">
+    <xs:annotation>
+      <xs:documentation>Стоимость (в тысячах денежных единиц) товаров, работ, услуг, результатов интеллектуальной деятельности в валюте цены Договора на условиях основного базиса поставки.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Cost2" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Стоимость (в тысячах денежных единиц) товаров, работ, услуг, результатов интеллектуальной деятельности в валюте цены Договора на условиях основного базиса поставки.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PasportIDType">
+    <xs:annotation>
+      <xs:documentation>Номер паспорта бартерной сделки </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Sign" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Признак сделки (всегда равен 3) </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OKPOID" type="clt_ru:Code8Type">
+        <xs:annotation>
+          <xs:documentation>Код ОКПО Управления уполномоченного МВЭС России    </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Number3" type="clt_ru:Code3Type">
+        <xs:annotation>
+          <xs:documentation>Номер переоформленного паспорта бартерной сделки</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Number10" type="clt_ru:Code10Type">
+        <xs:annotation>
+          <xs:documentation>Номер первоначального паспорта бартерной сделки, присвоенный управлением уполномоченным Минэкономразвития </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PermitPaymentType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты и условия разрешение МВЭС России на отсрочку платежа</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="Deferment" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Описание отсрочки (свыше 180 дней) встречной поставки товаров, выполнения работ, услуг, передачи прав на результаты интеллектуальной деятельности согласно соответствующему разрешению МВЭС России. Указывается в той форме, в какой этот срок указан в данном разрешении.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Регистрационные данные Паспорта бартерной сделки</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IssueDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата регистрации Паспорта в МВЭС России    </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PasportID" type="btp:PasportIDType">
+        <xs:annotation>
+          <xs:documentation>Номер паспорта бартерной сделки </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RussianCompanyType">
+    <xs:annotation>
+      <xs:documentation>Реквизиты российской стороны контракта</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование российского лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OKPOID" type="clt_ru:OKPOIDType">
+        <xs:annotation>
+          <xs:documentation>Код российского лица  по ОКПО</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INNID" type="clt_ru:INNIDType">
+        <xs:annotation>
+          <xs:documentation>Индивидуальный номер налогоплательщика </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PostalAddress" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Полный юридический адрес российского лица, подписавшего Паспорт</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpecialCommentsType">
+    <xs:annotation>
+      <xs:documentation>Особые отметки</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Explanations" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Информация, не отраженная в других графах Паспорта, облегчающая работу контролирующих органов</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ExportAmount" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Исполненная часть экспорта, тыс. ед.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ImportAmount" type="clt_ru:Quantity18point3Type">
+        <xs:annotation>
+          <xs:documentation>Исполненная часть импорта, тыс. ед.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

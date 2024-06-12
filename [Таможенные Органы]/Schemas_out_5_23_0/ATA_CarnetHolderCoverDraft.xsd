@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ccd="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetHolderCoverDraft:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetHolderCoverDraft:5.22.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сведения из обложки карнета АТА, предоставленные держателем карнета</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetHolderCoverDraft" type="ata_ccd:ATA_CarnetHolderCoverDraftType" />
+  <xs:complexType name="ATA_CarnetHolderCoverDraftType">
+    <xs:annotation>
+      <xs:documentation>Сведения из обложки карнета АТА, предоставленные держателем карнета</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssuingCountry" type="clt_ru:CountryA2CodeType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Код страны выдачи карнета (графа G.a обложки карнета), заполняется в соответствии с Решением КТС 378 (международный код страны ISO 3166-1 Alpha-2)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetNumber" type="ata_ccd:ATACarnetNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА (графа G.a обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи карнета АТА  (графа I обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ValidUntil" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Срок действия карнета АТА  (графа G.с обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Holder" type="ata_ccd:FreeText100Type">
+            <xs:annotation>
+              <xs:documentation>Держатель карнета АТА (графа А обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:sequence>
+              <xs:element name="RussianHolderAddress" type="ata_ccd:RussianHolderAddressType">
+                <xs:annotation>
+                  <xs:documentation>Адрес держателя карнета АТА, выданного в России (графа А обложки карнета)</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:sequence>
+              <xs:element name="ForeignHolderAddress" type="ata_ccd:ForeignHolderAddressType">
+                <xs:annotation>
+                  <xs:documentation>Адрес держателя карнета АТА выданного иностранной гарантирующей ассоциацией (графа А обложки карнета)</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:choice>
+          <xs:element name="RepresentedBy" type="ata_ccd:FreeText1000Type">
+            <xs:annotation>
+              <xs:documentation>Представитель держателя (графа B обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntendedUse" type="ata_ccd:FreeText100Type">
+            <xs:annotation>
+              <xs:documentation>Предполагаемое использование товаров (графа C обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssuedBy" type="clt_ru:FreeText500Type">
+            <xs:annotation>
+              <xs:documentation>Наименование выдающей ассоциации (графа G.b обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GuaranteedBy" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Наименование гарантирующей ассоциации  (графа G.b обложки карнета)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GeneralList" type="ata_ccd:GeneralListType">
+            <xs:annotation>
+              <xs:documentation>Общий список товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003435E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="RussianHolderAddressType">
+    <xs:annotation>
+      <xs:documentation>Адрес держателя карнета АТА, выданного в России (графа А обложки карнета)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Region" type="ata_ccd:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Регион</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="City" type="ata_ccd:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Город</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address" type="ata_ccd:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>Улица, дом, квартира</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Index" type="clt_ru:Code6Type">
+        <xs:annotation>
+          <xs:documentation>Почтовый индекс</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ForeignHolderAddressType">
+    <xs:annotation>
+      <xs:documentation>Адрес держателя карнета АТА выданного иностранной гарантирующей ассоциацией (графа А обложки карнета)</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Address" type="ata_ccd:FreeText1000Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Адрес держателя карнета АТА (графа А обложки карнета)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeneralListType">
+    <xs:annotation>
+      <xs:documentation>Общий список товаров</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CurrencyCode" type="clt_ru:CurrencyA3CodeType">
+        <xs:annotation>
+          <xs:documentation>Код валюты, заполняется в соответствии с Решением КТС 378 (трехзначный буквенный код)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Good" type="ata_ccd:GoodType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Товарная позиция</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodType">
+    <xs:annotation>
+      <xs:documentation>Товарная позиция</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ListNumber" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер товара в основном списке карнета АТА (графа 1 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodDescription" type="ata_ccd:FreeText4000Type">
+        <xs:annotation>
+          <xs:documentation>Описание товаров, меток и номеров при их наличии (графа 2 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PcsQuantity" type="clt_ru:Quantity11Type">
+        <xs:annotation>
+          <xs:documentation>Кол-во товара,шт (графа 3 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddQuantity" type="clt_ru:QuantityBasisType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество в ДЕИ (графа 4 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddQuantityUnit" type="clt_ru:MeasureUnitQualifierCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код ДЕИ (графа 4 общего списка), заполняется в соответствии с Решением КТС 378 (принимает значения 112 - м3 или 166 - кг)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Cost" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Cтоимость товара в валюте  (графа 5 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OriginCountry" type="clt_ru:CountryA2CodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код страны происхождения (графа 6 общего списка), заполняется в соответствии с Решением КТС 378 (международный код страны ISO 3166-1 Alpha-2)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара в соответствии с ТН ВЭД ЕАЭС (графа 7 общего списка)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="FreeText100Type">
+    <xs:annotation>
+      <xs:documentation>Текстовая строка до 100 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FreeText1000Type">
+    <xs:annotation>
+      <xs:documentation>Текстовая строка до 1000 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FreeText4000Type">
+    <xs:annotation>
+      <xs:documentation>Текстовая строка до 4000 символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ATACarnetNumberType">
+    <xs:annotation>
+      <xs:documentation>Символьный номер до 20 знаков</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

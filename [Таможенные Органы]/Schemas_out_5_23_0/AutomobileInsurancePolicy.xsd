@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:TransportDocuments:Car:AutomobileInsurancePolicy:5.22.0" version="5.22.0.0" xmlns:aip="urn:customs.ru:Information:TransportDocuments:Car:AutomobileInsurancePolicy:5.22.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Страховой полис гражданского автострахования</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AutomobileInsurancePolicy" type="aip:AutomobileInsurancePolicyType" />
+  <xs:complexType name="AutomobileInsurancePolicyType">
+    <xs:annotation>
+      <xs:documentation>Страховой полис гражданского автострахования</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="SpecialComments" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Особые отметки </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsurerName" type="clt_ru:NameType">
+            <xs:annotation>
+              <xs:documentation>Наименование страховщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignSeriesCode" type="cltTrans_ru:PolicySeriesCodeType">
+            <xs:annotation>
+              <xs:documentation>Серия знака государственного образца</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsuranceTermBegin" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Начало срока страхования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InsuranceTermEnd" type="clt_ru:DateTimeCustType">
+            <xs:annotation>
+              <xs:documentation>Конец срока страхования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SignID" type="clt_ru:TransportStateSignIDType">
+            <xs:annotation>
+              <xs:documentation>Номер знака государственного образца</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="SumInsured" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Резерв. Страховая сумма</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="InsurancePremium" type="clt_ru:AmountType">
+            <xs:annotation>
+              <xs:documentation>Страховая премия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Registration" type="aip:RegistrationType">
+            <xs:annotation>
+              <xs:documentation>Регистрационные данные полиса</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Insurer" type="aip:InsurerType">
+            <xs:annotation>
+              <xs:documentation>Сведения о страхователе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AutomobileOwner" type="aip:AutomobileOwnerType">
+            <xs:annotation>
+              <xs:documentation>Сведения о собственнике транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AIPTransportMeans" type="aip:AIPTransportMeansType">
+            <xs:annotation>
+              <xs:documentation>Cведения о транспортном средстве </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AllowedPersonsInformation" type="aip:AllowedPersonsType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лицах, допущенных к управлению транспортного средства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="UseTransportTerm" type="aip:UseTransportTermType">
+            <xs:annotation>
+              <xs:documentation>Период использования ТС</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AutomobileDoc" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Предоставленные документы на автомобиль</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="InsuranceAgent" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Страховой агент</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="InsurerSign" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Подпись страховщика/представитель страховщика</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1003101E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="AIPTransportMeansType">
+    <xs:annotation>
+      <xs:documentation>Сведения о транспортном средстве </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TransportStateSignID" type="clt_ru:TransportStateSignIDType">
+        <xs:annotation>
+          <xs:documentation>Государственный знак транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Model" type="clt_ru:TransportNameType">
+        <xs:annotation>
+          <xs:documentation>Марка, модель</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Mark" type="clt_ru:MarkCarNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование марки в оригинале</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="MarkCode" type="clt_ru:MarkCarCodeType">
+        <xs:annotation>
+          <xs:documentation>Код марки </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="VINID" type="clt_ru:VINIDType">
+        <xs:annotation>
+          <xs:documentation>Идентификационный номер (VIN)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="OfftakeYear" type="clt_ru:DateYearCustType">
+        <xs:annotation>
+          <xs:documentation>Год изготовления транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AIPTransportMeansPassport" type="cat_ru:TransportMeansPassportType">
+        <xs:annotation>
+          <xs:documentation>Серия и номер Паспорта транспортного средства</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AllowedPersonsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о лицах допущенных к управлению транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersNumeric" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Порядковый номер лица</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>ФИО лица, допущенного к управлению транспортным средством</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DrivingLicenceSeriesCode" type="cltTrans_ru:DrivingLicenceSeriesCodeType">
+        <xs:annotation>
+          <xs:documentation>Серия водительского удостоверения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DrivingLicenceNumeric" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер водительского удостоверения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="RestrictionIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Резерв.  Индикатор ограничений (да /нет)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AutomobileOwnerType">
+    <xs:annotation>
+      <xs:documentation>Сведения о собственнике транспортного средства</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>ФИО физического лица/Наименование организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NaturalPersonIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Индикатор, заполняется в случае, если страхователь - физическое лицо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InsurerType">
+    <xs:annotation>
+      <xs:documentation>Сведения о страхователе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>ФИО физического лица/Наименование организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CountryCode" type="clt_ru:CountryN3CodeType">
+        <xs:annotation>
+          <xs:documentation>Гражданство физического лица или страна регистрации организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Phone" type="clt_ru:PhoneNumberType">
+        <xs:annotation>
+          <xs:documentation>Телефон</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NaturalPersonIndicator" type="clt_ru:IndicatorType">
+        <xs:annotation>
+          <xs:documentation>Индикатор типа страхователя, заполняется в случае, если страхователь - физическое лицо</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PostalAddress" type="cat_ru:AddressType">
+        <xs:annotation>
+          <xs:documentation>Описание почтового адреса страхователя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IdentityCard" type="RUScat_ru:RUIdentityCardType">
+        <xs:annotation>
+          <xs:documentation>Сведения документа удостоверяющего личность </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RegistrationType">
+    <xs:annotation>
+      <xs:documentation>Регистрационные данные страхового полиса гражданского автострахования </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SeriesCode" type="cltTrans_ru:PolicySeriesCodeType">
+        <xs:annotation>
+          <xs:documentation>Серия полиса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PolNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер полиса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="IssueDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата выдачи полиса</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="InsurContractDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата договора страхования</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UseTransportTermType">
+    <xs:annotation>
+      <xs:documentation>Период использования ТС</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BeginUseTransportDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Начало периода использования транспортного средства для ТС принадлежащих физ. лица)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="EndUseTransportDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Конец периода использования транспортного средства для ТС принадлежащих физ. лица)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

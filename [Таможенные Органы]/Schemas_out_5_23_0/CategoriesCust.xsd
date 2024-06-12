@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="urn:customs.ru:Categories:3.0.0" elementFormDefault="qualified" version="3.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:CategoryCust="urn:customs.ru:Categories:3.0.0">
+	<xs:annotation>
+		<xs:documentation>Категории типов</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="BinaryDataCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Бинарные данные</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary" />
+	</xs:simpleType>
+	<xs:simpleType name="CodeCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Код.Символьная строка (буквы, цифры, знаки) используемая для краткого (и/или независимого от языка) представления или замены определенных значений или текстовых свойств.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token" />
+	</xs:simpleType>
+	<xs:simpleType name="DateCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>ДатаВремя. Дата (формат ISO 8601: ГГГГ-ММ-ДД)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date" />
+	</xs:simpleType>
+	<xs:simpleType name="DateTimeCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>ДатаВремя. Дата и время (формат ISO 8601: YYYY-MM-DDThh :mm :ss)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime" />
+	</xs:simpleType>
+	<xs:simpleType name="IdentifierCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Идентификатор. Символьная строка для установления уникальной отличительной черты одного экземпляра объекта в рамках одной системы.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token" />
+	</xs:simpleType>
+	<xs:simpleType name="IndicatorCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Индикатор. Список двух взаимно исключающих булевых значений, которые точно отображают единственные возможные состояния свойства. Обычно используется для обозначения стояний истина/ложь, вкл/выкл. и т.д.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean" />
+	</xs:simpleType>
+	<xs:simpleType name="IntegerCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Число. Целое число</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer" />
+	</xs:simpleType>
+	<xs:simpleType name="NumericCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Число. Числовая информация определенная или установленная вычислениями, последовательностью. Для нее не нужны единицы измерения.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal" />
+	</xs:simpleType>
+	<xs:simpleType name="QuantityCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Количество. Счетное количество без единиц измерения</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal" />
+	</xs:simpleType>
+	<xs:simpleType name="TextCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Текст. Символьная строка, обычно в форме слов какого-либо языка.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="TimeCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Время. Время (формат ISO 8601: hh :mm :ss)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:time" />
+	</xs:simpleType>
+	<xs:simpleType name="YearCategoriesCust">
+		<xs:annotation>
+			<xs:documentation>Год. Формат ISO 8601: ГГГГ (CCYY)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:gYear" />
+	</xs:simpleType>
+</xs:schema>

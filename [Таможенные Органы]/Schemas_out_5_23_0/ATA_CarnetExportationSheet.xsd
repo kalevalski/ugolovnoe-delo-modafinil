@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_ces="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetExportationSheet:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetExportationSheet:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Отрывной лист временного вывоза</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetExportationSheet" type="ata_ces:ATA_CarnetExportationSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист временного вывоза</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_CarnetExportationSheetType">
+    <xs:annotation>
+      <xs:documentation>Отрывной лист временного вывоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DeclarantInfo" type="ata_ct:DeclInfoBaseType">
+            <xs:annotation>
+              <xs:documentation>Информация от карнетодержателя при оформлении временного вывоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsInfo" type="ata_ces:ExportationCustInfoType">
+            <xs:annotation>
+              <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении временного вывоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sheet" type="ata_ct:ATA_CarnetTearSheetBaseType">
+            <xs:annotation>
+              <xs:documentation>Данные отрывного листа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AppealRequisites" type="cat_ru:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты обращения о продлении операции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003414E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="ExportationCustInfoType">
+    <xs:annotation>
+      <xs:documentation>Информация, заполняемая таможенным инспектором при оформлении временного вывоза</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ata_ct:CustInfoBaseType">
+        <xs:sequence>
+          <xs:element name="ExportationPeriod" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Срок временного вывоза (графа H.b отрывного листа)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

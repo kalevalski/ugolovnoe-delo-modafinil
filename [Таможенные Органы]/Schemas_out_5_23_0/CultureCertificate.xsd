@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:RUScat_ru="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" xmlns:culc="urn:customs.ru:Information:SertifDocuments:CultureCertificate:5.22.0" targetNamespace="urn:customs.ru:Information:SertifDocuments:CultureCertificate:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:RUSCommonAggregateTypes:5.22.0" schemaLocation="RUSCommonAggregateTypes.xsd" />
+  <xs:annotation>
+    <xs:documentation>Свидетельство на право вывоза культурных ценностей</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CultureCertificate" type="culc:CultureCertificateType" />
+  <xs:complexType name="CultureCertificateType">
+    <xs:annotation>
+      <xs:documentation>Свидетельство на право вывоза культурных ценностей</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="BDRDID" type="clt_ru:DocumentIDType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Идентификатор документа по БД РД</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IsCanceled" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак прекращения действия документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegNumber" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExportType" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Вид вывоза: 0 - временный, 1 - постоянный</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumSheets" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество листов, прилагаемых со списком предметов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumFoto" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Количество фотографий предметов.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CountryName" type="clt_ru:CountryNameType">
+            <xs:annotation>
+              <xs:documentation>Название страны ввоза культурных ценностей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Target" type="clt_ru:FreeText250Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Цель вывоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Term" type="clt_ru:Count3Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Срок вывоза</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnitTime" type="clt_ru:MeasureUnitQualifierNameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Единица измерения времени</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateIssued" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="StartDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndDate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LastUpdate" type="clt_ru:DateCustType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Дата последнего обновления документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PlaceIssued" type="clt_ru:FreeText500Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Место выдачи свидетельства</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrganizationIssued" type="culc:OrganizationIssuedType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице или об организации, которому(й) выдан сертификат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DecisionInf" type="culc:DecisionInfType">
+            <xs:annotation>
+              <xs:documentation>Сведения о решении, на основании которого разрешен вывоз</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonIssued" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о должностном лице, выдавшем свидетельство</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CulturalValuesList" type="culc:CulturalValuesListType" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Список культурных ценностей</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FlagImage" type="clt_ru:IndicatorType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак наличия изображений</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgUnitCode" type="clt_ru:NameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Мнемоника отправителя запроса</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Owner" type="clt_ru:NameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Владелец культурной ценности</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1009006E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CulturalValuesListType">
+    <xs:annotation>
+      <xs:documentation>Список культурных ценностей</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CulturalName" type="clt_ru:FreeText250Type" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Наименование культурной ценности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Описание культурной ценности</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="cat_ru:SupplementaryQuantityType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Количество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DecisionInfType">
+    <xs:annotation>
+      <xs:documentation>Сведения о решении, на основании которого разрешен вывоз</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:DocumentBaseType">
+        <xs:sequence>
+          <xs:element name="StateStructure" type="clt_ru:FreeText500Type">
+            <xs:annotation>
+              <xs:documentation>Наименование государственного органа, выдавшего свидетельство</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganizationIssuedType">
+    <xs:annotation>
+      <xs:documentation>Сведения о лице или об организации, которому(й) выдан сертификат</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="RUScat_ru:RUOrganizationNameAddrType">
+        <xs:sequence>
+          <xs:element name="HeadFIO" type="clt_ru:NameType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>ФИО руководителя</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

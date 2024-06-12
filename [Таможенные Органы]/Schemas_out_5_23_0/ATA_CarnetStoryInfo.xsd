@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_csi="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetStoryInfo:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CarnetStoryInfo:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>История операций по карнету АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_CarnetStoryInfo" type="ata_csi:ATA_CarnetStoryInfoType">
+    <xs:annotation>
+      <xs:documentation>История операций по карнету АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_CarnetStoryInfoType">
+    <xs:annotation>
+      <xs:documentation>История операций по карнету АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:annotation>
+            <xs:documentation>История операций по карнету АТА</xs:documentation>
+          </xs:annotation>
+          <xs:element name="CarnetCover" type="ata_ct:DocumentBodyType">
+            <xs:annotation>
+              <xs:documentation>Обложка карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetRevision" type="ata_ct:CarnetRevisionType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlteredCarnetCover" type="ata_ct:DocumentBodyType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Измененные обложки карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetOperationInfo" type="ata_ct:OperationInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Информация по операции карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlteredOperation" type="ata_ct:DocumentBodyType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Измененные операции карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlterationOperation" type="ata_ct:DocumentBodyType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Неподтвержденная корректировка операции карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CarnetAuxDocument" type="ata_ct:DocumentBodyType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Дополнительные документы карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubstituteCarnetNumber" type="ata_ct:ATACarnetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер заменяющего карнета АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AfterDuplicationCarnetNumber" type="ata_ct:ATACarnetNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Номер карнета АТА после выдачи дубликата</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DuplicateSign" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Признак выдачи дубликата. 0 - Не выдан дубликат. 1 - Выдан дубликат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AFVersion" type="clt_ru:Text10Type" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Версия альбома форматов, в которой создан документ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003421E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

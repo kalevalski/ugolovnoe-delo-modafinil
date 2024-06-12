@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:ata_ct="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" xmlns:ata_findor="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindOperationResponse:5.22.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_FindOperationResponse:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:ATA:ATA_CommonTypes:5.22.0" schemaLocation="ATA_CommonTypes.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Результат поиска операций по карнетам АТА</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ATA_FindOperationResponse" type="ata_findor:ATA_FindOperationResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска операций по карнетам АТА</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ATA_FindOperationResponseType">
+    <xs:annotation>
+      <xs:documentation>Результат поиска операций по карнетам АТА</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="OperationInfo" type="ata_findor:OperationsInfoType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сведения об операции по карнету АТА</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003423E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OperationsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения об операции по карнету АТА</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CarnetNumber" type="ata_ct:ATACarnetNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SubmissionMode" type="ata_ct:Count2Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Способ подачи карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ValidUntil" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Cрок действия карнета АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumber" type="cat_ru:GTDIDType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IssueDate" type="clt_ru:DateTimeCustType">
+        <xs:annotation>
+          <xs:documentation>Дата и время подписания документа о регистрации операции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OperationPeriod" type="clt_ru:DateCustType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Cрок действия операции по карнету АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Type" type="ata_ct:OperationType">
+        <xs:annotation>
+          <xs:documentation>Тип операции с карнетом АТА</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsQuantity" type="clt_ru:Quantity11Type">
+        <xs:annotation>
+          <xs:documentation>Количество товаров в группе</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DecisionText" type="clt_ru:CodeVariable20Type">
+        <xs:annotation>
+          <xs:documentation>Решение по отрывному листу</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonName" type="ata_ct:FreeText100Type">
+        <xs:annotation>
+          <xs:documentation>ФИО должностного лица таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LNP" type="clt_ru:LNPIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ЛНП должностного лица таможенного органа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

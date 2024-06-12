@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:CommercialFinanceDocuments:ChargeOffLetter:5.22.0" version="5.22.0.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:chl="urn:customs.ru:Information:CommercialFinanceDocuments:ChargeOffLetter:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Письмо на списание денежных средств со счетов брокера</xs:documentation>
+  </xs:annotation>
+  <xs:element name="ChargeOffLetter" type="chl:ChargeOffLetterType" />
+  <xs:complexType name="ChargeOffLetterType">
+    <xs:annotation>
+      <xs:documentation>Письмо на списание денежных средств со счетов брокера</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="LetterText" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Текст письма (кроме шаблонных значений)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentReference" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Реквизиты документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Broker" type="cat_ru:OrganizationWBankType">
+            <xs:annotation>
+              <xs:documentation>Предприятие плательщик</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Declarant" type="cat_ru:OrganizationWBankType">
+            <xs:annotation>
+              <xs:documentation>За кого осуществляется платеж (декларант)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="Payments" type="chl:PaymentsType">
+            <xs:annotation>
+              <xs:documentation>Платежи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="Signatures" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Подписи (должностные лица брокера)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо таможенного органа на имя которого формируется письмо</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1002016E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="PaymentsType">
+    <xs:annotation>
+      <xs:documentation>Платежи</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PaymentModeCode" type="clt_ru:CustomsPaymentCodeType">
+        <xs:annotation>
+          <xs:documentation>Код вида платежа </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentAmount" type="clt_ru:AmountType">
+        <xs:annotation>
+          <xs:documentation>Сумма платежа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentOrderNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер платежного поручения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PaymentOrderDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата платежного поручения</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

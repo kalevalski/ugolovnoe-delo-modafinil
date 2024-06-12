@@ -1,0 +1,139 @@
+<!-- Электронное подтверждение организации - пользователя недр-->
+<!-- Докладная записка ГУФТД от 30.03.2020 № 05-10.1622  Приказ от 2.11.2020 №955-->
+<xs:schema xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:csuo="urn:customs.ru:Information:SertifDocuments:ConfirmationOfSubsoilUserOrg:5.22.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:customs.ru:Information:SertifDocuments:ConfirmationOfSubsoilUserOrg:5.22.0" elementFormDefault="qualified" version="5.22.0.0">
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Электронное подтверждение организации - пользователя недр </xs:documentation>
+  </xs:annotation>
+  <xs:element name="ConfirmationOfSubsoilUserOrg" type="csuo:ConfirmationOfSubsoilUserOrgType">
+    <xs:annotation>
+      <xs:documentation>Электронное подтверждение организации - пользователя недр </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ConfirmationOfSubsoilUserOrgType">
+    <xs:annotation>
+      <xs:documentation>Электронное подтверждение организации - пользователя недр</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="DocumentDetails" type="csuo:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о документе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubsoilUserOrg" type="csuo:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Организация - пользователь недр</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Declarant" type="csuo:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Декларант</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubsoilPlotName" type="clt_ru:FreeText250Type" maxOccurs="4">
+            <xs:annotation>
+              <xs:documentation>Наименование участка недр на котором получены (произведены) товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsQuantity" type="clt_ru:QuantityBasis0Type">
+            <xs:annotation>
+              <xs:documentation>Количество полученных (произведенных) и переданных декларанту товаров (тонн)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PersonSignature" type="csuo:PersonBaseType">
+            <xs:annotation>
+              <xs:documentation>Сведения о лице, выдавшем документ (представитель организации - пользователя недр)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContractDetails" type="csuo:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о контракте</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LicenseDetails" type="csuo:DocumentBaseType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Сведения о лицензии на пользование недрами</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1009272E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="DocumentBaseType">
+    <xs:annotation>
+      <xs:documentation>Сведения о документе</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PrDocumentName" type="clt_ru:DocumentNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrDocumentNumber" type="clt_ru:DocumentNumberType">
+        <xs:annotation>
+          <xs:documentation>Номер документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrDocumentDate" type="clt_ru:DateCustType">
+        <xs:annotation>
+          <xs:documentation>Дата документа</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrganizationType">
+    <xs:annotation>
+      <xs:documentation>Сведения об организации</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ShortName" type="clt_ru:ShortNameType">
+        <xs:annotation>
+          <xs:documentation>Краткое наименование организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="INN" type="clt_ru:INNIDType">
+        <xs:annotation>
+          <xs:documentation>ИНН организации</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonBaseType">
+    <xs:annotation>
+      <xs:documentation>Сведения о должностном лице</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PersonSurname" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Фамилия</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonName" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Имя</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonMiddleName" type="clt_ru:NameType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Отчество</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PersonPost" type="clt_ru:PostType">
+        <xs:annotation>
+          <xs:documentation>Должность</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

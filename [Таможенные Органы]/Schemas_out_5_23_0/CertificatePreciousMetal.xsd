@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:customs.ru:Information:SertifDocuments:CertificatePreciousMetal:5.22.0" version="5.22.0.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:cepm="urn:customs.ru:Information:SertifDocuments:CertificatePreciousMetal:5.22.0" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Сертификат химического состава на содержание драгметаллов</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CertificatePreciousMetal" type="cepm:CertificatePreciousMetalType" />
+  <xs:complexType name="CertificatePreciousMetalType">
+    <xs:annotation>
+      <xs:documentation>Сертификат химического состава на содержание драгметаллов</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="IssueDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата выдачи</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegistrationNumber" type="clt_ru:DocumentIDType">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExpirationDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата окончания действия сертификата</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NamePreciousMetal" type="clt_ru:FreeText250Type">
+            <xs:annotation>
+              <xs:documentation>Наименование драгметалла</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ContentPercent" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Содержание в % драгметалла</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RecalculatedContent" type="clt_ru:Count3Type">
+            <xs:annotation>
+              <xs:documentation>Содержание в граммах/тоннах драгметалла </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DeclarantInfo" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Сведения о заявителе</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="GoodsInfo" type="cepm:GoodsInfoType">
+            <xs:annotation>
+              <xs:documentation>Сведения о продукции</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="ExperimentAccordanceDocuments" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Испытан в соответствии с требованиями, установленными в документах</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Laboratory" type="cepm:LaboratoryType">
+            <xs:annotation>
+              <xs:documentation>Лаборатория</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="TestReport" type="cat_ru:DocumentBaseType">
+            <xs:annotation>
+              <xs:documentation>Протокол испытаний</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssueOrganization" type="cat_ru:OrganizationType">
+            <xs:annotation>
+              <xs:documentation>Организация, выдавшая сертификат химического состава на содержание драгметаллов</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IssuePersonSignature" type="cat_ru:PersonSignatureType">
+            <xs:annotation>
+              <xs:documentation>Подпись руководителя организации, выдавшей сертификат</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute fixed="1009013E" name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="GoodsInfoType">
+    <xs:annotation>
+      <xs:documentation>Сведения о продукции</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="GoodsName" type="clt_ru:FreeText250Type">
+        <xs:annotation>
+          <xs:documentation>Наименование продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsKind" type="clt_ru:Text50Type">
+        <xs:annotation>
+          <xs:documentation>Вид продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsMark" type="clt_ru:Text10Type">
+        <xs:annotation>
+          <xs:documentation>Марка продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsTNVEDCode" type="clt_ru:GoodsNomenclatureCodeType">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="GoodsOKP" type="clt_ru:Code6Type">
+        <xs:annotation>
+          <xs:documentation>ОКП продукции</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LaboratoryType">
+    <xs:annotation>
+      <xs:documentation>Лаборатория</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NameLaboratory" type="clt_ru:NameType">
+        <xs:annotation>
+          <xs:documentation>Наименование лаборатории</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RegistrationNumberAIL" type="clt_ru:DocumentIDType">
+        <xs:annotation>
+          <xs:documentation>Регистрационный номер АИЛ в Госреестре</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

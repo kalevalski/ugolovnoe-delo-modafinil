@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:clt_ru="urn:customs.ru:CommonLeafTypes:5.10.0" xmlns:cat_ru="urn:customs.ru:CommonAggregateTypes:5.22.0" xmlns:catTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" xmlns:cltTrans_ru="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" xmlns:cltESAD_cu="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" xmlns:cshd="urn:customs.ru:Information:TransportDocuments:Sea:CommissionShipmentDecision:5.23.0" targetNamespace="urn:customs.ru:Information:TransportDocuments:Sea:CommissionShipmentDecision:5.23.0" elementFormDefault="qualified" version="5.23.0.0">
+  <xs:import namespace="urn:customs.ru:CommonLeafTypes:5.10.0" schemaLocation="CommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CommonAggregateTypes:5.22.0" schemaLocation="CommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonAgregateTypesCust:5.23.0" schemaLocation="TransportCommonAggregateTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:Information:TransportDocuments:TransportCommonLeafTypesCust:5.14.3" schemaLocation="TransportCommonLeafTypesCust.xsd" />
+  <xs:import namespace="urn:customs.ru:CUESADCommonLeafTypes:5.17.0" schemaLocation="CUESADCommonLeafTypesCust.xsd" />
+  <xs:annotation>
+    <xs:documentation>Решение по товарам поручения на погрузку</xs:documentation>
+  </xs:annotation>
+  <xs:element name="CommissionShipmentDecision" type="cshd:CommissionShipmentDecisionType" />
+  <xs:complexType name="CommissionShipmentDecisionType">
+    <xs:annotation>
+      <xs:documentation>Решение по товарам поручения на погрузку</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="cat_ru:BaseDocType">
+        <xs:sequence>
+          <xs:element name="CSHBorderCustoms" type="cat_ru:CUCustomsType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Таможенный орган (пограничный пункт пропуска), оформляющий разрешение на погрузку товаров</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentNumber" type="clt_ru:DocumentNumberType">
+            <xs:annotation>
+              <xs:documentation>Номер документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DocumentDate" type="clt_ru:DateCustType">
+            <xs:annotation>
+              <xs:documentation>Дата документа</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Общее описание товаров, подлежащих погрузке</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Vessel" type="catTrans_ru:VesselType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Реквизиты судна</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LoadingPort" type="cshd:PortType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Порт погрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UnloadingPort" type="cshd:PortType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Порт разгрузки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RegNumBook" type="clt_ru:DocumentNumberType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Регистрационный номер бронирования</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsMark" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Таможенные отметки</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BorderServiceMark" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Отметки пограничной службы</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CommissionShipmentGoods" type="cshd:CommissionShipmentGoodsType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Товары</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CustomsPerson" type="cat_ru:CustomsPersonType">
+            <xs:annotation>
+              <xs:documentation>Должностное лицо, принимающее решение</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ControlDecision" type="clt_ru:Numeric1Type">
+            <xs:annotation>
+              <xs:documentation>Принятое решение: 0 - погрузка запрещена, 1 - погрузка разрешена, 2 - погрузка разрешена, подлежит таможенному контролю, 3 - подлежит таможенному контролю, 4 - аннулирование поручения на погрузку</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="DocumentModeID" type="clt_ru:DocumentModeIDType" use="required" fixed="1003211E">
+          <xs:annotation>
+            <xs:documentation>Идентификатор вида документа</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:annotation>
+    <xs:documentation>Локальные прикладные типы.</xs:documentation>
+  </xs:annotation>
+  <xs:complexType name="CommissionShipmentGoodsType">
+    <xs:annotation>
+      <xs:documentation>Сведения о товаре, подлежащем погрузке</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GoodsNumericDT" type="clt_ru:Count3Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер товара по ДТ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsNumeric" type="clt_ru:Count5Type">
+        <xs:annotation>
+          <xs:documentation>Номер товара по порядку</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsTNVEDCode" type="clt_ru:CUGoodsNomenclatuerCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код товара по ТН ВЭД ЕАЭС по ДТ</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DTNumber" type="cat_ru:GTDIDType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Номер таможенной декларации (ДТ/ТД)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsProcedure" type="clt_ru:CUCustomsProcedureType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Таможенная процедура (ИМ, ЭК, ТТ). (Первый подраздел гр.1 ДТ/ТД)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomsModeCode" type="cltESAD_cu:CustomsModeCodeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код таможенной процедуры в соответствии с классификатором видов таможенных процедур.  (Второй подраздел гр.1 ДТ/ТД) </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsDescription" type="clt_ru:FreeText250Type" minOccurs="0" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation>Наименования товара</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ControlDecision" type="clt_ru:Numeric1Type">
+        <xs:annotation>
+          <xs:documentation>Принятое решение: 0 - погрузка запрещена, 1 - погрузка разрешена, 2 - погрузка разрешена, подлежит таможенному контролю, 3 - подлежит таможенному контролю</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ControlDecisionDesc" type="clt_ru:FreeText250Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Комментарии к решению</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PortType">
+    <xs:annotation>
+      <xs:documentation>Информация о порте</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PortName" type="cltTrans_ru:PortNameType">
+        <xs:annotation>
+          <xs:documentation>Наименование порта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PortCode" type="clt_ru:CodeVariable5Type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Код порта</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
