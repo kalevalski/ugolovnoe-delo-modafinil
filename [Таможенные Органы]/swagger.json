@@ -1,0 +1,5127 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "2023.1.0",
+    "title": "CDS API for Developers",
+    "termsOfService": "https://upu.int/api",
+    "contact": {
+      "url": "https://upu.int/api"
+    },
+    "license": {
+      "name": "Internal",
+      "url": "https://upu.int/api"
+    },
+    "x-logo": {
+      "url": "https://www.upu.int/Content/images/logo/logo-blue.png"
+    },
+    "description": "CDS API for Developers.\n\nUniversal Postal Union<br>\nInternational Bureau<br>\nWeltpoststrasse 4<br>\n3000 Bern 15<br>\nSwitzerland\n\nCDS API Service Interface\n"
+  },
+  "servers": [
+    {
+      "url": "https://{hostname}/CDS.API/CDSAPIService.svc/rest",
+      "variables": {
+        "hostname": {
+          "default": "cds.preprod.upu.org",
+          "description": "hostname"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "User Access",
+      "description": "User access methods"
+    },
+    {
+      "name": "Anonymous Declarations",
+      "description": "Anonymous Declarations are declarations done by end user, before mail acceptance, without being associated yet to a mail item ID."
+    },
+    {
+      "name": "Retrieve data",
+      "description": "Operational methods used to retrieve data"
+    },
+    {
+      "name": "Store data",
+      "description": "Operational methods used to create data"
+    },
+    {
+      "name": "Restriction Prohibition",
+      "description": "Restriction prohibition methods"
+    },
+    {
+      "name": "Watchdog",
+      "description": "Watchdog methods"
+    },
+    {
+      "name": "Marketed Good",
+      "description": "Marketed good methods"
+    },
+    {
+      "name": "Postal Services",
+      "description": "Postal services methods"
+    },
+    {
+      "name": "Print",
+      "description": "Print methods"
+    },
+    {
+      "name": "Utilities",
+      "description": "Utilities"
+    },
+    {
+      "name": "HS Codes",
+      "description": "HS Codes"
+    }
+  ],
+  "paths": {
+    "/CheckItemStatus": {
+      "post": {
+        "summary": "Check Item Status",
+        "tags": [
+          "Retrieve data"
+        ],
+        "operationId": "CheckItemStatus",
+        "description": "Return referral status from mail objects",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckItemStatus_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckItemStatus_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/ConvertAnonymousToCDSDeclaration": {
+      "post": {
+        "summary": "Convert Anonymous To CDS Declaration",
+        "tags": [
+          "Anonymous Declarations"
+        ],
+        "description": "Transforms an anonymous declaration into a real CDS\ndeclaration so that ITMATT can be sent to the destination post\n",
+        "operationId": "ConvertAnonymousToCDSDeclaration",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertAnonymousToCDSDeclaration_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertAnonymousToCDSDeclaration_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/ConvertCurrency": {
+      "post": {
+        "summary": "Convert Currency",
+        "tags": [
+          "Utilities"
+        ],
+        "operationId": "ConvertCurrency",
+        "description": "Converts an amount from a currency type to another",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertCurrency_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertCurrency_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/CreateNewDeclaration": {
+      "post": {
+        "summary": "Create New Declaration",
+        "tags": [
+          "Utilities"
+        ],
+        "description": "Creates a new blank declaration without storing in the CDS database",
+        "operationId": "CreateNewDeclaration",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNewDeclaration_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateNewDeclaration_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/CreateNewResponse": {
+      "post": {
+        "summary": "Create New Response",
+        "tags": [
+          "Utilities"
+        ],
+        "description": "Creates a new response without storing in the CDS database",
+        "operationId": "CreateNewResponse",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNewResponse_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateNewResponse_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/CreateOrUpdateAnonymousDeclaration": {
+      "post": {
+        "summary": "Create Or Update Anonymous Declaration",
+        "tags": [
+          "Anonymous Declarations"
+        ],
+        "description": "Creates/updates an anonymous declaration",
+        "operationId": "CreateOrUpdateAnonymousDeclaration",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAnonymousDeclaration_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateAnonymousDeclaration_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/CreateOrUpdateDeclarations": {
+      "post": {
+        "summary": "Create Or Update Declarations",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Creates/updates a list of declarations passed as customs data views",
+        "operationId": "CreateOrUpdateDeclarations",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateDeclarations_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateDeclarations_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/CreateOrUpdateResponses": {
+      "post": {
+        "summary": "Create Or Update Responses",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Creates/updates a list of responses passed as customs data views",
+        "operationId": "CreateOrUpdateResponses",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateResponses_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateResponses_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetCustomsStatus": {
+      "post": {
+        "summary": "Get Customs Status",
+        "tags": [
+          "Retrieve data"
+        ],
+        "description": "Loads customs data view (status) for a specific item at post.\nIf the customs response is not available and the forceCreateResponseIfNotAvailable\nparam is true, the method forces creation of customs response based on the defined auto-response rules\n",
+        "operationId": "GetCustomsStatus",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCustomsStatus_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomsStatus_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetDecisionNameAndCategoryFromCode": {
+      "post": {
+        "summary": "Get Decision Name And Category From Code",
+        "tags": [
+          "Utilities"
+        ],
+        "description": "Determines the customs decision name (e.g. item must be presented, item is cleared) and category\n(e.g. Hold, clearance, prohibition) from a decision code\n",
+        "operationId": "GetDecisionNameAndCategoryFromCode",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDecisionNameAndCategoryFromCode_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDecisionNameAndCategoryFromCode_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetFinalDeclarationIdFromAnonymousDeclarationId": {
+      "post": {
+        "summary": "Get Final Declaration Id From Anonymous Declaration Id",
+        "tags": [
+          "Anonymous Declarations"
+        ],
+        "description": "Searches for the final declaration Id from an anonymous declaration Id",
+        "operationId": "GetFinalDeclarationIdFromAnonymousDeclarationId",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFinalDeclarationIdFromAnonymousDeclarationId_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFinalDeclarationIdFromAnonymousDeclarationId_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetHeartbeat": {
+      "post": {
+        "summary": "Get Heartbeat",
+        "tags": [
+          "Utilities"
+        ],
+        "description": "Returns an heartbeat object with the last time of each CDS component was used",
+        "operationId": "GetHeartbeat",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetHeartbeat_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHeartbeat_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetHSCodes": {
+      "post": {
+        "summary": "Get HS Codes",
+        "tags": [
+          "HSCodes"
+        ],
+        "description": "Returns the best HS code matches for the given description",
+        "operationId": "GetHSCodes",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetHSCodes_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHSCodes_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionByDescription": {
+      "post": {
+        "summary": "Get Restriction Prohibition By Description",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a certain good",
+        "operationId": "GetRestrictionProhibitionByDescription",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionByDescription_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionByDescription_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionByDescriptionByCountry": {
+      "post": {
+        "summary": "Get Restriction Prohibition By Description By Country",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a certain good",
+        "operationId": "GetRestrictionProhibitionByDescriptionByCountry",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionByDescriptionByCountry_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionByDescriptionByCountry_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionsByDescriptions": {
+      "post": {
+        "summary": "Get Restriction Prohibitions By Descriptions",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a given list of descriptions",
+        "operationId": "GetRestrictionProhibitionsByDescriptions",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionsByDescriptions_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionsByDescriptions_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionsByDescriptionsByCountry": {
+      "post": {
+        "summary": "Get Restriction Prohibitions By Descriptions By Country",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a given list of descriptions",
+        "operationId": "GetRestrictionProhibitionsByDescriptionsByCountry",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionsByDescriptionsByCountry_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionsByDescriptionsByCountry_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionByHS": {
+      "post": {
+        "summary": "Get Restriction Prohibition By HS",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a certain good",
+        "operationId": "GetRestrictionProhibitionByHS",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionByHS_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionByHS_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetRestrictionProhibitionByHSByCountry": {
+      "post": {
+        "summary": "Get Restriction Prohibition By HS By Country",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Returns restrictions or prohibition for a certain good",
+        "operationId": "GetRestrictionProhibitionByHSByCountry",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRestrictionProhibitionByHSByCountry_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRestrictionProhibitionByHSByCountry_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/GetWatchdogItemInfo": {
+      "post": {
+        "summary": "Get Watchdog Item Info",
+        "tags": [
+          "Watchdog"
+        ],
+        "description": "Returns the current watchdog information for a given item.\nIf more than one item with the same itemId is found, the function returns\nthe most recent item.\n",
+        "operationId": "GetWatchdogItemInfo",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetWatchdogItemInfo_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWatchdogItemInfo_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/IsItemRestrictedProhibited": {
+      "post": {
+        "summary": "Is Item Restricted Prohibited",
+        "tags": [
+          "Restriction Prohibition"
+        ],
+        "description": "Checks if a mail item is prohibited/restricted",
+        "operationId": "IsItemRestrictedProhibited",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IsItemRestrictedProhibited_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IsItemRestrictedProhibited_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/Load": {
+      "post": {
+        "summary": "Load",
+        "tags": [
+          "Retrieve data"
+        ],
+        "description": "Loads customs data views (mail object + declaration + response)\nbased on a list of criteria passed as parameters.\n",
+        "operationId": "Load",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Load_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Load_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/LoadByMailState": {
+      "post": {
+        "summary": "Load By Mail State",
+        "tags": [
+          "Retrieve data"
+        ],
+        "description": "Loads customs data views (mail object + declaration + response) based on a\nlist of criteria passed as parameters including the mail state code\n",
+        "operationId": "LoadByMailState",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoadByMailState_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadByMailState_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/LoadMarketedGood": {
+      "post": {
+        "summary": "Load Marketed Good",
+        "tags": [
+          "Marketed Good"
+        ],
+        "description": "Loads a list of marketed goods. Either seller or buyer organization must be provided.",
+        "operationId": "LoadMarketedGood",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoadMarketedGood_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadMarketedGood_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/LoadPostalServices": {
+      "post": {
+        "summary": "Load Postal Services",
+        "tags": [
+          "Postal Services"
+        ],
+        "description": "Loads a list of postal services provided by an origin postal\norganization to a destination postal organization\n",
+        "operationId": "LoadPostalServices",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoadPostalServices_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadPostalServices_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/LoadRefDataCocktail": {
+      "post": {
+        "summary": "Load Ref Data Cocktail",
+        "tags": [
+          "Utilities"
+        ],
+        "description": "Returns a SimpleRefDataCocktail for the language passed as parameter",
+        "operationId": "LoadRefDataCocktail",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoadRefDataCocktail_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoadRefDataCocktail_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/Login": {
+      "post": {
+        "summary": "Login",
+        "tags": [
+          "User Access"
+        ],
+        "description": "Authenticate the user and password and return a session token access.\n",
+        "operationId": "Login",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/Logout": {
+      "post": {
+        "summary": "Logout",
+        "tags": [
+          "User Access"
+        ],
+        "description": "Terminate the authentication session and removes the tempoarary token\n",
+        "operationId": "Logout",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Logout_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Logout_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/PrintCustomsDeclaration": {
+      "post": {
+        "summary": "Print Customs Declaration",
+        "tags": [
+          "Print"
+        ],
+        "description": "Prints CN22 associated with the mail item ID passed as parameter",
+        "operationId": "PrintCustomsDeclaration",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintCustomsDeclaration_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrintCustomsDeclaration_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/PrintDoc": {
+      "post": {
+        "summary": "Print Doc",
+        "tags": [
+          "Print"
+        ],
+        "description": "Prints document associated to customs declaration",
+        "operationId": "PrintDoc",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrintDoc_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrintDoc_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/SetWatchdogItemInfo": {
+      "post": {
+        "summary": "Set Watchdog Item Info",
+        "tags": [
+          "Watchdog"
+        ],
+        "description": "Sets the current watchdog information for a new or existing item together\nwith item's destination, mail class and posting date.\nIf more than one item with the same itemId is found, an error is thrown.\n",
+        "operationId": "SetWatchdogItemInfo",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetWatchdogItemInfo_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetWatchdogItemInfo_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/StoreDeclaration": {
+      "post": {
+        "summary": "Store Declaration",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Stores a declaration to CDS database",
+        "operationId": "StoreDeclaration",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreDeclaration_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreDeclaration_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/StoreMarketedGood": {
+      "post": {
+        "summary": "Store Marketed Good",
+        "tags": [
+          "Marketed Good"
+        ],
+        "description": "Stores a marketed good",
+        "operationId": "StoreMarketedGood",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreMarketedGood_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreMarketedGood_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/StorePostalService": {
+      "post": {
+        "summary": "Store Postal Service",
+        "tags": [
+          "Postal Services"
+        ],
+        "description": "Stores a postal service",
+        "operationId": "StorePostalService",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StorePostalService_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorePostalService_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/StoreResponse": {
+      "post": {
+        "summary": "Store Response",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Stores a response to CDS database",
+        "operationId": "StoreResponse",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreResponse_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreResponse_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/UpdateMailState": {
+      "post": {
+        "summary": "Update Mail State",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Updates the mail state of the mail object",
+        "operationId": "UpdateMailState",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMailState_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateMailState_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/UpdateMailState_ForTransitItems": {
+      "post": {
+        "summary": "Update Mail State For Transit Items",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Updates the mail state of the mail object",
+        "operationId": "UpdateMailState_ForTransitItems",
+        "deprecated": true,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMailState_ForTransitItems_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateMailState_ForTransitItems_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    },
+    "/UpdateMailStateAndGetCustomsStatus": {
+      "post": {
+        "summary": "Update Mail State and Get Customs Status",
+        "tags": [
+          "Store data"
+        ],
+        "description": "Updates the mail state of the mail object and loads customs data view (status) for a specific item at post (Operational method)",
+        "operationId": "UpdateMailStateAndGetCustomsStatus",
+        "deprecated": false,
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMailStateAndGetCustomsStatus_Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the response",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateMailStateAndGetCustomsStatus_Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationException_Response"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized_Response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Token": {
+        "title": "Token",
+        "description": "The security token used to authorize the web method call.  \nThe security token must be defined by the CDS administrator at organization level.\n",
+        "type": "string",
+        "format": "uuid"
+      },
+      "CheckItemStatusRequest": {
+        "title": "CheckItemStatusRequest",
+        "description": "List of MailObjectId, DestinationCountryCd and OriginCountryCd to get current status",
+        "type": "object",
+        "properties": {
+          "ItemID": {
+            "type": "string",
+            "description": "",
+            "example": "EE23050001XAU"
+          },
+          "OriginCountryCd": {
+            "type": "string",
+            "description": "",
+            "example": "IN"
+          },
+          "DestinationCountryCd": {
+            "type": "string",
+            "description": "",
+            "example": "DE"
+          }
+        }
+      },
+      "CheckItemStatus_Request": {
+        "title": "CheckItemStatusRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckItemStatusRequest"
+            }
+          }
+        }
+      },
+      "Epoch": {
+        "title": "Epoch",
+        "description": "The epoch (or Unix timestamp) is the number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), \nnot counting leap seconds.\n",
+        "type": "string",
+        "format": "timestamp",
+        "pattern": "\\/Date\\([0-9]+\\+[0-9]{4}\\)\\/",
+        "example": "/Date(1562748420000+0200)/"
+      },
+      "ReferralInfo": {
+        "title": "ReferralInfo",
+        "type": "object",
+        "properties": {
+          "Reference": {
+            "type": "string"
+          },
+          "Code": {
+            "type": "string"
+          },
+          "EventDT": {
+            "$ref": "#/components/schemas/Epoch"
+          },
+          "ResponsePending": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CheckItemStatusResponse": {
+        "title": "CheckItemStatusResult",
+        "type": "object",
+        "properties": {
+          "MailObjectId": {
+            "type": "string",
+            "example": "EE23050001XAU"
+          },
+          "EarliestEventDT": {
+            "$ref": "#/components/schemas/Epoch"
+          },
+          "OriginCountryCd": {
+            "type": "string",
+            "example": "IN"
+          },
+          "DestinationCountryCd": {
+            "type": "string",
+            "example": "DE"
+          },
+          "HasITMATT": {
+            "type": "boolean",
+            "example": true
+          },
+          "Referrals": {
+            "$ref": "#/components/schemas/ReferralInfo"
+          }
+        }
+      },
+      "CheckItemStatus_Response": {
+        "title": "CheckItemStatusResponse",
+        "type": "object",
+        "properties": {
+          "CheckItemStatusResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckItemStatusResponse"
+            },
+            "description": "List of statuses for all Mail Objects listed on items parameter"
+          }
+        }
+      },
+      "Detail": {
+        "title": "Detail",
+        "type": "object",
+        "properties": {
+          "ErrorMessage": {
+            "type": "string",
+            "description": "The error message referring the input field which has failed in the validation",
+            "example": "Token not matching the postal organization passed as parameter"
+          },
+          "ErrorNbr": {
+            "type": "string",
+            "description": "The error number referring the input field which has failed in the validation",
+            "example": "10.0301"
+          },
+          "ItemId": {
+            "type": "string",
+            "description": "The id of the mail object (when applicable)",
+            "example": "Item DE009876PT"
+          }
+        }
+      },
+      "ValidationException": {
+        "title": "ValidationException",
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "description": "The code for the fault.",
+            "example": "Sender"
+          },
+          "SubCode": {
+            "type": "string",
+            "description": "The subcode for the fault.",
+            "example": "code10"
+          },
+          "Reason": {
+            "type": "string",
+            "description": "The reason for the fault.",
+            "example": "Application Data validation failed"
+          },
+          "Detail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Detail"
+            }
+          }
+        }
+      },
+      "FaultException": {
+        "title": "FaultException",
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "description": "The code for the fault.",
+            "example": "Sender"
+          },
+          "SubCode": {
+            "type": "string",
+            "description": "The subcode for the fault.",
+            "example": "code0"
+          },
+          "Reason": {
+            "type": "string",
+            "description": "The reason for the fault.",
+            "example": "Invalid CDS security token"
+          }
+        }
+      },
+      "ConvertAnonymousToCDSDeclaration_Request": {
+        "title": "ConvertAnonymousToCDSDeclarationRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "anonymousDeclarationId": {
+            "type": "string",
+            "description": "Id of the anonymous declaration (e.g. 9384748AU for an anonymous declaration created at Australia Post)",
+            "example": "9384748AU"
+          },
+          "internationalItemId": {
+            "type": "string",
+            "description": "The id of the mail object.  If missing, the id of the declaration\nwill also be the id of the mail item in the ITMATT messages\n",
+            "example": "EE23050001XAU"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "anonymousDeclarationId",
+          "userCd"
+        ]
+      },
+      "ConvertAnonymousToCDSDeclaration_Response": {
+        "title": "ConvertAnonymousToCDSDeclarationResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "ConvertCurrency_Request": {
+        "title": "ConvertCurrencyRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "organizationCd": {
+            "type": "string",
+            "description": "The organization code (e.g. AUA - Australia Post) whose defined exchange rates are used for conversion",
+            "example": "AUA"
+          },
+          "fromCurrencyCd": {
+            "type": "string",
+            "description": "Source ISO currency code (e.g. USD)",
+            "example": "USD"
+          },
+          "toCurrencyCd": {
+            "type": "string",
+            "description": "Target ISO currency code (e.g. CAD)",
+            "example": "CAD"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "description": "Amount to be converted",
+            "example": 3.2
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "ConvertCurrency_Response": {
+        "title": "ConvertCurrencyResponse",
+        "type": "object",
+        "properties": {
+          "ConvertCurrencyResult": {
+            "type": "number",
+            "format": "double",
+            "example": 2.1239673903,
+            "description": "Converted amount\n"
+          }
+        }
+      },
+      "CreateNewDeclaration_Request": {
+        "title": "CreateNewDeclarationRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "customsOrgCd": {
+            "type": "string",
+            "description": "The customs organization code (e.g. AU - Australia Post Customs)\nwere the declarations and responses were created.\n",
+            "example": "AU"
+          },
+          "itemId": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "mailFlow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          }
+        },
+        "required": [
+          "token",
+          "postalOrgCd",
+          "customsOrgCd",
+          "itemId",
+          "mailFlow"
+        ]
+      },
+      "Entity": {
+        "title": "Entity",
+        "type": "object",
+        "properties": {
+          "SelfAsString": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Entity identifier string"
+          },
+          "entityState": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true,
+            "description": "Entity state",
+            "example": -1
+          }
+        }
+      },
+      "CDSObject": {
+        "title": "CDSObject",
+        "description": "",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "CDSStateCd": {
+                "type": "integer",
+                "format": "int32",
+                "description": "State of the declaration (e.g. 1 - new declaration, 2 - draft declaration, 3 - final declaration, \n5 - declaration sent to customs<br/>Or state of the response (e.g. 51 - new response, 52 - draft response,\n53 - final response, 55 - response sent to post\n",
+                "example": 1
+              },
+              "CustOrganizationCd": {
+                "type": "string",
+                "description": "Code of the customs organization associated to the declaration/response (e.g. AU - Australia Customs)",
+                "example": "AU"
+              },
+              "MailObjectPId": {
+                "description": "Associated mail object database identifier",
+                "type": "string",
+                "format": "uuid"
+              },
+              "PId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "PostOrganizationCd": {
+                "type": "string",
+                "description": "Code of the postal organization associated to the declaration/response (e.g. AUA - Australia Post)",
+                "example": "AUA"
+              },
+              "XMLData": {
+                "type": "string",
+                "readOnly": true
+              }
+            }
+          }
+        ]
+      },
+      "Declaration": {
+        "title": "Declaration.DeclarationData.CommercialTransaction",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "ContentPiecesIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": [
+              1,
+              2,
+              4
+            ]
+          },
+          "MarketPlaceId": {
+            "type": "string",
+            "description": "Name of the marketplace"
+          },
+          "MarketPlaceUrl": {
+            "type": "string",
+            "description": "Website of the marketplace in the country from which the item is sent"
+          },
+          "PurchaseOrderNumber": {
+            "type": "string",
+            "description": "Purchase order number assigned by the marketplace to this item"
+          },
+          "SalesOrderNumber": {
+            "type": "string",
+            "description": "Sales order number assigned by the marketplace to this item as part of the commercial transaction"
+          }
+        },
+        "required": [
+          "ContentPiecesIndexes"
+        ]
+      },
+      "ExtraFieldNames": {
+        "title": "ExtraFieldNames",
+        "description": "Extra Fields Names",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": [
+          "NameField1",
+          "NameField2",
+          "NameField3",
+          "...",
+          "NameFieldN"
+        ]
+      },
+      "ExtraFieldValues": {
+        "title": "ExtraFieldValues",
+        "description": "Extra Field Values",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": [
+          "ValueField1",
+          "ValueField2",
+          "ValueField3",
+          "...",
+          "ValueFieldN"
+        ]
+      },
+      "Declaration-2": {
+        "title": "Declaration.DeclarationData.ContentPiece",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "type": "number",
+            "format": "double",
+            "description": "Declared amount"
+          },
+          "CurrencyCd": {
+            "type": "string",
+            "description": "Declared amount ISO currency code (e.g. USD, EUR, CAD, etc).",
+            "example": "USD"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Description of the piece"
+          },
+          "ExtraFieldNames": {
+            "$ref": "#/components/schemas/ExtraFieldNames"
+          },
+          "ExtraFieldValues": {
+            "$ref": "#/components/schemas/ExtraFieldValues"
+          },
+          "HS": {
+            "type": "string",
+            "pattern": "[A-Z]{2}[0-9]{4,10}|[0-9]{4,12}",
+            "description": "HS code"
+          },
+          "ImportRestrictions": {
+            "type": "string",
+            "description": "List of import restrictions applicable to the content piece"
+          },
+          "ImportRestrictionsNotes": {
+            "type": "string"
+          },
+          "Index": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Required for ITMATT V2 generation."
+          },
+          "NetWeight": {
+            "type": "number",
+            "format": "double",
+            "description": "Net weight in KG"
+          },
+          "Number": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of piece's items"
+          },
+          "OrigCountryCd": {
+            "type": "string",
+            "description": "ISO country code of mail origin (e.g. AU - Australia, US - United States, CA - Canada, CH - Switzerland, etc)",
+            "example": "AU"
+          },
+          "RevisedDescription": {
+            "type": "string",
+            "description": "Revised description"
+          },
+          "RevisedHS": {
+            "type": "string",
+            "example": "Revised HS code"
+          }
+        },
+        "required": [
+          "Amount",
+          "CurrencyCd",
+          "Description",
+          "NetWeight"
+        ]
+      },
+      "Declaration-3": {
+        "title": "Declaration.DeclarationData.Document",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "DocumentId": {
+            "type": "string",
+            "description": "Document id"
+          },
+          "DocumentName": {
+            "type": "string",
+            "description": "Document name"
+          },
+          "DocumentType": {
+            "type": "string",
+            "description": "Document type"
+          },
+          "Url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "DocumentType"
+        ]
+      },
+      "OtherPartyRole": {
+        "title": "OtherPartyRole",
+        "description": "Role played by the party in an event or transaction.",
+        "type": "string",
+        "enum": [
+          "AG",
+          "AK",
+          "AM",
+          "CA",
+          "COR",
+          "CX",
+          "DP",
+          "ES",
+          "FR",
+          "FW",
+          "FX",
+          "GC",
+          "HL",
+          "N1",
+          "OW",
+          "OY",
+          "PE",
+          "PR",
+          "RF",
+          "SU",
+          "TL",
+          "UC"
+        ],
+        "x-enumDescriptions": {
+          "AG": "Party mandated by the addressee",
+          "AK": "Party to whom delivery notification is to be sent",
+          "AM": "Company official",
+          "CA": "Carrier",
+          "COR": "Relative of the addressee",
+          "CX": "Mailee (if specified separately from delivery address)",
+          "DP": "Party responsible for delivery",
+          "ES": "Entity Service contractor party",
+          "FR": "Message from / reporting-party",
+          "FW": "Party that determined change of delivery address",
+          "FX": "Party to which an entity is handed over",
+          "GC": "Neighbour of addressee or similar 3rd party",
+          "HL": "Party to receive report / information recipient",
+          "N1": "Return address",
+          "OW": "Account owners servicing bank",
+          "OY": "(item) Originator",
+          "PE": "Payee",
+          "PR": "(item) Payer",
+          "RF": "Party from which an entity is received",
+          "SU": "(item) Service contractor",
+          "TL": "Occupant of the delivery address other than the addresee or a relative",
+          "UC": "Forwarding (replacement delivery) address"
+        },
+        "example": "AG"
+      },
+      "Declaration-4": {
+        "title": "Declaration.DeclarationData.OtherParty",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "OtherPartyAddressLine1": {
+            "type": "string",
+            "description": "The first line of the other party's address"
+          },
+          "OtherPartyAddressLine2": {
+            "type": "string",
+            "description": "The second line of the other party's address"
+          },
+          "OtherPartyCity": {
+            "type": "string",
+            "description": "Other party's city."
+          },
+          "OtherPartyCountryCd": {
+            "type": "string",
+            "description": "Other party's ISO country code (e.g. AU - Australia, US - United States, CA - Canada, CH - Switzerland, etc).",
+            "example": "AU"
+          },
+          "OtherPartyEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "Other party's email"
+          },
+          "OtherPartyFax": {
+            "type": "string",
+            "description": "Other party's fax"
+          },
+          "OtherPartyIdRef": {
+            "type": "string",
+            "description": "Other party's identification reference"
+          },
+          "OtherPartyName": {
+            "type": "string",
+            "description": "Other party's name"
+          },
+          "OtherPartyPostalCertificate": {
+            "type": "string",
+            "description": "Other party's postal certificate"
+          },
+          "OtherPartyReferenceType": {
+            "type": "string",
+            "description": "Other party's reference type"
+          },
+          "OtherPartyRole": {
+            "$ref": "#/components/schemas/OtherPartyRole"
+          },
+          "OtherPartyState": {
+            "type": "string",
+            "description": "Other party's state"
+          },
+          "OtherPartyTelephone": {
+            "type": "string",
+            "description": "Other party's telephone"
+          },
+          "OtherPartyTypeOfPerson": {
+            "type": "string",
+            "description": "Other party's type (e.g. I - individual person, B - business)"
+          },
+          "OtherPartyZIP": {
+            "type": "string",
+            "description": "Other party's ZIP code."
+          }
+        },
+        "required": [
+          "OtherPartyRole",
+          "OtherPartyName"
+        ]
+      },
+      "Declaration-5": {
+        "title": "Declaration.DeclarationData",
+        "description": "Declaration data",
+        "type": "object",
+        "properties": {
+          "CommercialTransactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Declaration"
+            },
+            "description": "List of commercial transactions in declaration."
+          },
+          "ContentPieces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Declaration-2"
+            },
+            "description": "List of content pieces in declaration"
+          },
+          "CustomerChargingArrangementCd": {
+            "type": "string",
+            "description": "The duty and tax payment method as it applies to the item."
+          },
+          "NatureTransactionReference": {
+            "type": "string",
+            "description": "Item id of the initial shipment in case of an intended return."
+          },
+          "Documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Declaration-3"
+            },
+            "description": "List of accompanying documents"
+          },
+          "ExtraFieldNames": {
+            "$ref": "#/components/schemas/ExtraFieldNames"
+          },
+          "ExtraFieldValues": {
+            "$ref": "#/components/schemas/ExtraFieldValues"
+          },
+          "GrossWeight": {
+            "type": "number",
+            "format": "double",
+            "description": "Gross weight of the mail in KG."
+          },
+          "HandlingClassCd": {
+            "type": "string",
+            "description": "Handling class (e.g. N - ordinaray, V - insured, R - registered)",
+            "example": "N"
+          },
+          "InsuredValue": {
+            "type": "number",
+            "format": "double",
+            "description": "Insured value"
+          },
+          "InsuredValueCurrencyCd": {
+            "type": "string",
+            "description": "Insured value currency"
+          },
+          "MaxIndex": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Max content piece index"
+          },
+          "NatureTypeCd": {
+            "type": "string",
+            "description": "Nature type of mail (e.g. 21 - returned goods, 31 - gift, 32 - commercial sample,\n91 - documents, 991 - mixed content).\n",
+            "example": "21"
+          },
+          "NatureTypeDesc": {
+            "type": "string",
+            "description": "Nature type description of mail (only used if NatureTypeCd equal \"999 other\")"
+          },
+          "NonDelivInstCd": {
+            "type": "string",
+            "description": "Sender’s instructions in case of non-delivery (e.g. E1 - Return to sender – priority, E2 - Return to sender – non-priority, K1 - Treat as abandoned)."
+          },
+          "Observations": {
+            "type": "string",
+            "description": "Any observation"
+          },
+          "OrigDutiesAmt": {
+            "type": "number",
+            "format": "double",
+            "description": "Monetary value of duties and taxes as expected by the origin postal operator"
+          },
+          "OrigDutiesCurrencyCd": {
+            "type": "string",
+            "description": "Currency of duties and taxes as stated by the origin postal operator (e.g. USD, EUR, CAD, etc)"
+          },
+          "OriginOfficeCd": {
+            "type": "string",
+            "description": "Code of the origin office, where the item was first treated. Usually a postcode."
+          },
+          "OriginOfficeNm": {
+            "type": "string",
+            "description": "Name of the origin office, where the item was first treated."
+          },
+          "OtherParties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Declaration-4"
+            },
+            "description": "List of other parties in declaration"
+          },
+          "PackageImageLocalPath": {
+            "type": "string"
+          },
+          "PackageImageSourceInfo": {
+            "type": "string",
+            "format": "url",
+            "description": "Image FTP link (contains URL, FTP user and encrypted FTP password)"
+          },
+          "Postage": {
+            "type": "number",
+            "format": "double",
+            "description": "Postage paid for the mail"
+          },
+          "PostageCurrencyCd": {
+            "type": "string",
+            "description": "Postage's ISO currency code (e.g. USD, EUR, CAD, etc)",
+            "example": "USD"
+          },
+          "RecipientAddressLine1": {
+            "type": "string",
+            "description": "The first line of the recipient's address"
+          },
+          "RecipientAddressLine2": {
+            "type": "string",
+            "description": "The second line of the recipient's address"
+          },
+          "RecipientCity": {
+            "type": "string",
+            "description": "Recipient's city.<br/>Mandatory for ITMATT 1.5.0 and later generation."
+          },
+          "RecipientCountryCd": {
+            "type": "string",
+            "description": "Recipient's ISO country code (e.g. AU - Australia, US - United States, CA - Canada, CH - Switzerland, etc).",
+            "example": "AU"
+          },
+          "RecipientEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "Recipient's email"
+          },
+          "RecipientFax": {
+            "type": "string",
+            "description": "Recipient's fax"
+          },
+          "RecipientFirstName": {
+            "type": "string",
+            "description": "Recipient's first name",
+            "deprecated": true
+          },
+          "RecipientIdRef": {
+            "type": "string",
+            "description": "Recipient's identification reference"
+          },
+          "RecipientLastName": {
+            "type": "string",
+            "description": "Recipient's last name",
+            "deprecated": true
+          },
+          "RecipientName": {
+            "type": "string",
+            "description": "Recipient's name"
+          },
+          "RecipientPostalCertificate": {
+            "type": "string",
+            "description": "Recipient's postal certificate"
+          },
+          "RecipientReferenceType": {
+            "type": "string",
+            "description": "Recipient's reference type"
+          },
+          "RecipientState": {
+            "type": "string",
+            "description": "Recipient's state"
+          },
+          "RecipientTelephone": {
+            "type": "string",
+            "description": "Recipient's telephone"
+          },
+          "RecipientTypeOfPerson": {
+            "type": "string",
+            "description": "Recipient's type (e.g. I - individual person, B - business)"
+          },
+          "RecipientZIP": {
+            "type": "string",
+            "description": "Recipient's ZIP code.<br/>Mandatory for ITMATT 1.2.1 generation."
+          },
+          "SenderAddressLine1": {
+            "type": "string",
+            "description": "The first line of the sender's address."
+          },
+          "SenderAddressLine2": {
+            "type": "string",
+            "description": "The second line of the sender's address"
+          },
+          "SenderCity": {
+            "type": "string",
+            "description": "Sender's city.<br/>Mandatory for ITMATT 1.5.0 and later generation."
+          },
+          "SenderCountryCd": {
+            "type": "string",
+            "description": "Sender's ISO country code (e.g. AU - Australia, US - United States, CA - Canada, CH - Switzerland, etc).",
+            "example": "AU"
+          },
+          "SenderEmail": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender's email"
+          },
+          "SenderFirstName": {
+            "type": "string",
+            "description": "Sender's first name",
+            "deprecated": true
+          },
+          "SenderIdRef": {
+            "type": "string",
+            "description": "Sender's identification reference"
+          },
+          "SenderLastName": {
+            "type": "string",
+            "description": "Sender's last name",
+            "deprecated": true
+          },
+          "SenderName": {
+            "type": "string",
+            "description": "Sender's name"
+          },
+          "SenderPostalCertificate": {
+            "type": "string",
+            "description": "Sender's postal certificate"
+          },
+          "SenderReferenceType": {
+            "type": "string",
+            "description": "Sender's reference type"
+          },
+          "SenderState": {
+            "type": "string",
+            "description": "Sender's state"
+          },
+          "SenderTelephone": {
+            "type": "string",
+            "description": "Sender's telephone"
+          },
+          "SenderTypeOfPerson": {
+            "type": "string",
+            "description": "Sender's type (e.g. I - individual person, B - business)"
+          },
+          "SenderZIP": {
+            "type": "string",
+            "description": "Sender's ZIP code.<br/>Mandatory for ITMATT 1.2.1 generation."
+          },
+          "TransportDate": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "Date of international conveyance"
+          },
+          "TransportMode": {
+            "type": "string",
+            "description": "Transport mode (e.g. PL - plane, TK - truck, TR - train, SH - ship)",
+            "example": "PL"
+          }
+        },
+        "required": [
+          "GrossWeight",
+          "NatureTypeCd",
+          "RecipientAddressLine1",
+          "RecipientCountryCd",
+          "SenderAddressLine1",
+          "SenderCountryCd"
+        ]
+      },
+      "Declaration-6": {
+        "title": "Declaration",
+        "description": "Declaration details",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CDSObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Data": {
+                "$ref": "#/components/schemas/Declaration-5"
+              }
+            }
+          }
+        ]
+      },
+      "CreateNewDeclaration_Response": {
+        "title": "CreateNewDeclarationResponse",
+        "type": "object",
+        "properties": {
+          "CreateNewDeclarationResult": {
+            "$ref": "#/components/schemas/Declaration-6",
+            "description": "The created customs declaration, if flow is not transit \n(the created declaration is not stored to the database)\n"
+          }
+        }
+      },
+      "CreateNewResponse_Request": {
+        "title": "CreateNewResponseRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "customsOrgCd": {
+            "type": "string",
+            "description": "The customs organization code (e.g. AU - Australia Post Customs)\nwere the declarations and responses were created.\n",
+            "example": "AU"
+          }
+        },
+        "required": [
+          "token",
+          "postalOrgCd",
+          "customsOrgCd"
+        ]
+      },
+      "Response": {
+        "title": "Response.ResponseData.Tax",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "type": "number",
+            "format": "double",
+            "description": "Tax amount"
+          },
+          "CurrencyCd": {
+            "type": "string",
+            "description": "Tax ISO currency code (e.g. USD, EUR, CAD, etc).",
+            "example": "USD"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Description of the content piece to which the tax applies"
+          },
+          "ExtraFieldNames": {
+            "$ref": "#/components/schemas/ExtraFieldNames"
+          },
+          "ExtraFieldValues": {
+            "$ref": "#/components/schemas/ExtraFieldValues"
+          },
+          "HS": {
+            "type": "string",
+            "pattern": "[A-Z]{2}[0-9]{4,10}|[0-9]{4,12}",
+            "description": "HS code of the content piece to which the tax applies"
+          },
+          "NetWeight": {
+            "type": "number",
+            "format": "double",
+            "description": "Net weight in KG of the content piece to which the tax applies"
+          },
+          "Number": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of piece's items of the content piece to which the tax applies"
+          },
+          "Rate": {
+            "type": "number",
+            "format": "double",
+            "description": "Unit rate"
+          },
+          "Type": {
+            "type": "string",
+            "description": "Tax type (e.g. VAT, etc)",
+            "example": "VAT"
+          }
+        },
+        "required": [
+          "Amount",
+          "CurrencyCd",
+          "Rate",
+          "Type"
+        ]
+      },
+      "Response-2": {
+        "title": "Response.ResponseData",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "ClearanceDt": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "Date of customs clearance"
+          },
+          "DecisionCd": {
+            "type": "string",
+            "description": "Decision code (e.g. 1 - item must be presented, 2 - item is cleared and does not need to be presented,\n3 - item cleared after being checked, 4 - charges raised but customs do not need to see,\n5 - refer to other government department, 6 - enforcement, 7 - detention,\n8 - item is not allowed in the country, etc)\n"
+          },
+          "DecisionReasonCd": {
+            "type": "string",
+            "description": "Decision reason code"
+          },
+          "DecisionReasonNm": {
+            "type": "string",
+            "description": "Decision reason name"
+          },
+          "Dutiable": {
+            "type": "boolean",
+            "description": "Whether item is dutiable or not",
+            "example": true
+          },
+          "ExtraFieldNames": {
+            "$ref": "#/components/schemas/ExtraFieldNames"
+          },
+          "ExtraFieldValues": {
+            "$ref": "#/components/schemas/ExtraFieldValues"
+          },
+          "Taxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Response"
+            }
+          },
+          "TotalFee": {
+            "type": "number",
+            "format": "double",
+            "description": "Total customs fees"
+          },
+          "TotalFeeCurrencyCd": {
+            "type": "string",
+            "description": "ISO currency of the total customs fees (e.g. USD, EUR, CAD, etc)",
+            "example": "USD"
+          }
+        }
+      },
+      "Response-3": {
+        "title": "Response",
+        "description": "Response details from the destination customs (applicable for outbound mail only)",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CDSObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Data": {
+                "$ref": "#/components/schemas/Response-2",
+                "description": "Response data"
+              }
+            }
+          }
+        ]
+      },
+      "CreateNewResponse_Response": {
+        "title": "CreateNewResponseResponse",
+        "type": "object",
+        "properties": {
+          "CreateNewResponseResult": {
+            "$ref": "#/components/schemas/Response-3",
+            "description": "The created customs response (the created response is not stored to the database)"
+          }
+        }
+      },
+      "AnonymousDeclaration": {
+        "title": "AnonymousDeclaration",
+        "description": "Anonymous declaration to create/update.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Data": {
+                "$ref": "#/components/schemas/Declaration-5"
+              },
+              "Id": {
+                "type": "string",
+                "description": "Local declaration identifier (e.g. 2233394CH for a declaration posted in CH)",
+                "example": "2233394CH"
+              },
+              "PId": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Database identifier"
+              },
+              "PostingDt": {
+                "type": "string",
+                "$ref": "#/components/schemas/Epoch",
+                "description": "Data and time when the declaration was posted"
+              },
+              "XMLData": {
+                "type": "string",
+                "format": "xml",
+                "readOnly": true
+              }
+            }
+          }
+        ]
+      },
+      "CreateOrUpdateAnonymousDeclaration_Request": {
+        "title": "CreateOrUpdateAnonymousDeclarationRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "anonymousDeclaration": {
+            "$ref": "#/components/schemas/AnonymousDeclaration"
+          }
+        },
+        "required": [
+          "securityToken"
+        ]
+      },
+      "CreateOrUpdateAnonymousDeclaration_Response": {
+        "title": "CreateOrUpdateAnonymousDeclarationResponse",
+        "type": "object",
+        "properties": {
+          "CreateOrUpdateAnonymousDeclarationResult": {
+            "type": "string",
+            "description": "The anonymous declaration ID created."
+          }
+        }
+      },
+      "DCResponse": {
+        "title": "Response",
+        "description": "Response details from the destination customs (applicable for outbound mail only)",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CDSObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Data": {
+                "$ref": "#/components/schemas/Response-2",
+                "description": "Response data"
+              }
+            }
+          }
+        ]
+      },
+      "MailCategory": {
+        "title": "MailCategory",
+        "description": "The mail category of the item",
+        "type": "string",
+        "enum": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "x-enumDescriptions": {
+          "A": "Air mail",
+          "B": "SAL",
+          "C": "Surface non-prio",
+          "D": "Surface prio"
+        },
+        "example": "A"
+      },
+      "MailClass": {
+        "title": "MailClass",
+        "description": "The mail class of the item",
+        "type": "string",
+        "enum": [
+          "C",
+          "E",
+          "U"
+        ],
+        "x-enumDescriptions": {
+          "C": "Parcels",
+          "E": "EMS",
+          "U": "Letters"
+        },
+        "example": "E"
+      },
+      "MailFlow": {
+        "title": "MailFlow",
+        "description": "Flow of the mail from the point of view of the postal organization",
+        "type": "string",
+        "enum": [
+          "I",
+          "O",
+          "T"
+        ],
+        "x-enumDescriptions": {
+          "I": "inbound",
+          "O": "outbound",
+          "T": "transit"
+        },
+        "example": "I"
+      },
+      "MailState": {
+        "title": "MailState",
+        "description": "The physical state of the mail",
+        "type": "integer",
+        "format": "int32",
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          50,
+          51,
+          52
+        ],
+        "x-enumDescriptions": {
+          "1": "Received from customer (A),",
+          "2": "Arrived in OOE (B),",
+          "3": "Arrived outbound customs,",
+          "4": "Marked as blocked in OOE,",
+          "5": "Marked with warning in OOE,",
+          "10": "Departed OOE (C),",
+          "50": "Arrived at IOE (D),",
+          "51": "Arrived at inbound customs (E),",
+          "52": "Departed IOE (F)"
+        }
+      },
+      "MailObjectType": {
+        "title": "MailObjectType",
+        "description": "The type of the item",
+        "type": "string",
+        "enum": [
+          "MI",
+          "RC",
+          "CT"
+        ],
+        "x-enumDescriptions": {
+          "MI": "Mail item",
+          "RC": "Receptacle",
+          "CT": "Container"
+        },
+        "example": "MI"
+      },
+      "MailObject": {
+        "title": "MailObject",
+        "description": "Mail object details (e.g. item ID, origin, destination, posting date)",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "DestPostOrgCd": {
+                "type": "string",
+                "description": "Code of the postal organization of destination (e.g. CAA - Canada Post).\nMandatory for ITMATT generation.\n",
+                "example": "CAA"
+              },
+              "Id": {
+                "type": "string",
+                "description": "International identifier. Mandatory for ITMATT generation.",
+                "example": "EE23050001XAU"
+              },
+              "LocalId": {
+                "type": "string",
+                "description": "Local identifier"
+              },
+              "LocalId2": {
+                "type": "string",
+                "description": "Second local identifier"
+              },
+              "MailCategoryCd": {
+                "$ref": "#/components/schemas/MailCategory"
+              },
+              "MailClassCd": {
+                "$ref": "#/components/schemas/MailClass"
+              },
+              "MailFlowCd": {
+                "$ref": "#/components/schemas/MailFlow"
+              },
+              "MailStateCd": {
+                "$ref": "#/components/schemas/MailState"
+              },
+              "MailStateRemarks": {
+                "type": "string",
+                "description": "Free remarks associated to the current physical mail state\n(e.g. state = 2 (arrived in OOE), remarks = to be redirected to the surface area)\n",
+                "example": "state = 2 (arrived in OOE)"
+              },
+              "OrigPostOrgCd": {
+                "type": "string",
+                "description": "Code of the postal organization of origin (e.g. AUA - Australia Post).",
+                "example": "AUA"
+              },
+              "PId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "PostingDt": {
+                "$ref": "#/components/schemas/Epoch"
+              },
+              "TypeCd": {
+                "$ref": "#/components/schemas/MailObjectType"
+              }
+            },
+            "required": [
+              "DestPostOrgCd",
+              "Id",
+              "MailClassCd"
+            ]
+          }
+        ]
+      },
+      "CDSView": {
+        "title": "CDSView",
+        "description": "CDS data facade. Aggregates mail object, declaration, response from customs,\nresponse from destination customs (applicable for outbound mail only)\n",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "DCResponse": {
+                "$ref": "#/components/schemas/DCResponse"
+              },
+              "Declaration": {
+                "$ref": "#/components/schemas/Declaration-6"
+              },
+              "MailObject": {
+                "$ref": "#/components/schemas/MailObject"
+              },
+              "Response": {
+                "$ref": "#/components/schemas/Response-3"
+              }
+            }
+          }
+        ]
+      },
+      "CreateOrUpdateDeclarations_Request": {
+        "title": "CreateOrUpdateDeclarationsRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "cdsViews": {
+            "type": "array",
+            "description": "The list of CDS views. Each CDS view aggregates the mail object details \n(e.g. item id, origin, destination, etc) and the declaration details \n(e.g. sender, recipient, content pieces, etc)\n",
+            "items": {
+              "$ref": "#/components/schemas/CDSView"
+            }
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "userCd"
+        ]
+      },
+      "CreateOrUpdateDeclarations_Response": {
+        "title": "CreateOrUpdateDeclarationsResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "CreateOrUpdateResponses_Request": {
+        "title": "CreateOrUpdateResponsesRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "cdsViews": {
+            "type": "array",
+            "description": "The list of CDS views. Each CDS view aggregates the mail object details \n(e.g. item id, origin, destination, etc) and the response details \n(e.g. sender, recipient, content pieces, etc)\n",
+            "items": {
+              "$ref": "#/components/schemas/CDSView"
+            }
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.   \n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEFRAA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "userCd"
+        ]
+      },
+      "CreateOrUpdateResponses_Response": {
+        "title": "CreateOrUpdateResponsesResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "GetCustomsStatus_Request": {
+        "title": "GetCustomsStatusRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "flow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          },
+          "forceCreateResponseIfNotAvailable": {
+            "type": "boolean",
+            "description": "When true and the appropriate customs response is not available,\nCDS will attempt to create a customs response based on the auto-response rules defined in CDS.\n",
+            "example": true
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "token",
+          "postalOrgCd",
+          "id",
+          "flow",
+          "forceCreateResponseIfNotAvailable",
+          "userCd"
+        ]
+      },
+      "GetCustomsStatus_Response": {
+        "title": "GetCustomsStatusResponse",
+        "type": "object",
+        "properties": {
+          "GetCustomsStatusResult": {
+            "$ref": "#/components/schemas/CDSView",
+            "description": "CDSView object that aggregates information about the mail object, customs declaration and customs response"
+          }
+        }
+      },
+      "GetDecisionNameAndCategoryFromCode_Request": {
+        "title": "GetDecisionNameAndCategoryFromCodeRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "decisionCode": {
+            "type": "string",
+            "description": "The decision code from customs as contained in the Response object\n(e.g. 1 - item must be presented, 2 - item is cleared, etc)\n",
+            "example": "1"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "GetDecisionNameAndCategoryFromCode_Response": {
+        "title": "GetDecisionNameAndCategoryFromCodeResponse",
+        "type": "object",
+        "properties": {
+          "GetDecisionNameAndCategoryFromCodeResult": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The first string is the decision name (e.g. item must be prestend, item is cleared)  \nand the second string is the decision category: \n- H - hold decision, \n- C - clearance decision, \n- R - rejection/prohibition decision, \n- U - unknown decision\n",
+            "example": [
+              "Item is not allowed in country",
+              "R"
+            ]
+          }
+        }
+      },
+      "GetFinalDeclarationIdFromAnonymousDeclarationId_Request": {
+        "title": "GetFinalDeclarationIdFromAnonymousDeclarationIdRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "anonymousDeclId": {
+            "type": "string",
+            "description": "The anonymous declaration Id",
+            "example": "9384748AU"
+          }
+        },
+        "required": [
+          "securityToken",
+          "anonymousDeclId"
+        ]
+      },
+      "GetFinalDeclarationIdFromAnonymousDeclarationId_Response": {
+        "title": "GetFinalDeclarationIdFromAnonymousDeclarationIdResponse",
+        "type": "object",
+        "properties": {
+          "GetFinalDeclarationIdFromAnonymousDeclarationIdResult": {
+            "type": "string",
+            "description": "The final declaration Id. If not found, returns null"
+          }
+        }
+      },
+      "GetHeartbeat_Request": {
+        "title": "GetHeartbeatRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code.",
+            "example": "depost"
+          }
+        },
+        "required": [
+          "securityToken"
+        ]
+      },
+      "Heartbeat": {
+        "title": "Heartbeat",
+        "description": "Heartbeat object with the last time of each CDS component was used",
+        "type": "object",
+        "properties": {
+          "API": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The most recent log timestamp of the CDS.API component"
+          },
+          "Service": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The most recent log timestamp of the CDS.Service component"
+          },
+          "Web": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The most recent log timestamp of the CDS.Web component"
+          }
+        }
+      },
+      "GetHeartbeat_Response": {
+        "title": "GetHeartbeatResponse",
+        "type": "object",
+        "properties": {
+          "GetHeartbeatResult": {
+            "$ref": "#/components/schemas/Heartbeat",
+            "description": "Heartbeat object with the last time of each CDS component was used"
+          }
+        }
+      },
+      "GetHSCodes_Request": {
+        "title": "GetHSCodesRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "goodDescription": {
+            "type": "string",
+            "description": "Description of good (preferable in English. French or Spanish\nmay be used with lower search efficiency, other languages may be supported on demand)\n",
+            "example": "tobacco"
+          }
+        },
+        "required": [
+          "securityToken",
+          "goodDescription"
+        ]
+      },
+      "HSLookupInfo": {
+        "title": "HSLookupInfo",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "HSCode": {
+            "type": "string",
+            "description": "The 6-character HS code",
+            "maxLength": 6
+          },
+          "Observations": {
+            "type": "string",
+            "description": "Additional details such as goods category"
+          }
+        }
+      },
+      "GetHSCodes_Response": {
+        "title": "GetHSCodesResponse",
+        "type": "object",
+        "properties": {
+          "GetHSCodesResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HSLookupInfo"
+            },
+            "description": "List of HS codes matching the given description with the best match on top or a null object \nif there is no match\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionByDescription_Request": {
+        "title": "GetRestrictionProhibitionByDescriptionRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationPostalOrgCd": {
+            "type": "string",
+            "description": "The postal destination of the good",
+            "example": "FRA"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodDescription": {
+            "type": "string",
+            "description": "Full or partial description of good in English (use short words, i.e. tobacco)",
+            "example": "tobacco"
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationPostalOrgCd",
+          "sendingCountryCd",
+          "goodDescription"
+        ]
+      },
+      "RestrictionProhibition": {
+        "title": "RestrictionProhibition",
+        "description": "",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "AdditionalDocFileName": {
+                "type": "string",
+                "description": "Name of the document providing additional information about prohibitions/restrictions"
+              },
+              "Description": {
+                "type": "string",
+                "description": "Description of the goods subject to prohibition/restriction"
+              },
+              "FromHSCode": {
+                "type": "string",
+                "description": "Start of the HS range of goods subject to prohibition/restriction"
+              },
+              "HSCodeList": {
+                "type": "string",
+                "description": "List of HS codes of goods subject to prohibition/restriction"
+              },
+              "LanguageCd": {
+                "type": "string",
+                "description": "ISO code of the language in which the restriction/prohibition details are provided"
+              },
+              "OrganizationCd": {
+                "type": "string",
+                "maxLength": 3,
+                "description": "The 3-character organization code of the postal operator owning the restriction/prohibition"
+              },
+              "PCategory": {
+                "type": "string",
+                "description": "Category",
+                "enum": [
+                  "P",
+                  "R"
+                ],
+                "x-enumDescriptions": {
+                  "P": "prohibition (import not allowed),",
+                  "R": "restriction (import allowed with restrictions)"
+                }
+              },
+              "RestrictedCountries": {
+                "type": "string",
+                "description": "Countries to which import restrictions apply"
+              },
+              "RestrictionNote": {
+                "type": "string",
+                "description": "Restriction details"
+              },
+              "ToHSCode": {
+                "type": "string",
+                "description": "End of the HS range of goods subject to prohibition/restriction"
+              },
+              "Valid": {
+                "type": "string",
+                "description": "Indicates whether the prohibition/restriction is valid or not"
+              },
+              "WebsiteInfo": {
+                "type": "string",
+                "description": "Link to the web site that provides additional information about prohibitions/restrictions"
+              }
+            }
+          }
+        ]
+      },
+      "GetRestrictionProhibitionByDescription_Response": {
+        "title": "GetRestrictionProhibitionByDescriptionResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionByDescriptionResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "List of restriction/prohibition articles matching the specified criteria or a null object \nif there is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionByDescriptionByCountry_Request": {
+        "title": "GetRestrictionProhibitionByDescriptionByCountryRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the destination country of the good",
+            "example": "FR"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodDescription": {
+            "type": "string",
+            "description": "Description of good (preferable in English. French or Spanish\nmay be used with lower search efficiency, other languages may be supported on demand)\n",
+            "example": "tobacco"
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationCountryCd",
+          "sendingCountryCd",
+          "goodDescription"
+        ]
+      },
+      "GetRestrictionProhibitionByDescriptionByCountry_Response": {
+        "title": "GetRestrictionProhibitionByDescriptionByCountryResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionByDescriptionByCountryResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "List of restriction/prohibition articles matching the specified criteria or a null object \nif there is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionsByDescriptions_Request": {
+        "title": "GetRestrictionProhibitionsByDescriptionsRequest",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationPostalOrgCd": {
+            "type": "string",
+            "description": "The postal destination of the good",
+            "example": "FRA"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodDescriptions": {
+            "description": "List of full or partial description of good in English (use short words, i.e. tobacco)",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "tobacco",
+                "shirt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationPostalOrgCd",
+          "sendingCountryCd",
+          "goodDescriptions"
+        ]
+      },
+      "GetRestrictionProhibitionsByDescriptions_Response": {
+        "title": "GetRestrictionProhibitionsByDescriptionsResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionsByDescriptionsResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "Dictionary having as keys each of the description passed in the list and as value the list \nof restriction/prohibition articles matching the specified description or a null object if \nthere is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionsByDescriptionsByCountry_Request": {
+        "title": "GetRestrictionProhibitionsByDescriptionsByCountrRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the destination country of the good",
+            "example": "FR"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodDescriptions": {
+            "description": "List of full or partial description of good in English (use short words, i.e. tobacco)",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "tobacco",
+                "shirt"
+              ]
+            }
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationCountryCd",
+          "sendingCountryCd",
+          "goodDescriptions"
+        ]
+      },
+      "GetRestrictionProhibitionsByDescriptionsByCountry_Response": {
+        "title": "GetRestrictionProhibitionsByDescriptionsByCountryResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionsByDescriptionsByCountryResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "Dictionary having as keys each of the description passed in the list and as value \nthe list of restriction/prohibition articles matching the specified description or \na null object if there is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionByHS_Request": {
+        "title": "GetRestrictionProhibitionByHSRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationPostalOrgCd": {
+            "type": "string",
+            "description": "The postal destination of the good",
+            "example": "FRA"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodHSCode": {
+            "type": "string",
+            "description": "HS code of the good",
+            "example": "240210"
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationPostalOrgCd",
+          "sendingCountryCd",
+          "goodHSCode"
+        ]
+      },
+      "GetRestrictionProhibitionByHS_Response": {
+        "title": "GetRestrictionProhibitionByHSResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionByHSResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "List of restriction/prohibition articles matching the specified criteria or a null object \nif there is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetRestrictionProhibitionByHSByCountry_Request": {
+        "title": "GetRestrictionProhibitionByHSByCountryRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "destinationCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the destination country of the good",
+            "example": "FR"
+          },
+          "sendingCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from",
+            "example": "FR"
+          },
+          "goodHSCode": {
+            "type": "string",
+            "description": "HS code of the good",
+            "example": "240210"
+          }
+        },
+        "required": [
+          "securityToken",
+          "destinationCountryCd",
+          "sendingCountryCd",
+          "goodHSCode"
+        ]
+      },
+      "GetRestrictionProhibitionByHSByCountry_Response": {
+        "title": "GetRestrictionProhibitionByHSByCountryResponse",
+        "type": "object",
+        "properties": {
+          "GetRestrictionProhibitionByHSByCountryResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "List of restriction/prohibition articles matching the specified criteria or a null object \nif there is no match (there isn't any known restriction/prohibition)\n"
+          }
+        }
+      },
+      "GetWatchdogItemInfo_Request": {
+        "title": "GetWatchdogItemInfoRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "itemId": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          }
+        },
+        "required": [
+          "securityToken",
+          "itemId"
+        ]
+      },
+      "WatchdogInfo": {
+        "title": "WatchdogInfo.OperationType",
+        "description": "Watchdog operation applying to the item",
+        "type": "string",
+        "enum": [
+          2,
+          4,
+          5
+        ],
+        "x-enumDescriptions": {
+          "2": "Item is cleared, not on the watchdog list",
+          "4": "Item marked as blocked on the watchdog list",
+          "5": "Item marked with warning on the watchdog list"
+        },
+        "example": 2
+      },
+      "WatchdogInfo-2": {
+        "title": "WatchdogInfo",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "Operation": {
+            "$ref": "#/components/schemas/WatchdogInfo"
+          },
+          "Remarks": {
+            "type": "string",
+            "description": "Remarks associated to the current watchdog operation"
+          }
+        }
+      },
+      "GetWatchdogItemInfo_Response": {
+        "title": "GetWatchdogItemInfoResponse",
+        "type": "object",
+        "properties": {
+          "GetWatchdogItemInfoResult": {
+            "$ref": "#/components/schemas/WatchdogInfo-2",
+            "description": "Watchdog information for the required item"
+          }
+        }
+      },
+      "IsItemRestrictedProhibited_Request": {
+        "title": "IsItemRestrictedProhibitedRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "mailItemID": {
+            "type": "string",
+            "description": "The mail item ID to which we want to check if it restricted/prohibited",
+            "example": "EE23050001XAU"
+          },
+          "returnRestrictionsProhibitions": {
+            "type": "boolean",
+            "description": "To determine if the list of restriction/prohibitions found should be returned.\nTrue to return the list. False not to return the list.\n",
+            "example": true
+          },
+          "restrictionsProhibitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "readOnly": true,
+            "description": "Dictionary of restriction/prohibitions by mail item content piece description."
+          },
+          "originCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is originating from (i.e. FR).",
+            "example": "FR"
+          },
+          "destinationCountryCd": {
+            "type": "string",
+            "description": "ISO country code of the country where the good is destined to (i.e. FR).",
+            "example": "FR"
+          }
+        },
+        "required": [
+          "securityToken",
+          "mailItemID"
+        ]
+      },
+      "IsItemRestrictedProhibited_Response": {
+        "title": "IsItemRestrictedProhibitedResponse",
+        "type": "object",
+        "properties": {
+          "IsItemRestrictedProhibitedResult": {
+            "type": "boolean"
+          },
+          "restrictionsProhibitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestrictionProhibition"
+            },
+            "description": "Dictionary of restriction/prohibitions by mail item content piece description"
+          }
+        }
+      },
+      "Load_Request": {
+        "title": "LoadRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "customsOrgCd": {
+            "type": "string",
+            "description": "The customs organization code (e.g. AU - Australia Post Customs) were the declarations and responses were created",
+            "example": "AU"
+          },
+          "organizationTypeCd": {
+            "type": "string",
+            "description": "The type of the organization making the request",
+            "enum": [
+              "P",
+              "C"
+            ],
+            "x-enumDescriptions": {
+              "P": "postal organization",
+              "C": "customs organization"
+            },
+            "example": "P"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XDE"
+          },
+          "flow": {
+            "$ref": "#/components/schemas/MailFlow"
+          },
+          "partnerPostalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code of the partner post, that is,\nthe destination post for the outbound mail and the origin post for the inbound mail.\n",
+            "example": "DEA"
+          },
+          "partCountryCd": {
+            "type": "string",
+            "description": "The ISO country code of the partner post, that is,\nthe destination country for the outbound mail and the origin country for the inbound mail.\n",
+            "example": "DE"
+          },
+          "dtFrom": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The lower limit of the posting date."
+          },
+          "dtTo": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The upper limit of the posting date."
+          },
+          "zipFrom": {
+            "type": "string",
+            "description": "The lower limit of the ZIP code of the sender, in case of\noutbound mail, or recipient, in case of inbound mail.\n",
+            "example": "10000"
+          },
+          "zipTo": {
+            "type": "string",
+            "description": "The upper limit of the ZIP code of the sender, in case of\noutbound mail, or recipient, in case of inbound mail.\n",
+            "example": "10001"
+          },
+          "mailClassCd": {
+            "$ref": "#/components/schemas/MailClass"
+          },
+          "onlyWithoutResponse": {
+            "type": "boolean",
+            "description": "If true, the search includes only declarations for which a\ncustoms response hasn't been created yet, otherwise all declarations.\n",
+            "example": true
+          },
+          "onlyWithDeclarationOrResponse": {
+            "type": "boolean",
+            "description": "If true, the search includes only objects that have\neither a declaration or a response associated, otherwise all of them.\n",
+            "example": true
+          },
+          "recordsLimit": {
+            "type": "integer",
+            "format": "int32",
+            "description": "When specified, the search count is limited to the specified value.",
+            "example": 100
+          }
+        },
+        "required": [
+          "token",
+          "postalOrgCd",
+          "customsOrgCd",
+          "organizationTypeCd",
+          "flow",
+          "onlyWithoutResponse",
+          "onlyWithDeclarationOrResponse"
+        ]
+      },
+      "Load_Response": {
+        "title": "LoadResponse",
+        "type": "object",
+        "properties": {
+          "LoadResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CDSView"
+            },
+            "description": "List of customs data views. A customs data view (CDSView) is a class \nthat aggregates information about the mail object, customs declaration and customs response\n"
+          }
+        }
+      },
+      "LoadByMailState_Request": {
+        "title": "LoadByMailStateRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "customsOrgCd": {
+            "type": "string",
+            "description": "The customs organization code (e.g. AU - Australia Post Customs)\nwere the declarations and responses were created.\n",
+            "example": "AU"
+          },
+          "organizationTypeCd": {
+            "type": "string",
+            "description": "The type of the organization making the request",
+            "enum": [
+              "P",
+              "C"
+            ],
+            "x-enumDescriptions": {
+              "P": "postal organization",
+              "C": "customs organization"
+            },
+            "example": "P"
+          },
+          "flow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          },
+          "mailStateCd": {
+            "type": "string",
+            "description": "Mail state code (i.e. 1 - received from customer).",
+            "example": "1"
+          }
+        },
+        "required": [
+          "token",
+          "postalOrgCd",
+          "customsOrgCd",
+          "organizationTypeCd",
+          "flow",
+          "mailStateCd"
+        ]
+      },
+      "LoadByMailState_Response": {
+        "title": "LoadByMailStateResponse",
+        "type": "object",
+        "properties": {
+          "LoadByMailStateResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CDSView"
+            }
+          }
+        }
+      },
+      "LoadMarketedGood_Request": {
+        "title": "LoadMarketedGoodRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "sellerOrganizationCd": {
+            "type": "string",
+            "description": "Seller organization code",
+            "example": "AUA"
+          },
+          "buyerOrganizationCd": {
+            "type": "string",
+            "description": "Buyer organization code",
+            "example": "FRA"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "Value": {
+        "title": "Value",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "Amount": {
+            "type": "number",
+            "format": "double",
+            "description": "Declared amount"
+          },
+          "Currency": {
+            "type": "string"
+          }
+        }
+      },
+      "MarketedGood": {
+        "title": "MarketedGood.MarketedGoodDetails",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "BuyerOrganizations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "FreeOfChargeReturn": {
+            "type": "boolean"
+          },
+          "GoodDetails": {
+            "type": "string"
+          },
+          "HSCode": {
+            "type": "string"
+          },
+          "HeightCm": {
+            "type": "number",
+            "format": "double"
+          },
+          "LengthCm": {
+            "type": "number",
+            "format": "double"
+          },
+          "Picture": {
+            "type": "string"
+          },
+          "Price": {
+            "$ref": "#/components/schemas/Value"
+          },
+          "SellerAddress": {
+            "type": "string"
+          },
+          "SellerCity": {
+            "type": "string"
+          },
+          "SellerCountry": {
+            "type": "string"
+          },
+          "SellerName": {
+            "type": "string"
+          },
+          "SellerPhone": {
+            "type": "string"
+          },
+          "SellerRefId": {
+            "type": "string"
+          },
+          "SellerZip": {
+            "type": "string"
+          },
+          "ServiceDescription": {
+            "type": "string"
+          },
+          "Stock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "WeightKg": {
+            "type": "number",
+            "format": "double"
+          },
+          "WidthCm": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "MarketedGood-2": {
+        "title": "MarketedGood",
+        "description": "The marketed good to be stored",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Description": {
+                "type": "string",
+                "description": "Description of the piece"
+              },
+              "Details": {
+                "$ref": "#/components/schemas/MarketedGood"
+              },
+              "ReferenceId": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "SellerOrganizationCd": {
+                "type": "string"
+              },
+              "ValidFrom": {
+                "$ref": "#/components/schemas/Epoch"
+              },
+              "ValidTo": {
+                "$ref": "#/components/schemas/Epoch"
+              },
+              "XmlDetails": {
+                "type": "string",
+                "format": "xml"
+              }
+            }
+          }
+        ]
+      },
+      "LoadMarketedGood_Response": {
+        "title": "LoadMarketedGoodResponse",
+        "type": "object",
+        "properties": {
+          "LoadMarketedGoodResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketedGood-2"
+            }
+          }
+        }
+      },
+      "LoadPostalServices_Request": {
+        "title": "LoadPostalServicesRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "origOrganizationCd": {
+            "type": "string",
+            "description": "The origin postal destination of the service",
+            "example": "AUA"
+          },
+          "destOrganizationCd": {
+            "type": "string",
+            "description": "The destination postal destination of the service",
+            "example": "FRA"
+          }
+        },
+        "required": [
+          "token",
+          "origOrganizationCd",
+          "destOrganizationCd"
+        ]
+      },
+      "PostalService": {
+        "title": "PostalService.ServiceDetails.ServiceOptions",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "CODFlag": {
+            "type": "boolean"
+          },
+          "DelivConfirmation": {
+            "type": "boolean"
+          },
+          "HandlingClass": {
+            "type": "string"
+          },
+          "HoldForPickup": {
+            "type": "boolean"
+          },
+          "OnDemandPickup": {
+            "type": "boolean"
+          },
+          "OnTimeDelivGuarantee": {
+            "type": "boolean"
+          },
+          "SignatureRequired": {
+            "type": "boolean"
+          },
+          "Tracking": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PostalService-2": {
+        "title": "PostalService.ServiceDetails.ServicePhysicalLimits",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "MaxHeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "MaxLenght": {
+            "type": "number",
+            "format": "double"
+          },
+          "MaxWeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "MaxWidth": {
+            "type": "number",
+            "format": "double"
+          },
+          "MinHeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "MinLenght": {
+            "type": "number",
+            "format": "double"
+          },
+          "MinWeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "MinWidth": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "PostalService-3": {
+        "title": "PostalService.ServiceDetails.ServiceRate",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "ItemMaxWeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "RateCode": {
+            "type": "string"
+          },
+          "RatePeKg": {
+            "$ref": "#/components/schemas/Value"
+          }
+        }
+      },
+      "PostalService-4": {
+        "title": "PostalService.ServiceDetails.ServiceStandards",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "CutoffHour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CutoffMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MaxDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "MinDays": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PostalService-5": {
+        "title": "PostalService.ServiceDetails",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "DestCountry": {
+            "type": "string"
+          },
+          "DestZoneNumber": {
+            "type": "string"
+          },
+          "MailSubclasses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Options": {
+            "$ref": "#/components/schemas/PostalService"
+          },
+          "OrigCountry": {
+            "type": "string"
+          },
+          "OrigZoneNumber": {
+            "type": "string"
+          },
+          "PhysicalLimits": {
+            "$ref": "#/components/schemas/PostalService-2"
+          },
+          "Rates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostalService-3"
+            }
+          },
+          "Standards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostalService-4"
+            }
+          }
+        }
+      },
+      "PostalService-6": {
+        "title": "PostalService",
+        "description": "",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Entity"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "DestOrganizationCd": {
+                "type": "string"
+              },
+              "Details": {
+                "$ref": "#/components/schemas/PostalService-5"
+              },
+              "MailCategoryCd": {
+                "type": "string",
+                "description": "Mail category (e.g. A- Airmail, B - SAL, C - Surface non-prio, D - Surface prio)",
+                "example": "A"
+              },
+              "MailClassCd": {
+                "type": "string",
+                "description": "Mail class (e.g. E - EMS, C - parcels, U - letters). Mandatory for ITMATT generation.",
+                "example": "E"
+              },
+              "OrigOrganizationCd": {
+                "type": "string"
+              },
+              "ServiceId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "ServiceNm": {
+                "type": "string"
+              },
+              "ValidFrom": {
+                "$ref": "#/components/schemas/Epoch"
+              },
+              "ValidTo": {
+                "$ref": "#/components/schemas/Epoch"
+              },
+              "XmlDetails": {
+                "type": "string",
+                "format": "xml"
+              }
+            }
+          }
+        ]
+      },
+      "LoadPostalServices_Response": {
+        "title": "LoadPostalServicesResponse",
+        "type": "object",
+        "properties": {
+          "LoadPostalServicesResult": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostalService-6"
+            }
+          }
+        }
+      },
+      "LoadRefDataCocktail_Request": {
+        "title": "LoadRefDataCocktailRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "languageCd": {
+            "type": "string",
+            "description": "'Language code to get the reference data. Ex: PT (for Portuguese),\nFR (for French), ES (for Spanish). If null or not provided, EN (English)\nwill be used.'\n",
+            "default": "EN",
+            "example": "PT"
+          }
+        },
+        "required": [
+          "securityToken",
+          "LoadRefDataCocktail"
+        ]
+      },
+      "SimpleRefData": {
+        "title": "SimpleRefData",
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": "string",
+            "description": "Reference code"
+          },
+          "Name": {
+            "type": "string",
+            "description": "Reference name"
+          }
+        }
+      },
+      "CurrencyRefData": {
+        "title": "CurrencyRefData",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SimpleRefData"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Countries": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of country codes that have this currency as official currency."
+              },
+              "DecimalPlaces": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Number of decimal places used in this currency."
+              }
+            }
+          }
+        ]
+      },
+      "SimpleRefDataCocktail": {
+        "title": "SimpleRefDataCocktail",
+        "description": "SimpleRefDataCocktail object for the language passed as parameter.",
+        "type": "object",
+        "properties": {
+          "Countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimpleRefData"
+            },
+            "description": "List of Countries",
+            "example": [
+              {
+                "Code": "US",
+                "Name": "UNITED STATES OF AMERICA"
+              }
+            ]
+          },
+          "Currencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyRefData"
+            },
+            "description": "List of Currencies",
+            "example": [
+              {
+                "Code": "USD",
+                "Name": "US Dollar",
+                "Countries": [
+                  "BQ",
+                  "EC",
+                  "US"
+                ],
+                "DecimalPlaces": 2
+              }
+            ]
+          },
+          "DocumentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimpleRefData"
+            },
+            "description": "List of Document types",
+            "example": [
+              {
+                "Code": "CRT",
+                "Name": "certificate"
+              }
+            ]
+          },
+          "NatureTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimpleRefData"
+            },
+            "description": "List of Nature types",
+            "example": [
+              {
+                "Code": 11,
+                "Name": "Sale of goods"
+              }
+            ]
+          }
+        }
+      },
+      "LoadRefDataCocktail_Response": {
+        "title": "LoadRefDataCocktailResponse",
+        "type": "object",
+        "properties": {
+          "LoadRefDataCocktailResult": {
+            "$ref": "#/components/schemas/SimpleRefDataCocktail",
+            "description": "SimpleRefDataCocktail object for the language passed as parameter"
+          }
+        }
+      },
+      "Login_Request": {
+        "title": "LoginRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "UserId to authentication",
+            "example": "user_cd"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "Current office for session (optional)",
+            "example": "DEAAAA"
+          },
+          "password": {
+            "type": "string",
+            "description": "Security password to authentucation",
+            "example": "xxxxxx"
+          }
+        },
+        "required": [
+          "securityToken",
+          "userCd",
+          "password"
+        ]
+      },
+      "Login_Response": {
+        "title": "LoginResponse",
+        "description": "A temporary session authentication token",
+        "type": "object",
+        "properties": {
+          "SecurityKey": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "Office": {
+            "type": "string",
+            "example": "DEAAAA"
+          },
+          "AllowedOffices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "DEAAAA",
+              "PTLISA"
+            ]
+          }
+        }
+      },
+      "Logout_Request": {
+        "title": "LogoutRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "UserId to authentication",
+            "example": "user_cd"
+          }
+        },
+        "required": [
+          "securityToken",
+          "userCd"
+        ]
+      },
+      "Logout_Response": {
+        "title": "LogoutResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "PrintCustomsDeclaration_Request": {
+        "title": "PrintCustomsDeclarationRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "mailItemId": {
+            "type": "string",
+            "description": "The mail item ID to which CN22 is to be printed",
+            "example": "EE23050001XAU"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that authors the document printing",
+            "example": "depost"
+          }
+        },
+        "required": [
+          "token",
+          "mailItemId",
+          "userCd"
+        ]
+      },
+      "PrintCustomsDeclaration_Response": {
+        "title": "PrintCustomsDeclarationResponse",
+        "type": "object",
+        "properties": {
+          "PrintCustomsDeclarationResult": {
+            "type": "string",
+            "description": "The base64-encoded content of the PDF document"
+          }
+        }
+      },
+      "PrintDoc_Request": {
+        "title": "PrintDocRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "cdsView": {
+            "$ref": "#/components/schemas/CDSView"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "token",
+          "cdsView",
+          "userCd"
+        ]
+      },
+      "PrintDoc_Response": {
+        "title": "PrintDocResponse",
+        "type": "object",
+        "properties": {
+          "PrintDocResult": {
+            "type": "string",
+            "description": "The base64-encoded content of the PDF document"
+          }
+        }
+      },
+      "SetWatchdogItemInfo_Request": {
+        "title": "SetWatchdogItemInfoRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "itemId": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "destinationPostalOrgCd": {
+            "type": "string",
+            "description": "The postal destination of the good (i.e. AUA, FRA, etc.).\nIf this parameter is null and the item does not yet exist in CDS, a ZZZ value is assumed.\n",
+            "example": "AUA"
+          },
+          "mailClassCd": {
+            "type": "string",
+            "description": "The mail class (e.g. E - EMS, U - Letters, C - Parcels).\nIf this parameter is null and the item does not yet exist in CDS,\nthe mail class will be determined from the itemId.\n",
+            "example": "E"
+          },
+          "postingDate": {
+            "$ref": "#/components/schemas/Epoch",
+            "description": "The posting date.  If this parameter is null and the item does not yet exist\nin CDS, the current date/time will be used as posting date.\n"
+          },
+          "watchdogInfo": {
+            "$ref": "#/components/schemas/WatchdogInfo-2",
+            "description": "Watchdog information for the specified item"
+          }
+        },
+        "required": [
+          "securityToken",
+          "itemId"
+        ]
+      },
+      "SetWatchdogItemInfo_Response": {
+        "title": "SetWatchdogItemInfoResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "StoreDeclaration_Request": {
+        "title": "StoreDeclarationRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "mailObject": {
+            "$ref": "#/components/schemas/MailObject"
+          },
+          "decl": {
+            "$ref": "#/components/schemas/Declaration-6"
+          },
+          "evtCd": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The event code against which the declaration is stored",
+            "enum": [
+              1,
+              2,
+              6,
+              7
+            ],
+            "x-enumDescriptions": {
+              "1": "create/update draft",
+              "2": "Store final declaration (automatic transfer)",
+              "6": "Send declaration to customs",
+              "7": "Send declaration to destination post"
+            },
+            "example": 1
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "token",
+          "mailObject",
+          "decl",
+          "evtCd",
+          "userCd"
+        ]
+      },
+      "StoreDeclaration_Response": {
+        "title": "StoreDeclarationResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "StoreMarketedGood_Request": {
+        "title": "StoreMarketedGoodRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "marketedGood": {
+            "$ref": "#/components/schemas/MarketedGood-2",
+            "description": "The marketed good to be stored"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "StoreMarketedGood_Response": {
+        "title": "StoreMarketedGoodResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "StorePostalService_Request": {
+        "title": "StorePostalServiceRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "postalService": {
+            "$ref": "#/components/schemas/PostalService-6",
+            "description": "The postal service to be stored"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "StorePostalService_Response": {
+        "title": "StorePostalServiceResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "StoreResponse_Request": {
+        "title": "StoreResponseRequest",
+        "type": "object",
+        "properties": {
+          "token": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "mailObject": {
+            "$ref": "#/components/schemas/MailObject"
+          },
+          "resp": {
+            "$ref": "#/components/schemas/Response-3"
+          },
+          "evtCd": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The event code against which the declaration is stored",
+            "enum": [
+              1,
+              2,
+              6,
+              7
+            ],
+            "x-enumDescriptions": {
+              "1": "create/update draft",
+              "2": "Store final declaration (automatic transfer)",
+              "6": "Send declaration to customs",
+              "7": "Send declaration to destination post"
+            },
+            "example": 1
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "DEAAAA"
+          }
+        },
+        "required": [
+          "token",
+          "mailObject",
+          "resp",
+          "evtCd",
+          "userCd"
+        ]
+      },
+      "StoreResponse_Response": {
+        "title": "StoreResponseResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "UpdateMailState_Request": {
+        "title": "UpdateMailStateRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "partnerPostalOrgCd": {
+            "type": "string",
+            "description": "The partner postal organization code",
+            "example": "FRA"
+          },
+          "flow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          },
+          "mailState": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The state of the mail item",
+            "enum": [
+              1,
+              2,
+              10,
+              50,
+              52
+            ],
+            "x-enumDescriptions": {
+              "1": "Received from customer",
+              "2": "Arrived at OOE",
+              "10": "Departed OOE",
+              "50": "Arrived IOE",
+              "52": "Departed IOE"
+            }
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "Office code",
+            "example": "PTLISA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "id",
+          "postalOrgCd",
+          "partnerPostalOrgCd",
+          "flow",
+          "userCd"
+        ]
+      },
+      "UpdateMailState_Response": {
+        "title": "UpdateMailStateResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "UpdateMailState_ForTransitItems_Request": {
+        "title": "UpdateMailState_ForTransitItemsRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "partnerPostalOrgCd": {
+            "type": "string",
+            "description": "The partner postal organization code",
+            "example": "FRA"
+          },
+          "flow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          },
+          "mailState": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The state of the mail item",
+            "enum": [
+              1,
+              2,
+              10,
+              50,
+              52
+            ],
+            "x-enumDescriptions": {
+              "1": "Received from customer",
+              "2": "Arrived at OOE",
+              "10": "Departed OOE",
+              "50": "Arrived IOE",
+              "52": "Departed IOE"
+            }
+          },
+          "itemDestPostalOrgCd": {
+            "type": "string",
+            "description": "The item destination postal organization code. Mandatory when flow is T (transit).",
+            "example": "DEA"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "Office code",
+            "example": "PTLISA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "id",
+          "postalOrgCd",
+          "partnerPostalOrgCd",
+          "flow",
+          "userCd"
+        ]
+      },
+      "UpdateMailState_ForTransitItems_Response": {
+        "title": "UpdateMailState_ForTransitItemsResponse",
+        "type": "object",
+        "format": "void"
+      },
+      "UpdateMailStateAndGetCustomsStatus_Request": {
+        "title": "UpdateMailStateRequest",
+        "type": "object",
+        "properties": {
+          "securityToken": {
+            "$ref": "#/components/schemas/Token"
+          },
+          "id": {
+            "type": "string",
+            "description": "The id of the mail object",
+            "example": "EE23050001XAU"
+          },
+          "postalOrgCd": {
+            "type": "string",
+            "description": "The postal organization code (e.g. AUA - Australia Post) were the declarations and responses were created.",
+            "example": "AUA"
+          },
+          "partnerPostalOrgCd": {
+            "type": "string",
+            "description": "The partner postal organization code",
+            "example": "FRA"
+          },
+          "flow": {
+            "type": "string",
+            "description": "Flow of the mail from the point of view of the postal organization",
+            "enum": [
+              "I",
+              "O",
+              "T"
+            ],
+            "x-enumDescriptions": {
+              "I": "inbound",
+              "O": "outbound",
+              "T": "transit"
+            },
+            "example": "I"
+          },
+          "mailState": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The state of the mail item",
+            "enum": [
+              1,
+              2,
+              10,
+              50,
+              52
+            ],
+            "x-enumDescriptions": {
+              "1": "Received from customer",
+              "2": "Arrived at OOE",
+              "10": "Departed OOE",
+              "50": "Arrived IOE",
+              "52": "Departed IOE"
+            }
+          },
+          "forceCreateResponseIfNotAvailable": {
+            "type": "boolean",
+            "description": "When true and the appropriate customs response is not available, CDS will attempt to create \na customs response based on the auto-response rules defined in CDS. Mandatory parameter\n",
+            "example": true
+          },
+          "itemDestPostalOrgCd": {
+            "type": "string",
+            "description": "The item destination postal organization code. Mandatory when flow is T (transit)",
+            "example": "DEA"
+          },
+          "userCd": {
+            "type": "string",
+            "description": "The user code that will author the creation of the customs response (if applicable).\nIf the user code does not exist in CDS, it will be automatically created and linked\nto the organization that issued the security token.\n",
+            "example": "depost"
+          },
+          "officeCd": {
+            "type": "string",
+            "description": "The office code that will author the creation of the customs response (if applicable)",
+            "example": "PTLISA"
+          }
+        },
+        "required": [
+          "securityToken",
+          "id",
+          "postalOrgCd",
+          "partnerPostalOrgCd",
+          "flow",
+          "forceCreateResponseIfNotAvailable",
+          "userCd"
+        ]
+      },
+      "UpdateMailStateAndGetCustomsStatus_Response": {
+        "title": "UpdateMailStateAndGetCustomsStatusResponse",
+        "type": "object",
+        "properties": {
+          "UpdateMailStateAndGetCustomsStatusResult": {
+            "$ref": "#/components/schemas/CDSView",
+            "description": "CDSView object that aggregates information about the mail object, customs declaration and customs response"
+          }
+        }
+      }
+    },
+    "responses": {
+      "ValidationException_Response": {
+        "description": "ValidationException response",
+        "headers": {},
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidationException"
+            }
+          }
+        }
+      },
+      "Unauthorized_Response": {
+        "description": "Unauthorized response",
+        "headers": {},
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/FaultException"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "User Access",
+      "tags": [
+        "User Access"
+      ]
+    },
+    {
+      "name": "Operational",
+      "tags": [
+        "Anonymous Declarations",
+        "Retrieve data",
+        "Store data"
+      ]
+    },
+    {
+      "name": "Utilities",
+      "tags": [
+        "Utilities"
+      ]
+    },
+    {
+      "name": "HS Codes and Restriction & Prohibition",
+      "tags": [
+        "HS Codes",
+        "Restriction Prohibition"
+      ]
+    },
+    {
+      "name": "Watchdog",
+      "tags": [
+        "Watchdog"
+      ]
+    },
+    {
+      "name": "eCommerce",
+      "tags": [
+        "Marketed Good",
+        "Postal Services"
+      ]
+    },
+    {
+      "name": "Print",
+      "tags": [
+        "Print"
+      ]
+    }
+  ]
+}
