@@ -1,0 +1,27 @@
+[
+  {
+    "applyTo": "1056877317",
+    "headers": [
+      {
+        "name": "authorization",
+        "value": "AccessToken zt4F4heS6mD1eYsMkXhChdiNZ5DgBOOl"
+      },
+      {
+        "name": "x-user-authorization",
+        "value": "Basic a2FsZXZhbHNraUBnbWFpbC5jb206ZHZhY2hmaWdhY2g"
+      },
+      {
+        "name": "content-type",
+        "value": "application/json;charset=UTF-8"
+      },
+      {
+        "name": "x-frame-options",
+        "value": ""
+      },
+      {
+        "name": "cookie",
+        "value": ""
+      }
+    ]
+  }
+]
